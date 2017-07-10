@@ -10,7 +10,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +24,9 @@ import com.yhtech.service.YGJdataService;
 @Controller("IPhoneRentController")
 public class IPhoneRentController {
 	@Autowired @Qualifier("jedisTemplate")
-	   public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
+	   public RedisTemplate<String, String> redisTemplate;
+	@Autowired
+	private YGJdataService data;
 	/**
 	 * 获取单个房源记录(出房)
 	 * @param request
@@ -39,7 +41,7 @@ public class IPhoneRentController {
 		//获取数据
 				String house_id=request.getParameter("house_id");
 				String contract_no=request.getParameter("contract_no");
-				String result = YGJdataService.getRentHouse(//TODO redis 需要修改);
+				String result = data.getRentHouse(redisTemplate);
 				Gson gson = new Gson();
 				JsonParser parser = new JsonParser();
 				JsonArray Jarray = parser.parse(result).getAsJsonArray();

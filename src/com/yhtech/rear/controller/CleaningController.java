@@ -14,7 +14,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,19 +27,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
+import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.domain.Rent;
 import com.yhtech.rear.dao.ICleanDao;
-import com.yhtech.service.YGJdataService;
 
 @Controller("cleaningcontroller")
 public class CleaningController {
 	@Autowired @Qualifier("jedisTemplate")
-	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
+	public  RedisTemplate<String, String> redisTemplate;
 	@Resource
 	private ICleanDao cleandao;
 	@Resource
 	private IStaffDao admindao;
+	@Resource
+	private IRentDao rentdao;
 	
+
 	/**
 	 * 修改保洁日期
 	 * @param request
@@ -86,7 +89,7 @@ public class CleaningController {
 		PrintWriter out = response.getWriter();
 		String date = request.getParameter("date");		//查询某天的保洁
 		int period=14;		//定义打扫周期
-		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+		ValueOperations<String,String> operation = redisTemplate.opsForValue();
 		if(operation.get("updatecleantoday")==null){						//出房数据更新到保洁表，12小时更新一次
 			updateCleanHouse();
 			operation.set("updatecleantoday","yes",12,TimeUnit.HOURS);
@@ -102,10 +105,11 @@ public class CleaningController {
 	 * @param ja
 	 */
 	private void updateCleanHouse() {
-		String rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
+		List<Rent> list = rentdao.listAll();
+		JSONArray arr = JSONArray.fromObject(list);
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
-		JsonArray Jarray = parser.parse(rentlist).getAsJsonArray();
+		JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 		for(JsonElement obj : Jarray ){
 		    Rent rent = gson.fromJson( obj , Rent.class);
 				if(rent.getState().equals("出租中")){			

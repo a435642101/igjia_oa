@@ -6,9 +6,7 @@ import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,35 +39,22 @@ import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
 import com.yhtech.domain.Log;
 import com.yhtech.finance.dao.IRentorderDao;
+import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.dao.IRentApplicationDao;
+import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.dao.IRentPropertyDao;
 import com.yhtech.igjia.domain.House;
+import com.yhtech.igjia.domain.Page;
 import com.yhtech.igjia.domain.Rent;
 import com.yhtech.igjia.domain.RentApplication;
 import com.yhtech.igjia.domain.RentProperty;
-import com.yhtech.service.OperateDataService;
 import com.yhtech.service.YGJdataService;
 import com.yhtech.yhtech.dao.ILogDao;
 
 @Controller("IgjiaRentController")
 public class IgjiaRentController {
-	@Autowired @Qualifier("jedisTemplate")
-	   public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
-	private static String HURL;
-	private static String RURL;
-	static{
-		Properties prop = new Properties();
-		InputStream in =IgjiaHouseController.class.getClassLoader().getResourceAsStream("/address.properties"); 
-		try {
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HURL = prop.getProperty("address").trim()+"/IGJdata/house";
-		RURL = prop.getProperty("address").trim()+"/IGJdata/rent";
-	}
+	@Autowired
+	private YGJdataService data;
 	@Resource
 	private IStaffDao admindao;
 	@Resource
@@ -82,7 +67,9 @@ public class IgjiaRentController {
 	@Resource
 	private IRentApplicationDao rentapplicationdao;
 	@Resource
-	private OperateDataService ods;
+	private IRentDao irentdao;
+	@Resource
+	private IHouseDao housedao;
 	
 	/**
 	 * 获得出房房屋交割清单
@@ -117,8 +104,17 @@ public class IgjiaRentController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String page=request.getParameter("page");
-		String result =YGJdataService.getRentHouse(//TODO redis 需要修改);
-		JSONArray ja = ods.getPageRent(page,"15",result);
+		List<Rent> list = new ArrayList<Rent>();
+		if(page!=null){
+			int page1 = Integer.parseInt(page);
+			Page pa = new Page("", "", "", "", "", "", "", (page1*15)-15, 15, "");
+			list = irentdao.listPage(pa);
+		}else{
+			Page pa = new Page("", "", "", "", "", "", "", 0, 15, "");
+			list = irentdao.listPage(pa);
+		}
+		
+		JSONArray ja = JSONArray.fromObject(list);
 		out.print(ja.toString());
 	}
 	
@@ -138,28 +134,39 @@ public class IgjiaRentController {
 		//获取数据
 		String house_id=request.getParameter("house_id");
 		String contract_no=request.getParameter("contract_no");
-		String result = YGJdataService.getRentHouse(//TODO redis 需要修改);
-		Gson gson = new Gson();
-		JsonParser parser = new JsonParser();
-		JsonArray Jarray = parser.parse(result).getAsJsonArray();
+		
+		
+//		String result = data.getRentHouse(redisTemplate);
+//		Gson gson = new Gson();
+//		JsonParser parser = new JsonParser();
+//		JsonArray Jarray = parser.parse(result).getAsJsonArray();
+//		JSONObject jo=new JSONObject();
+//		if(house_id!=null){
+//			for(JsonElement obj : Jarray ){
+//				Rent rent = gson.fromJson( obj , Rent.class);
+//			    if(house_id.equals(rent.getHouse_id())&& "出租中".equals(rent.getState())){
+//			    	jo = JSONObject.fromObject(rent);
+//			    	break;
+//			    }	        
+//			}
+//		}else{
+//			for(JsonElement obj : Jarray ){
+//				Rent rent = gson.fromJson( obj , Rent.class);
+//			    if(contract_no.equals(rent.getContract_no())){
+//			    	jo = JSONObject.fromObject(rent);
+//			    	break;
+//			    }	        
+//			}
+//		}
 		JSONObject jo=new JSONObject();
+		Rent rent = new Rent();
 		if(house_id!=null){
-			for(JsonElement obj : Jarray ){
-				Rent rent = gson.fromJson( obj , Rent.class);
-			    if(house_id.equals(rent.getHouse_id())&& "出租中".equals(rent.getState())){
-			    	jo = JSONObject.fromObject(rent);
-			    	break;
-			    }	        
-			}
+			rent = irentdao.findById(house_id);
 		}else{
-			for(JsonElement obj : Jarray ){
-				Rent rent = gson.fromJson( obj , Rent.class);
-			    if(contract_no.equals(rent.getContract_no())){
-			    	jo = JSONObject.fromObject(rent);
-			    	break;
-			    }	        
-			}
-		}	
+			rent = irentdao.findByContractNo(contract_no);
+		}
+		jo = JSONObject.fromObject(rent);
+		//System.out.println(jo.toString());
 		if(jo.size()==0){
 			out.print("zero");
 		}else{
@@ -179,33 +186,14 @@ public class IgjiaRentController {
 	public void igjiaAllRent(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		//获取数据
-			String result1=YGJdataService.getRentHouse(//TODO redis 需要修改);
-		    Gson gson = new Gson();
-		    JsonParser parser = new JsonParser();
-		    JsonArray Jarray = parser.parse(result1).getAsJsonArray();
-		    //获取admin表
-		    List<Staff> adminlist = admindao.listAll();
-		    JSONArray adminja = JSONArray.fromObject(adminlist);
-		    String dbjobno;
+		List<Rent> list = new ArrayList<Rent>();
+		int count = 0;
+			Page pa = new Page("", "", "", "", "", "", "", 0, 15, "");
+			list = irentdao.listPage(pa);
+			count = irentdao.count(pa);
 			JSONObject obj = new JSONObject();
-			JSONArray arr1 = new JSONArray();
-		    for(int i = 0; i <15; i++){
-		    	if(i<Jarray.size()){
-		    		JsonElement obj1 = Jarray.get(i);
-		    		Rent rent = gson.fromJson( obj1 , Rent.class);
-			        dbjobno = rent.getJob_no();
-		    		for(int j=0;j<adminja.size();j++){
-		    			JSONObject adminjo = (JSONObject) adminja.get(j);
-		    			if(dbjobno.equals(adminjo.get("job_no"))){
-		    				rent.setJob_no(adminjo.getString("name"));
-		    				break;
-		    			}
-		    		}
-		    		arr1.add(JSONObject.fromObject(rent));
-		    	}		   	    	
-		    }
-		    obj.put("maxnum", Jarray.size());
+			JSONArray arr1 = JSONArray.fromObject(list);
+		    obj.put("maxnum", count);
 		    arr1.add(obj);
 		    out.print(arr1.toString());
 	}
@@ -257,188 +245,43 @@ public class IgjiaRentController {
 		if(contract_start2.isEmpty()) contract_start2="2099/12/31";		//结束日期为空默认最晚
 		if(contract_end2.isEmpty()) contract_end2="2099/12/31";		//结束日期为空默认最晚
 		
-	    String result1 = YGJdataService.getRentHouse(//TODO redis 需要修改);	
-	    JSONArray arr = new JSONArray();
-	    Gson gson = new Gson();
-	    JsonParser parser = new JsonParser();
-	    JsonArray Jarray = parser.parse(result1).getAsJsonArray();
-	    for(JsonElement obj : Jarray ){
-	    	Rent rent = gson.fromJson( obj , Rent.class);
-	    	arr.add(JSONObject.fromObject(rent));  
-	    }
-	    JSONArray jarr = mohuSearch(keyword, state,district,pay_method,arr,contract_start1,contract_start2,contract_end1,contract_end2);
-	    String page = request.getParameter("page");
+		if(state.equals("出租中,审核中,已失效,已到期")){
+			state="";
+		}
+		if(district.equals("嘉定大区,壹管家老房源,宝山大区,松江北区,浦东东区,浦东南区,浦东西区,闵行大区")){
+			district="";
+		}
+		if(pay_method.equals("")){
+			pay_method="";
+		}
+		
+		String page = request.getParameter("page");
 		String num = request.getParameter("num");  
-		if(page==null || page.isEmpty() || num==null || num.isEmpty()){
-			jarr = nameReplaceJobno(jarr);	
-			out.print(jarr.toString());
-		}else{								//分页数据
+		List<Rent> list = new ArrayList<Rent>();
+		int count = 0;
+		if(page!=null && num!=null){
+			int page1 = Integer.parseInt(page);
+			int num1 = Integer.parseInt(num);
+			Page pa = new Page(district, state, contract_start1, contract_start2, contract_end1, contract_end2, keyword, (page1*num1)-num1, num1, "");
+			list = irentdao.listPage(pa);
+			count = irentdao.count(pa);
+		}else{
+			Page pa = new Page(district, state, contract_start1, contract_start2, contract_end1, contract_end2, keyword, 0, 15, "");
+			list = irentdao.listPage(pa);
+			count = irentdao.count(pa);
+		}
+			//System.out.println(state+"***"+district+"***"+pay_method+"***");
 			JSONObject jo = new JSONObject();
-			JSONArray jsonarr = ods.getPageRent(page, num, jarr.toString());	
+			JSONArray jsonarr = JSONArray.fromObject(list);
 			jo.put("code", "1");
 			jo.put("msg", jsonarr.toString());
-			jo.put("total",jarr.size());
+			jo.put("total",count);
 			out.print(jo.toString());
-		}	
+		
 	}
 
 	
-	/**
-	 * 模糊查询
-	 * @param keyword 关键词
-	 * @param state	状态
-	 * @param district	分区
-	 * @param pay_method	支付方式
-	 * @param arr	搜索的集合
-	 * @return
-	 */
-	private JSONArray mohuSearch(String keyword, String state, String district,
-			String pay_method, JSONArray ja,String contract_start1,String contract_start2,String contract_end1,String contract_end2) {
-		JSONArray jarr = new JSONArray();
-		SimpleDateFormat sdf =  new SimpleDateFormat("yyyy/MM/dd");
-		String redisguanjianci =null;
-		String redisstate =null;
-		String redisdistrict =null;
-		String redispay_method =null;
-		if(keyword!=null && !keyword.isEmpty()){
-			if(!pay_method.equals("全部")){
-				for(int i=0;i<ja.size();i++){
-					redisguanjianci = ja.getJSONObject(i).toString();
-					redisstate = ja.getJSONObject(i).getString("state");
-					redisdistrict = ja.getJSONObject(i).getString("district");
-					redispay_method = ja.getJSONObject(i).getString("paymethod");
-					if(redisguanjianci.contains(keyword) && pay_method.equals(redispay_method)){	//满足关键词和支付方式的条件
-						String[] districtarr = district.split(",");
-						for(int j=0;j<districtarr.length;j++){				//分区多选 判断满足条件
-							if(districtarr[j].equals(redisdistrict)){
-								String[] statearr = state.split(",");
-								for(int k=0;k<statearr.length;k++){				//状态多选 判断满足条件
-									if(statearr[k].equals(redisstate)){
-										try {
-											String redisstartdate = ja.getJSONObject(i).getString("contract_startdate");
-											String redisenddate = ja.getJSONObject(i).getString("contract_enddate");
-											Date sdate = sdf.parse(redisstartdate);
-											Date sdate1 = sdf.parse(contract_start1);
-											Date sdate2 = sdf.parse(contract_start2);
-											Date edate = sdf.parse(redisenddate);
-											Date edate1 = sdf.parse(contract_end1);
-											Date edate2 = sdf.parse(contract_end2);
-											if(sdate.after(sdate1) && sdate.before(sdate2) && edate.after(edate1) && edate.before(edate2)){
-												jarr.add(ja.get(i));
-											}
-										} catch (ParseException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}else{
-				for(int i=0;i<ja.size();i++){
-					redisguanjianci = ja.getJSONObject(i).toString();
-					redisstate = ja.getJSONObject(i).getString("state");
-					redisdistrict = ja.getJSONObject(i).getString("district");
-					redispay_method = ja.getJSONObject(i).getString("paymethod");
-					if(redisguanjianci.contains(keyword)){	//满足关键词的条件
-						String[] districtarr = district.split(",");
-						for(int j=0;j<districtarr.length;j++){				//分区多选 判断满足条件
-							if(districtarr[j].equals(redisdistrict)){
-								String[] statearr = state.split(",");
-								for(int k=0;k<statearr.length;k++){				//状态多选 判断满足条件
-									if(statearr[k].equals(redisstate)){
-										try {
-											String redisstartdate = ja.getJSONObject(i).getString("contract_startdate");
-											String redisenddate = ja.getJSONObject(i).getString("contract_enddate");
-											Date sdate = sdf.parse(redisstartdate);
-											Date sdate1 = sdf.parse(contract_start1);
-											Date sdate2 = sdf.parse(contract_start2);
-											Date edate = sdf.parse(redisenddate);
-											Date edate1 = sdf.parse(contract_end1);
-											Date edate2 = sdf.parse(contract_end2);
-											if(sdate.after(sdate1) && sdate.before(sdate2) && edate.after(edate1) && edate.before(edate2)){
-												jarr.add(ja.get(i));
-											}
-										} catch (ParseException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}			
-		}else{
-			if(!pay_method.equals("全部")){
-				for(int i=0;i<ja.size();i++){
-					redisstate = ja.getJSONObject(i).getString("state");
-					redisdistrict = ja.getJSONObject(i).getString("district");
-					redispay_method = ja.getJSONObject(i).getString("paymethod");
-					if(pay_method.equals(redispay_method)){	//满足支付方式的条件
-						String[] districtarr = district.split(",");
-						for(int j=0;j<districtarr.length;j++){				//分区多选 判断满足条件
-							if(districtarr[j].equals(redisdistrict)){
-								String[] statearr = state.split(",");
-								for(int k=0;k<statearr.length;k++){				//状态多选 判断满足条件
-									if(statearr[k].equals(redisstate)){
-										try {
-											String redisstartdate = ja.getJSONObject(i).getString("contract_startdate");
-											String redisenddate = ja.getJSONObject(i).getString("contract_enddate");
-											Date sdate = sdf.parse(redisstartdate);
-											Date sdate1 = sdf.parse(contract_start1);
-											Date sdate2 = sdf.parse(contract_start2);
-											Date edate = sdf.parse(redisenddate);
-											Date edate1 = sdf.parse(contract_end1);
-											Date edate2 = sdf.parse(contract_end2);
-											if(sdate.after(sdate1) && sdate.before(sdate2) && edate.after(edate1) && edate.before(edate2)){
-												jarr.add(ja.get(i));
-											}
-										} catch (ParseException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}else{
-				for(int i=0;i<ja.size();i++){
-					redisstate = ja.getJSONObject(i).getString("state");
-					redisdistrict = ja.getJSONObject(i).getString("district");
-					redispay_method = ja.getJSONObject(i).getString("paymethod");
-						String[] districtarr = district.split(",");
-						for(int j=0;j<districtarr.length;j++){				//分区多选 判断满足条件
-							if(districtarr[j].equals(redisdistrict)){
-								String[] statearr = state.split(",");
-								for(int k=0;k<statearr.length;k++){				//状态多选 判断满足条件
-									if(statearr[k].equals(redisstate)){
-										try {
-											String redisstartdate = ja.getJSONObject(i).getString("contract_startdate");
-											String redisenddate = ja.getJSONObject(i).getString("contract_enddate");
-											Date sdate = sdf.parse(redisstartdate);
-											Date sdate1 = sdf.parse(contract_start1);
-											Date sdate2 = sdf.parse(contract_start2);
-											Date edate = sdf.parse(redisenddate);
-											Date edate1 = sdf.parse(contract_end1);
-											Date edate2 = sdf.parse(contract_end2);
-											if(sdate.after(sdate1) && sdate.before(sdate2) && edate.after(edate1) && edate.before(edate2)){
-												jarr.add(ja.get(i));
-											}
-										} catch (ParseException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							}
-						}
-				}
-			}			
-		}
-		return jarr;
-	}
+	
 
 	/**
 	 * 添加Rent
@@ -453,7 +296,6 @@ public class IgjiaRentController {
 		PrintWriter out = response.getWriter();
 		Staff admin = (Staff) request.getSession().getAttribute("admin");
 		if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
-			ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 			synchronized(this){
 				String houseId=null;
 				String address=null;
@@ -535,10 +377,14 @@ public class IgjiaRentController {
 					
 					//新增出房
 					Rent rent = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);	
-				    JSONObject jo = JSONObject.fromObject(rent);
-				    m1.put("rent", URLEncoder.encode(jo.toString(),"utf-8"));	    
-				    String result1 = hp1.hp(RURL, m1, "post");
-			    
+
+				    
+				String result1 = "error";
+				int res = irentdao.add(rent);
+				if(res == 1){
+				    result1 = "success";
+				}
+				    
 			    if("success".equals(result1)){		//出房添加成功后添加物业配置
 			    	String application = null;
 					try {
@@ -569,20 +415,17 @@ public class IgjiaRentController {
 					}catch (Exception e) {
 						result1="propertyinserterror";
 					}
-			    	operation.set("rentlist", null);
 			    	
 			    	//修改房源为已出租
 			    	House house = new House();
 					house.setHouse_id(houseId);
-					house.setState("已出租");
-					jo = JSONObject.fromObject(house);
-					m1.clear();
-					m1.put("house", URLEncoder.encode(jo.toString(),"utf-8"));
-					String houser = hp1.hp(HURL, m1, "PUT");
-					if("success".equals(houser)){
-						operation.set("houselist", null);
-						operation.set("houselist_"+district, null);
-					}			
+					house.setState("已出租"); 
+					
+					String houser = "error";
+					int res1 = housedao.update(house);
+					if(res1 == 1){
+						houser = "success";
+					}		
 			    }else if("fail".equals(result1)){
 			    	result1="addfail";
 			    }
@@ -682,12 +525,11 @@ public class IgjiaRentController {
 			
 		Rent r = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);
 		
-	    JSONObject jo = JSONObject.fromObject(r);
-	    Map<String,String> m = new LinkedHashMap<String, String>();
-	    m.put("rent", URLEncoder.encode(jo.toString(),"UTF-8"));
-	    Http hp = Http.getInstance();
-	    String result1 = hp.hp(RURL, m, "put");
-	    ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+	    String result1 = "error";
+	    int res = irentdao.update(r);
+	    if(res == 1){
+	    	result1 = "success";
+	    }
 	    
 	    if("success".equals(result1)){
 	    	Staff admin = (Staff) request.getSession().getAttribute("admin");
@@ -737,7 +579,6 @@ public class IgjiaRentController {
 			} catch (Exception e) {
 				result1="propertyupdateerror";
 			}	
-	    	operation.set("rentlist", null);
 	    }else if("fail".equals(result1)){
 	    	result1="updatefail";
 	    }	    

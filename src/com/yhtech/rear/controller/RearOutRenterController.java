@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,10 @@ import com.peter.util.Http;
 import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
 import com.yhtech.igjia.controller.IgjiaHouseController;
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.domain.House;
-import com.yhtech.service.YGJdataService;
+import com.yhtech.igjia.domain.Rent;
 
 @Controller("RearOutRenterController")
 public class RearOutRenterController {
@@ -53,9 +56,13 @@ public class RearOutRenterController {
 		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
 	}
 	@Autowired @Qualifier("jedisTemplate")
-	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
+	public RedisTemplate<String, String> redisTemplate;
 	@Resource
 	private IStaffDao staffdao;
+	@Resource
+	private IRentDao irentdao;
+	@Resource
+	private IHouseDao housedao;
 	
 	/**
 	 * 获得退租中的房源
@@ -67,12 +74,14 @@ public class RearOutRenterController {
 	public void pagerent(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String result =YGJdataService.getHouse(//TODO redis 需要修改);
+		
+		List<Rent> list = irentdao.listAll();
+		JSONArray arr = JSONArray.fromObject(list);
 		JSONArray ja = new JSONArray();
 		JSONObject jo = new JSONObject();
 		Gson gson = new Gson();
 	    JsonParser parser = new JsonParser();
-	    JsonArray Jarray = parser.parse(result).getAsJsonArray();
+	    JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 	    for(JsonElement obj : Jarray ){
 	        House house = gson.fromJson( obj , House.class);
 	        
@@ -106,10 +115,13 @@ public class RearOutRenterController {
 			jo.put("code", "3");
 			jo.put("msg","参数错误");  
 		}else{
-			String result =YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);			
+			House house1 = new House();
+			house1.setDistrict(district);
+			List<House> list = housedao.listSearch(house1);
+			JSONArray arr = JSONArray.fromObject(list);		
 			Gson gson = new Gson();
 		    JsonParser parser = new JsonParser();
-		    JsonArray Jarray = parser.parse(result).getAsJsonArray();
+		    JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 		    int num=0;
 		    for(JsonElement obj : Jarray ){
 		        House house = gson.fromJson( obj , House.class);
@@ -129,7 +141,7 @@ public class RearOutRenterController {
 				try {
 					String result1 = hp.hp(HURL, m, "put");
 					if("success".equals(result1)){
-						ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+						ValueOperations<String,String> operation = redisTemplate.opsForValue();
 						operation.set("houselist", null);
 				    	operation.set("houselist_"+district, null);
 						jo.put("code", "1");

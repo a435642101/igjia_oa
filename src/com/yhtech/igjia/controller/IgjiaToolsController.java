@@ -7,17 +7,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.dao.IRentDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,10 +37,13 @@ import com.yhtech.service.YGJdataService;
 
 @Controller("igjiatoolscontroller")
 public class IgjiaToolsController {
-	@Autowired @Qualifier("jedisTemplate")
-	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
+
 	@Resource
 	private IStaffDao admindao;
+	@Resource
+	private IHouseDao housedao;
+	@Resource
+	private IRentDao rentdao;
 	/**
 	 * 查询本月收房数据
 	 * @param request
@@ -55,7 +60,7 @@ public class IgjiaToolsController {
 			String rdate = request.getParameter("date");
 			String district=URLDecoder.decode(request.getParameter("district"),"UTF-8");
 			String name=URLDecoder.decode(request.getParameter("name"),"UTF-8");		
-			String result = YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);
+
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 			Date sdate1 = null;
 			Date sdate2 = null;
@@ -69,9 +74,15 @@ public class IgjiaToolsController {
 				out.print("时间区域格式错误");
 				return;
 			}
+			//String result = data.getHouseDistrict(redisTemplate, district);
+			House house1 = new House();
+			house1.setDistrict(district);
+			List<House> list = housedao.listSearch(house1);
+			JSONArray arr =  JSONArray.fromObject(list);
+
 			Gson gson = new Gson();
 			JsonParser parser = new JsonParser();
-			JsonArray Jarray = parser.parse(result).getAsJsonArray();
+			JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 			JSONArray ja = new JSONArray();
 			if("全部".equals(name)){
 				for(JsonElement obj : Jarray ){
@@ -123,7 +134,7 @@ public class IgjiaToolsController {
 			String rdate = request.getParameter("date");
 			String district=URLDecoder.decode(request.getParameter("district"),"UTF-8");
 			String name=URLDecoder.decode(request.getParameter("name"),"UTF-8");		
-			String result = YGJdataService.getDistrictRent(//TODO redis 需要修改, district);
+
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd"); 
 			Date sdate1 = null;
 	    	Date sdate2 = null;
@@ -132,9 +143,14 @@ public class IgjiaToolsController {
 			int month = Integer.parseInt(sd[1]);				
 			try {sdate1 = format.parse(getLastMonthlast(year,month));} catch (ParseException e1) {}		    	
 			try {sdate2 = format.parse(getNextMonthFirst(year,month));} catch (ParseException e1) {}
+			//String result = data.getDistrictRent(redisTemplate, district);
+			Rent rent1 = new Rent();
+			rent1.setDistrict(district);
+			List<Rent> list = rentdao.listSearch(rent1);
+			JSONArray arr = JSONArray.fromObject(list);
 			Gson gson = new Gson();
 			JsonParser parser = new JsonParser();
-			JsonArray Jarray = parser.parse(result).getAsJsonArray();
+			JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 			JSONArray ja = new JSONArray();
 			if("全部".equals(name)){
 				for(JsonElement obj : Jarray ){

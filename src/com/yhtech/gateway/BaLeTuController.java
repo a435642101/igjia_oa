@@ -13,15 +13,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,21 +44,8 @@ import com.yhtech.igjia.domain.House;
  */
 @Controller("bltcontroller")
 public class BaLeTuController {
-	
-	@Autowired @Qualifier("jedisTemplate")
-	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
-	private static String URL;
-	static{
-		Properties prop = new Properties();
-		InputStream in =IgjiaHouseController.class.getClassLoader().getResourceAsStream("/address.properties"); 
-		try {
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		URL = prop.getProperty("address" ).trim()+"/IGJdata/house";
-	}
+	@Resource
+	private IHouseDao housedao;
 	/**
 	 * 向第三方平台下架房源
 	 * @param request
@@ -111,16 +99,14 @@ public class BaLeTuController {
 			House house = new House();
 			house.setHouse_id(house_id);
 			house.setRegion(state);
-			JSONObject jo = JSONObject.fromObject(house);
-		    Map<String,String> m = new LinkedHashMap<String, String>();
-		    m.put("house", URLEncoder.encode(jo.toString(),"UTF-8"));
-			String houseresult = hp.hp(URL, m, "put");
-			ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-		    if("success".equals(houseresult)){
-		    	operation.set("houselist_"+district, null);
-		    	operation.set("houselist", null);
-		    }
-		} catch (Exception e) {}
+			int res = housedao.update(house);
+			String houseresult = "error";
+			if(res == 1){
+				houseresult = "success";
+			}
+		} catch (Exception e) {
+
+		}
 	}
 	
 	/**

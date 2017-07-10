@@ -3,6 +3,7 @@ package com.yhtech.igjia.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -11,12 +12,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.dao.IRentDao;
+import com.yhtech.igjia.domain.House;
+import com.yhtech.igjia.domain.Rent;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,15 +36,15 @@ import com.yhtech.hr.domain.District;
 
 @Controller("statisticscontroller")
 public class IgjiaStatisticsController {
-	@Autowired @Qualifier("jedisTemplate")
-	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	
 	@Resource
 	private IStaffDao admindao;
 	@Resource
 	private IDistrictDao districtdao;
-	
-	
+	@Resource
+	private IHouseDao housedao;
+	@Resource
+	private IRentDao rentdao;
 	
 	/**
 	 * 各区域管家的统计数据
@@ -61,43 +64,49 @@ public class IgjiaStatisticsController {
 			out.print("参数值不合法");
 			return;
 		}
-		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+		House house = new House();
+		house.setDistrict(district);
+		Rent rent = new Rent();
+		rent.setDistrict(district);
 		String result = null;
-		if(operation.get("regionstatistics_"+district)==null){
-			List<Staff> adminlist=null;
-			String houselist = null;
-			String rentlist = null;
-			if(!"全部".equals(district)){		
-				adminlist = admindao.findByDeptDist("YGJZL",district);
-				try {
-					houselist = YGJdataService.getHouseDistrict(//TODO redis 需要修改,district);
-					rentlist = YGJdataService.getDistrictRent(//TODO redis 需要修改,district);
-				} catch (Exception e) {
-					out.print("error");
-				}	
-			}else{
-				adminlist = admindao.findByDepartment("YGJZL");
-				try {											   
-					houselist = YGJdataService.getHouse(//TODO redis 需要修改);
-					rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
-				} catch (Exception e) {
-					out.print("error");
-				}	
+		List<Staff> adminlist=null;
+//		String houselist = null;
+//		String rentlist = null;
+		List<House> houselist = new ArrayList<House>();
+		List<Rent> rentlist = new ArrayList<Rent>();
+		if(!"全部".equals(district)){
+			adminlist = admindao.findByDeptDist("YGJZL",district);
+			try {
+//				houselist = data.getHouseDistrict(redisTemplate,district);
+//				rentlist = data.getDistrictRent(redisTemplate,district);
+				houselist = housedao.listSearch(house);
+				rentlist = rentdao.listSearch(rent);
+			} catch (Exception e) {
+				out.print("error");
 			}
-			JSONArray adminja = JSONArray.fromObject(adminlist);
-			JSONArray ahja = JSONArray.fromObject(houselist);
-			JSONArray arja = JSONArray.fromObject(rentlist);
-			JSONObject totaljo = new JSONObject();		//总的总计数据		
-			getdata(adminja, ahja, "house","name",totaljo);		//获得各个管家的入房统计数据
-			getdata(adminja, arja, "rent","name", totaljo);		//获得管家的出房统计数据
-			JSONObject finaljo = new JSONObject();		//最终统计结果
-			patternJson(totaljo, finaljo);				//调整格式
-			
-			operation.set("regionstatistics_"+district,finaljo.toString(),2,TimeUnit.HOURS);
-			result = finaljo.toString();
 		}else{
-			result = operation.get("regionstatistics_"+district);
+			adminlist = admindao.findByDepartment("YGJZL");
+			try {
+//				houselist = data.getHouse(redisTemplate);
+//				rentlist = data.getRentHouse(redisTemplate);
+				houselist = housedao.listAll();
+				rentlist = rentdao.listAll();
+			} catch (Exception e) {
+				out.print("error");
+			}
 		}
+		JSONArray adminja = JSONArray.fromObject(adminlist);
+		JSONArray ahja = JSONArray.fromObject(houselist);
+		JSONArray arja = JSONArray.fromObject(rentlist);
+		JSONObject totaljo = new JSONObject();		//总的总计数据
+		getdata(adminja, ahja, "house","name",totaljo);		//获得各个管家的入房统计数据
+		getdata(adminja, arja, "rent","name", totaljo);		//获得管家的出房统计数据
+		JSONObject finaljo = new JSONObject();		//最终统计结果
+		patternJson(totaljo, finaljo);				//调整格式
+
+		//operation.set("regionstatistics_"+district,finaljo.toString(),2,TimeUnit.HOURS);
+		result = finaljo.toString();
+
 		out.print(result);
 	}
 
@@ -111,36 +120,38 @@ public class IgjiaStatisticsController {
 	public void gettotalstatistics(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+//		ValueOperations<String,String> operation = redisTemplate.opsForValue();
 		String result = null;
-		if(operation.get("totalstatistics")==null){
-			String houselist;
-			String rentlist;
-			try {			
-				houselist = YGJdataService.getHouse(//TODO redis 需要修改);
-				rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
-				List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
-				JSONArray adja = JSONArray.fromObject(alldistrict);
-				JSONArray ahja = JSONArray.fromObject(houselist);
-				JSONArray arja = JSONArray.fromObject(rentlist);
-				
-				JSONObject totaljo = new JSONObject();		//总的总计数据		
-				getdata(adja, ahja, "house","district",totaljo);		//获得房源的统计数据
-				getdata(adja, arja, "rent","district", totaljo);		//获得出房统计数据
-				
-				JSONObject finaljo = new JSONObject();		//最终统计结果
-				patternJson(totaljo, finaljo);				//调整格式
-				
-				operation.set("totalstatistics",finaljo.toString(),2,TimeUnit.HOURS);
-				result = finaljo.toString();
-			} catch (Exception e) {
-				out.print("error");
-				e.printStackTrace();
-			}
-		}else{
-			result = operation.get("totalstatistics");
+//		if(operation.get("totalstatistics")==null){
+//			String houselist;
+//			String rentlist;
+		List<House> houselist = new ArrayList<House>();
+		List<Rent> rentlist = new ArrayList<Rent>();
+		try {
+//				houselist = data.getHouse(redisTemplate);
+//				rentlist = data.getRentHouse(redisTemplate);
+			List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
+			JSONArray adja = JSONArray.fromObject(alldistrict);
+			JSONArray ahja = JSONArray.fromObject(houselist);
+			JSONArray arja = JSONArray.fromObject(rentlist);
+
+			JSONObject totaljo = new JSONObject();		//总的总计数据
+			getdata(adja, ahja, "house","district",totaljo);		//获得房源的统计数据
+			getdata(adja, arja, "rent","district", totaljo);		//获得出房统计数据
+
+			JSONObject finaljo = new JSONObject();		//最终统计结果
+			patternJson(totaljo, finaljo);				//调整格式
+
+//			operation.set("totalstatistics",finaljo.toString(),2,TimeUnit.HOURS);
+			result = finaljo.toString();
+		} catch (Exception e) {
+			out.print("error");
+			e.printStackTrace();
 		}
-			out.print(result);		
+//	}else{
+//		result = operation.get("totalstatistics");
+//	}
+		out.print(result);
 	}
 
 	
@@ -215,7 +226,10 @@ public class IgjiaStatisticsController {
 		String now = UtilDate.getDate1();		//今天
 		
 		if("house".equals(house)){				//统计房源数据
-			for(int i=0;i<adja.size();i++){				
+			for(int i=0;i<adja.size();i++){	
+				if(adja.get(i)==null){
+					continue;
+				}
 				JSONObject jo = (JSONObject) adja.get(i);
 				String field = (String) jo.getString(comparefield);
 				int weeknum = 0;
@@ -225,6 +239,9 @@ public class IgjiaStatisticsController {
 				int all=0;
 				int hot_vacancy =0;
 				for(int j=0;j<ahja.size();j++){
+					if(ahja.get(j) instanceof net.sf.json.JSONNull){
+						continue;
+					}
 					jo = (JSONObject) ahja.get(j);
 					String date = jo.getString("date").substring(0,10);		//年月日
 					String pay_date = jo.getString("pay_date").replaceAll("/", "-");
@@ -268,6 +285,9 @@ public class IgjiaStatisticsController {
 				int lastmonthnum = 0;
 				int all =0;
 				for(int j=0;j<ahja.size();j++){
+					if(ahja.get(j) instanceof net.sf.json.JSONNull){
+						continue;
+					}
 					jo = (JSONObject) ahja.get(j);
 					String date = jo.getString("date").substring(0,10);		//年月日
 					if(field.equals(jo.getString(comparefield))){		

@@ -15,12 +15,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +37,10 @@ import com.yhtech.igjia.domain.House;
 
 @Controller("staffcontroller")
 public class StaffController {
-	@Autowired @Qualifier("jedisTemplate")
-	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IStaffDao staffdao;
+	@Resource
+	private IHouseDao housedao;
 	private static String HURL;
 	static{
 		Properties prop = new Properties();
@@ -267,32 +267,25 @@ public class StaffController {
 		if("YGJZL".equals(department)){		//判断是不是业务部门的员工
 			Staff staff = staffdao.findByjobno(job_no);
 			if(!department.equals(staff.getDepartment()) || !district.equals(staff.getDistrict()) || !state.equals(staff.getState())){	//判断这三个条件是否改变,如果改变需要验证该员工名下是否有房源
-				String result=null;
-				Http hp = Http.getInstance();			//获取所有房源
-				Map<String,String> m = new LinkedHashMap<String, String>();	
-				ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-				if(operation.get("houselist")==null){
-					try {
-						result = hp.hp(HURL,m, "get");
-						operation.set("houselist", result);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						out.print("error");
-					}		    	
-				}else{
-					result = operation.get("houselist");
+				House house = new House();
+				house.setJob_no(job_no);
+				List<House> list = housedao.listSearch(house);
+				if(list.size() > 0){
+					jo.put("code", "3");
+					jo.put("msg","该管家名下还有房源");
+					out.print(jo.toString());				//返回给前端数据 ，停止执行后续操作
+					return;
 				}
-				JSONArray ja = JSONArray.fromObject(result);
-				for(int i=0;i<ja.size();i++){					
-					String rjobno = ja.getJSONObject(i).getString("job_no");
-					if(job_no.equals(rjobno)){
-						jo.put("code", "3");
-						jo.put("msg","该管家名下还有房源");
-						out.print(jo.toString());				//返回给前端数据 ，停止执行后续操作
-						return;
-					}
-				}
+//				JSONArray ja = JSONArray.fromObject(lise);
+//				for(int i=0;i<ja.size();i++){
+//					String rjobno = ja.getJSONObject(i).getString("job_no");
+//					if(job_no.equals(rjobno)){
+//						jo.put("code", "3");
+//						jo.put("msg","该管家名下还有房源");
+//						out.print(jo.toString());				//返回给前端数据 ，停止执行后续操作
+//						return;
+//					}
+//				}
 			}	
 		}
 		Staff staff = new Staff(job_no, pwd, department, name, position,"3", district, origo, address, idcard, prfunds, telephone, social_security, emergency_contactname, emergency_contacttelephone, "", "",state, email, vxin);
@@ -323,37 +316,46 @@ public class StaffController {
 			Staff astaff =staffdao.findByNo(job_no);
 			if(astaff.getDepartment().equals("YGJZL")){		//判断是不是业务部的
 				JSONArray housearray = new JSONArray();
-				String result=null;
-				Http hp = Http.getInstance();			//获取所有房源
-				Map<String,String> m = new LinkedHashMap<String, String>();	
-				ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-				if(operation.get("houselist")==null){
-					try {
-						result = hp.hp(HURL,m, "get");
-						operation.set("houselist", result);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						out.print("error");
-					}		    	
-				}else{
-					result = operation.get("houselist");
-				}
-				JSONArray ja = JSONArray.fromObject(result);
-				for(int i=0;i<ja.size();i++){					
-					String rjobno = ja.getJSONObject(i).getString("job_no");
-					if(job_no.equals(rjobno)){
-						housearray.add(ja.get(i));
-					}
-				}	
-				if(housearray.size()==0){
+//				String result=null;
+//				Http hp = Http.getInstance();			//获取所有房源
+//				Map<String,String> m = new LinkedHashMap<String, String>();
+//				ValueOperations<String,String> operation = redisTemplate.opsForValue();
+//				if(operation.get("houselist")==null){
+//					try {
+//						result = hp.hp(HURL,m, "get");
+//						operation.set("houselist", result);
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//						out.print("error");
+//					}
+//				}else{
+//					result = operation.get("houselist");
+//				}
+				House house = new House();
+				house.setJob_no(job_no);
+				List<House> list = housedao.listSearch(house);
+				if(list.size() == 0){
 					jo.put("code", "2");
 					jo.put("msg","没有房源");
 				}else{
 					jo.put("code", "1");
 					jo.put("msg",housearray.toString());
 				}
-				
+//				JSONArray ja = JSONArray.fromObject(list);
+//				for(int i=0;i<ja.size();i++){
+//					String rjobno = ja.getJSONObject(i).getString("job_no");
+//					if(job_no.equals(rjobno)){
+//						housearray.add(ja.get(i));
+//					}
+//				}
+//				if(housearray.size()==0){
+//					jo.put("code", "2");
+//					jo.put("msg","没有房源");
+//				}else{
+//					jo.put("code", "1");
+//					jo.put("msg",housearray.toString());
+//				}
 			}else{
 				jo.put("code", "3");
 				jo.put("msg", "不是业务部的");
@@ -382,23 +384,31 @@ public class StaffController {
 			house.setJob_no(job_no);
 			Http hp = Http.getInstance();
 			String[] one_houseid = house_id.split(",");
-			String result =null;
+
 			for(int i=0;i<one_houseid.length;i++){			//开始批量修改
 				house.setHouse_id(one_houseid[i]);
-				jo = JSONObject.fromObject(house);
-				m.put("house", URLEncoder.encode(jo.toString(),"UTF-8"));
+				String result = "error";
+
 				try {
-					 result = hp.hp(HURL, m, "put");
-					 if(!result.equals("success")){
-						 list.add(one_houseid[i]); 			//失败的加入集合里
-					 }
+					int res = housedao.update(house);
+					if(res == 1) result = "success";
+					if(!result.equals("success")){
+						list.add(one_houseid[i]); 			//失败的加入集合里
+					}
 				} catch (Exception e) {
-					list.add(one_houseid[i]);
+					list.add(one_houseid[i]); 			//失败的加入集合里
 				}
+//				jo = JSONObject.fromObject(house);
+//				m.put("house", URLEncoder.encode(jo.toString(),"UTF-8"));
+//				try {
+//					 result = hp.hp(HURL, m, "put");
+//					 if(!result.equals("success")){
+//						 list.add(one_houseid[i]); 			//失败的加入集合里
+//					 }
+//				} catch (Exception e) {
+//					list.add(one_houseid[i]);
+//				}
 			}
-			ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-			operation.set("houselist", null);
-			jo.clear();
 			if(list.size()==0){				
 				jo.put("code", "1");
 				jo.put("msg","success");
