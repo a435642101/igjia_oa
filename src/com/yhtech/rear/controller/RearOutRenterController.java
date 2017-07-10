@@ -1,11 +1,9 @@
 package com.yhtech.rear.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +29,6 @@ import com.google.gson.JsonParser;
 import com.peter.util.Http;
 import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
-import com.yhtech.igjia.controller.IgjiaHouseController;
 import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.domain.House;
@@ -42,21 +36,6 @@ import com.yhtech.igjia.domain.Rent;
 
 @Controller("RearOutRenterController")
 public class RearOutRenterController {
-	private static String HURL;
-	static{
-		Properties prop = new Properties();
-		InputStream in =IgjiaHouseController.class.getClassLoader().getResourceAsStream("/address.properties"); 
-		try {
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
-	}
-	@Autowired @Qualifier("jedisTemplate")
-	public RedisTemplate<String, String> redisTemplate;
 	@Resource
 	private IStaffDao staffdao;
 	@Resource
@@ -134,16 +113,22 @@ public class RearOutRenterController {
 		    	House house = new House();
 		    	house.setHouse_id(house_id);
 		    	house.setState("空置中");
-		    	JSONObject hjo = JSONObject.fromObject(house);
-		    	Map<String,String> m = new LinkedHashMap<String, String>();
-			    m.put("house", URLEncoder.encode(hjo.toString(),"UTF-8"));
-			    Http hp = Http.getInstance();
+
+//		    	JSONObject hjo = JSONObject.fromObject(house);
+//		    	Map<String,String> m = new LinkedHashMap<String, String>();
+//			    m.put("house", URLEncoder.encode(hjo.toString(),"UTF-8"));
+//			    Http hp = Http.getInstance();
 				try {
-					String result1 = hp.hp(HURL, m, "put");
+					int res = housedao.update(house);
+					String result1 = "error";
+					if(res == 1){
+						result1 = "success";
+					}
+//					String result1 = hp.hp(HURL, m, "put");
 					if("success".equals(result1)){
-						ValueOperations<String,String> operation = redisTemplate.opsForValue();
-						operation.set("houselist", null);
-				    	operation.set("houselist_"+district, null);
+//						ValueOperations<String,String> operation = redisTemplate.opsForValue();
+//						operation.set("houselist", null);
+//				    	operation.set("houselist_"+district, null);
 						jo.put("code", "1");
 						jo.put("msg","success");  
 					}

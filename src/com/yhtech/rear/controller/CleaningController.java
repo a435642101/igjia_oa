@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +30,6 @@ import com.yhtech.rear.dao.ICleanDao;
 
 @Controller("cleaningcontroller")
 public class CleaningController {
-	@Autowired @Qualifier("jedisTemplate")
-	public  RedisTemplate<String, String> redisTemplate;
 	@Resource
 	private ICleanDao cleandao;
 	@Resource
@@ -89,11 +84,11 @@ public class CleaningController {
 		PrintWriter out = response.getWriter();
 		String date = request.getParameter("date");		//查询某天的保洁
 		int period=14;		//定义打扫周期
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
-		if(operation.get("updatecleantoday")==null){						//出房数据更新到保洁表，12小时更新一次
-			updateCleanHouse();
-			operation.set("updatecleantoday","yes",12,TimeUnit.HOURS);
-		}
+//		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+//		if(operation.get("updatecleantoday")==null){						//出房数据更新到保洁表，12小时更新一次
+//			updateCleanHouse();
+//			operation.set("updatecleantoday","yes",12,TimeUnit.HOURS);
+//		}
 		List<Rent> cleanlist = cleandao.dayclean(date, period+"");
 		JSONArray ja = JSONArray.fromObject(cleanlist);
 		ja = nameReplaceJobno(ja,admindao);
@@ -102,7 +97,7 @@ public class CleaningController {
 
 	/**
 	 * 更新保洁的房屋数据
-	 * @param ja
+//	 * @param ja
 	 */
 	private void updateCleanHouse() {
 		List<Rent> list = rentdao.listAll();

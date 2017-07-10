@@ -1,26 +1,19 @@
 package com.yhtech.rear.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.dao.IRentDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +25,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import com.peter.util.Http;
 import com.peter.util.UtilDate;
 import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
-import com.yhtech.igjia.controller.IgjiaHouseController;
 import com.yhtech.igjia.domain.House;
 import com.yhtech.rear.dao.IGoodsDao;
 import com.yhtech.rear.dao.IRearDao;
@@ -45,27 +36,14 @@ import com.yhtech.rear.domain.Rear;
 
 @Controller("rearcontroller")
 public class RearController {
-	private static String HURL;
-	static{
-		Properties prop = new Properties();
-		InputStream in =IgjiaHouseController.class.getClassLoader().getResourceAsStream("/address.properties"); 
-		try {
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
-	}
-	@Autowired @Qualifier("jedisTemplate")
-	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IRearDao reardao;
 	@Resource
 	private IGoodsDao goodsdao;
 	@Resource
 	private IStaffDao staffdao;
+	@Resource
+	private IHouseDao housedao;
 	/**
 	 * 获得所有的后勤配置
 	 * @param request
@@ -225,16 +203,14 @@ public class RearController {
 							house.setHouse_id(houseid);
 							house.setState("空置中");
 							house.setFinish_date(finish_date);
-							JSONObject housejo = JSONObject.fromObject(house);
-							Map<String,String> m = new LinkedHashMap<String, String>();
-							m.put("house", URLEncoder.encode(housejo.toString(),"UTF-8"));
-							Http hp = Http.getInstance();
-							hp.hp(HURL, m, "put");
+//							JSONObject housejo = JSONObject.fromObject(house);
+//							Map<String,String> m = new LinkedHashMap<String, String>();
+//							m.put("house", URLEncoder.encode(housejo.toString(),"UTF-8"));
+//							Http hp = Http.getInstance();
+//							hp.hp( HURL, m, "put");
+							housedao.update(house);
 						}				
 					}
-					ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-					operation.set("houselist", null);			//清redis缓存，下次重新加载
-			    	operation.set("houselist_"+district, null);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}			
@@ -279,8 +255,13 @@ public class RearController {
 			jo.put("code", "2");
 			jo.put("msg", "参数错误");
 		}else{
-			String result = getHouse(district);
-			JSONArray ja = getHouseWant(contract_no, result);
+			House house = new House();
+			house.setContract_no(contract_no);
+			house.setDistrict(district);
+			house.setState("配置中");
+
+			List<House> houselist = housedao.listSearch(house);
+			JSONArray ja = JSONArray.fromObject(houselist);
 		    jo.put("code", "1");
 		    jo.put("msg", ja.toString());
 		}
@@ -293,48 +274,48 @@ public class RearController {
 	 * @param result
 	 * @return
 	 */
-	private JSONArray getHouseWant(String contract_no, String result) {
-		JSONArray ja = new JSONArray();
-		Gson gson = new Gson();
-		JsonParser parser = new JsonParser();
-		JsonArray Jarray = parser.parse(result).getAsJsonArray();
-		for(JsonElement obj : Jarray ){
-		    House house = gson.fromJson( obj , House.class);
-		    if(contract_no.equals(house.getContract_no()) && "配置中".equals(house.getState())){
-		    	ja.add(JSONObject.fromObject(house));  
-		    }	        
-		}
-		return ja;
-	}
+//	private JSONArray getHouseWant(String contract_no, String result) {
+//		JSONArray ja = new JSONArray();
+//		Gson gson = new Gson();
+//		JsonParser parser = new JsonParser();
+//		JsonArray Jarray = parser.parse(result).getAsJsonArray();
+//		for(JsonElement obj : Jarray ){
+//		    House house = gson.fromJson( obj , House.class);
+//		    if(contract_no.equals(house.getContract_no()) && "配置中".equals(house.getState())){
+//		    	ja.add(JSONObject.fromObject(house));
+//		    }
+//		}
+//		return ja;
+//	}
 
-	/**
-	 * 判断缓存中有无房源，没有则加载
-	 * @param district
-	 * @return
-	 * @throws UnsupportedEncodingException
-	 */
-	private String getHouse(String district)
-			throws UnsupportedEncodingException {
-		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-		Http hp = Http.getInstance();
-		Map<String,String> m = new LinkedHashMap<String, String>();	
-		String result=null;
-		if(operation.get("houselist_"+district)==null){		
-			House house = new House();
-			 house.setDistrict(district);
-			 JSONObject jo1  = JSONObject.fromObject(house);
-			 m.put("house",URLEncoder.encode(jo1.toString(),"utf-8"));
-			    try {				   
-			    	result = hp.hp(HURL,m, "get");
-					operation.set("houselist_"+district, result);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}else{
-			result = operation.get("houselist_"+district);
-		}
-		return result;
-	}
+//	/**
+//	 * 判断缓存中有无房源，没有则加载
+//	 * @param district
+//	 * @return
+//	 * @throws UnsupportedEncodingException
+//	 */
+//	private String getHouse(String district)
+//			throws UnsupportedEncodingException {
+//		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+//		Http hp = Http.getInstance();
+//		Map<String,String> m = new LinkedHashMap<String, String>();
+//		String result=null;
+//		if(operation.get("houselist_"+district)==null){
+//			House house = new House();
+//			 house.setDistrict(district);
+//			 JSONObject jo1  = JSONObject.fromObject(house);
+//			 m.put("house",URLEncoder.encode(jo1.toString(),"utf-8"));
+//			    try {
+//			    	result = hp.hp(HURL,m, "get");
+//					operation.set("houselist_"+district, result);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//		}else{
+//			result = operation.get("houselist_"+district);
+//		}
+//		return result;
+//	}
 	
 	/**
 	 * 管家名字替换管家工号

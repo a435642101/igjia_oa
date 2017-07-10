@@ -21,7 +21,7 @@
 
 <!-- 引入外部属性文件 -->
 <context:property-placeholder location="classpath:db.properties" ignore-unresolvable="true"/>
-<context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>
+<!--<context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>-->
 
 <!-- 配置dbcp连接池: -->
 <bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
@@ -84,5 +84,5 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
   </property>-->
  </bean>
  
-<import resource="spring-redis.xml"/>	  
+<!--<import resource="spring-redis.xml"/>	  -->
 </beans>

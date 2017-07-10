@@ -1,18 +1,11 @@
 package com.yhtech.igjia.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,19 +15,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.authority.Authority;
 import com.authority.AuthorityType;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.peter.util.Http;
+
 import com.peter.util.UtilDate;
 import com.yhtech.domain.Log;
 import com.yhtech.finance.dao.IHouseorderDao;
@@ -186,16 +172,16 @@ public class IgjiaHouseController {
 		PrintWriter out = response.getWriter();
 		List<House> list = new ArrayList<House>();
 		int count = 0;
-			Page pa = new Page("", "", "", "", "", "", "", 0, 15, "");
-			list = ihousedao.listPage(pa);
-			count = ihousedao.count(pa);
-			JSONObject obj = new JSONObject();
-			JSONArray jrr = JSONArray.fromObject(list);
-			JSONArray arr1 = nameReplaceJobno(jrr);
-			
-		    obj.put("maxnum", count);
-		    arr1.add(obj);
-		    out.print(arr1.toString());
+		Page pa = new Page("", "", "", "", "", "", "", 0, 15, "");
+		list = ihousedao.listPage(pa);
+		count = ihousedao.count(pa);
+		JSONObject obj = new JSONObject();
+		JSONArray jrr = JSONArray.fromObject(list);
+		JSONArray arr1 = nameReplaceJobno(jrr);
+
+		obj.put("maxnum", count);
+		arr1.add(obj);
+		out.print(arr1.toString());
 	}
 	
 	/**

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.igjia.dao.IRentDao">
+	<!-- 出租中合同编号查询 -->
+	<select id="findByContractNo" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
+         select * from rentlist where contract_no = #{contract_no}
+    </select>
+    <!-- 合同id查询 -->
+    <select id="findById" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
+         select * from rentlist where house_id = #{house_id} and state = '出租中'
+    </select>
+    <!-- 查询全部 -->
+	<select id="listAll" resultType="com.yhtech.igjia.domain.Rent">
+         select * from rentlist order by id desc
+    </select>
+    <!-- 分页查询 -->
+	<select id="listPage" resultType="com.yhtech.igjia.domain.Rent"  parameterType="com.yhtech.igjia.domain.Page">
+         select * from rentlist 
+         <where>
+         	1=1 
+        	<if test="address!=null and address!=''">
+        		and district = #{address}
+        	</if>
+        	<if test="state!=null and state!=''">
+        		 and state = #{state} 
+        	</if>
+        	<if test="paymethod!=null and paymethod!=''">
+        		and paymethod = #{paymethod} 
+        	</if>
+        	<if test="contract_start2!=null and contract_start2!='' and contract_start1 !=null and contract_start1!=''">
+        		and contract_startdate &gt;= #{contract_start1} and contract_startdate &lt;= #{contract_start2} 
+        	</if>
+        	<if test="contract_end1!=null and contract_end1!='' and contract_end2 !=null and contract_end2!=''">
+        		and contract_enddate &gt;= #{contract_end1} and contract_enddate &lt;= #{contract_end2}
+        	</if>
+        	<if test="total != null and total != ''">
+        		and (address like CONCAT('%',#{total},'%') or 
+        		house_id like CONCAT('%',#{total},'%') or 
+        		name like CONCAT('%',#{total},'%') or 
+        		contract_no like CONCAT('%',#{total},'%') or 
+        		region_manager like CONCAT('%',#{total},'%') or 
+        		renter_name like CONCAT('%',#{total},'%') or 
+        		paymethod like CONCAT('%',#{total},'%') or 
+        		deposit like CONCAT('%',#{total},'%'))
+        	</if>
+         </where>
+         order by id desc 
+         limit #{page},#{pagesize}
+    </select>
+    <!-- 分页查询 -->
+	<select id="count" resultType="java.lang.Integer"  parameterType="com.yhtech.igjia.domain.Page">
+         select count(*) from rentlist 
+         <where>
+         	1=1 
+        	<if test="address!=null and address!=''">
+        		and district = #{address}
+        	</if>
+        	<if test="state!=null and state!=''">
+        		 and state = #{state} 
+        	</if>
+        	<if test="paymethod!=null and paymethod!=''">
+        		and paymethod = #{paymethod} 
+        	</if>
+        	<if test="contract_start2!=null and contract_start2!='' and contract_start1 !=null and contract_start1!=''">
+        		and contract_startdate &gt;= #{contract_start1} and contract_startdate &lt;= #{contract_start2} 
+        	</if>
+        	<if test="contract_end1!=null and contract_end1!='' and contract_end2 !=null and contract_end2!=''">
+        		and contract_enddate &gt;= #{contract_end1} and contract_enddate &lt;= #{contract_end2}
+        	</if>
+        	<if test="total != null and total != ''">
+        		and (address like CONCAT('%',#{total},'%') or 
+        		house_id like CONCAT('%',#{total},'%') or 
+        		name like CONCAT('%',#{total},'%') or 
+        		contract_no like CONCAT('%',#{total},'%') or 
+        		region_manager like CONCAT('%',#{total},'%') or 
+        		renter_name like CONCAT('%',#{total},'%') or 
+        		paymethod like CONCAT('%',#{total},'%') or 
+        		deposit like CONCAT('%',#{total},'%'))
+        	</if>
+         </where>
+    </select>
+    
+    <!-- 条件查询 -->
+	<select id="listSearch" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Rent">
+         select * from rentlist
+         <where>
+        	<if test="house_id!=null and house_id!=''">
+            	house_id = #{house_id} and
+          	</if>  
+          	<if test="address!=null and address!=''">
+            	address like CONCAT('%',#{address},'%') and
+          	</if>     	
+          	<if test="contract_no!=null and contract_no!=''">
+            	contract_no = #{contract_no} and
+          	</if>
+          	<if test="name!=null and name!=''">
+            	name like CONCAT('%',#{name},'%') and
+          	</if>
+          	<if test="region_manager!=null and region_manager!=''">
+            	region_manager like CONCAT('%',#{region_manager},'%') and
+          	</if>
+          	<if test="service_provider!=null and service_provider!=''">
+            	service_provider like CONCAT('%',#{service_provider},'%') and
+          	</if>
+          	<if test="provider_money!=null and provider_money!=''">
+            	provider_money like CONCAT('%',#{provider_money},'%') and
+          	</if>
+          	<if test="renter_name!=null and renter_name!=''">
+            	renter_name like CONCAT('%',#{renter_name},'%') and
+          	</if>
+          	<if test="renter_telephone!=null and renter_telephone!=''">
+            	renter_telephone like CONCAT('%',#{renter_telephone},'%') and
+          	</if>
+          	<if test="renter_idcard!=null and renter_idcard!=''">
+            	renter_idcard like CONCAT('%',#{renter_idcard},'%') and
+          	</if>
+          	<if test="contract_date!=null and contract_date!=''">
+            	contract_date like CONCAT('%',#{contract_date},'%') and
+          	</if>
+          	<if test="contract_startdate!=null and contract_startdate!=''">
+            	contract_startdate like CONCAT('%',#{contract_startdate},'%') and
+          	</if>
+          	<if test="contract_enddate!=null and contract_enddate!=''">
+            	contract_enddate like CONCAT('%',#{contract_enddate},'%') and
+          	</if>
+          	<if test="contract_month!=null and contract_month!=''">
+            	contract_month like CONCAT('%',#{contract_month},'%') and
+          	</if>
+          	<if test="firstyear_monthrent!=null and firstyear_monthrent!=''">
+            	firstyear_monthrent like CONCAT('%',#{firstyear_monthrent},'%') and
+          	</if>
+          	<if test="secondyear_monthrent!=null and secondyear_monthrent!=''">
+            	secondyear_monthrent like CONCAT('%',#{secondyear_monthrent},'%') and
+          	</if>
+          	<if test="thirdyear_monthrent!=null and thirdyear_monthrent!=''">
+            	thirdyear_monthrent like CONCAT('%',#{thirdyear_monthrent},'%') and
+          	</if>
+          	<if test="fourthyear_monthrent!=null and fourthyear_monthrent!=''">
+            	fourthyear_monthrent like CONCAT('%',#{fourthyear_monthrent},'%') and
+          	</if>
+          	<if test="fifthyear_monthrent!=null and fifthyear_monthrent!=''">
+            	fifthyear_monthrent like CONCAT('%',#{fifthyear_monthrent},'%') and
+          	</if>
+          	<if test="sixthyear_monthrent!=null and sixthyear_monthrent!=''">
+            	sixthyear_monthrent like CONCAT('%',#{sixthyear_monthrent},'%') and
+          	</if>
+          	<if test="firststage_rent!=null and firststage_rent!=''">
+            	firststage_rent like CONCAT('%',#{firststage_rent},'%') and
+          	</if>
+          	<if test="payrent_time!=null and payrent_time!=''">
+            	payrent_time like CONCAT('%',#{payrent_time},'%') and
+          	</if>
+          	<if test="paymethod!=null and paymethod!=''">
+            	paymethod like CONCAT('%',#{paymethod},'%') and
+          	</if>
+          	<if test="deposit!=null and deposit!=''">
+            	deposit like CONCAT('%',#{deposit},'%') and
+          	</if>
+          	<if test="monthpay_provider!=null and monthpay_provider!=''">
+            	monthpay_provider like CONCAT('%',#{monthpay_provider},'%') and
+          	</if>
+          	<if test="monthpay_state!=null and monthpay_state!=''">
+            	monthpay_state like CONCAT('%',#{monthpay_state},'%') and
+          	</if>
+          	<if test="remark!=null and remark!=''">
+            	remark like CONCAT('%',#{remark},'%') and
+          	</if>         	
+          	<if test="job_no!=null and job_no!=''">
+            	job_no like CONCAT('%',#{job_no},'%') and
+          	</if>
+          	<if test="room_num!=null and room_num!=''">
+            	room_num like CONCAT('%',#{room_num},'%') and
+          	</if>
+          	<if test="state!=null and state!=''">
+            	state like CONCAT('%',#{state},'%')  and
+          	</if>
+          	<if test="district!=null and district!=''">
+            	district like CONCAT('%',#{district},'%') and
+          	</if>
+          	1=1
+         </where>
+         order by id desc
+    </select>
+    
+    <!-- 修改 -->
+     <update id="update" parameterType="com.yhtech.igjia.domain.Rent">
+          update rentlist
+          <set>  
+         	 <if test="address!=null and address!=''">
+            	address =#{address},
+          	</if>	
+          	<if test="contract_no!=null and contract_no!=''">
+            	contract_no =#{contract_no},
+          	</if>
+          	<if test="name!=null and name!=''">
+            	name =#{name},
+          	</if>
+          	<if test="region_manager!=null and region_manager!=''">
+            	region_manager =#{region_manager},
+          	</if>
+          	<if test="service_provider!=null and service_provider!=''">
+            	service_provider =#{service_provider},
+          	</if>
+          	<if test="provider_money!=null and provider_money!=''">
+            	provider_money =#{provider_money},
+          	</if>
+          	<if test="renter_name!=null and renter_name!=''">
+            	renter_name =#{renter_name},
+          	</if>
+          	<if test="renter_telephone!=null and renter_telephone!=''">
+            	renter_telephone =#{renter_telephone},
+          	</if>
+          	<if test="renter_idcard!=null and renter_idcard!=''">
+            	renter_idcard =#{renter_idcard},
+          	</if>
+          	<if test="contract_date!=null and contract_date!=''">
+            	contract_date =#{contract_date},
+          	</if>
+          	<if test="contract_startdate!=null and contract_startdate!=''">
+            	contract_startdate =#{contract_startdate},
+          	</if>
+          	<if test="contract_enddate!=null and contract_enddate!=''">
+            	contract_enddate =#{contract_enddate},
+          	</if>
+          	<if test="contract_month!=null and contract_month!=''">
+            	contract_month =#{contract_month},
+          	</if>
+          	<if test="firstyear_monthrent!=null and firstyear_monthrent!=''">
+            	firstyear_monthrent =#{firstyear_monthrent},
+          	</if>
+          	<if test="secondyear_monthrent!=null and secondyear_monthrent!=''">
+            	secondyear_monthrent =#{secondyear_monthrent},
+          	</if>
+          	<if test="thirdyear_monthrent!=null and thirdyear_monthrent!=''">
+            	thirdyear_monthrent =#{thirdyear_monthrent},
+          	</if>
+          	<if test="fourthyear_monthrent!=null and fourthyear_monthrent!=''">
+            	fourthyear_monthrent =#{fourthyear_monthrent},
+          	</if>
+          	<if test="fifthyear_monthrent!=null and fifthyear_monthrent!=''">
+            	fifthyear_monthrent =#{fifthyear_monthrent},
+          	</if>
+          	<if test="sixthyear_monthrent!=null and sixthyear_monthrent!=''">
+            	sixthyear_monthrent =#{sixthyear_monthrent},
+          	</if>
+          	<if test="firststage_rent!=null and firststage_rent!=''">
+            	firststage_rent =#{firststage_rent},
+          	</if>
+          	<if test="payrent_time!=null and payrent_time!=''">
+            	payrent_time =#{payrent_time},
+          	</if>
+          	<if test="paymethod!=null and paymethod!=''">
+            	paymethod =#{paymethod},
+          	</if>
+          	<if test="deposit!=null and deposit!=''">
+            	deposit =#{deposit},
+          	</if>
+          	<if test="monthpay_provider!=null and monthpay_provider!=''">
+            	monthpay_provider =#{monthpay_provider},
+          	</if>
+          	<if test="monthpay_state!=null and monthpay_state!=''">
+            	monthpay_state =#{monthpay_state},
+          	</if>
+          	<if test="remark!=null and remark!=''">
+            	remark =#{remark},
+          	</if>         	
+          	<if test="job_no!=null and job_no!=''">
+            	job_no =#{job_no},
+          	</if>
+          	<if test="room_num!=null and room_num!=''">
+            	room_num =#{room_num},
+          	</if>
+          	<if test="state!=null and state!=''">
+            	state =#{state},
+          	</if>
+          	<if test="district!=null and district!=''">
+            	district =#{district}
+          	</if>
+          </set>          
+          <where>
+          <if test="contract_no!=null and contract_no!=''">
+            	contract_no =#{contract_no}  and
+          	</if>
+          	<if test="house_id!=null and house_id!=''">
+            	house_id =#{house_id}  and
+          	</if>
+          	1=1
+          </where>
+     </update>
+     
+     
+      <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.igjia.domain.Rent">
+         insert into rentlist(
+         house_id,
+         address,
+         contract_no,
+         name,
+         region_manager,
+         service_provider,
+         provider_money,
+         renter_name,
+         renter_telephone,
+         renter_idcard,
+         contract_date,
+         contract_startdate,
+         contract_enddate,
+         contract_month,
+         firstyear_monthrent,
+         secondyear_monthrent,
+         thirdyear_monthrent,
+         fourthyear_monthrent,
+         fifthyear_monthrent,
+         sixthyear_monthrent,
+         firststage_rent,
+         payrent_time,
+         paymethod,
+         deposit,
+         monthpay_provider,
+         monthpay_state,     
+         remark,      
+         job_no,
+         room_num,
+         state,
+         district,
+         date) 
+         values(
+         #{house_id},
+         #{address},
+         #{contract_no},
+         #{name},
+         #{region_manager},
+         #{service_provider},
+         #{provider_money},
+         #{renter_name},
+         #{renter_telephone},
+         #{renter_idcard},
+         #{contract_date},
+         #{contract_startdate},
+         #{contract_enddate},
+         #{contract_month},
+         #{firstyear_monthrent},
+         #{secondyear_monthrent},
+         #{thirdyear_monthrent},
+         #{fourthyear_monthrent},
+         #{fifthyear_monthrent},
+         #{sixthyear_monthrent},
+         #{firststage_rent},
+         #{payrent_time},
+         #{paymethod},
+         #{deposit},
+         #{monthpay_provider},
+         #{monthpay_state},     
+         #{remark},      
+         #{job_no},
+         #{room_num},
+         #{state},
+         #{district},
+         #{date})
+     </insert>
+     
+     <!-- 删除 -->
+     <delete id="delete" parameterType="String">
+         delete from rentlist where contract_no=#{contract_no}
+     </delete>
+</mapper>

@@ -13,12 +13,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.dao.IRentDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,27 +35,17 @@ import com.yhtech.service.OperateDataService;
 
 @Controller("personcentercontroller")
 public class PersonCenterController {
-	private static String HURL;
-	static{
-		Properties prop = new Properties();
-		InputStream in =IgjiaHouseController.class.getClassLoader().getResourceAsStream("/address.properties"); 
-		try {
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
-	}
-	
-	@Autowired @Qualifier("jedisTemplate")
-	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
+
+
 	@Resource
 	private IStaffDao staffdao;
 	@Resource
 	private IRearDao reardao;
 	@Resource
+	private IHouseDao housedao;
+	@Resource
+	private IRentDao rentDao;
+	@Autowired
 	private OperateDataService ods;
 
 	
@@ -74,31 +65,37 @@ public class PersonCenterController {
 			Staff astaff =staffdao.findByNo(job_no);
 			House house = null;
 			if("YGJZL".equals(astaff.getDepartment())){		//判断是不是业务部的
-				JSONArray housearray = new JSONArray();
-				String result=null;
-				Http hp = Http.getInstance();			//获取所有房源
-				Map<String,String> m = new LinkedHashMap<String, String>();	
-				ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
-				if(operation.get("houselist")==null){
-					try {
-						result = hp.hp(HURL,m, "get");
-						operation.set("houselist", result);
-					} catch (Exception e) {
-						e.printStackTrace();
-						out.print("error");
-					}		    	
-				}else{
-					result = operation.get("houselist");
-				}
-				JSONArray ja = JSONArray.fromObject(result);
-				for(int i=0;i<ja.size();i++){					
-					String rjobno = ja.getJSONObject(i).getString("job_no");
-					String rdistrict = ja.getJSONObject(i).getString("district");
-					if(job_no.equals(rjobno) && astaff.getDistrict().equals(rdistrict)){
-						house = selectHouseResult(ja, i);
-						housearray.add(house);
-					}
-				}
+
+//				String result=null;
+//				Http hp = Http.getInstance();			//获取所有房源
+//				Map<String,String> m = new LinkedHashMap<String, String>();
+//				ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
+//				if(operation.get("houselist")==null){
+//					try {
+//						result = hp.hp(HURL,m, "get");
+//						operation.set("houselist", result);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//						out.print("error");
+//					}
+//				}else{
+//					result = operation.get("houselist");
+//				}
+//				JSONArray ja = JSONArray.fromObject(result);
+//				for(int i=0;i<ja.size();i++){
+//					String rjobno = ja.getJSONObject(i).getString("job_no");
+//					String rdistrict = ja.getJSONObject(i).getString("district");
+//					if(job_no.equals(rjobno) && astaff.getDistrict().equals(rdistrict)){
+//						house = selectHouseResult(ja, i);
+//						housearray.add(house);
+//					}
+//				}
+				String result = "";
+				House hou = new House();
+				house.setJob_no(job_no);
+				List<House> houselist = housedao.listSearch(hou);
+				JSONArray housearray = JSONArray.fromObject(houselist);
+
 				String page = request.getParameter("page");
 				String num = request.getParameter("num");  
 				JSONArray jarr = new JSONArray();

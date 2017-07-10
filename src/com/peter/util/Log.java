@@ -1,5 +1,8 @@
 package com.peter.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,28 +17,30 @@ import java.io.IOException;
  *author:TYShi
  */
 public class Log {
+    public static Logger logger = LoggerFactory.getLogger(Log.class);
 	/**
 	 * 日志记录
 	 * @param sWord 日志的内容
 	 * @param path 路径（d://）
 	 */
     public static void logResult(String sWord,String path) {
-        FileWriter writer = null;
-        try {
-        	path = createpath(path);
-            writer = new FileWriter(path+"\\log"+UtilDate.getDate()+".txt",true);
-            writer.write(sWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        logger.info("================================LOG===================:"+path+sWord);
+//        FileWriter writer = null;
+//        try {
+//        	path = createpath(path);
+//            writer = new FileWriter(path+"\\log"+UtilDate.getDate()+".txt",true);
+//            writer.write(sWord);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (writer != null) {
+//                try {
+//                    writer.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
     }
     
     /**
