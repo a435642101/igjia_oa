@@ -20,7 +20,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +59,7 @@ public class RearController {
 		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
 	}
 	@Autowired @Qualifier("jedisTemplate")
-	public RedisTemplate<String, String> redisTemplate;
+	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IRearDao reardao;
 	@Resource
@@ -232,7 +232,7 @@ public class RearController {
 							hp.hp(HURL, m, "put");
 						}				
 					}
-					ValueOperations<String,String> operation = redisTemplate.opsForValue();
+					ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 					operation.set("houselist", null);			//清redis缓存，下次重新加载
 			    	operation.set("houselist_"+district, null);
 				} catch (Exception e) {
@@ -315,7 +315,7 @@ public class RearController {
 	 */
 	private String getHouse(String district)
 			throws UnsupportedEncodingException {
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		Http hp = Http.getInstance();
 		Map<String,String> m = new LinkedHashMap<String, String>();	
 		String result=null;

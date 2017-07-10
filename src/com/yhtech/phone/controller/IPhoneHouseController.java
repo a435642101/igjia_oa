@@ -17,7 +17,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,7 +37,7 @@ import com.yhtech.service.YGJdataService;
 public class IPhoneHouseController {
 	  @Autowired
 	  @Qualifier("jedisTemplate")
-	  public RedisTemplate<String,String> redisTemplate;
+	  public //TODO redis 需要修改<String,String> //TODO redis 需要修改;
 	  
 	  @Resource
 	  private OperateDataService ods;
@@ -55,7 +55,7 @@ public class IPhoneHouseController {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			String page=request.getParameter("page");
-			String allHouse = YGJdataService.getHouse(redisTemplate);
+			String allHouse = YGJdataService.getHouse(//TODO redis 需要修改);
 			JSONArray ja =ods.getPageHouse(page,"15",allHouse);
 			out.print(ja.toString());
 		}
@@ -72,7 +72,7 @@ public class IPhoneHouseController {
 			PrintWriter out = response.getWriter();
 			//获取数据
 			String house_id=request.getParameter("house_id");
-			String result = YGJdataService.getHouse(redisTemplate);
+			String result = YGJdataService.getHouse(//TODO redis 需要修改);
 			Gson gson = new Gson();
 			JsonParser parser = new JsonParser();
 			JsonArray Jarray = parser.parse(result).getAsJsonArray();
@@ -98,7 +98,7 @@ public class IPhoneHouseController {
 		public void igjiaAllHouse(HttpServletRequest request,HttpServletResponse response) throws IOException{
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			String result1 =YGJdataService.getHouse(redisTemplate);
+			String result1 =YGJdataService.getHouse(//TODO redis 需要修改);
 			    Gson gson = new Gson();
 			    JsonParser parser = new JsonParser();
 			    JsonArray Jarray = parser.parse(result1).getAsJsonArray();
@@ -164,15 +164,15 @@ public class IPhoneHouseController {
 			String result = null;
 			if("全部".equals(pay_method)){// 查询收房
 				if("全部".equals(district)){
-					result = YGJdataService.getHouse(redisTemplate);
+					result = YGJdataService.getHouse(//TODO redis 需要修改);
 				}else{
-					result = YGJdataService.getHouseDistrict(redisTemplate, district);
+					result = YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);
 				}
 			}else{//查询出房
 				if("全部".equals(district)){
-					result = YGJdataService.getRentHouse(redisTemplate);
+					result = YGJdataService.getRentHouse(//TODO redis 需要修改);
 				}else{
-					result = YGJdataService.getDistrictRent(redisTemplate, district);
+					result = YGJdataService.getDistrictRent(//TODO redis 需要修改, district);
 				}	
 			}
 			Gson gson = new Gson();

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +54,7 @@ import com.yhtech.yhtech.dao.ILogDao;
 @Controller("IgjiaRentController")
 public class IgjiaRentController {
 	@Autowired @Qualifier("jedisTemplate")
-	   public RedisTemplate<String, String> redisTemplate;
+	   public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	private static String HURL;
 	private static String RURL;
 	static{
@@ -117,7 +117,7 @@ public class IgjiaRentController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String page=request.getParameter("page");
-		String result =YGJdataService.getRentHouse(redisTemplate);
+		String result =YGJdataService.getRentHouse(//TODO redis 需要修改);
 		JSONArray ja = ods.getPageRent(page,"15",result);
 		out.print(ja.toString());
 	}
@@ -138,7 +138,7 @@ public class IgjiaRentController {
 		//获取数据
 		String house_id=request.getParameter("house_id");
 		String contract_no=request.getParameter("contract_no");
-		String result = YGJdataService.getRentHouse(redisTemplate);
+		String result = YGJdataService.getRentHouse(//TODO redis 需要修改);
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonArray Jarray = parser.parse(result).getAsJsonArray();
@@ -180,7 +180,7 @@ public class IgjiaRentController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//获取数据
-			String result1=YGJdataService.getRentHouse(redisTemplate);
+			String result1=YGJdataService.getRentHouse(//TODO redis 需要修改);
 		    Gson gson = new Gson();
 		    JsonParser parser = new JsonParser();
 		    JsonArray Jarray = parser.parse(result1).getAsJsonArray();
@@ -257,7 +257,7 @@ public class IgjiaRentController {
 		if(contract_start2.isEmpty()) contract_start2="2099/12/31";		//结束日期为空默认最晚
 		if(contract_end2.isEmpty()) contract_end2="2099/12/31";		//结束日期为空默认最晚
 		
-	    String result1 = YGJdataService.getRentHouse(redisTemplate);	
+	    String result1 = YGJdataService.getRentHouse(//TODO redis 需要修改);	
 	    JSONArray arr = new JSONArray();
 	    Gson gson = new Gson();
 	    JsonParser parser = new JsonParser();
@@ -453,7 +453,7 @@ public class IgjiaRentController {
 		PrintWriter out = response.getWriter();
 		Staff admin = (Staff) request.getSession().getAttribute("admin");
 		if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
-			ValueOperations<String,String> operation = redisTemplate.opsForValue();
+			ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 			synchronized(this){
 				String houseId=null;
 				String address=null;
@@ -687,7 +687,7 @@ public class IgjiaRentController {
 	    m.put("rent", URLEncoder.encode(jo.toString(),"UTF-8"));
 	    Http hp = Http.getInstance();
 	    String result1 = hp.hp(RURL, m, "put");
-	    ValueOperations<String,String> operation = redisTemplate.opsForValue();
+	    ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 	    
 	    if("success".equals(result1)){
 	    	Staff admin = (Staff) request.getSession().getAttribute("admin");

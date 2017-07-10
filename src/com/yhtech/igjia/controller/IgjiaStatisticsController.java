@@ -16,7 +16,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +34,7 @@ import com.yhtech.hr.domain.District;
 @Controller("statisticscontroller")
 public class IgjiaStatisticsController {
 	@Autowired @Qualifier("jedisTemplate")
-	public RedisTemplate<String, String> redisTemplate;
+	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	
 	@Resource
 	private IStaffDao admindao;
@@ -61,7 +61,7 @@ public class IgjiaStatisticsController {
 			out.print("参数值不合法");
 			return;
 		}
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		String result = null;
 		if(operation.get("regionstatistics_"+district)==null){
 			List<Staff> adminlist=null;
@@ -70,16 +70,16 @@ public class IgjiaStatisticsController {
 			if(!"全部".equals(district)){		
 				adminlist = admindao.findByDeptDist("YGJZL",district);
 				try {
-					houselist = YGJdataService.getHouseDistrict(redisTemplate,district);
-					rentlist = YGJdataService.getDistrictRent(redisTemplate,district);
+					houselist = YGJdataService.getHouseDistrict(//TODO redis 需要修改,district);
+					rentlist = YGJdataService.getDistrictRent(//TODO redis 需要修改,district);
 				} catch (Exception e) {
 					out.print("error");
 				}	
 			}else{
 				adminlist = admindao.findByDepartment("YGJZL");
 				try {											   
-					houselist = YGJdataService.getHouse(redisTemplate);
-					rentlist = YGJdataService.getRentHouse(redisTemplate);
+					houselist = YGJdataService.getHouse(//TODO redis 需要修改);
+					rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
 				} catch (Exception e) {
 					out.print("error");
 				}	
@@ -111,14 +111,14 @@ public class IgjiaStatisticsController {
 	public void gettotalstatistics(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		String result = null;
 		if(operation.get("totalstatistics")==null){
 			String houselist;
 			String rentlist;
 			try {			
-				houselist = YGJdataService.getHouse(redisTemplate);
-				rentlist = YGJdataService.getRentHouse(redisTemplate);
+				houselist = YGJdataService.getHouse(//TODO redis 需要修改);
+				rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
 				List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
 				JSONArray adja = JSONArray.fromObject(alldistrict);
 				JSONArray ahja = JSONArray.fromObject(houselist);

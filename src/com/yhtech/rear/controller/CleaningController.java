@@ -14,7 +14,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +34,7 @@ import com.yhtech.service.YGJdataService;
 @Controller("cleaningcontroller")
 public class CleaningController {
 	@Autowired @Qualifier("jedisTemplate")
-	public  RedisTemplate<String, String> redisTemplate;
+	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private ICleanDao cleandao;
 	@Resource
@@ -86,7 +86,7 @@ public class CleaningController {
 		PrintWriter out = response.getWriter();
 		String date = request.getParameter("date");		//查询某天的保洁
 		int period=14;		//定义打扫周期
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		if(operation.get("updatecleantoday")==null){						//出房数据更新到保洁表，12小时更新一次
 			updateCleanHouse();
 			operation.set("updatecleantoday","yes",12,TimeUnit.HOURS);
@@ -102,7 +102,7 @@ public class CleaningController {
 	 * @param ja
 	 */
 	private void updateCleanHouse() {
-		String rentlist = YGJdataService.getRentHouse(redisTemplate);
+		String rentlist = YGJdataService.getRentHouse(//TODO redis 需要修改);
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonArray Jarray = parser.parse(rentlist).getAsJsonArray();

@@ -11,7 +11,7 @@ import java.util.Properties;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
@@ -45,8 +45,8 @@ public class YGJdataService {
 	 * 加载所有房源
 	 * @return
 	 */
-	public static String getHouse(RedisTemplate<String, String> redisTemplate) {
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+	public static String getHouse(//TODO redis 需要修改<String, String> //TODO redis 需要修改) {
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		String result = null;	
 		Http hp = Http.getInstance();
 		Map<String,String> m = new LinkedHashMap<String, String>();	
@@ -71,9 +71,9 @@ public class YGJdataService {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
-	public static String getHouseDistrict(RedisTemplate<String, String> redisTemplate,String district)
+	public static String getHouseDistrict(//TODO redis 需要修改<String, String> //TODO redis 需要修改,String district)
 			throws UnsupportedEncodingException {
-		ValueOperations<String,String> operation = redisTemplate.opsForValue();
+		ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		String result = null;	
 		Http hp = Http.getInstance();
 		Map<String,String> m = new LinkedHashMap<String, String>();	
@@ -100,9 +100,9 @@ public class YGJdataService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getRentHouse(RedisTemplate<String, String> redisTemplate){
+	public static String getRentHouse(//TODO redis 需要修改<String, String> //TODO redis 需要修改){
 		String result1 = "";
-	    ValueOperations<String,String> operation = redisTemplate.opsForValue();
+	    ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 	    if(operation.get("rentlist")==null){
 	    	Map<String,String> m = new LinkedHashMap<String, String>();	
 	 	    Http hp = Http.getInstance();
@@ -124,9 +124,9 @@ public class YGJdataService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getDistrictRent(RedisTemplate<String, String> redisTemplate,String district) {
+	public static String getDistrictRent(//TODO redis 需要修改<String, String> //TODO redis 需要修改,String district) {
 		String rentlist = "";
-	    ValueOperations<String,String> operation = redisTemplate.opsForValue();
+	    ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 	    if(operation.get("rentlist")==null){
 	    	Map<String,String> m = new LinkedHashMap<String, String>();	
 	 	    Http hp = Http.getInstance();

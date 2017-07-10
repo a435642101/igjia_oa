@@ -17,7 +17,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,7 +36,7 @@ import com.yhtech.service.YGJdataService;
 @Controller("igjiatoolscontroller")
 public class IgjiaToolsController {
 	@Autowired @Qualifier("jedisTemplate")
-	public  RedisTemplate<String, String> redisTemplate;
+	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IStaffDao admindao;
 	/**
@@ -55,7 +55,7 @@ public class IgjiaToolsController {
 			String rdate = request.getParameter("date");
 			String district=URLDecoder.decode(request.getParameter("district"),"UTF-8");
 			String name=URLDecoder.decode(request.getParameter("name"),"UTF-8");		
-			String result = YGJdataService.getHouseDistrict(redisTemplate, district);
+			String result = YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 			Date sdate1 = null;
 			Date sdate2 = null;
@@ -123,7 +123,7 @@ public class IgjiaToolsController {
 			String rdate = request.getParameter("date");
 			String district=URLDecoder.decode(request.getParameter("district"),"UTF-8");
 			String name=URLDecoder.decode(request.getParameter("name"),"UTF-8");		
-			String result = YGJdataService.getDistrictRent(redisTemplate, district);
+			String result = YGJdataService.getDistrictRent(//TODO redis 需要修改, district);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd"); 
 			Date sdate1 = null;
 	    	Date sdate2 = null;

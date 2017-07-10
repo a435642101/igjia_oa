@@ -18,7 +18,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +49,7 @@ public class PersonCenterController {
 	}
 	
 	@Autowired @Qualifier("jedisTemplate")
-	public RedisTemplate<String, String> redisTemplate;
+	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IStaffDao staffdao;
 	@Resource
@@ -78,7 +78,7 @@ public class PersonCenterController {
 				String result=null;
 				Http hp = Http.getInstance();			//获取所有房源
 				Map<String,String> m = new LinkedHashMap<String, String>();	
-				ValueOperations<String,String> operation = redisTemplate.opsForValue();
+				ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 				if(operation.get("houselist")==null){
 					try {
 						result = hp.hp(HURL,m, "get");

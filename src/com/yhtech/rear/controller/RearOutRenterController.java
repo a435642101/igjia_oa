@@ -19,7 +19,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +53,7 @@ public class RearOutRenterController {
 		HURL = prop.getProperty("address" ).trim()+"/IGJdata/house";
 	}
 	@Autowired @Qualifier("jedisTemplate")
-	public RedisTemplate<String, String> redisTemplate;
+	public //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	@Resource
 	private IStaffDao staffdao;
 	
@@ -67,7 +67,7 @@ public class RearOutRenterController {
 	public void pagerent(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String result =YGJdataService.getHouse(redisTemplate);
+		String result =YGJdataService.getHouse(//TODO redis 需要修改);
 		JSONArray ja = new JSONArray();
 		JSONObject jo = new JSONObject();
 		Gson gson = new Gson();
@@ -106,7 +106,7 @@ public class RearOutRenterController {
 			jo.put("code", "3");
 			jo.put("msg","参数错误");  
 		}else{
-			String result =YGJdataService.getHouseDistrict(redisTemplate, district);			
+			String result =YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);			
 			Gson gson = new Gson();
 		    JsonParser parser = new JsonParser();
 		    JsonArray Jarray = parser.parse(result).getAsJsonArray();
@@ -129,7 +129,7 @@ public class RearOutRenterController {
 				try {
 					String result1 = hp.hp(HURL, m, "put");
 					if("success".equals(result1)){
-						ValueOperations<String,String> operation = redisTemplate.opsForValue();
+						ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 						operation.set("houselist", null);
 				    	operation.set("houselist_"+district, null);
 						jo.put("code", "1");

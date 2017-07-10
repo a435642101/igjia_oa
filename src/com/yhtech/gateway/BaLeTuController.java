@@ -21,7 +21,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +45,7 @@ import com.yhtech.igjia.domain.House;
 public class BaLeTuController {
 	
 	@Autowired @Qualifier("jedisTemplate")
-	public  RedisTemplate<String, String> redisTemplate;
+	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	private static String URL;
 	static{
 		Properties prop = new Properties();
@@ -115,7 +115,7 @@ public class BaLeTuController {
 		    Map<String,String> m = new LinkedHashMap<String, String>();
 		    m.put("house", URLEncoder.encode(jo.toString(),"UTF-8"));
 			String houseresult = hp.hp(URL, m, "put");
-			ValueOperations<String,String> operation = redisTemplate.opsForValue();
+			ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 		    if("success".equals(houseresult)){
 		    	operation.set("houselist_"+district, null);
 		    	operation.set("houselist", null);

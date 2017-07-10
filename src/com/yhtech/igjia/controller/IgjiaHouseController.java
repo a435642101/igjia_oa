@@ -22,7 +22,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.//TODO redis 需要修改;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +51,7 @@ import com.yhtech.yhtech.dao.ILogDao;
 @Controller("IgjiaHouseController")
 public class IgjiaHouseController {
 	@Autowired @Qualifier("jedisTemplate")
-	public  RedisTemplate<String, String> redisTemplate;
+	public  //TODO redis 需要修改<String, String> //TODO redis 需要修改;
 	private static String URL;
 	static{
 		Properties prop = new Properties();
@@ -108,7 +108,7 @@ public class IgjiaHouseController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String page=request.getParameter("page");
-		String allHouse = YGJdataService.getHouse(redisTemplate);
+		String allHouse = YGJdataService.getHouse(//TODO redis 需要修改);
 		JSONArray ja =ods.getPageHouseBydate(page,"15",allHouse);
 		out.print(ja.toString());
 	}
@@ -124,7 +124,7 @@ public class IgjiaHouseController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String page=request.getParameter("page");
-		String allHouse = YGJdataService.getHouse(redisTemplate);
+		String allHouse = YGJdataService.getHouse(//TODO redis 需要修改);
 		JSONArray ja =ods.getPageHouse(page,"15",allHouse);
 		out.print(ja.toString());
 	}
@@ -142,7 +142,7 @@ public class IgjiaHouseController {
 		PrintWriter out = response.getWriter();
 		//获取数据
 		String house_id=request.getParameter("house_id");
-		String result = YGJdataService.getHouse(redisTemplate);
+		String result = YGJdataService.getHouse(//TODO redis 需要修改);
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonArray Jarray = parser.parse(result).getAsJsonArray();
@@ -168,7 +168,7 @@ public class IgjiaHouseController {
 	public void igjiaAllHouse(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String result1 =YGJdataService.getHouse(redisTemplate);
+		String result1 =YGJdataService.getHouse(//TODO redis 需要修改);
 		    Gson gson = new Gson();
 		    JsonParser parser = new JsonParser();
 		    JsonArray Jarray = parser.parse(result1).getAsJsonArray();
@@ -232,9 +232,9 @@ public class IgjiaHouseController {
 		JSONArray jarr = new JSONArray();
 		String result =null;
 		if("全部".equals(district)){						//查询全片区房源缓存
-			result = YGJdataService.getHouse(redisTemplate);
+			result = YGJdataService.getHouse(//TODO redis 需要修改);
 		}else{											//查询某片区房源缓存
-			result = YGJdataService.getHouseDistrict(redisTemplate, district);
+			result = YGJdataService.getHouseDistrict(//TODO redis 需要修改, district);
 		}
 		Gson gson = new Gson();
 	    JsonParser parser = new JsonParser();
@@ -534,7 +534,7 @@ public class IgjiaHouseController {
 			    Map<String,String> m1 = new LinkedHashMap<String, String>();
 			    m1.put("house", URLEncoder.encode(jo.toString(),"utf-8"));
 			    String result = null;
-			    ValueOperations<String,String> operation= redisTemplate.opsForValue();
+			    ValueOperations<String,String> operation= //TODO redis 需要修改.opsForValue();
 				Http hp = Http.getInstance();
 				try {
 					result = hp.hp(URL, m1, "post");
@@ -744,7 +744,7 @@ public class IgjiaHouseController {
 			e.printStackTrace();
 			out.print("error");
 		}
-	    ValueOperations<String,String> operation = redisTemplate.opsForValue();
+	    ValueOperations<String,String> operation = //TODO redis 需要修改.opsForValue();
 	    if("success".equals(result)){
 	    	//修改成功做日志
 	    	Staff admin = (Staff) request.getSession().getAttribute("admin");
