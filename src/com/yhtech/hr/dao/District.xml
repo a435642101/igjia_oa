@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.hr.dao.IDistrictDao">
+	
+    <!-- 查询全部 -->
+	<select id="listByDept" resultType="com.yhtech.hr.domain.District">
+        select count(admin.name) as num,dist.* from (select * from admin where admin.state='正常') admin right JOIN (select * from district where department=#{department}) dist on admin.district=dist.district_id   GROUP BY dist.district 
+    </select>
+    
+    <!-- 查询全部 -->
+	<insert id="add" parameterType="com.yhtech.hr.domain.District">
+          insert into district(province,
+         city,
+         department,
+         district,
+         district_id,
+         date) 
+         values(
+         #{province},
+         #{city},
+         #{department},
+         #{district},
+         #{district_id},
+         #{date})
+    </insert>
+    <update id="updateGroup" parameterType="com.yhtech.hr.domain.District">
+    	update district 
+    	<set>
+    		<if test="district!=null and district!=''">
+    			district=#{district}
+    		</if>
+    	</set>
+    	where department=#{department} and district_id=#{district_id}
+    </update>
+    <delete id="deleteDeptGroup">
+    	delete from district where department=#{param1} and district_id=#{param2}
+    </delete>
+</mapper>

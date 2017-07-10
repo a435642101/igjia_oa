@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.rear.dao.ICleanDao">
+	<select id="list" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
+         select * from clean where address =#{address}
+    </select>
+    
+    <insert id="add" parameterType="com.yhtech.igjia.domain.Rent">
+    	insert into clean (house_id,district,address,job_no,renter_name,renter_telephone,contract_startdate,state) values 
+    	(#{house_id},#{district},#{address},#{job_no},#{renter_name},#{renter_telephone},#{contract_startdate},#{state})
+    </insert>
+    
+    <update id="update" parameterType="com.yhtech.igjia.domain.Rent">
+    	update clean
+    	 <set>
+    		<if test="contract_startdate!='' and contract_startdate!=null">
+    			contract_startdate=#{contract_startdate}
+    		</if>
+   		 </set>
+   		 where address=#{address}
+    </update>
+    
+    <select id="dayclean" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
+         select * from clean where #{param1} &gt;= contract_startdate and datediff(#{param1},contract_startdate) mod #{param2}=0 
+    </select>
+    
+</mapper>

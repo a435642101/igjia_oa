@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.finance.dao.IEstateDemoDao">
+	<insert id="add">
+		insert into estates (district,business_area,name,address,date,price,img) values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+	</insert>
+</mapper>

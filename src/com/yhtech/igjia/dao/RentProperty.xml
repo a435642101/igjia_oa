@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.igjia.dao.IRentPropertyDao">
+	
+    <!-- 根据房源ID查询房子的物业信息 -->
+	<select id="getByHouseid" resultType="com.yhtech.igjia.domain.RentProperty">
+         select * from rent_property where contract_no=#{contract_no} and state='正常'
+    </select>   
+      <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.igjia.domain.RentProperty">
+         insert into rent_property(contract_no,
+         now_water_degree,      
+         now_elec_degree_day,
+         now_elec_degree_night,         
+         now_gas_degree,
+         keyinfo,rentname,rent_telephone,state) 
+         values(
+         #{contract_no},
+         #{now_water_degree},
+         #{now_elec_degree_day},
+         #{now_elec_degree_night}, 
+         #{now_gas_degree},
+         #{keyinfo},#{rentname},#{rent_telephone},#{state})
+     </insert>
+     
+    <!-- 修改 -->
+     <update id="update" parameterType="com.yhtech.igjia.domain.RentProperty">
+          update rent_property 
+			<set>
+				<if test="now_water_degree!=null and now_water_degree!=''">
+					now_water_degree = #{now_water_degree},
+				</if>
+				<if test="now_elec_degree_day!=null and now_elec_degree_day!=''">
+					now_elec_degree_day = #{now_elec_degree_day},
+				</if>
+				<if test="now_elec_degree_night!=null and now_elec_degree_night!=''">
+					now_elec_degree_night = #{now_elec_degree_night},
+				</if>
+				<if test="now_gas_degree!=null and now_gas_degree!=''">
+					now_gas_degree = #{now_gas_degree},
+				</if>
+				<if test="keyinfo!=null and keyinfo!=''">
+					keyinfo = #{keyinfo},
+				</if>
+				<if test="rentname!=null and rentname!=''">
+					rentname = #{rentname},
+				</if>
+				<if test="rent_telephone!=null and rent_telephone!=''">
+					rent_telephone = #{rent_telephone},
+				</if>
+				<if test="state!=null and state!=''">
+					state = #{state}
+				</if>
+			</set>
+			where contract_no = #{contract_no}
+     </update>
+</mapper>

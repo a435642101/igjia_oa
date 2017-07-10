@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.igjia.dao.IRentApplicationDao">
+	
+    <!-- 根据房源ID查询房子的物业信息 -->
+	<select id="getByHouseid" resultType="com.yhtech.igjia.domain.RentApplication">
+         select * from rent_application where contract_no=#{contract_no} and state='正常'
+    </select>   
+      <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.igjia.domain.RentApplication">
+         insert into rent_application(contract_no,
+         region,
+         name,
+         number,
+         model,
+         remark,rentname,rent_telephone,state) 
+         values(
+         #{contract_no},
+         #{region},
+         #{name},
+         #{number},
+         #{model},
+         #{remark},#{rentname},#{rent_telephone},#{state})
+     </insert>
+     
+     <delete id="delete">
+     	delete from rent_application where contract_no = #{contract_no}
+     </delete>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.rear.dao.INewRearDao">
+    <!-- 条件查询  -->
+	<select id="listRear" resultType="com.yhtech.rear.domain.Rear">
+         select * from newrear 
+        <where>
+        	<if test="param3!=null and param3!=''">
+        		address like CONCAT('%',#{param3},'%') and
+        	</if>
+        	<if test="param4!=null and param4!=''">
+        		district= #{param4} and
+        	</if>
+        	1=1
+        </where>
+         order by id desc limit #{param1},#{param2}
+    </select>
+    <select id="getRear" resultType="com.yhtech.rear.domain.Rear" parameterType="String">
+         select * from newrear where contract_no =#{contract_no}
+    </select>
+	<insert id="add" parameterType="com.yhtech.rear.domain.Rear">
+	    	insert into newrear (contract_no,house_id,district,
+			business_area,estate,address,type,
+			measure_date,begin_date,
+			job_no) values
+	    	(#{contract_no},#{house_id},#{district},#{business_area},#{estate},#{address},#{type},
+			#{measure_date},#{begin_date},#{job_no})
+	</insert>	    
+	<select id="getTotal" resultType="int">
+         select count(*) from newrear
+          <where>
+        	<if test="param1!=null and param1!=''">
+        		address like CONCAT('%',#{param1},'%') and
+        	</if>
+        	<if test="param2!=null and param2!=''">
+        		district= #{param2} and
+        	</if>
+        	1=1
+        </where>
+    </select>
+</mapper>

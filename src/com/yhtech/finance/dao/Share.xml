@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.finance.dao.IShareDao">
+     <!-- 新增 -->
+      <insert id="addPc" parameterType="com.yhtech.finance.domain.Share">
+         insert into sharebill (orderid, address, renter_name,renter_telephone, elec_money, water_money,
+			gas_money, total_money, period,remark,state,date) values
+         (#{orderid},#{address},#{renter_name},#{renter_telephone},#{elec_money},#{water_money},
+			#{gas_money},#{total_money},#{period},#{remark},#{state},#{date})
+     </insert>
+     <!-- 修改 -->
+     <update id="updatePc" parameterType="com.yhtech.finance.domain.Share">
+     	update sharebill
+     	<set>
+     		<if test="address!=null and address!=''">
+     			address=#{address},
+     		</if>
+     		<if test="renter_name!=null and renter_name!=''">
+     			renter_name=#{renter_name},
+     		</if>
+     		<if test="renter_telephone!=null and renter_telephone!=''">
+     			renter_telephone=#{renter_telephone},
+     		</if>
+     		<if test="elec_money>=0">
+     			elec_money=#{elec_money},
+     		</if>
+     		<if test="water_money>=0">
+     			water_money=#{water_money},
+     		</if>
+     		<if test="gas_money>=0">
+     			gas_money=#{gas_money},
+     		</if>
+     		<if test="total_money>=0">
+     			total_money=#{total_money},
+     		</if>
+     		<if test="period!=null and period!=''">
+     			period=#{period},
+     		</if>
+     		<if test="remark!=null and remark!=''">
+     			remark=#{remark},
+     		</if>
+     		<if test="state!=null and state!=''">
+     			state=#{state},
+     		</if>
+     		<if test="date!=null and date!=''">
+     			date=#{date}
+     		</if>
+     		<where>
+     			orderid = #{orderid}
+     		</where>
+     	</set>
+     </update>
+     <!-- 查询 -->
+     <select id="allPc" resultType="com.yhtech.finance.domain.Share">
+     	select * from sharebill
+     	<where>
+     		1=1
+     		<if test="param1!=null and param2!=null and param1!='' and param2!=''">
+     			and period between #{param1} and #{param2}
+	     	</if>
+	     	<if test="param3!=null and param3!=''">
+	     		and renter_name = #{param3}
+	     	</if>
+	     	<if test="param4!=null and param4!=''">
+	     		and state = #{param4}
+	     	</if>
+     	</where>
+     	order by id desc limit #{param5},#{param6}
+     </select>
+     <!-- 条数 -->
+     <select id="totalPc" resultType="int">
+     	select count(*) from sharebill
+     	<where>
+     		1=1
+     		<if test="param1!=null and param2!=null and param1!='' and param2!=''">
+     			and period between #{param1} and #{param2}
+	     	</if>
+	     	<if test="param3!=null and param3!=''">
+	     		and renter_name = #{param3}
+	     	</if>
+	     	<if test="param4!=null and param4!=''">
+	     		and state = #{param4}
+	     	</if>
+     	</where>
+     </select>
+     <!-- 根据订单查询 -->
+     <select id="findByOrderidPc" resultType="com.yhtech.finance.domain.Share">
+     	select * from sharebill where orderid = #{_parameter}
+     </select>
+</mapper>

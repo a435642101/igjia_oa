@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.rear.dao.IGoodsDao">
+	<select id="getGoods" resultType="com.yhtech.rear.domain.Goods" parameterType="String">
+         select * from goods where contract_no =#{contract_no}
+    </select>
+	<insert id="add" parameterType="com.yhtech.rear.domain.Goods">
+	    	insert into goods (contract_no,region,type,name,model,uniteprice,number,handle,remark) values
+	    	(#{contract_no},#{region},#{type},#{name},#{model},#{uniteprice},#{number},#{handle},#{remark})
+	</insert>	    
+
+</mapper>

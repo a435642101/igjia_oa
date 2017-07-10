@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.hr.dao.IStaffDao">
+	<!-- 条件查询  -->
+	<select id="findByjobno" resultType="com.yhtech.hr.domain.Staff" parameterType="String">
+         select * from admin where job_no=#{job_no}
+    </select>
+    
+	<select id="findByNo" resultType="com.yhtech.hr.domain.Staff" parameterType="String">
+         select job_no,telephone,department,district,position,state,name from admin where job_no=#{job_no} and state="正常"
+    </select>
+    
+    <select id="findNoByName" resultType="com.yhtech.hr.domain.Staff" parameterType="String">
+         select * from admin where name=#{name} and state="正常"
+    </select>
+     
+     <!-- 条件查询  -->
+  <select id="findByDepartment" resultType="com.yhtech.hr.domain.Staff"  parameterType="String">
+         select * from admin 
+    <where>
+     state='正常'
+     <if test="_parameter!=null and _parameter!=''">
+       and department = #{_parameter} 
+     </if>
+     
+        </where>
+    </select>
+    
+     <!-- 条件查询  -->
+  <select id="findByDeptDist" resultType="com.yhtech.hr.domain.Staff"  parameterType="String">
+         select * from admin 
+    <where>
+     state='正常'
+     <if test="param1!=null and param1!=''">
+       and department = #{param1}
+     </if>
+     <if test="param2!=null and param2!=''">
+       and district = #{param2}
+     </if>
+     and position !='区域经理'
+        </where>
+    </select>
+    
+     <!-- 查询全部 -->
+	<select id="listAll" resultType="com.yhtech.hr.domain.Staff">
+         select * from admin
+    </select>
+    
+    
+     <!-- 条件查询  -->
+  <select id="findByDD" resultType="com.yhtech.hr.domain.Staff"  parameterType="String">
+         select job_no,telephone,department,district,position,state,name from admin 
+	    <where>
+	     state='正常' and department = #{param1}
+	     and district = #{param2}
+	        </where>
+	    </select>
+	    
+	    <insert id="add" parameterType="com.yhtech.hr.domain.Staff">
+	    	insert into admin (job_no,pwd,department,name,position,permission,district,origo,address,idcard,prfunds,telephone,social_security,emergency_contactname,emergency_contacttelephone,
+	    	regist_date,login_date,state,email,vxin) values
+	    	(#{job_no},#{pwd},#{department},#{name},#{position},#{permission},#{district},#{origo},#{address},#{idcard},#{prfunds},#{telephone},#{social_security},#{emergency_contactname},#{emergency_contacttelephone},
+	    	#{regist_date},#{login_date},#{state},#{email},#{vxin})
+	    </insert>
+	    
+	    <update id="update"  parameterType="com.yhtech.hr.domain.Staff">
+	    	update admin 
+	    	<set>
+	    		<if test="pwd!=null and pwd!=''">
+	    			pwd=#{pwd},
+	    		</if>
+	    		<if test="department!=null and department!=''">
+	    			department=#{department},
+	    		</if>
+	    		<if test="name!=null and name!=''">
+	    			name=#{name},
+	    		</if>
+	    		<if test="position!=null and position!=''">
+	    			position=#{position},
+	    		</if>
+	    		<if test="permission!=null and permission!=''">
+	    			permission=#{permission},
+	    		</if>
+	    			district=#{district},
+	    		<if test="origo!=null and origo!=''">
+	    			origo=#{origo},
+	    		</if>
+	    		<if test="address!=null and address!=''">
+	    			address=#{address},
+	    		</if>
+	    		<if test="idcard!=null and idcard!=''">
+	    			idcard=#{idcard},
+	    		</if>
+	    		<if test="prfunds!=null and prfunds!=''">
+	    			prfunds=#{prfunds},
+	    		</if>
+	    		<if test="telephone!=null and telephone!=''">
+	    			telephone=#{telephone},
+	    		</if>
+	    		<if test="social_security!=null and social_security!=''">
+	    			social_security=#{social_security},
+	    		</if>
+	    		<if test="emergency_contactname!=null and emergency_contactname!=''">
+	    			emergency_contactname=#{emergency_contactname},
+	    		</if>
+	    		<if test="emergency_contacttelephone!=null and emergency_contacttelephone!=''">
+	    			emergency_contacttelephone=#{emergency_contacttelephone},
+	    		</if>
+	    		<if test="regist_date!=null and regist_date!=''">
+	    			regist_date=#{regist_date},
+	    		</if>
+	    		<if test="login_date!=null and login_date!=''">
+	    			login_date=#{login_date},
+	    		</if>
+	    		<if test="state!=null and state!=''">
+	    			state=#{state},
+	    		</if>
+	    		<if test="email!=null and email!=''">
+	    			email=#{email},
+	    		</if>
+	    		<if test="vxin!=null and vxin!=''">
+	    			vxin=#{vxin}
+	    		</if>
+	    	</set>
+	    	where job_no =#{job_no}
+	    </update>
+	    
+	    <select id="total" resultType="int">
+	    	select count(*) from admin
+	    </select>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.finance.dao.IHouseorderDao">
+    <!-- 根据日期查询   where period between #{param1} and #{param2} order by period desc-->
+	<select id="listBydate" resultType="com.yhtech.finance.domain.Houseorder">
+         select * from houseorder
+         <where>        	
+         	<if test="param1!=null and param1!='' and param2!='' and param2!=''">
+         		period between #{param1} and #{param2} and
+         	</if>
+         	<if test="param3!='全部'.toString()">
+         		state = #{param3} and
+         	</if>
+         	<if test="param4!=null and param4!=''">
+         		shoukuanren_name like CONCAT('%',#{param4},'%') and
+         	</if>
+         	1=1
+         </where>
+         order by period
+          
+    </select>
+    
+    <!-- 根据订单查询  -->
+	<select id="findByOrderid" resultType="com.yhtech.finance.domain.Houseorder">
+         select * from houseorder where orderid=#{orderid}
+    </select>
+    
+    
+    
+    
+    <!-- 添加数据 -->
+    <insert id="add" parameterType="com.yhtech.finance.domain.Houseorder">
+    	insert into houseorder(orderid,period,contract_no,house_id,address,shoukuanren_name,shoukuanren_telephone,shoukuanren_kaihuhang,shoukuanren_account,money,date,remark,state)
+    	values(#{orderid},#{period},#{contract_no},#{house_id},#{address},#{shoukuanren_name},#{shoukuanren_telephone},#{shoukuanren_kaihuhang},#{shoukuanren_account},#{money},#{date},#{remark},#{state})
+    </insert>
+    
+    <!-- 修改数据 -->
+	<update id="update" parameterType="com.yhtech.finance.domain.Houseorder">
+		update houseorder
+		<set>
+			<if test="period!=null and period!=''">
+				period=#{period},
+			</if>
+			<if test="contract_no!=null and contract_no!=''">
+				contract_no=#{contract_no},
+			</if>
+			<if test="house_id!=null and house_id!=''">
+				house_id=#{house_id},
+			</if>
+			<if test="address!=null and address!=''">
+				address=#{address},
+			</if>
+			<if test="shoukuanren_name!=null and shoukuanren_name!=''">
+				shoukuanren_name=#{shoukuanren_name},
+			</if>
+			<if test="shoukuanren_telephone!=null and shoukuanren_telephone!=''">
+				shoukuanren_telephone=#{shoukuanren_telephone},
+			</if>
+			<if test="shoukuanren_kaihuhang!=null and shoukuanren_kaihuhang!=''">
+				shoukuanren_kaihuhang=#{shoukuanren_kaihuhang},
+			</if>
+			<if test="shoukuanren_account!=null and shoukuanren_account!=''">
+				shoukuanren_account=#{shoukuanren_account},
+			</if>
+			<if test="money!=null and money!=''">
+				money=#{money},
+			</if>
+			<if test="date!=null and date!=''">
+				date=#{date},
+			</if>
+			<if test="remark!=null and remark!=''">
+				remark=#{remark},
+			</if>
+			<if test="state!=null and state!=''">
+				state=#{state}
+			</if>
+		</set>
+		where orderid=#{orderid}
+	</update>
+	
+	<!-- 修改支付状态 -->
+	<update id="updatestate" parameterType="String">
+		update houseorder set state=#{param1} where period &gt; #{param3} and contract_no=#{param2}
+	</update>  
+</mapper>

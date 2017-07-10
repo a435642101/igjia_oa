@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.yhtech.dao.ILogDao">
+	<!-- 添加数据 -->
+    <insert id="add" parameterType="com.yhtech.domain.Log">
+    	insert into log(job_no,name,house_id,contract_no,address,type,content,date,ip)
+    	values(#{job_no},#{name},#{house_id},#{contract_no},#{address},#{type},#{content},#{date},#{ip})
+    </insert>
+
+    
+    <!-- 分页查询  -->
+	<select id="listPage" resultType="com.yhtech.domain.Log">
+         select * from log order by date desc limit #{param1},#(param2)
+    </select>
+    
+    <!-- 根据日期查询  -->
+	<select id="listBydate" resultType="com.yhtech.domain.Log">
+         select * from log where date between #{param1} and #{param2}
+    </select>
+    
+    <!-- 条件查询  -->
+	<select id="listSearch" resultType="com.yhtech.domain.Log">
+         select * from log
+         <where>
+         	<if test="contract_no!=null and contract_no!=''">
+         		contract_no = #{contract_no} and
+         	</if>
+         	<if test="house_id!=null and house_id!=''">
+         		house_id = #{house_id} and
+         	</if>
+         	<if test="type!=null and type!=''">
+         		type = #{type} and
+         	</if>
+         	1=1
+         </where>
+    </select>
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.igjia.dao.IPropertyDao">
+	
+    <!-- 根据房源ID查询房子的物业信息 -->
+	<select id="getByHouseid" resultType="com.yhtech.igjia.domain.Property">
+         select * from property where house_id=#{house_id}
+    </select>   
+      <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.igjia.domain.Property">
+         insert into property(house_id,
+         water_account,
+         last_water_degree,
+         now_water_degree,
+         water_unitprice,
+         elec_account,
+         last_elec_degree_day,
+         last_elec_degree_night,
+         now_elec_degree_day,
+         now_elec_degree_night,
+         elec_unitprice_day,
+         elec_unitprice_night,
+         gas_account,
+         last_gas_degree,
+         now_gas_degree,
+         gas_unitprice,
+         cableTV,
+         cableTV_account,
+         cableTV_date,
+         cableTV_money,
+         cleaning_price,
+         total_money,
+         phone,
+         decoration,
+         remark) 
+         values(
+         #{house_id},
+         #{water_account},
+         #{last_water_degree},
+         #{now_water_degree},
+         #{water_unitprice},
+         #{elec_account},
+         #{last_elec_degree_day},
+         #{last_elec_degree_night},
+         #{now_elec_degree_day},
+         #{now_elec_degree_night},
+         #{elec_unitprice_day},
+         #{elec_unitprice_night},
+         #{gas_account},
+         #{last_gas_degree},
+         #{now_gas_degree},
+         #{gas_unitprice},
+         #{cableTV},
+         #{cableTV_account},
+         #{cableTV_date},
+         #{cableTV_money},
+         #{cleaning_price},
+         #{total_money},
+         #{phone},
+         #{decoration},
+         #{remark})
+     </insert>
+     
+     <update id="update" parameterType="com.yhtech.igjia.domain.Property">
+     	update property 
+     	<set>
+     		<if test="water_account!=null and water_account!=''">
+     			water_account = #{water_account},
+     		</if>
+     		<if test="last_water_degree!=null and last_water_degree!=''">
+     			last_water_degree = #{last_water_degree},
+     		</if>
+     		<if test="now_water_degree!=null and now_water_degree!=''">
+     			now_water_degree = #{now_water_degree},
+     		</if>
+     		<if test="water_unitprice!=null and water_unitprice!=''">
+     			water_unitprice = #{water_unitprice},
+     		</if>
+     		<if test="elec_account!=null and elec_account!=''">
+     			elec_account = #{elec_account},
+     		</if>
+     		<if test="last_elec_degree_day!=null and last_elec_degree_day!=''">
+     			last_elec_degree_day = #{last_elec_degree_day},
+     		</if>
+     		<if test="last_elec_degree_night!=null and last_elec_degree_night!=''">
+     			last_elec_degree_night = #{last_elec_degree_night},
+     		</if>
+     		<if test="now_elec_degree_day!=null and now_elec_degree_day!=''">
+     			now_elec_degree_day = #{now_elec_degree_day},
+     		</if>
+     		<if test="now_elec_degree_night!=null and now_elec_degree_night!=''">
+     			now_elec_degree_night = #{now_elec_degree_night},
+     		</if>
+     		<if test="elec_unitprice_day!=null and elec_unitprice_day!=''">
+     			elec_unitprice_day = #{elec_unitprice_day},
+     		</if>
+     		<if test="elec_unitprice_night!=null and elec_unitprice_night!=''">
+     			elec_unitprice_night = #{elec_unitprice_night},
+     		</if>
+     		<if test="gas_account!=null and gas_account!=''">
+     			gas_account = #{gas_account},
+     		</if>
+     		<if test="last_gas_degree!=null and last_gas_degree!=''">
+     			last_gas_degree = #{last_gas_degree},
+     		</if>
+     		<if test="now_gas_degree!=null and now_gas_degree!=''">
+     			now_gas_degree = #{now_gas_degree},
+     		</if>
+     		
+     		
+     		<if test="gas_unitprice!=null and gas_unitprice!=''">
+     			gas_unitprice = #{gas_unitprice},
+     		</if>
+     		<if test="cableTV!=null and cableTV!=''">
+     			cableTV = #{cableTV},
+     		</if>
+     		<if test="cableTV_account!=null and cableTV_account!=''">
+     			cableTV_account = #{cableTV_account},
+     		</if>
+     		<if test="cableTV_date!=null and cableTV_date!=''">
+     			cableTV_date = #{cableTV_date},
+     		</if>
+     		<if test="cableTV_money!=null and cableTV_money!=''">
+     			cableTV_money = #{cableTV_money},
+     		</if>
+     		<if test="cleaning_price!=null and cleaning_price!=''">
+     			cleaning_price = #{cleaning_price},
+     		</if>
+     		<if test="total_money!=null and total_money!=''">
+     			total_money = #{total_money},
+     		</if>
+     		<if test="phone!=null and phone!=''">
+     			phone = #{phone},
+     		</if>
+     		<if test="decoration!=null and decoration!=''">
+     			decoration = #{decoration},
+     		</if>
+     		<if test="remark!=null and remark!=''">
+     			remark = #{remark}
+     		</if>
+     	</set>
+     	where house_id = #{house_id}
+     </update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.igjia.dao.IApplicationDao">
+	
+    <!-- 根据房源ID查询房子的物业信息 -->
+	<select id="getByHouseid" resultType="com.yhtech.igjia.domain.Application">
+         select * from application where house_id=#{house_id}
+    </select>   
+      <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.igjia.domain.Application">
+         insert into application(house_id,
+         name,
+         number,
+         model,
+         remark) 
+         values(
+         #{house_id},
+         #{name},
+         #{number},
+         #{model},
+         #{remark})
+     </insert>
+     
+     <delete id="delete">
+     	delete from application where house_id=#{house_id}
+     </delete>
+</mapper>

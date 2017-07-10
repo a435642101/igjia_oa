@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.rear.dao.IRearDao">
+    <!-- 条件查询  -->
+	<select id="listRear" resultType="com.yhtech.rear.domain.Rear">
+         select * from rear 
+        <where>
+        	<if test="param3!=null and param3!=''">
+        		address like CONCAT('%',#{param3},'%') and
+        	</if>
+        	<if test="param4!=null and param4!=''">
+        		district= #{param4} and
+        	</if>
+        	<if test="param5!=null and param5!=''">
+        		rear= #{param5} and
+        	</if>
+        	<if test="param6!=null and param6!='' and param7!='' and param7!=''">
+         		begin_date between #{param6} and #{param7} and
+         	</if>
+         	<if test="param8!=null and param8!='' and param9!='' and param9!=''">
+         		finish_date between #{param8} and #{param9} and
+         	</if>
+        	1=1
+        </where>
+         order by id desc limit #{param1},#{param2}
+    </select>
+    
+	<select id="getRear" resultType="com.yhtech.rear.domain.Rear" parameterType="String">
+         select * from rear where contract_no =#{contract_no}
+    </select>
+	<insert id="add" parameterType="com.yhtech.rear.domain.Rear">
+	    	insert into rear (contract_no,house_id,district,
+			business_area,estate,address,type,
+			measure_date,begin_date,finish_date,
+			job_no,rear,decorate_team,
+			decorate_telephone,decorate_handle,
+			decorate_outofpocket,decorate_remark,
+			furniture_supplier,furniture_telephone,
+			furniture_handle,furniture_outofpocket,
+			furniture_remark,furniture_startdate,
+			furniture_reachdate,appliance_supplier,
+			appliance_telephone,appliance_remark,
+			appliance_startdate,appliance_reachdate,
+			appliance_handle,appliance_outofpocket,
+			handle,out_of_pocket,staff,date) values
+	    	(#{contract_no},#{house_id},#{district},#{business_area},#{estate},#{address},#{type},
+			#{measure_date},#{begin_date},#{finish_date},#{job_no},#{rear},#{decorate_team},
+			#{decorate_telephone},#{decorate_handle},#{decorate_outofpocket},#{decorate_remark},
+			#{furniture_supplier},#{furniture_telephone},#{furniture_handle},#{furniture_outofpocket},
+			#{furniture_remark},#{furniture_startdate},#{furniture_reachdate},#{appliance_supplier},
+			#{appliance_telephone},#{appliance_remark},#{appliance_startdate},#{appliance_reachdate},
+			#{appliance_handle},#{appliance_outofpocket},#{handle},#{out_of_pocket},#{staff},#{date})
+	</insert>	    
+	<select id="getTotal" resultType="int">
+         select count(*) from rear
+          <where>
+        	<if test="param1!=null and param1!=''">
+        		address like CONCAT('%',#{param1},'%') and
+        	</if>
+        	<if test="param2!=null and param2!=''">
+        		district= #{param2} and
+        	</if>
+        	<if test="param3!=null and param3!=''">
+        		rear= #{param3} and
+        	</if>
+        	<if test="param4!=null and param4!='' and param5!=null and param5!=''">
+         		begin_date between #{param4} and #{param5} and
+         	</if>
+         	<if test="param6!=null and param6!='' and param7!=null and param7!=''">
+         		finish_date between #{param6} and #{param7} and
+         	</if>
+        	1=1
+        </where>
+    </select>
+    
+     <!-- 获取个人中心所有配置 -->
+	<select id="listRearPerson" resultType="com.yhtech.rear.domain.Rear">
+         select * from rear 
+        <where>
+        	<if test="param3!=null and param3!=''">
+        		job_no = #{param3} and
+        	</if>
+        	<if test="param4!=null and param4!=''">
+        		district = #{param4} and
+        	</if>
+        	1=1
+        </where>
+         order by id desc limit #{param1},#{param2}
+    </select>
+    
+    <select id="getTotalPerson" resultType="int">
+         select count(*) from rear
+          <where>
+        	<if test="param1!=null and param1!=''">
+        		job_no = #{param1} and
+        	</if>
+        	<if test="param2!=null and param2!=''">
+        		district = #{param2} and
+        	</if>
+        	1=1
+        </where>
+    </select>
+</mapper>

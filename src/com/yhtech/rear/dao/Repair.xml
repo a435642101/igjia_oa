@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.rear.dao.IRepairDao">
+    <!-- 条件查询  -->
+	<select id="listRepair" resultType="com.yhtech.rear.domain.Repair">
+         select * from repair order by id desc limit #{param1},#{param2}
+    </select>
+    
+	<select id="total" resultType="int">
+         select count(*) from repair
+         <where>
+         	<if test="param1!=null and param1!='' ">
+         		renter=#{param1} and
+         	</if>
+         	<if test="param2!=null and param2!=''and param2!='全部'">
+         		state=#{param2} and
+         	</if>
+         	1=1
+         </where>
+    </select>
+    
+    <!-- 条件查询  -->
+	<select id="search" resultType="com.yhtech.rear.domain.Repair">
+         select * from repair
+         <where>
+         	<if test="param1!=null and param1!='' ">
+         		renter=#{param1} and
+         	</if>
+         	<if test="param2!=null and param2!=''and param2!='全部'">
+         		state=#{param2} and
+         	</if>
+         	1=1
+         </where>
+         order by id desc limit #{param3},#{param4}
+    </select>
+    
+    <update id="updatestate" parameterType="String">
+    	update repair 
+    	<set>
+    		<if test="param2!=null and param2!=''">
+    			state=#{param2}
+    		</if>
+    	</set>
+    	where repair_id = #{param1}
+    </update>
+    <update id="updateremark" parameterType="String">
+    	update repair 
+    	<set>
+    		<if test="param2!=null and param2!=''">
+    			remark=#{param2}
+    		</if>
+    	</set>
+    	where repair_id = #{param1}
+    </update>
+    
+    <!-- 新增 -->
+      <insert id="add" parameterType="com.yhtech.rear.domain.Repair">
+         insert into repair (repair_id,renter,telephone,yuyue_date,address,descrip,picture,state,type,date,remark) values
+         (#{repair_id},#{renter},#{telephone},#{yuyue_date},#{address},#{descrip},#{picture},#{state},#{type},#{date},#{remark})
+     </insert>
+</mapper>

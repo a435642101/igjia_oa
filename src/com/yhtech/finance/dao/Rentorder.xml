@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.finance.dao.IRentorderDao">
+	
+    <!-- 条件查询  -->
+	<select id="listSearch" resultType="com.yhtech.finance.domain.Rentorder" parameterType="String">
+         select * from rentorder
+         <where>
+         	<if test="house_id!=null and house_id!=''">
+         		house_id =#{house_id} and
+         	</if>
+         	<if test="period!=null and period!=''">
+         		period = #{period} and
+         	</if>
+         	<if test="name!=null and name!=''">
+         		name like CONCAT('%',#{name},'%') and
+         	</if>
+         	1=1
+         </where>
+         order by period desc
+    </select>
+    
+    <!-- 根据日期查询   where period between #{param1} and #{param2} order by period desc-->
+	<select id="listBydate" resultType="com.yhtech.finance.domain.Rentorder">
+         select * from rentorder
+         <where>        	
+         	<if test="param1!=null and param1!='' and param2!='' and param2!=''">
+         		period between #{param1} and #{param2} and
+         	</if>
+         	<if test="param3!='全部'.toString()">
+         		state = #{param3} and
+         	</if>
+         	<if test="param4!=null and param4!=''">
+         		name like CONCAT('%',#{param4},'%') and
+         	</if>
+         	1=1
+         </where>
+         order by period desc
+          
+    </select>
+    
+    <!-- 根据订单查询  -->
+	<select id="findByOrderid" resultType="com.yhtech.finance.domain.Rentorder">
+         select * from rentorder where orderid=#{orderid}
+    </select>
+    
+    
+    
+    
+    <!-- 添加数据 -->
+    <insert id="add" parameterType="com.yhtech.finance.domain.Rentorder">
+    	insert into rentorder(orderid,period,house_id,contract_no,address,telephone,name,money,date,mode,remark,state)
+    	values(#{orderid},#{period},#{house_id},#{contract_no},#{address},#{telephone},#{name},#{money},#{date},#{mode},#{remark},#{state})
+    </insert>
+    
+    <!-- 修改数据 -->
+	<update id="update" parameterType="com.yhtech.finance.domain.Rentorder">
+		update rentorder
+		<set>
+			<if test="house_id!=null and house_id!=''">
+				house_id=#{house_id},
+			</if>
+			<if test="contract_no!=null and contract_no!=''">
+				contract_no=#{contract_no},
+			</if>
+			<if test="period!=null and period!=''">
+				period=#{period},
+			</if>
+			<if test="address!=null and address!=''">
+				address=#{address},
+			</if>
+			<if test="telephone!=null and telephone!=''">
+				telephone=#{telephone},
+			</if>
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			<if test="money!=null and money!=''">
+				money=#{money},
+			</if>
+			<if test="date!=null and date!=''">
+				date=#{date},
+			</if>
+			<if test="mode!=null and mode!=''">
+				mode=#{mode},
+			</if>
+			<if test="remark!=null and remark!=''">
+				remark=#{remark},
+			</if>
+			<if test="state!=null and state!=''">
+				state=#{state}
+			</if>
+		</set>
+		where orderid=#{orderid}
+	</update>
+	
+	<!-- 修改支付状态 -->
+	<update id="updatestate" parameterType="com.yhtech.finance.domain.Rentorder">
+		update rentorder set state=#{param1}
+
+		where period &gt; #{param3} and house_id=#{param2}
+	</update>
+    
+    
+</mapper>

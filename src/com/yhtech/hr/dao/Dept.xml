@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yhtech.hr.dao.IDeptDao">
+	
+    <!-- 查询全部 -->
+	<select id="listDept" resultType="com.yhtech.hr.domain.Dept">
+         SELECT count(admin.name) as num,dept.* FROM (select * from admin where admin.state='正常') admin  RIGHT JOIN dept ON admin.department = dept.department  group by dept.department order by num desc
+    </select>
+    
+     <!-- 查询单个部门 -->
+	<select id="getDept" resultType="com.yhtech.hr.domain.Dept">
+         select * from dept where department = #{department}
+    </select>
+    
+    <delete id="deleteDept" parameterType="String">
+    	delete from dept where department = #{department}
+    </delete>
+    <update id="updateDept" parameterType="com.yhtech.hr.domain.Dept">
+    	update dept 
+    	<set>
+    		<if test="name!=null and name!=''">
+    			name=#{name}
+    		</if>
+    	</set>
+    	where department =#{department}
+    </update>
+    
+    <!-- 查询全部 -->
+	<insert id="add" parameterType="com.yhtech.hr.domain.Dept">
+          insert into dept(department,name,date) values(
+         #{department},#{name},#{date})
+    </insert>
+    
+</mapper>
