@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=10">
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../Css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/un.css" type="text/css" rel="stylesheet"/>
+<link href="css/page.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+select{width:100px; height:24px;}
+table.table tr td{text-align: center;}
+ .sidebar-nav {
+            padding: 9px 0;
+        }
+        .dataTables_length{display:none;}
+        .activP{   
+         background-color: #09f!important;
+    	color: #fff!important;
+    	}
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+}
+.table-bordered{border:none;}
+.table-bordered tr{border-right:1px solid #eee;}
+.table-bordered th{border-top:1px solid #eee;}
+</style>
+
+</head>
+
+<body>
+
+	<div class="panrent pand">
+				<div style="height:1px;"></div>
+				<div class="find">
+					<span>保洁日期:</span>
+					<input id="J-x1" class="rentername" width='240'/>
+				    <button class="btn btn-primary" style="cursor:pointer;">查询</button>
+				    <button class="daochu" style="cursor:pointer;">导出</button>
+					<span style="font-size:14px;position:absolute;right:35px;top:35px;">共<span id="total" style="color:red">0</span>条</span>
+				</div>
+				<table class="table table-border table-bordered table-hover table-bg table-sort table_detail ">
+					<thead>
+						<tr>
+							<th width="100">所属区域</th>
+							<th width="">房源地址</th>
+							<th width="100">管家</th>
+							<th width="">租客姓名</th>
+							<th width="100">租客电话</th>
+							<th width="100">首次保洁日期</th>
+							<th width="100">保洁日期</th>
+							<th width="50">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div><!--出房总览-->
+<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script> 
+<script type="text/javascript" src="js/cleanlist.js"></script>
+
+<script type="text/javascript" src="../tools/Js/utils/xlsx.full.min.js"></script>
+<script type="text/javascript" src="../tools/Js/utils/jsonToExcel.js"></script>
+
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+<script type="text/javascript">
+        	laydate({
+	           	elem: '#J-x1',
+	            min: laydate.now(-2),
+	             festival: true, //显示节日
+	      	});        	
+</script>
+
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    <div class="loading" style="height:100%; width:100%; z-index:99; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;"></div>
+</body>
+</html>

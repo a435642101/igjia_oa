@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——添加出房</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/queryNumber.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 选择日期插件 -->
+    <script type="text/javascript" src="mobiscroll.3.0.1/mobiscroll.jquery.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <section id="addHtxx" class="queryNumberBox addHtxx BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">租客信息</span>
+        </header>
+
+        <ul class="addFyList fs28">
+            <li class="clearfix">
+                <label for="htQy">合约签约日期：</label>
+                <input type="text" value="" name="" id="htQy" placeholder="请选择日期" readonly="readonly">
+            </li>
+            <li class="clearfix">
+                <label for="htSx">合同生效日期：</label>
+                <input type="text" value="" name="" id="htSx" placeholder="请选择日期" readonly="readonly">
+            </li>
+            <li class="clearfix">
+                <label for="htEnd">合同结束日期：</label>
+                <input type="text" value="" name="" id="htEnd" placeholder="请选择日期" readonly="readonly">
+            </li>
+            <li class="clearfix">
+                <label for="htQx">合同期限(月)：</label>
+                <input type="text" value="" name="" id="htQx" placeholder="请输入期限">
+            </li>
+            <li class="clearfix">
+                <label for="htZj1">首年月租金：</label>
+                <input type="text" value="" name="" id="htZj1" placeholder="请输入租金">
+            </li>
+            <li class="clearfix">
+                <label for="htZj2">次年月租金：</label>
+                <input type="text" value="" name="" id="htZj2" placeholder="请输入租金">
+            </li>
+            <li class="clearfix">
+                <label for="htZj3">第三年月租金：</label>
+                <input type="text" value="" name="" id="htZj3" placeholder="请输入租金">
+            </li>
+            <li class="clearfix">
+                <label for="htZj4">第四年月租金：</label>
+                <input type="text" value="" name="" id="htZj4" placeholder="请输入租金">
+            </li>
+            <li class="clearfix">
+                <label for="htZj5">第五年月租金：</label>
+                <input type="text" value="" name="" id="htZj5" placeholder="请输入租金">
+            </li>
+            <li class="clearfix">
+                <label for="htKdf">宽带保洁费：</label>
+                <input type="text" value="" name="" id="htKdf" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htHjf">月合计费用：</label>
+                <input type="text" value="" name="" id="htHjf" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htZfy">合同期总费用：</label>
+                <input type="text" value="" name="" id="htZfy" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htFws">出房服务商：</label>
+                <input type="text" value="" name="" id="htFws" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htZjf">提供商中介费：</label>
+                <input type="text" value="" name="" id="htZjf" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htZf">支付方式：</label>
+                <select name="" id="htZf">
+                    <option value="">请选择支付方式</option>
+                    <option value="30天">30天</option>
+                    <option value="60天">60天</option>
+                    <option value="90天">90天</option>
+                    <option value ="180天">180天</option>
+                    <option value="365天">365天</option>
+                    <option value="盈家">盈家</option>
+                    <option value ="巴乐兔">巴乐兔</option>
+                    <option value="租了么">租了么</option>
+                </select>
+            </li>
+            <li class="clearfix">
+                <label for="htYjze">押金总额：</label>
+                <input type="text" value="" name="" id="htYjze" placeholder="请输入金额">
+            </li>
+            <li class="clearfix">
+                <label for="htFj">该房屋房间数：</label>
+                <input type="text" value="" name="" id="htFj" placeholder="请输入房屋间数">
+            </li>
+            <li class="clearfix">
+                <label for="htZt">房屋状态：</label>
+                <select name="" id="htZt">
+                    <option value="已出租">已出租</option>
+                    <option value="空置中">空置中</option>
+                    <option value="已解约">已解约</option>
+                    <option value="审核中">审核中</option>
+                    <option value="已到期">已到期</option>
+                    <option value="配置中">配置中</option>
+                </select>
+            </li>
+        </ul>
+        
+        <div class="queryBtn">
+            <input type="submit" value="提交" name="" id="">
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            // 确认提交
+            confirm();
+            $("#alertBox .btnBox #btnYes").click(function(){
+                // alert(0000);
+            });
+            $("#alertBox .btnBox #btnNo").click(function(){
+                $("#alertBox").fadeOut(500);
+                // alert(0000);
+            });
+    
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(2).find('a').css({color: '#ee6b41'});
+                }
+            });
+        });
+
+        // 合约签约日期
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#htQy').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+
+        // 合约生效日期
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#htSx').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+
+        // 合约结束日期
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#htEnd').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

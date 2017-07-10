@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>报修页面</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/un.css" type="text/css" rel="stylesheet"/>
+<link href="css/page.css" type="text/css" rel="stylesheet"/>
+	<!-- <link href="/favicon.ico" rel="icon" type="image/x-icon" /> -->
+    
+    <!-- 样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/resetBX.css">
+
+    <!-- 分页css样式 -->
+    <link rel="stylesheet" type="text/css" href="page/page.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/baoxiu.css">
+
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+    <!-- 模板渲染页面 -->
+    <script type="text/javascript" src="js/handlebars-v2.0.0.js"></script>
+    
+    <!-- 分页js代码 -->
+    <script type="text/javascript" src="page/page.js"></script>
+
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/baoxiu.js"></script>
+<style type="text/css">
+        .activP{   
+         background-color: #09f!important;
+    	color: #fff!important;
+    	}
+</style>
+</head>
+
+<body>
+    <div class='panrent'>
+    	<div style="height:1px;"></div>
+		<div class="find">
+			<span>租客名字:</span>
+			<input type="text" class="rentername" id="rentername" name="rentername" placeholder="请输入你要搜索的租客名字" />
+			<span>处理进度:</span>
+		    <select style='border:1px solid #ccc;' class="state" id="state" style='width:80px;'>
+		    	<option value="全部">全部</option>
+		    	<option value="通知中">通知中</option>
+	        	<option value="处理中">处理中</option>
+	        	<option value="已解决">已解决</option>
+	        	<option value="已失效">已失效</option>
+		    </select> 
+		    <button class="btn btn-primary" style="cursor:pointer;">查询</button>
+			<span style="font-size:14px;position:absolute;right:35px;top:35px;">共<span id="total" style="color:red">0</span>条</span>
+		</div>
+    </div>
+    <table id="baoxiu">
+        <thead>
+            <tr>
+                <th>发布时间</th>
+                <th>姓名</th>
+                <th>联系方式</th>
+                <th>地址</th>
+                <th>预约时间</th>
+                <th>问题描述</th>
+                <th>照片</th>
+                <th>处理进度</th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    <!-- 分页 -->
+    <div class="center_right_detail_list_page">
+        <div class="pageTest"></div>
+    </div>
+    <input type="hidden" id="maxnum"/>
+
+</body>
+
+</html>
+
+
+<!-- 渲染页面 -->
+<script id="tr-template" type="text/x-handlebars-template">
+    {{#each msg}}
+        <tr>
+            <td>{{date}}</td>
+            <td>{{renter}}</td>
+            <td>{{telephone}}</td>
+            <td>{{address}}</td>
+            <td>{{yuyue_date}}</td>
+            <td>
+                <p>
+                    {{descrip}}
+                </p>
+            </td>
+            <td><img onclick="javascript:window.open('{{picture}}')" src="{{picture}}" alt=""></td>
+            <td><select name='state' onchange="changestate('{{repair_id}}',this)">{{#selected state}}<option  value="处理中">处理中</option><option value="通知中">通知中</option><option value="已解决">已解决</option><option value="已失效">已失效</option>{{/selected}}</select></td>
+        	<td><input type='text' maxlength='20' value='{{remark}}' style='border:1px solid #aaa'/><button onclick="changeremark('{{repair_id}}',this)" style="cursor:pointer;border:1px solid #ccc;">保存</button></td>
+		</tr>
+    {{/each}}
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>

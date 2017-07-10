@@ -1,0 +1,352 @@
+
+
+/*房源详情*/
+#detailsBox{
+	width: 7.5rem;
+	padding: 0.4rem 0;
+}
+
+#detailsBox header{
+	width: 7.1rem;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	margin: 0 auto;
+}
+
+#detailsBox header i{
+	color: #ee6b41;
+	height: 100%; 
+}
+
+#detailsBox header span{
+	height: 100%; 
+}
+
+#detailsBox header .back{
+	font-size: 0.35rem;
+	width: 0.5rem;
+	margin-left: -0.07rem;
+}
+
+#detailsBox .head{
+	width: 7.1rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin: 0.2rem auto 0;
+	border: 1px solid #d2d2d2;
+}
+
+#detailsBox .head span{
+	width: 50%;
+	height: 100%;
+}
+
+#detailsBox .head span:first-child{
+	border-right: 1px solid #d2d2d2;
+}
+
+#detailsBox .chufang{
+	display: none;
+}
+
+/*房源信息*/
+.fyInforBox{
+	width: 7.11rem;
+	margin: 0 auto;
+	border-bottom:1px solid #d2d2d2;
+	border-left:1px solid #d2d2d2;
+	border-right:1px solid #d2d2d2;
+}
+
+.hqQueryResultDetails .fyInforBox{
+	margin-top: 0.1rem;
+	border-top:1px solid #d2d2d2;
+}
+
+.zkInforBox{
+	margin-top: 0.2rem;
+	border-top:1px solid #d2d2d2;
+}
+
+.fyInforBox h2{
+	width: 100%;
+	height: 0.65rem;
+	line-height: 0.65rem;
+	border-bottom:1px solid #d2d2d2;
+	padding: 0 0.15rem;
+}
+
+.fyInforList{
+	width: 100%;
+	padding: 0.2rem 0.1rem;
+}
+
+.fyInforList li{
+	line-height: 0.5rem;
+}
+
+.fyInforList li>span:first-child{
+	float: left;
+	width: 2.55rem;
+	text-align: right;
+	color: #666;
+}
+
+.fyInforList li>span:last-child{
+	float: right;
+	width: 4.3rem;
+}
+
+.htInforBox{
+	margin-top: 0.2rem;
+	border-top: 1px solid #d2d2d2;
+}
+
+.htInforBox li>span:first-child{
+	width: 3.4rem;
+}
+
+.htInforBox li>span:last-child{
+	width: 3.45rem;
+}
+
+#jiaju ul li>span:first-child{
+	width: 2rem;
+}
+
+#jiaju ul li>span:last-child{
+	width: 4.85rem;
+}
+
+.weiXiuSituation .fyInforList li{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin-bottom: 0.2rem;
+}
+
+.weiXiuSituation .fyInforList li.textarea{
+	height: 1.6rem;
+}
+
+.weiXiuSituation .fyInforList li:last-child{
+	margin-bottom: 0;
+}
+
+.weiXiuSituation .fyInforList li>span{
+	height: 100%;
+}
+
+.weiXiuSituation .fyInforList li.textarea span{
+	line-height: 0.55rem;
+}
+
+.weiXiuSituation .fyInforList li>span:last-child{
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+}
+
+.weiXiuSituation .fyInforList li.peiJian{
+	height: 0.8rem;
+	line-height: 0.8rem; 
+	margin-bottom: 0;
+}
+
+.weiXiuSituation .fyInforList li.peiJian div{
+	float: left;
+	width: 1rem;
+	height: 100%;
+	overflow: hidden;
+	padding-left: 0.2rem;
+}
+
+.weiXiuSituation .fyInforList li.peiJian div span,
+.weiXiuSituation .fyInforList li.peiJian div i{
+	float: left;
+}
+
+.weiXiuSituation .fyInforList li.peiJian div i{
+	font-size: 0.32rem;
+	line-height: 0.88rem;
+	color: #aaaaaa;
+}
+
+.weiXiuSituation .fyInforList li.peiJian div:nth-of-type(1) i{
+	color: #ee6b41;
+}
+
+.weiXiuSituation .fyInforList li span input,
+.weiXiuSituation .fyInforList li span select,
+.weiXiuSituation .fyInforList li span textarea{
+	width: 100%;
+	height: 100%;
+	padding: 0 0.2rem;
+	font-size: 0.28rem;
+}
+
+.weiXiuSituation .fyInforList li span select{
+	padding: 0 0.1rem;
+}
+
+.weiXiuSituation .fyInforList li span textarea{
+	padding: 0.1rem 0.2rem;
+}
+
+.fundsSubmit{
+	width: 2.6rem;
+	height: 0.8rem;
+	margin: 0.8rem auto 0;
+	border-radius: 5px;
+	background-color: #ee6b41;
+}
+
+.fundsSubmit input{
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-size: 0.32rem;
+}
+
+
+.weiXiuSituation .fyInforList li.peiJianInfor{
+	height: auto;
+}
+
+.weiXiuSituation .fyInforList li.peiJianInfor .peiJianView{
+	width: 6.8rem;
+	padding: 0.2rem 0.15rem 0;
+	border-radius: 5px;
+	background-color: #f4f4f4;
+	margin-left: 0.09rem;
+}
+
+.weiXiuSituation .fyInforList .partsItem{
+	width: 100%; /*6.5*/
+	padding-bottom: 0.2rem;
+}
+
+.weiXiuSituation .fyInforList .partsItem .addBtn{
+	width: 0.4rem;
+	height: 0.8rem;
+	line-height: 0.88rem;
+	font-size: 0.4rem;
+	color: #4ce480;
+	text-align: center;
+}
+
+.weiXiuSituation .fyInforList .partsItem .delateBtn{
+	color: #f62731;
+}
+
+.weiXiuSituation .fyInforList .partsItem .partsForm{
+	width: 6.05rem;
+}
+
+.weiXiuSituation .partsForm .partsName{
+	width: 100%;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin-bottom: 0.2rem;
+}
+
+.weiXiuSituation .partsForm .partsName label{
+	width: 0.7rem;
+	height: 100%;
+}
+
+.weiXiuSituation .partsItem .inputK{
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+}
+
+.weiXiuSituation .partsItem .inputK,
+.weiXiuSituation .partsItem label{
+	height: 100%;
+}
+
+.weiXiuSituation .partsForm .partsName .inputK{
+	width: 5.3rem; 
+}
+
+.weiXiuSituation .fyInforList .partsItem input{
+	width: 100%;
+	height: 100%;
+	padding: 0 0.1rem;
+	font-size: 0.28rem;
+}
+
+.weiXiuSituation .partsItem .priceTime{
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+
+.weiXiuSituation .partsItem .priceTime label{
+	float: left;
+}
+
+.weiXiuSituation .partsItem .priceTime label:nth-of-type(1){
+	width: 0.7rem;
+}
+
+.weiXiuSituation .partsItem .priceTime label:nth-of-type(2){
+	width: 1.28rem;
+	text-align: right;
+}
+
+.weiXiuSituation .partsItem .priceTime .inputK{
+	float: left;
+	width: 2rem;
+}
+
+.weiXiuSituation .partsItem .priceTime .inputK:nth-of-type(1){
+	margin-left: 0.03rem;
+}
+
+.weiXiuSituation .partsItem .priceTime .inputK:nth-of-type(2){
+	float: right;
+}
+
+
+.fyInforList2 li>span:first-child{
+	width: 2rem; 
+}
+
+.fyInforList2 li>span:last-child{
+	width: 4.85rem;
+}
+
+.fyInforList3 li>span:first-child{
+	width: 1.4rem; 
+}
+
+.fyInforList3 li>span:last-child{
+	width: 5.45rem;
+}
+
+
+/*返回顶部*/
+#returnTop{
+	display: none;
+	width: 0.7rem;
+	height: 0.7rem;
+	line-height: 0.75rem;
+	text-align: center;
+	border-radius: 100%;
+	color: #fff;
+	background-color: #ee6b41;
+	position: fixed;
+	bottom: 15%;
+	right: 3%;
+}
+#returnTop i{
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 0.35rem;
+}
+
+
+.mbsc-ios .mbsc-fr-btn{
+	color: #ee6b41;
+}
+
+

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——维修详情</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyResultDetails.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 选择日期插件 -->
+    <script type="text/javascript" src="mobiscroll.3.0.1/mobiscroll.jquery.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="hqHead"></header>
+
+    <!-- 房源详情 开始 -->
+    <section id="detailsBox" class="BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">查询结果</span>
+        </header>
+        
+        <div class="showBox hqQueryResultDetails">
+            <!-- 报修情况 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">报修情况</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>发布时间：</span>
+                        <span>2017.02.03</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源ID：</span>
+                        <span>130152250</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>姓名：</span>
+                        <span>周浦</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>联系方式：</span>
+                        <span>18918921892</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>地址：</span>
+                        <span>上海市浦东新区周浦镇100号1号楼3楼301室A01</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>预约时间：</span>
+                        <span>2017.02.03</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>问题描述：</span>
+                        <span>漏水，漏电，漏气</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>是否解决：</span>
+                        <span>未解决</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>备注：</span>
+                        <span>快点来</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 报修情况 结束 -->
+
+            <!-- 维修情况 开始 -->
+            <div class="fs28 fyInforBox weiXiuSituation">
+                <h2 class="fs32">维修情况</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>维修师傅：</span>
+                        <span>
+                            <select name="" id="chooseMaster">
+                                <option value="">请选择师傅</option>
+                                <option value="欧阳烈">欧阳烈</option>
+                                <option value="欧阳修">欧阳修</option>
+                                <option value="欧阳峰">欧阳峰</option>
+                            </select>
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span>完成时间：</span>
+                        <span>
+                            <input type="text" value="" name="" id="completTime" placeholder="请选择时间" readonly="readonly">
+                        </span>
+                    </li>
+                    <li id="wxDetailsBtn" class="clearfix peiJian">
+                        <span>是否更换配件：</span>
+                        <div class="wxBtnYes wxBtn clearfix">
+                            <span>是</span>
+                            <i class="iconfont">&#xe600;</i>
+                        </div>
+                        <div class="wxBtnNo wxBtn clearfix">
+                            <span>否</span>
+                            <i class="iconfont">&#xe600;</i>
+                        </div>
+                    </li> 
+                    <li id="peiJianInfor" class="peiJianInfor">
+                        <div class="peiJianView">
+
+                            <div class="partsItem clearfix">
+                                <div id="addBtn" class="addBtn fl iconfont">&#xe601;</div>
+                                <div class="partsForm fr">
+                                    <div class="partsName clearfix">
+                                        <label class="fl" for="partsName">名称:</label>
+                                        <div class="inputK fr">
+                                            <input type="text" value="" placeholder="请输入名称" id="partsName">
+                                        </div>
+                                    </div>
+                                    <div class="priceTime clearfix">
+                                        <label for="partsPrice">单价:</label>
+                                        <div class="inputK">
+                                            <input type="text" value="" placeholder="请输入单价" id="partsPrice">
+                                        </div>
+                                        <label for="partsTime">质保时间:</label>
+                                        <div class="inputK">
+                                            <input type="text" value="" placeholder="请选择时间" id="partsTime">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>                   
+                    <li class="clearfix textarea">
+                        <span>处理详情描述：</span>
+                        <span>
+                            <textarea name="" id="" placeholder="请输入详情描述"></textarea>
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span>维修经费：</span>
+                        <span>
+                            <input type="text" value="" name="" id="weiXiuFunds" placeholder="请输入经费">
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span>费用总计：</span>
+                        <span>
+                            <input type="text" value="" name="" id="weiXiuTotalFunds" placeholder="请输入总费用">
+                        </span>
+                    </li>
+                    <li class="clearfix textarea">
+                        <span>处理详情描述：</span>
+                        <span>
+                            <textarea name="" id=""></textarea>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 维修情况 结束 -->
+
+            <div class="fundsSubmit">
+                <input type="submit" value="提交" name="" id="fundsSubmit">
+            </div>
+        </div>
+    </section>
+    <!-- 房源详情 结束 -->
+
+
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+
+    <script type="text/javascript">
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-60);
+            scrolldelay = setTimeout('pageScroll()',10);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+            // head页面加载
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(2).addClass('selected');
+                    $("#tabBox li").eq(2).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(2).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(2).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/hqHead.html",
+                success: function(x) {
+                    $("#hqHead").html(x);
+                    $("#fyTab li").eq(2).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+        });
+
+        // 完成时间
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#completTime').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+
+        // 完成时间
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#partsTime').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

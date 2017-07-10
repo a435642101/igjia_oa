@@ -1,0 +1,63 @@
+body {font-size: 20px;
+             padding-bottom: 40px;
+             background-color:#e9e7ef;
+             font-size:17px;
+             font-family:微软雅黑;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+		input{
+        	border:1px solid #ccc;
+        	width:240px;
+        }
+        select{
+        	width:242px;
+        	background:#e9e7ef;
+        }
+        .demo1{
+        	margin-left:-1px;
+        }
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+        .word_grey input{ background-color: #e9e7ef;}
+        .bj a{cursor: pointer;}
+        .defa{width: 200px;
+		    line-height: 40px;
+		    margin: 20px auto;
+		    text-align: center;
+		    color: #7fafd4;
+		    font-size: 16px;
+		    -webkit-border-radius: 21px;
+		    border-radius: 21px;
+		    border: 1px solid #dfdfdf;cursor:pointer}
+		    .word_grey span{font-size:12px; margin-left: 5px;}   
+		    .noneborder{border:none;width:150px;} 
+		    
+		    
+.property{
+	width:800px;
+	height:auto;
+	min-height:99%;
+	position:absolute;
+	top:-150%;
+	left:50%;
+	margin-left:-350px;
+	z-index:999;
+	background:#fff;
+	box-shadow: 1px 3px 4px #333;
+}
+.wuyetitle{
+	width:160px;
+	height:60px;
+	line-height:60px;
+	font-size:18px;
+	margin: 0 auto;
+	padding-top:30px;
+}

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+
+<link href="css/house.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+.fangjian{display: none;}
+table select{margin-left: 10px;height: 22px;border-radius: 3px;}
+table td span{position: absolute;background:url(../images/house/tanchu.png);width:75px; height:46px;  margin-top: -60px;margin-left: 150px; display: none; line-height: 32px; text-align: center;}
+table i{margin-right: 2px;font-style: inherit;}
+.readonly{color:#aaa;}
+.operatelogs{
+	position:absolute;
+	width:800px;
+	max-height:300px;
+	top:20%;
+	left:50%;
+	margin-left:-500px;	
+	background:#aaa;
+	z-index;1000;
+	display: none;
+}	
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="addhouse">
+				<div class="addbasic houseinfo">
+					<div>
+						<div>房源信息<input lang="rentiframe" class="find" _href="" style="cursor:pointer;text-decoration:underline;color:#09f;background:#fff;border:none;position:relative;left:10px;" type="button" value="查看出房"/>
+							<input class="showLogs" style="cursor:pointer;text-decoration:underline;color:#09f;background:#fff;border:none;position:relative;left:10px;" type="button" value="查看操作"/>
+							<button class="baletu" style="margin:0;margin-left:20px;width:130px">发布至巴乐兔</button>
+							<button class="baletu_down" style="margin:0;width:130px"></button>
+						</div>
+						
+						<table>
+							<tr>
+								<td>房源ID：</td>
+								<td><input type="text" class="house_id readonly" id="house_id" name="house_id" readonly="readonly"/><span></span></td>
+								<td>录入时间：</td>
+								<td><input type="text" class="date readonly" id="date" name="date" readonly="readonly"/><span></span></td>
+							</tr>
+							<tr>
+								<td>城市：</td>
+								<td><input type="text" class="city" id="city" name="city" value="上海"/><span></span></td>
+
+								<td>所属片区：</td>
+								<td><select name="district" class="district">
+										
+									</select>
+								</td>	
+								<td>所属商圈：</td>
+								<td><input type="text" class="business_area" id="business_area" name="business_area" /><span></span></td>
+							</tr>
+							<tr>
+								<td>小区名字：</td>
+								<td><input type="text" class="estate" id="estate" name="estate" /><span></span></td>
+								<td>详细地址：</td>
+								<td><input type="text" class="address" id="address" name="address" /><span></span></td>
+								
+								<td>房屋总面积：</td>
+								<td><input type="number" class="area" id="area" name="area" /><span></span></td>
+							</tr>
+							<tr>
+								
+								<td>户型：</td>
+								<td colspan="3" class="housetypec">
+									<select class="house_type1" id="house_type1" name="house_type1" style="margin-left:10px;">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+									</select> 室
+									<select class="house_type2" id="house_type2" name="house_type2">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select> 厅
+									<select class="house_type3" id="house_type3" name="house_type3">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select> 卫
+									<select class="house_type4" id="house_type4" name="house_type4">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select> 厨
+									<select class="house_type5" id="house_type5" name="house_type5">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select> 阳台
+								</td>
+								<td><i style="color:#f00">*</i>房间数：</td>
+								<td><input type="number" class="room_num" id="room_num" name="room_num" /><span></span></td>
+								
+								
+							</tr>
+							<tr>
+								<td class="notbac"></td>
+								<td></td>
+								<td class="notbac"></td>
+								<td></td>
+								<td class="notbac"></td>
+								<td></td>
+							</tr>
+							<tr class="fangjian" lang="1" style="display:table-row;">
+								<td>房间名称：</td>
+								<td><input type="text" class="room_name readonly" readonly="readonly" id="room_name" name="room_name"/></td>
+								<td>房间朝向：</td>
+								<td>
+									<select name="room_chaoxiang" class="room_chaoxiang">
+										<option value="东">东</option>
+										<option value="南">南</option>
+										<option value="西">西</option>
+										<option value="北">北</option>
+										<option value="天井">天井</option>
+									 </select>
+								</td>
+								<td>房间预期租金：</td>
+								<td><input type="number" value="0" class="room_yuqichufangjia" id="room_yuqichufangjia" name="room_yuqichufangjia" /><span></span></td>
+							</tr>
+							<tr class="fangjian" lang="1" style="display:table-row;">
+								<td>房间面积：</td>
+								<td><input type="text" class="room_area" id="room_area" name="room_area" /></td>
+								<td>房间特色：</td>
+								<td><input type="text" class="room_tese" id="room_tese" name="room_tese" /></td>
+								<td>房间备注：</td>
+								<td><input type="text" class="remark" id="remark" name="remark" /></td>
+							</tr>
+							
+							<tr>
+								<td>房屋状态：</td>
+								<td>
+									<select name="state" class="state">
+										<option value="空置中">空置中</option>
+							        	<option value="已解约">已解约</option>
+							        	<option value="已出租">已出租</option>
+							        	<option value="审核中">审核中</option>
+							        	<option value="已到期">已到期</option>
+							        	<option value="配置中">配置中</option>
+									</select>
+									<input type="text" name="break_date" class="break_date" style="display: none;border: 1px solid #aaa;" id="J-x6" placeholder="选择解约日期" />
+								</td>
+								<td class="notbac"></td>
+								<td></td>
+								<td class="notbac"></td>
+								<td></td>
+							</tr>
+						</table>
+					</div><!--房源信息-->
+					<div>
+						<div>合同信息</div>
+						<table>
+							<tr>
+								<td>合同编号：</td>
+								<td><input type="text" class="contract_no readonly" readonly="readonly" name="contract_no" value="YGJWT" /><span></span></td>
+								<td>合约签约日期：</td>
+								<td><input type="text" class="contract_date" name="contract_date" id="J-x1" /><span></span></td>
+								<td>合同生效日期：</td>
+								<td><input type="text" class="contract_startdate" name="contract_startdate" id="J-x2" /><span></span></td>
+							</tr>
+							<tr>
+								<td>合同免租结束日期：</td>
+								<td><input type="text" class="pay_date" name="pay_date" id="J-x3" /><span></span></td>								
+								<td>合同结束日期：</td>
+								<td><input type="text" class="contract_enddate" name="contract_enddate" id="J-x4" /><span></span></td>
+								<td>合同期限(月)：</td>
+								<td><input type="text" class="contract_month" id="contract_month" name="contract_month" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>首年月租金：</td>
+								<td><input type="number" value="0" class="firstyear_monthrent" id="firstyear_monthrent" name="firstyear_monthrent" /><span></span></td>
+								<td><i style="color:#f00">*</i>第二年月租金：</td>
+								<td><input type="number" value="0" class="secondyear_monthrent" id="secondyear_monthrent" name="secondyear_monthrent" /><span></span></td>
+								<td><i style="color:#f00">*</i>第三年月租金：</td>
+								<td><input type="number" value="0" class="thirdyear_monthrent" id="thirdyear_monthrent" name="thirdyear_monthrent" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>第四年月租金：</td>
+								<td><input type="number" value="0" class="fourthyear_monthrent" id="fourthyear_monthrent" name="fourthyear_monthrent" /><span></span></td>
+								<td><i style="color:#f00">*</i>第五年月租金：</td>
+								<td><input type="number" value="0" class="fifthyear_monthrent" id="fifthyear_monthrent" name="fifthyear_monthrent" /><span></span></td>
+								<td><i style="color:#f00">*</i>第六年月租金：</td>
+								<td><input type="number" value="0" class="sixthyear_monthrent" id="sixthyear_monthrent" name="fifthyear_monthrent" /><span></span></td>
+								
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>房屋总成本：</td>
+								<td><input type="number" value="0" class="totalcost" id="totalcost" name="totalcost" /><span></span></td>
+								<td>支付方式：</td>
+								<td>
+									<select name="paymethod" class="paymethod">
+										<option value="30">30天</option>
+										<option value="60">60天</option>
+										<option value="90">90天</option>
+										<option value="180">180天</option>
+										<option value="365">365天</option>
+									 </select>
+					  			</td>
+								<td><i style="color:#f00">*</i>押金：</td>
+								<td><input type="number" value="0" class="deposit" id="deposit" name="deposit" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>逾期日付：</td>
+								<td><input type="number" value="0" class="overdue_payment" id=overdue_payment name="overdue_payment" /><span></span></td>
+								<td>解约日期：</td>
+								<td>
+									<input name="pay_nextyear" class="pay_nextyear" readonly="readonly"/>
+								</td>
+								<td class="notbac"></td>
+								<td></td>
+							</tr>
+						</table>
+					</div><!--合同信息-->
+					<div>
+						<div>入房信息</div>
+						<table>	
+							<tr>
+								<td>入房管家：</td>
+								<td><select class="salesman" id="salesman" name="salesman"><option value="other">其他</option></select><input id="othersalesman" class="readonly" readonly="readonly" style="width:50px;display:none;border:1px solid #ccc;" /></td>
+								<td>房源管家：</td>
+								<td><select class="job_no" id="job_no" name="job_no"></select></td>
+								<td>区域经理：</td>
+								<td><input readonly="readonly" type="text" class="region_manager" id="region_manager" name="region_manager" /><span></span></td>
+							</tr>
+							<tr>
+								<td>房源提供商：</td>
+								<td><input type="text" class="house_provider" id="house_provider" name="house_provider" /><span></span></td>
+								<td><i style="color:#f00">*</i>中介费：</td>
+								<td><input type="text" class="provider_money" id="provider_money" name="provider_money" /><span></span></td>
+								<td class="notbac"></td>
+								<td></td>
+							</tr>
+						</table>
+					</div><!--入房信息-->
+					<div>
+						<div>业主信息</div>
+						<table>
+							<tr>
+								<td>业主姓名：</td>
+								<td><input type="text" class="fangdong_name" id="fangdong_name" name="fangdong_name" /><span></span></td>
+								<td>业主电话：</td>
+								<td><input type="text" class="fangdong_telephone" id="fangdong_telephone" name="fangdong_telephone" /><span></span></td>
+								<td>业主身份证：</td>
+								<td><input type="text" class="fangdong_idcard" id="fangdong_idcard" name="fangdong_idcard" /><span></span></td>
+							</tr>
+							<tr>
+								<td>开户人姓名：</td>
+								<td><input type="text" class="shoukuanren_name" id="shoukuanren_name" name="shoukuanren_name" /><span></span></td>
+								<td>银行账号：</td>
+								<td><input type="text" class="shoukuanren_account" id="shoukuanren_account" name="shoukuanren_account" /><span></span></td>
+								<td>开户行：</td>
+								<td><input type="text" class="shoukuanren_kaihuhang" id="shoukuanren_kaihuhang" name="shoukuanren_kaihuhang" /><span></span></td>
+							</tr>
+							<tr>
+								<td>开户人电话：</td>
+								<td><input type="text" class="shoukuanren_telephone" id="shoukuanren_telephone" name="shoukuanren_telephone" /><span></span></td>
+								<td class="notbac"></td>
+								<td></td>
+								<td class="notbac"></td>
+								<td></td>
+							</tr>
+						</table>
+					</div><!--业主信息-->
+				</div>
+				<div class="addgoodes property">
+					<div class="sharebills">
+						<div>水电煤交割</div>
+						<table>
+							<tr>
+								<td>水表账号：</td>
+								<td><input type="number" id="water_account" class="water_account" name="water_account" /><span></span></td>
+								<td>已结水表底数：</td>
+								<td><input type="number" id="last_water_degree" class="last_water_degree" name="last_water_degree" /></td>
+								<td>现用表底数：</td>
+								<td><input type="number" id="now_water_degree" class="now_water_degree" name="now_water_degree" /></td>
+								<td>水费单价：</td>
+								<td><input type="number" id="water_unitprice" class="water_unitprice" name="water_unitprice" /></td>
+							</tr>
+							<tr>
+								<td rowspan="2">电表账号：</td>
+								<td rowspan="2"><input type="number" id="elec_account" class="elec_account" name="elec_account" /><span></span></td>
+								<td>已结电表底数(平)：</td>
+								<td><input type="number" id="last_elec_degree_day" class="last_elec_degree_day" name="last_elec_degree_day" /></td>
+								<td>现用表底数(平)：</td>
+								<td><input type="number" id="now_elec_degree_day" class="now_elec_degree_day" name="now_elec_degree_day" /></td>
+								<td>电费单价(平)：</td>
+								<td><input type="number" id="elec_unitprice_day" class="elec_unitprice_day" name="elec_unitprice_day" /></td>
+							</tr>
+							<tr>
+								
+								<td>已结电表底数(谷)：</td>
+								<td><input type="number" id="last_elec_degree_night" class="last_elec_degree_night" name="last_elec_degree_night" /></td>
+								<td>现用电表底数(谷)：</td>
+								<td><input type="number" id="now_elec_degree_night" class="now_elec_degree_night" name="now_elec_degree_night" /></td>
+								<td>电费单价(谷)：</td>
+								<td><input type="number" id="elec_unitprice_night" class="elec_unitprice_night" name="elec_unitprice_night" /></td>
+							</tr>
+							<tr>
+								<td>煤气账号：</td>
+								<td><input type="number" id="gas_account" class="gas_account" name="gas_account" /><span></span></td>
+								<td>已结气底数：</td>
+								<td><input type="number" id="last_gas_degree" class="last_gas_degree" name="last_gas_degree" /></td>
+								<td>现气底数</td>
+								<td><input type="number" id="now_gas_degree" class="now_gas_degree" name="now_gas_degree" /></td>
+								<td>煤气单价：</td>
+								<td><input type="number" id="gas_unitprice" class="gas_unitprice" name="gas_unitprice" /></td>
+							</tr>
+							<tr>
+								<td>有现电视：</td>
+								<td><select id="cableTV" name="cableTV" class="cableTV">
+					                    <option value="有">有</option>
+					                    <option value="无">无</option>
+				                 	 </select></td>
+								<td class="cabletvdetail">有线电视号：</td>
+								<td class="cabletvdetail"><input type="text" id="cableTV_account" class="cableTV_account" name="cableTV_account" /></td>
+								<td class="cabletvdetail">下次支付日期：</td>
+								<td class="cabletvdetail"><input type="text" class="cableTV_date" name="cableTV_date" id="J-x5"/></td>
+								<td class="cabletvdetail">有线电视金额：</td>
+								<td class="cabletvdetail"><input type="text" id="cableTV_money" class="cableTV_money" name="cableTV_money" value="0"/></td>
+								
+							</tr>
+							<tr>
+								<td>物业装修情况：</td>
+								<td>
+									<select name="decoration" class="decoration" id="decoration">
+										<option value="毛坯">毛坯</option>
+										<option value="简装">简装</option>
+										<option value="精装">精装</option>
+									</select>
+								</td>
+								<td>电话：</td>
+								<td>
+									<select name="phone" class="phone">
+					                    <option value="有">有</option>
+					                    <option value="无">无</option>
+				                  </select>   
+								</td>
+								<td>保洁费：</td>
+								<td><input type="number" class="cleaning_price" name="cleaning_price" id="cleaning_price" value="0"/></td>
+								<td>总计：</td>
+								<td><input type="number" class="totalmoney" name="totalmoney" id="totalmoney"/></td>
+							</tr>
+							<tr>
+								<td>备注：</td>
+								<td><input type="text" class="property_remark" name="property_remark" id="property_remark" value="无"></td>
+							</tr>
+							<tr></tr>
+						</table>
+					</div><!--水电煤交割-->
+					<div class="goods">
+						<div>物品交割</div>
+						<table class="goods1">
+							<tr>
+								<td><input type="checkbox" name="application" value="冰箱"/>冰箱</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="彩电"/>彩电</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="洗衣机"/>洗衣机</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="空调"/>空调</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="微波炉"/>微波炉</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="抽油烟机"/>抽油烟机</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="燃气灶"/>燃气灶</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="热水器"/>热水器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="床"/>床</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="席梦思"/>席梦思</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="衣柜"/>衣柜</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="书桌"/>书桌</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="茶几"/>茶几</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="沙发"/>沙发</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="数字机顶盒"/>数字机顶盒</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="电视柜"/>电视柜</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="空调遥控器"/>空调遥控器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="电视遥控器"/>电视遥控器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<hr style="margin:20px auto; border:none; height:1px; background-color:#CCCCCC;" />
+						<table class="goods2">
+							<tr>
+								<td><input type="checkbox" name="application" value="门禁卡/钥匙"/>门禁卡/钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="信箱钥匙"/>信箱钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="入户门钥匙"/>入户门钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="房间钥匙"/>房间钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<button class="update">提交</button>
+						
+					</div>
+				</div>
+			</div><!--添加房源-->
+
+
+
+<script src="../Js/jquery-1.7.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/putHouse.js"></script>
+<script type="text/javascript" src="../Js/nav.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$(".addhouse .goods1 input[type='checkbox']").click(function(){
+		var tr = $(this).parents("td").parents("tr").index();
+		var td = $(this).parents("td").index();
+		if($(this).attr("checked")){
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+1)+")").append("数量：<input type='number' value='1' class='thisnumber' id='thisnumber'  />");
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+2)+")").append("型号：<input type='text' class='thismodel' id='thismodel' value='无'/>");
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+3)+")").append("备注：<input type='text' class='thisremark' id='thisremark' value='无'/>");
+		}else{
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+1)+")").html("");
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+2)+")").html("");
+			$(".addhouse .goods .goods1 tr:eq("+tr+") td:eq("+(td+3)+")").html("");
+		}
+	});
+	$(".addhouse .goods2 input[type='checkbox']").click(function(){
+		var tr = $(this).parents("td").parents("tr").index();
+		var td = $(this).parents("td").index();
+		if($(this).attr("checked")){
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+1)+")").append("数量：<input type='number' value='1' class='thisnumber' id='thisnumber'  />");
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+2)+")").append("交付：<select class='thismodel'><option value='是'>是</option><option value='否'>否</option></select>");
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+3)+")").append("备注：<input type='text' class='thisremark' id='thisremark' />");
+		}else{
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+1)+")").html("");
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+2)+")").html("");
+			$(".addhouse .goods .goods2 tr:eq("+tr+") td:eq("+(td+3)+")").html("");
+		}
+	});
+	$(".addhouse table tr td input").click(function(){
+		$(".addhouse table tr td input").css("border","1px solid #aaa");
+		$(this).css("border","1px solid #ee6b41");
+	});
+	
+	$('.showLogs').click(function(){
+		$('.operatelogs,.operateloading').fadeIn();
+	});
+	$('.operateloading').click(function(){
+		$('.operatelogs,.operateloading').fadeOut();
+	});
+});
+</script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+    <script type="text/javascript">
+
+        laydate({
+
+            elem: '#J-x1'
+
+        });
+         laydate({
+
+            elem: '#J-x2'
+
+        });
+         laydate({
+
+            elem: '#J-x3'
+
+        });
+        laydate({
+
+            elem: '#J-x4'
+
+        });
+        laydate({
+
+            elem: '#J-x5'
+
+        });
+        laydate({
+
+            elem: '#J-x6'
+
+        });
+</script>
+
+    
+    <div class="loading" style="height:100%; width:100%; z-index:999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;"></div>
+    <div class="operateloading" style="height:100%; width:100%;display:none; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;"></div>	
+	<div class="operatelogs">
+		<table class="table table-border table-bordered table-bg table-sort" style="background-color:#f0f1f3;">
+			<thead>
+				<tr>
+					<td>序号</td>
+					<td>工号</td>
+					<td>名字</td>
+					<td>修改状态</td>
+					<td>操作时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("html,.operatelogs").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("html,.operatelogs").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</html>

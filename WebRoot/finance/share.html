@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="../Css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+     <link rel="stylesheet" type="text/css" href="../Css/subpage.css" />
+      <link rel="stylesheet" type="text/css" href="../Css/page.css" />
+   
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+            
+            color:#000;
+            font-size:14px;
+        }
+         .activP{   
+         background-color: #09f!important;
+    	color: #fff!important;
+    	}
+        .result{
+        	width:70px;
+        	font-size:14px;
+        	float:right;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+		.point{
+			    display: inline-block;
+			    background-image: url(../images/pic.png);
+			    background-position: -450px -281px;
+			    width: 16px;
+			    height: 16px;
+			    border-radius:5px;
+			    cursor:pointer;
+			    position:relative;
+			    top:3px;
+		}
+		.data{
+			background:#ccc;
+			color:#f00;
+			width:500px;
+			font-size:12px;
+			position:absolute;
+			left:30%;
+			top:30%;
+			padding:5px;
+		}
+		.table{margin-left: 1%; width: 98%;}
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+		.send,.shixiao{width: 35px; height:25px; cursor:pointer;}
+		.quanxuan{width: 35px; height:25px; cursor:pointer;}
+		.name{width: 56px; height:20px; border: 1px solid #999;}
+		input[type=button].btn{background-color:#ee6b41; border: none; height: 26px;}
+    </style>
+</head>
+<body >
+	<form class="form-inline definewidth m20" action="#" method="get">
+	    <font color="#777777"><strong>选择日期区间：</strong></font>
+	    	<input id="J-x1" class="period1" style="border:1px solid #ccc;width:240px;" />&nbsp;&nbsp;&nbsp;－<input id="J-x2" class="period2" style="border:1px solid #ccc;width:240px;margin-left:15px;" />
+   			&nbsp;&nbsp;<font color="#777777"><strong>付款状态:</strong></font>
+		    <select class="state" id="state" style='width:80px;'>
+		    	<option value="">全部</option>
+		    	<option value="待付款">待付款</option>
+	        	<option value="已付款">已付款</option>
+	        	<option value="已收款">已收款</option>
+	        	<option value="已失效">已失效</option>
+		    </select> 
+		    &nbsp;&nbsp;<font color="#777777"><strong>租客名:</strong></font>
+    		<input type="text" name="renter_name" class="renter_name" class="abc input-default" style="width:100px; border: 1px solid #ccc;" placeholder="" value=""/>     
+	    <input type="button" class="btn btn-primary sharebtn" value="查询"></input>
+	</form>
+	<span style="font-size:14px;position:absolute;right:35px;top:35px;">共<span id="total" style="color:red">0</span>条 </span>
+<div class="pand">
+<table class="table table-border table-bordered table-hover table-bg table-sort table_detail m10  table_detail" style="table-layout:fixed">
+    <thead>
+    <tr>
+        <th width='140px'>订单号</th>
+        <th width='10%'>地址</th>       
+        <th width='5%'>租客</th>
+        <th width='8%'>手机号</th>
+        <th width='5%'>电价</th>
+        <th width='5%'>煤价</th>
+        <th width='5%'>水价</th>
+        <th width='5%'>总价</th>
+        <th width='5%'>付款时间</th>
+        <th width='5%'>备注</th>
+        <th width='5%'>状态</th>
+        <th width='10%'>录入时间</th>
+        <th width='50px'>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class="center_right_detail_list_page">
+					<div class="pageTest"></div>
+				</div>
+				<input type="hidden" id="maxnum"/>
+</div>
+<div style="width: 200px;
+    line-height: 40px;
+    margin: 20px auto;
+    text-align: center;
+    color: #7fafd4;
+    font-size: 16px;
+    -webkit-border-radius: 21px;
+    border-radius: 21px;
+    border: 1px solid #dfdfdf;cursor:pointer;" id="loadmore">加载失败</div>
+
+<div class="loading" style="height:100%; width:100%; z-index:99; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>	
+
+</body>
+<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script>
+
+<script type="text/javascript" src="Js/share.js"></script>
+<script type="text/javascript" src="Js/page.js"></script>
+<script type="text/javascript" src="../Js/table-border.js"></script>
+<script type="text/javascript" src="../Js/laydate.dev.js"></script>
+
+    <script type="text/javascript">
+        laydate({
+            elem: '#J-x1'
+        });
+        laydate({
+            elem: '#J-x2'
+        });
+    </script>
+    <script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</html>

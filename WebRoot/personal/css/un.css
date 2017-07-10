@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+.panrent{position: relative; z-index: 99; height:775px; width: 100%; overflow: hidden; background-color: #fff;}
+.panrent > .find{margin:10px 0; margin-left:1%;height:60px;}
+.panrent > .find > input{border:1px #aaa solid; height:26px; width:180px; border-radius:5px; padding-left:10px; font-size:14px; line-height:26px; margin-left:10px;}
+.panrent > .find > span{font-size:16px;}
+.panrent > .find  button{border-radius:5px; border:none; height:28px; width:65px; background-color:#ee6b41; color:#FFF; font-size:16px; margin-left:20px;}
+.panrent .table{width:100%; border-radius:5px; font-size:12px; border-collapse:collapse; border-spacing:2;}
+.panrent tbody tr{cursor:pointer;}
+.panrent tbody tr:nth-child(odd){background-color:#fffdfe;}
+.panrent tbody tr:nth-child(even){background-color:#f7f7f7;}
+
+.panrent .table td.remark,.panhouse .table td.remark{white-space: nowrap;text-overflow: ellipsis;overflow: hidden; width:30px;}
+
+.panrent table,.panhouse table{table-layout: fixed;}
+.panrent .table tr th{text-align: center;}
+.yy{background-color:#FFF; position: relative; height:800px; width:100%; opacity:0.7; border-radius:10px; margin-top:-800px; z-index:9;}
+select{width:100px; height:24px;}
+table.table tr td{text-align: center;}
+
+
+
+.tit-per{width:auto; height:120px; background-color:#fefefe;border-radius:5px 5px 0px 0px;}
+
+.kf,.hq,.quyu,.guanjia{border-raidus:0px 0px 5px 5px; height:auto; width: 100%; background-color: #FFF;}
+
+.tit-nk{width:auto; height: 70px; margin-top: 25px; margin-left: 80px;}
+.tit-nk > div{float:left; margin-right: 10px;}
+.picimg div{width: 64px; height: 63px; border-radius:40px; color: #FFF; text-align: center; line-height: 63px; font-size: 16px; border: 2px solid #FFF;}
+.tit-nk > div > span{display: block; margin-top: 7px; font-size: 14px;}
+.tit-nk > div > span > span{margin-right: 15px;}
+
+.title{width:auto; height:40px; background-color:#F36D34; line-height: 40px; font-size:14px; color:#FFF;}
+.title span{margin-left: 10px;}
+.quyu .quy{width:84%; height:400px; display:inline-block; margin-left: 20px;}
+.quyu .allyg{width:14%; height:400px; display:inline-block; float: left;}
+
+.hq .hq1{width: 49%; margin-right: 2%; float: left;}
+.hq .hq2{width: 49%; float: left;}
+
+.ygcon{width: 100%; height: 600px; overflow: hidden;}
+.ygcon ul{list-style: none;}
+.ygcon ul li{width: 200px; height: 50px; margin:10px 10px;}
+.ygcon ul li > div{float: left;}
+.ygcon .pigim div{width: 44px; height: 43px; border-radius:40px; color: #FFF; text-align: center; line-height: 42px; font-size: 16px; border: 2px solid #FFF;}
+.ygcon .naim div{margin-left: 10px; margin-top: 1px; font-size: 14px;}

@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.panrent > .find{margin:10px 0; margin-left:1%;height:120px;}
+.panrent > .find > input{border:1px #aaa solid; height:26px; width:180px; border-radius:5px; padding-left:10px; font-size:14px; line-height:26px; margin-left:10px;}
+.panrent > .find > span{font-size:16px;}
+.panrent > .find  button{border-radius:5px; border:none; height:28px; width:65px; background-color:#ee6b41; color:#FFF; font-size:16px; margin-left:20px;}
+.panrent .table{margin-left:1%; width:98%; border-radius:5px; font-size:12px; border-collapse:collapse; border-spacing:2;}
+.panrent tbody tr{cursor:pointer;}
+.panrent tbody tr:nth-child(odd){background-color:#fffdfe;}
+.panrent tbody tr:nth-child(even){background-color:#f7f7f7;}
+
+.panrent .table td.remark,.panhouse .table td.remark{white-space: nowrap;text-overflow: ellipsis;overflow: hidden; width:30px;}
+
+.panrent table,.panhouse table{table-layout: fixed;}
+.panrent .table tr th{text-align: center;}
+
+select{width:100px; height:24px;}
+table.table tr td{text-align: center;}
+dl{height: 30px; line-height: 30px;}
+dl dt{float:left;}
+dl{display:block;}
+dl a{margin-right: 12px;}
+dl a span{display:inline-block; cursor: pointer; background-image: url(../images/untitled/kuangx.png); width: 15px; height:15px; background-size: cover; position: relative; top:3px; margin-right: 2px;}
+dl a input{display: none;}
+dl a:hover span{ background: url(../images/untitled/kuangg.png); background-size: cover;}
+dl a span.act{background: url(../images/untitled/kuang.png); background-size: cover;}

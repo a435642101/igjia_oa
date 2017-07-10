@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——后勤报修</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyIndex.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 上传图片 -->
+    <script type="text/javascript" src="js/jquery.upload.js"></script>
+
+    <!-- 选择日期插件 -->
+    <script type="text/javascript" src="mobiscroll.3.0.1/mobiscroll.jquery.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="hqHead"></header>
+
+    <section id="queryBox" class="fs28 BCfff">
+        <div class="style1 clearfix">
+            <label for="JiLuTime">记录时间：</label>
+            <div>
+                <input type="text" name="" value="" id="JiLuTime" placeholder="请选择时间" readonly="readonly">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="houseID">房源ID：</label>
+            <div>
+                <input type="text" name="" value="" id="houseID" placeholder="请输入房源ID">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="hqQuYu">所属区域：</label>
+            <div>
+                <select name="" id="hqQuYu">
+                    <option value="">请选择区域</option>
+                    <option value="全部">全部</option>
+                    <option value="宝山东区">宝山东区</option>
+                    <option value="宝山中区">宝山中区</option>
+                    <option value="宝山西区">宝山西区</option>
+                    <option value="松江北区">松江北区</option>
+                    <option value="浦东东区">浦东东区</option>
+                    <option value="浦东西区">浦东西区</option>
+                </select>
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="houseAddress">房源地址：</label>
+            <div>
+                <input type="text" name="" value="" id="houseAddress" placeholder="请输入房源地址">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="userName">客户姓名：</label>
+            <div>
+                <input type="text" name="" value="" id="userName" placeholder="请输入客户姓名">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="lxFangShi">联系方式：</label>
+            <div>
+                <input type="text" name="" value="" id="lxFangShi" placeholder="请输入电话">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="YuYueTime">预约时间：</label>
+            <div>
+                <input type="text" name="" value="" id="YuYueTime" placeholder="请选择时间" readonly="readonly">
+            </div>
+        </div>
+        <div class="style1 textarea clearfix">
+            <label for="problemDescription">问题描述：</label>
+            <div>
+                <textarea name="" id="problemDescription" placeholder="请描述您的问题"></textarea>
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="beiZhu">备注：</label>
+            <div>
+                <input type="text" name="" value="" id="beiZhu">
+            </div>
+        </div>
+        <div class="picBox">
+            <label>上传图片</label>
+             <button onclick="doUpload(this);"  class="btn btn-primary btn-xs ">
+                <img src="images/bg01.png" alt="" id="picture">
+             </button>
+        </div>
+        <div class="submitBox">
+            <input type="submit" value="提交" name="" id="hqQuerySubmit">
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function doUpload(e) {
+            $.upload({
+                // 上传地址
+                url: 'http://192.168.1.115/payrent/fileload.do', 
+                // 文件域名字
+                fileName: 'indexpicture', 
+                // 上传完成后, 返回json, text
+                dataType: 'text',
+                // 上传之前回调,return true表示可继续上传
+                onSend: function() {
+                        return true;
+                },
+                // 上传之后回调
+                onComplate: function(data) {
+                    var obj = eval('(' + data + ')');
+                    $('#picture').attr("src", obj.msg);
+                    alert(obj.msg);
+                    // $(".picBox").children().children().attr("src",data);  
+                }
+            });
+        };
+        $(document).ready(function() {              
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(2).addClass('selected');
+                    $("#tabBox li").eq(2).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(2).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(2).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/hqHead.html",
+                success: function(x) {
+                    $("#hqHead").html(x);
+                    $("#fyTab li").eq(1).find('a').css({color: '#ee6b41'});
+                }
+            });
+        });
+
+        // 预约时间
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#YuYueTime').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+        // 记录时间
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#JiLuTime').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

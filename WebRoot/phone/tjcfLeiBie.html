@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——添加出房</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/queryNumber.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <section id="leiBieCF" class="queryNumberBox leiBieBox BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">编号为100200300的房源</span>
+        </header>
+        <div class="leiBie clearfix">
+            <!-- <input type="text" value="房源信息" name="" id="" readonly="readonly" class="BCf2f2f2">
+            <input type="text" value="合同信息" name="" id="" readonly="readonly" class="BCf2f2f2">
+            <input type="text" value="租客信息" name="" id="" readonly="readonly" class="BCf2f2f2">
+            <input type="text" value="水电煤交割" name="" id="" readonly="readonly" class="BCf2f2f2">
+            <input type="text" value="物品交割" name="" id="" readonly="readonly" class="BCf2f2f2">
+            <input type="text" value="钥匙凭证信息" name="" id="" readonly="readonly" class="BCf2f2f2"> -->
+            <a href="tjcfAddInfor1.html" class="BCf2f2f2" id="">房源信息</a>
+            <a href="tjcfAddInfor2.html" class="BCf2f2f2" id="">合同信息</a>
+            <a href="tjcfAddInfor3.html" class="BCf2f2f2" id="">租客信息</a>
+            <a href="#" class="BCf2f2f2" id="">水电煤交割</a>
+            <a href="#" class="BCf2f2f2" id="">物品交割</a>
+            <a href="#" class="BCf2f2f2" id="">钥匙凭证信息</a>
+        </div>
+        <!-- <div class="queryBtn">
+            <input type="submit" value="提交" name="" id="">
+        </div> -->
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(2).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+        });
+    </script>
+	
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+
+<link href="css/house.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+<link href="css/page.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="js/tools/tip-yellow.css" type="text/css">
+<style type="text/css">
+table.table tr td{text-align: center;}
+ .sidebar-nav {
+            padding: 9px 0;
+        }
+        .dataTables_length{display:none;}
+        .activP{   
+         background-color: #09f!important;
+    	color: #fff!important;
+    	}
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+}
+.find input{color:#888}
+td,th{word-wrap:break-word;word-break:break-all;}
+</style>
+</head>
+
+<body style="min-width:1000px;">
+	<div class="panhouse pand">
+				<div style="height:1px;"></div>
+				<div class="find">
+					<span>关键词:</span>
+<input type="text" class="address" id="address" name="address" placeholder="请输入你要搜索的关键词" />
+<button class="btn btn-primary">查询</button>
+					<dl>
+						<dt>区域筛选：</dt>
+						<dd>
+							<div class="district">
+								<a class="distotal"><span class="act"></span><input  type="checkbox" name="district" value="全部"  />全选</a>
+								
+								
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt>房源状态：</dt>
+						<dd>
+							<div>
+								<a class="statotal"><span  class="act"></span><input  type="checkbox" name="state" value="全部" />全选</a>
+								<a><span class="act"></span><input  type="checkbox" name="state" value="审核中" />审核中</a>
+								<a><span class="act"></span><input  type="checkbox" name="state" value="配置中" />配置中</a>
+								<a><span class="act"></span><input  type="checkbox" name="state" value="已到期" />已到期</a>
+								<a><span class="act"></span><input type="checkbox" name="state" value="已解约" />已解约</a>
+								<a><span class="act"></span><input type="checkbox" name="state" value="已出租" />已出租</a>
+								<a><span class="act"></span><input  type="checkbox" name="state" value="空置中" />空置中</a>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dd>
+							<span>合同生效日期:</span>
+							<input type="text" class="contract_start1" name="contract_start1" id="J-x1" /> &nbsp;&nbsp;一&nbsp;&nbsp;
+							<input type="text" class="contract_start2" name="contract_start2" id="J-x2" /><br/>
+							<span>合同结束日期:</span>
+							<input type="text" class="contract_end1" name="contract_end1" id="J-x3" /> &nbsp;&nbsp;一&nbsp;&nbsp;
+							<input type="text" class="contract_end2" name="contract_end2" id="J-x4" /><br/>
+						</dd>				
+					</dl>
+					<span style="font-size:14px;position:absolute;right:35px;top:35px;">共<span id="total" style="color:red">0</span>间</span>
+				</div>
+				<table class="table table-border table-bordered table-hover table-bg table-sort table_detail" style="table-layout:fixed;">
+					<thead style="display: block; width: auto;">
+						<tr style="background-color:#f0f1f3;">
+							<th width='6%'>房源ID</th>
+					        <th width='7%'>所属区域</th>
+					        <th width='4%'>商圈</th>
+					        <th width='6%'>小区</th>   
+					        <th width='10%'>房源地址</th> 
+					        <th width='6%'>户型</th>	
+					        <th width='5%'>面积(m²)</th>
+					        <th width='6%'>特色</th>
+					        <th width='5%'>预售价(元)</th>  
+					        <th width='5%'>空置(天)</th>
+					        <th width='10%'>空置(配置结束开始计)</th>
+					        <th width='8%'>是否首次出租</th>
+					        <th width='6%'>所属管家</th>
+					        <th width='5%'>房源状态</th>
+					        <th width='6%'>合同生效</th>
+					<!--    <th width='12%'>备注</th>  --> 
+					        <th width='4%'>操作</th>
+						</tr>
+					</thead>
+					<tbody style="display: block;height:430px;overflow-y: scroll;">
+					</tbody>
+				</table>
+				<div class="center_right_detail_list_page">
+					<div class="pageTest"></div>
+				</div>
+				<input type="hidden" id="maxnum"/>
+			</div><!--房源总览-->
+
+<div class="loading" style="height:100%; width:100%; z-index:9999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>
+
+<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script>  
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/house.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/tools/tools.js"></script>
+<script type="text/javascript" src="../Js/table-border.js"></script>
+<script type="text/javascript" src="../Js/nav.js"></script>    
+
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+    <script type="text/javascript">
+
+        laydate({
+
+            elem: '#J-x1'
+
+        });
+         laydate({
+
+            elem: '#J-x2'
+
+        });
+         laydate({
+
+            elem: '#J-x3'
+
+        });
+        laydate({
+
+            elem: '#J-x4'
+
+        });
+</script>
+
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("tbody").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("tbody").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</body>
+</html>

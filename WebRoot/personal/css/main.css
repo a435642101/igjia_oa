@@ -1,0 +1,145 @@
+@CHARSET "UTF-8";
+.nav{height:110px; width:100%;}
+.nav ul li{float:left; width:90px; height:100px; text-align:center; margin-right:100px; display:block; cursor:pointer;}
+.nav ul li div{padding:2px 7px 3px 7px; font-size:14px; border-radius:9px; background:url(images/untitled/bantou.png) no-repeat; color:#FFF; margin:3px auto 2px auto;}
+.nav ul li .toujiao{display:none; cursor:pointer;}
+.nav img{width:60%;}
+
+.main{height:800px; width:100%; overflow:hidden;}
+.main > div{position:relative; height:100%; width:100%;}
+.main .yy{background-color:#FFF; opacity:0.7; border-radius:10px; margin-top:-800px; z-index:9;}
+.main .part{height:100%; width:100%; padding-top:1px; z-index:99;}
+.part .mnav{height:50px; background-color:#FFFFFF; margin:0.5%; border-radius:5px;}
+.part .mnav ul li{float:left; text-align:center; padding:7px 15px; border-radius:10px; font-size:14px; color:#222; margin:8px 15px 8px 22px; cursor:pointer;}
+.part .mnav ul li.act{ background-color:#ee6b41; color:#FFF;}
+
+.lfpart .archi{height: 735px; width: auto; overflow-y: scroll;}
+/* 组织框架 */
+.mpart{width:100%; height:100%; margin:0.5%;}
+.mpart .lfnav{width:12%; height:97%; background-color:#FFFFFF; border-radius:4px;}
+.lfnav .comp{height:40px; border-bottom:1px solid #ccc; font-size:14px; text-align:center; line-height:40px;}
+.lfnav > .archi > li{height:50px; line-height:50px; font-size:14px;}
+.lfnav > .archi > li:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfnav > .archi > li > span{margin-left:15%;}
+.lfnav > .archi > li > .icimg{margin-right:2%;}
+.lfnav > .archi > li > .icimg > img{display:block; margin-top:6.5px;}
+.lfnav .hand{width:100px; height:27px; background:#f0f1f3; position:absolute; border-radius:5px; margin-top:-40px; margin-left:12%; display:none;}
+.lfnav .hand li{width:100px; height:26px; line-height:25px; cursor:pointer;}
+.lfnav .hand li:hover{background-color:#ddd;}
+.lfnav .hand li span{padding-left:15px; display:block;width:100px; height:26px;}
+/* 部门 */
+.mpart .lfpart{width:86.5%; height:97%; background-color:#FFFFFF; margin-left:0.5%; border-radius:4px;}
+.lfpart .comp{height:40px; border-bottom:1px solid #ccc; font-size:14px; line-height:40px;}
+.mpart .lfpart1{}
+.lfpart1 > .archi > li{height:80px; font-size:14px; width:15%;}
+.lfpart1 > .archi > li:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfpart1 > .archi > li > span{margin-left:1%;}
+.lfpart1 > .archi > li > .icimg{margin-right:2%;}
+.lfpart1 > .archi > li > .icimg > img{display:block; margin-top:6.5px; display:none;}
+.lfpart1 > .archi > li:hover > .icimg > img{display:inline; margin-right:20px;}
+.lfpart1 .hand{width:100px; height:105px; background:#f0f1f3; position:absolute; border-radius:5px; margin-top:10px; margin-left:12%; display:none;}
+.lfpart1 .hand li{width:100px; height:26px; line-height:25px; cursor:pointer;}
+.lfpart1 .hand li:hover{background-color:#ddd;}
+.lfpart1 .hand li span{padding-left:15px; display: block;}
+.lfpart1 .hand li:last-child{border-top:1px solid #aaa;}
+/* 人员 */
+.mpart .lfpart2{display:none;}
+.lfpart2 .comp{height:40px; border-bottom:1px solid #ccc; font-size:14px; line-height:40px;}
+.lfpart2 > .archi > li{height:90px; font-size:14px; width:100%;}
+.lfpart2 > .archi > li:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfpart2 > .archi > li > span{margin-left:1%;}
+.lfpart2 > .archi > li > .picimg{margin-left:20px;}
+.lfpart2 > .archi > li > .picimg > img{margin-top:10%;}
+
+.lfpart2 > .archi > li.grf{height:80px; font-size:14px; width:15%;}
+.lfpart2 > .archi > li.grf:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfpart2 > .archi > li.grf > span{margin-left:1%;}
+.lfpart2 > .archi > li.grf > .icimg{margin-right:2%;}
+.lfpart2 > .archi > li.grf > .icimg > img{display:block; margin-top:6.5px; display:none;}
+.lfpart2 > .archi > li.grf:hover > .icimg > img{display:inline; margin-right:20px;}
+.lfpart2 .hand{width:100px; height:52px; background:#f0f1f3; position:absolute; border-radius:5px; margin-top:10px; margin-left:12%; display:none;}
+.lfpart2 .hand li{width:100px; height:26px; line-height:25px; cursor:pointer;}
+.lfpart2 .hand li:hover{background-color:#ddd;}
+.lfpart2 .hand li span{padding-left:15px; display: block;}
+
+
+.mpart .lfpart6{display:none;}
+.lfpart6 .comp{height:40px; border-bottom:1px solid #ccc; font-size:14px; line-height:40px;}
+.lfpart6 > .archi > li{height:90px; font-size:14px; width:100%;}
+.lfpart6 > .archi > li:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfpart6 > .archi > li > span{margin-left:1%;}
+.lfpart6 > .archi > li > .picimg{margin-left:20px;}
+.lfpart6 > .archi > li > .picimg > img{margin-top:10%;}
+/*详情*/
+.mpart .lfpart3{display:none;}
+.lfpart3 .comp{height:40px; border-bottom:1px solid #ccc; font-size:14px; line-height:40px;}
+.lfpart3 > .archi{overflow:hidden; width:15%; float:left;}
+.lfpart3 > .archi > li{height:60px; font-size:14px; width:100%;}
+.lfpart3 > .archi > li:first-child{height:130px; font-size:14px; width:100%;}
+.lfpart3 > .archi > li div.threa{margin-left:5%; width:30%; float:left;}
+.lfpart3 > .archi > li input{width:48%; float:left; height:23px; background-color:#fafafa; border:1px solid #ddd;}
+.lfpart3 > .archi > li select{width:50%; float:left; height:23px; background-color:#fafafa; border:1px solid #ddd;}
+.lfpart3 > .archi > li > span{margin-left:1%;}
+.lfpart3 > .archi > li > .picimg{margin-top:15%; margin-left:18%;}
+
+.lfpart4{display:none;}
+.lfpart4 .findstaff{width:280px; height:190px; position:fixed; top:50%; left:50%; margin:-135px 0 0 -140px; border-radius:10px;}	
+.lfpart4 .findstaff .findnav{height:30px; background-color:#eee; border:1px #e3e3e3 solid; text-align:center; line-height:30px;}
+.lfpart4 .findstaff .findmain{height:160px; border:1px #CCCCCC solid; border-top:none; background-color:#fafafa;}
+.lfpart4 .findstaff .findmain div{padding-top:10px; margin-left:40px;}
+.lfpart4 .findstaff .findmain div:nth-child(1){padding-top:25px;}
+.lfpart4 .findstaff .findmain div input{border:1px #aaa solid; height:25px; width:110px; margin-left:6px; padding-left: 10px;}
+.lfpart4 .findstaff .findmain div select{border:1px #aaa solid; height:27px; width:122px; margin-left:2px; padding-left: 8px;}
+.lfpart4 .findstaff .findmain button{height:30px; width:80px; background-color:#FF6600; border-radius:10px; border:none; font-size:14px; color:#FFFFFF; margin:20px 0 0 100px; cursor:pointer;}
+.lfpart4 > .archi{display:none;}
+.lfpart4 > .archi > li{height:90px; font-size:14px; width:100%;}
+.lfpart4 > .archi > li:hover{background-color:#f9f9f9; cursor:pointer;}
+.lfpart4 > .archi > li > span{margin-left:1%;}
+.lfpart4 > .archi > li > .picimg{margin-left:20px;}
+.lfpart4 > .archi > li > .picimg > img{margin-top:10%;}
+
+.lfpart5{display:none;}
+.lfpart5 > div{height: 480px;}
+.lfpart5 ul{margin-left:10%; margin-top:10px; float: left; width: 30%;}
+.lfpart5 ul li{height:40px; width:100%; margin-top:20px;}
+.lfpart5 ul li div{float:left; width:30%;}
+.lfpart5 ul li input{float:left; width:60%; border:1px solid #CCCCCC; border-radius:5px; height:30px; background-color:#FFFFFF; padding-left:10px;}
+.lfpart5 button{background-color:#ee6b41; border-radius:10px; width:100px; height:36px; text-align:center;  border:none; display:block; margin:50px auto 10px auto; font-size:16px; color:#FFF; cursor:pointer; display: block;}
+
+.body{height:600px; width:82%; margin-top:40px;}
+.body .bhead{height:36px;}
+.body .bhead li{float:left; margin-right:1.5%; border-radius:8px; background-color:#d7d7d7; width:130px; height:36px; text-align:center; line-height:36px; font-size:16px; color:#222;}
+.body .bhead li:hover{background-color:#ee6b41; color:#FFF; cursor:pointer;}
+.body .bhead li.act{background-color:#ee6b41; color:#FFF;}
+.body .bhead{}
+
+.body > div{width:100%; height:100%; border:1px solid #aaa; border-radius:10px;}
+.body .infodeta{background-color:#fafafa;}
+.body .infodeta > div{height: 500px;}
+.body .infodeta ul{margin-left:10%; margin-top:10px; float: left; width: 30%;}
+.body .infodeta ul li{height:40px; width:100%; margin-top:20px;}
+.body .infodeta ul li div{float:left; width:30%;}
+.body .infodeta ul li input{float:left; width:60%; border:1px solid #CCCCCC; border-radius:5px; height:30px; background-color:#FFFFFF; padding-left:10px;}
+.body .infodeta button{background-color:#ee6b41; border-radius:10px; width:100px; height:36px; text-align:center;  border:none; display:block; margin:10px auto 10px auto; font-size:16px; color:#FFF; cursor:pointer; display: block;}
+
+.body .houseinfo{display:none;}
+.body .houseinfo button{background-color:#ee6b41; border-radius:10px; width:100px; height:36px; text-align:center;  border:none; display:block; margin:10px auto 10px auto; font-size:16px; color:#FFF; cursor:pointer; display: block;}
+
+
+
+.popup,.popupgrop{width:430px; height:300px; background-color:#dfddde; text-align:center; border-radius:5px; border:1px solid #f0f1f3; position:fixed; top:28%; left:50%; margin-left:-215px; z-index:999; display:none;}
+.popup1{width:430px; height:240px; background-color:#eee; text-align:center; border-radius:5px; border:1px solid #f0f1f3; position:fixed; top:28%; left:50%; margin-left:-215px; z-index:999; display:none;}
+.handle,.handle1{height:60px; width:190px; background-color:#f0f1f3; text-align:center; border-radius:7px; border:1px solid #dfddde; line-height:60px; position:fixed; position:fixed; top:40%; left:50%; margin-left:-95px; z-index:999; display:none;}
+.handle span,.handle1 span{font-size:18px; color:#666666;}
+.handle img,.handle1 img{margin-left:15px; position:relative; top:-2px;}
+
+.archibom{position:absolute; margin-top:540px; margin-left:2.1%;}
+.archibom li{margin-bottom:20px;}
+/**/
+.dataTables_length{display:none;}
+.dataTables_filter{display:none;}
+.dataTables_info{display:none;}
+.dataTables_paginate{display:none;}
+
+/*tou头像样式*/
+.picimg div{width: 68px; height: 67px; border-radius:40px; color: #FFF; text-align: center; line-height: 67px; font-size: 16px;}

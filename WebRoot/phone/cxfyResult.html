@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——房源查询结果</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyIndex.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 当前页面，数据请求 -->
+    <script type="text/javascript" src="js/cxfyIndex.js"></script>
+    <script type="text/javascript" src="js/cxfyResult.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body id="bodyBox" class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <section id="resultBox" class="BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">查询结果</span>
+            <em class="fl"></em>
+            <i class="iconfont fr menu">&#xe7d5;</i>
+        </header>
+
+        
+        <div id="wrapper">
+            <ul id="resultList" class="resultList">
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- 查询条件 开始 -->
+    <div id="queryLeftBox">
+        <div id="queryLe" class="BCfff">
+        <!-- <form action="" method=""> -->
+            <div class="condition fs28">
+                <div class="crux clearfix">
+                    <label for="">关键词：</label>
+                    <div>
+                        <input type="text" value="" name="" id="resultKeyWord" placeholder="请输入关键词">
+                    </div>
+                </div>
+                <div class="guanJia clearfix">
+                    <label for="guanJia">管家：</label>
+                    <div>
+                        <select name="" id="guanJia">
+                            <option value="">请选择管家</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="guanJia clearfix">
+                    <label for="ZhiFufs">支付方式：</label>
+                    <div>
+                        <select name="" id="ZhiFufs">
+                            <option value="全部">全部</option>
+                            <option value="30">30天</option>
+                            <option value="60">60天</option>
+                            <option value="90">90天</option>
+                            <option value ="180">180天</option>
+                            <option value="365">365天</option>
+                            <option value="盈家">盈家</option>
+                            <option value ="巴乐兔">巴乐兔</option>
+                            <option value="租了么">租了么</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="conditionQuYu" class="quYuBox quYuBox1 clearfix">
+                    <label for="">区域：</label>
+                    <div class="quyu quyu1 clearfix fr">
+                        <div class="BCf2f2f2">全部</div>
+                    </div>
+                </div>
+                <div id="cxfyZhuangTai" class="quYuBox zhuangTai clearfix">
+                    <label for="">房源状态：</label>
+                    <div class="quyu quyu2 clearfix fr"></div>
+                </div>
+            </div>
+
+            <div class="btn clearfix">
+                <div>
+                    <input type="reset" value="重置" name="" id="reset">
+                </div>
+                <div>
+                    <input type="submit" value="完成" name="" id="resultComplete" data="true">
+                </div>
+            </div>
+        <!-- </form> -->
+        </div>
+        <div id="closeBox" class="iconfont">&#xe621;</div>
+    </div>
+    <!-- 查询条件 结束 -->
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+    
+    <!-- 向上滑动加载更多 -->
+    <div id="svrollJiaZai" class="more box_sizing" style="height: 30px;padding: 6px 0 9px;font-size: 0.28rem;color: #666;text-align:center;">
+        <a href="javascript:void();" class="b_radius_l fs28 textCe" style="height: 100%;"><img src="images/preloader-white.gif" alt="" id="gif" style="margin:0 auto;width: 15px;height: 15px;display: none;"></a>
+    </div>
+
+    <div id="loadingBox1"><img src="images/loading.gif" alt="" /></div>
+
+
+    <script type="text/javascript">
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-100);
+            scrolldelay = setTimeout('pageScroll()',6);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+            // head页面加载
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

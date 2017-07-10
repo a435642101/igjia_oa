@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../Css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/un.css" type="text/css" rel="stylesheet"/>
+<link href="css/page.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+select{width:100px; height:24px;}
+table.table tr td{text-align: center;}
+ .sidebar-nav {
+            padding: 9px 0;
+        }
+        .dataTables_length{display:none;}
+        .activP{   
+         background-color: #09f!important;
+    	color: #fff!important;
+    	}
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+}
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="panrent pand">
+				<table class="table table-border table-bordered table-hover table-bg table-sort table_detail " style="margin-top:10px;">
+					<thead>
+						<tr style="background-color:#f0f1f3;">
+							<th width='75px'>房源ID</th>
+					        <th width='7%'>所属区域</th>
+					        <th width='5%'>商圈</th>
+					        <th width='5%'>小区</th>   
+					        <th width='10%'>房源地址</th> 
+					        <th width='8%'>户型</th>	
+					        <th width='7%'>面积(m²)</th>
+					        <th width='6%'>特色</th>
+					        <th width='9%'>预售价(元)</th>  
+					        <th width='5%'>空置(天)</th>
+					        <th width='8%'>是否首次出租</th>
+					        <th width='7%'>所属管家</th>
+					        <th width='5%'>房源状态</th>
+					        <th width='8%'>合同生效</th>
+					<!--    <th width='12%'>备注</th>  --> 
+					        <th width='50px'>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				
+			</div><!--出房总览-->
+<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script> 
+<script type="text/javascript" src="js/comfirmHouse.js"></script>
+<script type="text/javascript" src="../Js/table-border.js"></script>
+
+
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    <div class="loading" style="height:100%; display:none; width:100%; z-index:99; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;"></div>
+</body>
+</html>

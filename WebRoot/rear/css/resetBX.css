@@ -1,0 +1,233 @@
+@charset "utf-8";
+ 
+    /* CSS Document */
+    html{
+        /*谷歌浏览器字体最小字体12px*/
+        -webkit-text-size-adjust: 100%;/*100%/none 关闭字体大小自动调整功能*/
+        /*a标签及拥有 :active伪类的元素有默认的高亮框*/
+        -webkit-tap-highlight-color: transparent;
+        /*禁止文本被选中
+        -webkit-user-select: none;*/
+        width:100%;
+    }
+ 
+    body{
+        margin:0 auto;
+        /*开启moblie网页快速滚动和回弹的效果*/
+        -webkit-overflow-scrolling: touch;
+        /*font-size:14px;
+        font-size:0.14rem;*/
+        color:#333;
+    }
+ 
+    body,div,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,select,option,table,tr,th,td,span,i,em,audio,video,img,section,article,a,font{ 
+        margin:0;
+        padding:0;
+        border:0;
+        outline:0;
+        vertical-align:baseline;
+        background:transparent;
+        word-wrap:break-word;
+        -webkit-box-sizing: border-box;
+        /*-moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;*/
+        box-sizing: border-box;
+    }
+ 
+    em,i{
+        font-style:normal;
+    }
+ 
+    body,html,input{
+        font-family: "Microsoft YaHei", "SimHei", "PMingLiU", Arial, "Lucida Grande", sans-serif, "STHeiti Light";
+    }
+
+    body,html{
+        font-size: 12px;
+    }
+ 
+    form,input,label,img,th{
+        vertical-align:middle;
+    }
+ 
+    textarea{
+        resize: none;
+    }
+ 
+    input::-moz-placeholder,
+    textarea::-moz-placeholder { 
+        color: #848484; 
+    }
+    input:-ms-input-placeholder, 
+    textarea:-ms-input-placeholder { 
+        color: #848484; 
+    }
+    input::-webkit-input-placeholder, 
+    textarea::-webkit-input-placeholder { 
+        color: #848484; 
+    }
+ 
+    table {
+        border-collapse:collapse; 
+        border-spacing:0; 
+    }
+ 
+    del{
+        text-decoration:line-through; 
+    }
+ 
+    h1,h2,h3,h4,h5,h6{
+        font-size:100%;
+        font-weight: normal;
+    }
+ 
+    ul,ol,li,dl,dt,dd{
+        list-style: none;
+    }
+ 
+    /*a标签的几种状态*/
+    a:link {
+        color:#333;
+        text-decoration:none;
+    }
+    a:visited{
+        color:#333;
+        text-decoration:none;
+    } 
+    a:hover{
+        color:#333;
+        text-decoration:none;
+    }
+ 
+ 
+    /*清除浮动*/
+    .clearfix:after {
+        content: ".";
+        display:block; 
+        height:0; 
+        clear:both;
+        visibility:hidden;
+    }
+    .clearfix { 
+        zoom:1; 
+    }
+    /*左浮动*/
+    .fl{
+        float:left;
+    }
+    /*右浮动*/
+    .fr{
+        float:right;
+    }
+
+     
+    /*字体大小*/
+
+
+    /*字体颜色*/
+    .cl333{
+        color:#333;
+    }
+    .cl666{
+        color:#666;
+    }
+    .cl999{
+        color:#999;
+    }
+
+
+    /*背景颜色*/
+    .bgfff{
+        background-color: #fff;
+    }
+    .bgf2f2f2{
+        background-color: #f2f2f2;
+    }
+    .bgdf3031{
+        background-color: #df3031;
+    }
+
+     
+    /*文本溢出*/
+    .textOverflow{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* 文字对其方式 */
+    .textL{ 
+        text-align:left; 
+    }
+    .textR{ 
+        text-align:right; 
+    }
+    .textC{ 
+        text-align:center; 
+    }
+ 
+    /* display的几种应用 */
+    .disB { 
+        display:block; 
+    }
+    .disN { 
+        display:none; 
+    }
+    .disIn { 
+        display:inline-block; 
+    }
+ 
+    /*三种定位方式*/
+    .pFixed { 
+        position: fixed; 
+    }
+    .pRelative { 
+        position: relative; 
+    }
+    .pAbsolute { 
+        position: absolute; 
+    }
+     
+    /*z轴的坐标值*/
+    .zIndex2 { 
+        z-index:2; 
+    }
+    .zIndex3 { 
+        z-index:3; 
+    }
+    .zIndex4 { 
+        z-index:4; 
+    }
+    .zIndex5 { 
+        z-index:5; 
+    }
+    .zIndex6 { 
+        z-index:6; 
+    }
+     
+    /*溢出隐藏*/
+    .ofHidden { 
+        overflow:hidden; 
+    } 
+     
+    /*透明度*/
+    .opacity0 {
+        filter: alpha(opacity=0);
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        opacity: 0;
+    }
+    .opacity50 {
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+    }
+    .opacity70 {
+        filter: alpha(opacity=70);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7;
+    }
+     

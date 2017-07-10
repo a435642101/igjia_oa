@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——查询房源</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">    
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyIndex.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 选择日期插件 -->
+    <script type="text/javascript" src="mobiscroll.3.0.1/mobiscroll.jquery.min.js"></script>
+
+    <!-- 当前页面，数据请求 -->
+    <script type="text/javascript" src="js/cxfyIndex.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <section id="queryBox" class="fs28 BCfff">
+        <div class="style1 clearfix">
+            <label for="keyWord">关键词：</label>
+            <div>
+                <input type="text" name="" value="" id="keyWord" placeholder="请输入关键词">
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="">区域：</label>
+            <div>
+                <select name="" id="cxQuYu">
+                    <option value="全部">全部</option>
+                </select>
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="cxZhiFu">支付方式：</label>
+            <div>
+                <select name="" id="cxZhiFu">
+                    <option value="全部">全部</option>
+                    <option value="30">30天</option>
+                    <option value="60">60天</option>
+                    <option value="90">90天</option>
+                    <option value ="180">180天</option>
+                    <option value="365">365天</option>
+                    <option value="盈家">盈家</option>
+                    <option value ="巴乐兔">巴乐兔</option>
+                    <option value="租了么">租了么</option>
+                </select>
+            </div>
+        </div>
+        <div class="style1 clearfix">
+            <label for="cxZhuangTai">房源状态：</label>
+            <div>
+                <select name="" id="cxZhuangTai">
+                </select>
+            </div>
+        </div>
+        <div class="style2 clearfix">
+            <label for="">合同生效日期</label>
+            <div>
+                <input type="text" value="" name="" id="start1" readonly="readonly" placeholder="请选择日期">
+            </div>
+            <span>至</span>
+            <div>
+                <input type="text" value="" name="" id="start2" readonly="readonly" placeholder="请选择日期">
+            </div>
+        </div>
+        <div class="style2 clearfix">
+            <label for="">合同结束日期</label>
+            <div>
+                <input type="text" value="" name="" id="end1" readonly="readonly" placeholder="请选择日期">
+            </div>
+            <span>至</span>
+            <div>
+                <input type="text" value="" name="" id="end2" readonly="readonly" placeholder="请选择日期">
+            </div>
+        </div>
+        <div class="submitBox">
+            <input type="submit" value="查询" name="" id="cxfySubmit">
+        </div>
+    </section>
+    <div id="demoQuery1"></div>
+    <div id="demoQuery2"></div>
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+                }
+            });
+        });
+
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 2, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 2, now.getMonth(), now.getDate());
+            $('#demoQuery1').mobiscroll().range({
+                theme: 'ios',
+                lang: 'zh',
+                dateFormat: 'yyyy/mm/dd',
+                display: 'bottom',
+                startInput: '#start1',
+                endInput: '#start2',
+                min: min,
+                max: max,
+            });
+            $('#demoQuery2').mobiscroll().range({
+                theme: 'ios',
+                lang: 'zh',
+                dateFormat: 'yyyy/mm/dd',
+                display: 'bottom',
+                startInput: '#end1',
+                endInput: '#end2',
+                min: min,
+                max: max,
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

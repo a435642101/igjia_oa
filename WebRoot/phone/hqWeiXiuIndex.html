@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——房源查询结果</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyResult.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="hqHead"></header>
+
+    <section id="resultBox" class="BCfff">
+        <header class="clearfix fs32">
+            <span class="fl">维修列表</span>
+        </header>
+        <ul class="resultList weiXiuList">
+            <li>
+                <a href="hqWeiXiuDetails.html">
+                    <div class="topBox clearfix fs26">
+                        <span class="quYu">姓名：某某某</span>
+                        <span class="guanJia textCe">电话：18918921892</span>
+                    </div>
+                    <p class="fs28">地址：上海市浦东新区周浦镇周东路191弄28号301室-D卧</p>
+                    <p class="fs28">预约时间：2017.02.03</p>
+                    <p class="fs28">问题描述：漏水，漏电，漏气</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+    
+    <!-- 向上滑动加载更多 -->
+    <div class="more box_sizing" id="loading">
+        <a href="javascript:void();" class="b_radius_l fs28 textCe" style="padding:0.3rem 0 0.4rem;width: 7.5rem;">
+        <img src="" alt="" id="gif" style="margin:0 auto;"></a>
+    </div>
+
+
+    <script type="text/javascript">
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-60);
+            scrolldelay = setTimeout('pageScroll()',10);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+            // head页面加载
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(2).addClass('selected');
+                    $("#tabBox li").eq(2).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(2).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(2).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/hqHead.html",
+                success: function(x) {
+                    $("#hqHead").html(x);
+                    $("#fyTab li").eq(2).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+            // 滑动加载更多
+            var stop = true;
+            $(window).scroll(function() {
+                totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+                if ($(document).height() <= totalheight) {
+                    if (stop == true) {
+                        stop = false;
+                        $("#gif").attr("src", "images/preloader-white.gif");
+                        $.post("ajax.php", {
+                            start: 1,
+                            n: 50
+                        }, function(txt) {
+                            $("#Loading").before(txt);
+                            stop = true;
+                            $("#gif").attr("src", "images/more.png");
+                        }, "text");
+                    }
+                }
+            });
+
+        });
+    </script>
+	
+</body>
+
+</html>

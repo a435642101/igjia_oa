@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——查询房源</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 选择日期插件 -->
+    <link rel="stylesheet" type="text/css" href="mobiscroll.3.0.1/mobiscroll.jquery.min.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyIndex.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 选择日期插件 -->
+    <script type="text/javascript" src="mobiscroll.3.0.1/mobiscroll.jquery.min.js"></script>
+
+    <!-- js及交互代码 -->
+    <script type="text/javascript" src="js/houQin.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="hqHead"></header>
+
+    <section id="queryBox" class="fs28 BCfff">
+        <form action="hqQueryResult.html" method="">
+            <div class="style1 clearfix">
+                <label for="hqQuYu">区域：</label>
+                <div>
+                    <select name="" id="hqQuYu">
+                        <option value="全部">全部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="style1 clearfix">
+                <label for="hqFyState">房源状态：</label>
+                <div>
+                    <select name="" id="cxZhuangTai">
+                        <option value="全部">全部</option>
+                        <option value="已出租">已出租</option>
+                        <option value="空置中">空置中</option>
+                        <option value="已解约">已解约</option>
+                        <option value="审核中">审核中</option>
+                        <option value="已到期">已到期</option>
+                        <option value="配置中">配置中</option>
+                        <option value="出租中">出租中</option>
+                        <option value="已失效">已失效</option>
+                        <option value="已到期">已到期</option>
+                    </select>
+                </div>
+            </div>
+            <div class="style1 clearfix">
+                <label for="hqkeyWord">关键词：</label>
+                <div>
+                    <input type="text" name="" value="" id="hqkeyWord" placeholder="请输入关键词">
+                </div>
+            </div>
+            <div class="style1 clearfix">
+                <label for="problemType">问题类型：</label>
+                <div>
+                    <select name="" id="problemType">
+                        <option value="量房">量房</option>
+                        <option value="已出租">已出租</option>
+                        <option value="空置中">空置中</option>
+                        <option value="已解约">已解约</option>
+                        <option value="审核中">审核中</option>
+                        <option value="已到期">已到期</option>
+                        <option value="配置中">配置中</option>
+                    </select>
+                </div>
+            </div>
+            <div class="style2 clearfix">
+                <label for="">时间范围</label>
+                <div>
+                    <input type="text" value="" name="" id="timeRange1" readonly="readonly" placeholder="2017/03/21">
+                </div>
+                <span>至</span>
+                <div>
+                    <input type="text" value="" name="" id="timeRange2" readonly="readonly" placeholder="2017/03/31">
+                </div>
+            </div>
+            <div class="submitBox">
+                <input type="submit" value="查询" name="" id="hqQuerySubmit">
+            </div>
+        </form>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() {              
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(2).addClass('selected');
+                    $("#tabBox li").eq(2).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(2).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(2).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/hqHead.html",
+                success: function(x) {
+                    $("#hqHead").html(x);
+                    $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+                }
+            });
+        });
+
+        // 合同生效日期
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#timeRange1').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+        $(function () {
+            var now = new Date(),
+                min = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()),
+                max = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate());
+            $('#timeRange2').mobiscroll().date({
+                theme: 'ios',
+                lang: 'zh',
+                display: 'bottom',
+                min: min,
+                max: max,
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

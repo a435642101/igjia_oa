@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="gbk">
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+	<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script>
+    <style type="text/css">
+    	.demo1{
+            float:left;
+        }
+        body {
+            padding-bottom: 40px;
+            background-color:#e9e7ef;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+        .abcd{font-size: 16px;width: 96%;margin: 0 auto;}
+        .abcd a{font-size: 16px;cursor: pointer;}
+        .defa{width: 200px;
+		    line-height: 40px;
+		    margin: 20px auto;
+		    text-align: center;
+		    color: #7fafd4;
+		    font-size: 16px;
+		    -webkit-border-radius: 21px;
+		    border-radius: 21px;
+		    border: 1px solid #dfdfdf;cursor:pointer}
+	
+    </style>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$(".btn-primary").click(
+						function() {
+							var d = $("#J-xl").val();
+							d=d.replace('-','').replace('-','');
+							openurl("http://yhtech.igjia.com/log/yhTech/MsgLogs/"+d.substring(0,6)+"/log"+d+".txt");
+						});
+				});
+	function openurl(url) {
+		$('#rightFrame').attr('src',url);
+	}
+</script>
+
+<script type="text/javascript">
+$(function(){
+	getallrent("");
+	
+});
+function arri(arr){
+	$("#rightFrame").attr("src","http://yhtech.igjia.com/log/yhTech/MsgLogs/"+arr);
+}
+function getallrent(path){
+	$.ajax({
+		   type: "GET",
+		   url: "../logs.do",
+		   data: "path="+path,
+		   success: function(result){
+				if(result=="error"){
+					$("#loadmore").html("加载失败");
+				}else if(result=="fail"){
+					$("body").html("<div class='.defa'>您还尚未登录,<a href=\"../login.html\" target=\"_blank\">点击登录</a></div>");
+				}else if(result=="refused"){
+					$("body").html("<div class='.defa'>权限不够</div>");
+				}else{
+					var arr=JSON.parse(result);
+					var html="";
+					var html1="";
+					for(var i=0;i<arr.length;i++){
+						var txt = arr[i].substr(0,arr[i].length-4);
+						if(arr[i].substr(arr[i].length-3)=="txt"){
+							html1+="<a class='aaaa' style='display:block;margin-left:30px;' onClick='arri(\""+path+"/"+txt+".txt\")'>"+arr[i]+"</a>";
+						}else{
+							html+="<a class='aaaa "+arr[i]+"' onClick='getallrent("+arr[i]+")'>"+arr[i]+"</a><div class='a"+arr[i]+"'></div>";
+						}
+						
+					}
+					if(html1!=null && html1!=""){
+						var a = $(".a"+path).html();
+						if(a!=null && a!=""){
+							$(".a"+path).html("");
+						}else{
+							$(".a"+path).append(html1);
+						}
+					}else if(html!=null && html!=""){
+						$(".abcd").append(html);
+					}
+					
+				}	
+		   }
+	});
+}
+</script>
+</head>
+<body>
+<!-- <form class="form-inline definewidth m20" action="#" method="get">
+	<div class="demo1">
+        <font color="#33ccff"><strong>选择日期：</strong></font><input type="text" id="J-xl">
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+</form>
+    <div style="height:700px;">
+		<iframe id="rightFrame" name="rightFrame" width="100%" height="100%"
+			scrolling="auto" marginheight="0" marginwidth="0" align="center"
+			style="border: 0px solid #CCC; margin: 0; padding: 0;"></iframe>
+	</div>
+ -->
+ <form class="form-inline definewidth m20" action="#" method="get">
+	<div class="demo1">
+        <font color="#33ccff"><strong>选择日期：</strong></font><input type="text" id="J-xl">
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+</form>
+	<div class="abcd">
+		
+	</div>
+    <div style="height:700px;">
+		<iframe id="rightFrame" name="rightFrame" width="100%" height="100%"
+			scrolling="auto" marginheight="0" marginwidth="0" align="center"
+			style="border: 0px solid #CCC; margin: 0; padding: 0;"></iframe>
+	</div>
+ <div  id="loadmore"></div>
+ 
+ <script type="text/javascript" src="../Js/laydate.dev.js"></script>
+    <script type="text/javascript">
+
+        laydate({
+
+            elem: '#J-xl'
+
+        });
+
+
+
+        document.getElementById('J-xl-2-btn').onclick = function(){
+
+            laydate({
+
+                elem: '#J-xl-2'
+
+            });
+
+        }
+
+
+
+        laydate({
+
+            elem: '#J-xl-3'
+
+        });
+
+
+
+        laydate({
+
+            elem: document.getElementById('J-xl-4')
+
+        });
+
+    </script>
+ <script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</body>
+</html>

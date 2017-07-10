@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hr.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link href="../Css/base.css" type="text/css" rel="stylesheet"/>
+	<link href="../Css/H-ui.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+<body style="background:none;">
+<div class="main" id="main">
+	<div class="part">
+		<div class="mpart">
+			<div class="left lfnav">
+				<div class="comp">上海壹火网络科技有限公司</div>
+				<ul class="archibom">
+					<li><a href="javascript:;">员工考勤总览</a></li>
+					<li><a href="javascript:;">审批</a></li>
+					<li class="findsta"><a href="javascript:;">查找员工</a></li>
+				</ul>
+				<ul class="archi">
+					<li>
+						<span class="jiagou">组织架构</span>
+						<div class="right icimg">
+							<img src="images/untitled/anxiao.png" class="xuanduo" />
+						</div>
+						<ul class="hand">
+							<li><span class="f1">添加分组</span></li>
+						</ul>
+					</li>
+				</ul>
+				
+			</div><!--left-->
+			<div class="left lfpart lfpart1">
+				<div class="comp">上海壹火网络科技有限公司</div>
+				<ul class="archi"></ul><!-- 部门 -->
+			</div><!--部门-->
+			<div class="left lfpart lfpart2">
+				<div class="comp"><a class="gongsi">上海壹火网络科技有限公司</a> > <span class="bumen"></span></div>
+				<ul class="archi"></ul>
+			</div><!--研发部-->
+			<div class="left lfpart lfpart6">
+				<div class="comp"><a class="gongsi">上海壹火网络科技有限公司</a> > <a _href="" class="bumen"></a> > <span class="fenzu"></span></div>
+				<ul class="archi"></ul>
+			</div><!--研发部-->
+			<div class="left lfpart lfpart3">
+				<div class="comp"><a class="gongsi">上海壹火网络科技有限公司</a> > <a _href="" class="bumen"></a> <span class="jiankuohao">></span> <a _href="" class="fenzu"></a></div>
+				<ul class="archi">
+					<li>
+						<div class="picimg left">
+							<img src="images/untitled/tou.png" />
+						</div>
+						<div class="left" style="margin-top:13%; margin-left:3%;">
+							<div id="name3" style="margin-top:20px; color:#666666;"></div>
+							<div class="position" style="color:#999999;"></div>
+						</div>
+					</li>
+					<li class="">
+						<div class="threa">部&nbsp;&nbsp;&nbsp;&nbsp;门</div>
+						<span id="department"></span>
+					</li>
+					<li class="">
+						<div class="threa">职&nbsp;&nbsp;&nbsp;&nbsp;务</div>
+						<span class="position"></span>
+					</li>
+					<li class="">
+						<div class="threa">电&nbsp;&nbsp;&nbsp;&nbsp;话</div>
+						<span id="phone"></span>
+					</li>
+					<li class="">
+						<div class="threa">工&nbsp;&nbsp;&nbsp;&nbsp;号</div>
+						<span id="job_no"></span>
+					</li>
+					<li class="">
+						<div class="threa">在职状态</div>
+						<span id="state"></span>
+					</li>
+				</ul>
+<style type="text/css">
+
+</style>
+				<div class="body left">
+					<ul class="bhead">
+						<li lang="infodeta" class="act">信息详情</li>
+						<li lang="houseinfo">房源信息</li>
+						<!-- <li lang="jobeval">工作评测</li>
+						<li lang="peratt">个人考勤</li>
+						<li lang="salacc">薪资核算</li> -->
+					</ul><!--表头-->
+					<div class="infodeta">
+						<div class="">
+						<ul class="">
+							<li>
+								<div>姓名</div><input type="text" name="name" placeholder="请输入姓名" readonly="readonly" style="border:none;"/><span></span>
+							</li>
+							<li>
+								<div>部门</div>
+								<select name="department"></select>	
+								<span></span>
+							</li>
+							<li>
+								<div>职务</div><input type="text" name="position" placeholder="请输入职务" /><span></span>
+							</li>
+							<li>
+								<div>身份证号</div><input type="text" name="idcard" placeholder="请输入身份证号" /><span></span>
+							</li>
+							<li>
+								<div>户籍所在地</div><input type="text" name="origo" placeholder="请输入户籍所在地" /><span></span>
+							</li>
+							<li>
+								<div>社保账号</div><input type="text" name="social_security" placeholder="请输入社保账号" /><span></span>
+							</li>
+							<li>
+								<div>邮箱账号</div><input type="text" name="email" placeholder="请输入邮箱账号" /><span></span>
+							</li>
+							<li>
+								<div>紧急联系人</div><input type="text" name="emergency_contactname" placeholder="请输入紧急联系人" /><span></span>
+							</li>
+						</ul>
+						<ul class="">
+							<li>
+								<div>工号</div><input type="text" name="job_no" placeholder="请输入工号" readonly="readonly" style="border:none;"/><span></span>
+							</li>
+							<li>
+								<div>组别</div>
+								<select name="district">
+									<option value="">无</option>
+								</select>
+								<span></span>
+							</li>
+							<li>
+								<div>在职状态</div>
+								<select name="state">
+									<option value="正常">正常</option>
+									<option value="离职">离职</option>	
+								</select>
+								<span></span>
+							</li>
+							<li>
+								<div>联系电话</div><input type="text" name="telephone" placeholder="请输入联系电话" /><span></span>
+							</li>
+							<li>
+								<div>现居地址</div><input type="text" name="address" placeholder="请输入现居地址" /><span></span>
+							</li>
+							<li>
+								<div>公积金账号</div><input type="text" name="prfunds" placeholder="请输入公积金账号" /><span></span>
+							</li>
+							<li>
+								<div>微信账号</div><input type="text" name="vxin" placeholder="请输入微信账号" /><span></span>
+							</li>
+							<li>
+								<div>紧急联系电话</div><input type="text" name="emergency_contacttelephone" placeholder="请输入紧急联系电话" /><span></span>
+							</li>
+						</ul>
+						</div>
+						<button class="updatestaff">修改</button>
+					</div><!--员工信息-->
+					<div class="houseinfo">
+						<a class="houseget" style="float: left; margin-left: 20px; line-height: 40px; text-decoration: underline;">房源转让</a><div style="height:40px; width:100%; line-height:40px; font-size:18px; text-align:center;">房源信息一览</div>
+						
+						<table class="table table-border table-bordered table-bg table-hover table-sort">
+							<thead>
+								<tr class="text-c">
+									<th width="40" style="text-align: left;"><input type="checkbox" checked="checked" />全选</th>
+									<th width="80">房源编号</th>
+									<th width="100">地址</th>
+									<th width="150">定价</th>
+									<th width="150">入住状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+						<div class="ishyw" style="text-align: center; font-size: 16px;"></div>
+						
+					</div><!--房源信息-->
+					<!--<div class="jobeval"></div>
+					<div class="peratt"></div>
+					<div class="salacc"></div>-->
+				</div>
+			</div>
+			<div class="left lfpart lfpart4">
+				<div class="comp">上海壹火网络科技有限公司 > 查找</div>
+				<div class="findstaff">
+					<div class="findnav">员工查找</div>
+					<div class="findmain">
+						<div><span>查找方式</span>
+							<select name="restype">
+								<option value="1">姓名查找</option>
+								<option value="2">工号查找</option>
+							</select>
+						</div>
+						<div class="restypea"><span>输入姓名</span><input type="text" class="" name="resname" placeholder="请输入姓名" /></div>
+						<button>确认查找</button>
+					</div>
+				</div>
+			</div><!--查找-->
+			<div class="left lfpart lfpart5">
+				<div class="comp">上海壹火网络科技有限公司 > 部门 > 添加员工</div>
+				<div class="">
+						<ul class="">
+							<li>
+								<div>姓名</div><input type="text" name="name" placeholder="请输入姓名" /><span></span>
+							</li>
+							<li>
+								<div>部门</div>
+								<select name="department"></select>	
+								<span></span>
+							</li>
+							<li>
+								<div>身份证号</div><input type="text" name="idcard" placeholder="请输入身份证号" /><span></span>
+							</li>
+							<li>
+								<div>户籍所在地</div><input type="text" name="origo" placeholder="请输入户籍所在地" /><span></span>
+							</li>
+							<li>
+								<div>社保账号</div><input type="text" name="social_security" placeholder="请输入社保账号" /><span></span>
+							</li>
+							<li>
+								<div>邮箱账号</div><input type="text" name="email" placeholder="请输入邮箱账号" /><span></span>
+							</li>
+							<li>
+								<div>紧急联系人</div><input type="text" name="emergency_contactname" placeholder="请输入紧急联系人" /><span></span>
+							</li>
+						</ul>
+						<ul class="">
+							<li>
+								<div>职务</div><input type="text" name="position" placeholder="请输入职务" /><span></span>
+							</li>
+							<li>
+								<div>组别</div>
+								<select name="district">
+									<option value="">无</option>
+								</select>
+								<span></span>
+							</li>
+							<li>
+								<div>联系电话</div><input type="text" name="telephone" placeholder="请输入联系电话" /><span></span>
+							</li>
+							<li>
+								<div>现居地址</div><input type="text" name="address" placeholder="请输入现居地址" /><span></span>
+							</li>
+							<li>
+								<div>公积金账号</div><input type="text" name="prfunds" placeholder="请输入公积金账号" /><span></span>
+							</li>
+							<li>
+								<div>微信账号</div><input type="text" name="vxin" placeholder="请输入微信账号" /><span></span>
+							</li>
+							<li>
+								<div>紧急联系电话</div><input type="text" name="emergency_contacttelephone" placeholder="请输入紧急联系电话" /><span></span>
+							</li>
+						</ul>
+					</div>
+					<button class="addstaff">添加员工</button>
+			</div><!--添加-->
+		</div>
+	</div>
+	<div class="yy"></div>
+</div>
+<div class="popup">
+	<div style="height:70px;">
+		<img src="images/untitled/close-icon.png" class="right close" style="margin-right:2px; cursor:pointer;" />
+	</div>
+	<div style="height:70px;">
+		<img src="images/untitled/lamp.png" style="position:relative; top:-4px; margin-right:5px;" /><span style="color:#666666; font-size:16px;">请输入部门名称</span>
+	</div>
+	<div style="height:90px;">
+		<span>部门</span><input type="text" class="name" name="name" style="height:36px; width:120px; background-color:#FFFFFF; border:none; margin-left:10px; text-align:center;" placeholder="请输入部门"/>
+	</div>
+	<button class="" style="height:36px; width:100px; border-radius:10px; font-size:16px; color:#FFF; border:none; background-color:#ee6b41;">确认添加</button>
+	<div></div>
+</div><!--弹窗1-->
+<div class="popupgrop">
+	<div style="height:70px;">
+		<img src="images/untitled/close-icon.png" class="right close" style="margin-right:2px; cursor:pointer;" />
+	</div>
+	<div style="height:70px;">
+		<img src="images/untitled/lamp.png" style="position:relative; top:-4px; margin-right:5px;" /><span style="color:#666666; font-size:16px;">请输入组别名称</span>
+	</div>
+	<div style="height:90px;">
+		<span>组别</span><input type="text" class="district" name="district" style="height:36px; width:120px; background-color:#FFFFFF; border:none; margin-left:10px; text-align:center;" placeholder="请输入组别"/>
+	</div>
+	<button class="" style="height:36px; width:100px; border-radius:10px; font-size:16px; color:#FFF; border:none; background-color:#ee6b41;">确认添加</button>
+	<div></div>
+</div><!--弹窗1-->
+<div class="popup1">
+	<div style="height:40px;">
+		<img src="images/untitled/close-icon.png" class="right close" style="margin-right:2px; cursor:pointer;" />
+	</div>
+	<div style="height:40px;">
+		<img src="images/untitled/lamp.png" style="position:relative; top:-4px; margin-right:5px;" /><span style="color:#666666; font-size:16px;">请输入姓名</span>
+	</div>
+
+	<div style="height:70px;">
+		<span>姓名</span>
+		<input type="text" name="popup1name" />
+	</div>
+	<button style="height:36px; width:100px; border-radius:10px; font-size:16px; color:#FFF; border:none; background-color:#ee6b41;">确认转让</button>
+	<div></div>
+</div><!--弹窗2-->
+<div class="handle">
+	<span>操作成功</span><img src="images/untitled/dui.png" />
+</div>
+<div class="handle1">
+	<span>操作失败</span><img src="images/untitled/cuo.png" />
+</div>
+<div class="loading" style="height:100%; width:100%; z-index:9999; display:none; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>
+<script type="text/javascript" src="../Js/jquery.js"></script>
+<script type="text/javascript" src="js/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/hr.js"></script>
+<script type="text/javascript">
+
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+<script type="text/javascript">
+      $(".lfpart .archi,.lfpart3 .houseinfo").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $(".lfpart .archi,.lfpart3 .houseinfo").niceScroll("#wrapperdiv",{cursorcolor:"#00F"}); 
+</script>
+</body>
+</html>

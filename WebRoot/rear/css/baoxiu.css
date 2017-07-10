@@ -1,0 +1,127 @@
+
+#baoxiu{
+	width: 1190px;
+	margin:30px auto;
+}
+
+#baoxiu thead tr{
+	background-color: #f5fafe;
+}
+
+#baoxiu tr{
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
+#baoxiu thead tr{
+	border-top: 1px solid #ddd;
+}
+
+#baoxiu th,
+#baoxiu td{
+	border-right: 1px solid #ddd;
+	/*border-top:  1px solid #ddd;*/
+	/*border-bottom:  1px solid #ddd;*/
+}
+
+#baoxiu th:last-child,
+#baoxiu td:last-child{
+	border-right: none;
+}
+
+#baoxiu tbody tr:nth-child(1n){
+	background-color: #fffdfe;
+}
+
+#baoxiu tbody tr:nth-child(2n){
+	background-color: #f7f7f7;
+}
+
+#baoxiu tbody tr{
+	border-top:  1px solid #ddd;
+	border-bottom:  1px solid #ddd;
+}
+
+#baoxiu tbody tr:hover{
+	cursor: pointer;
+	background-color: #f7f7f7;
+	border-right: 1px solid #df3031;
+	border-left: 1px solid #df3031;
+}
+
+#baoxiu tbody tr:hover td{
+	border-top:  1px solid #df3031;
+	border-bottom:  1px solid #df3031;
+}
+
+#baoxiu tbody tr td:hover a{
+	color: blue;
+	text-decoration:underline;
+}
+
+#baoxiu th:nth-child(1),
+#baoxiu td:nth-child(1),
+#baoxiu th:nth-child(2),
+#baoxiu td:nth-child(2),
+#baoxiu th:nth-child(3),
+#baoxiu td:nth-child(3),
+#baoxiu th:nth-child(5),
+#baoxiu td:nth-child(5){
+	width:9%;
+}
+
+#baoxiu th:nth-child(4),
+#baoxiu td:nth-child(4){
+	width:12%;
+}
+
+#baoxiu th:nth-child(6),
+#baoxiu td:nth-child(6){
+	width:20%;
+}
+
+#baoxiu th:nth-child(7),
+#baoxiu td:nth-child(7){
+	width:16%;
+}
+
+#baoxiu th:nth-child(8),
+#baoxiu td:nth-child(8){
+	width:8%;
+}
+
+#baoxiu th:nth-child(9),
+#baoxiu td:nth-child(9){
+	width:8%;
+}
+
+#baoxiu thead tr th{
+	line-height: 36px;
+}
+
+#baoxiu tbody tr td{
+	text-align: center;
+	padding:8px;
+	line-height: 20px;
+    vertical-align:middle;
+}
+
+#baoxiu tbody tr td img{
+	width:80px;
+	height:80px;
+}
+
+#baoxiu tbody tr td p{
+	max-height: 120px;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+}
+
+.center_right_detail_list_page{
+	/*border:1px solid red;*/
+	width: 1190px;
+	margin:30px auto;
+}

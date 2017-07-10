@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../igjia/css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../igjia/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../igjia/css/house.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+table td span{position: absolute;background:url(../images/house/tanchu.png);width:75px; height:46px;  margin-top: -60px;margin-left: 150px; display: none; line-height: 32px; text-align: center;}
+table i{margin-right: 2px;font-style: inherit;}
+select{
+margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius: 3px;padding-left: 10px;}
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="addrent">
+				<div class="addbasic rentinfo">
+					<div>
+					<div>订单录入</div>
+						<table>
+							<tr>
+								<td>类型：</td>
+								<td>
+									<select name="type" class="type" >									
+										<option value="出房">出房</option>   
+										<option value="收房">收房</option>           		
+									</select>
+								</td>	
+								<td>区域：</td>
+								<td>
+									<select name="district" class="district" >
+					              		
+					              	</select>
+								</td>	
+								<td>合同编号：</td>
+								<td><input type="text" class="contract_no" id="contract_no" name="contract_no"/><span></span></td>			
+							</tr>
+							<tr>
+								<td>房源地址：</td>
+								<td colSpan='3'>
+									<div class="col-sm-9 colj31" style="position: relative;width: 95%;font-size:14px;">
+										<input  class="xzyx address" id="djxz" style="height: 27px;width:97%; border: 1px solid #ccc;cursor: pointer; line-height: 28px;margin-left:10px;padding-left:5px;" value="加载中..."></input>
+										<div class="sswk" style="margin-left:-6px;max-height: 230px;width:93%; margin-left:10px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+											<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+											<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+											<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+											</ul>
+										</div>
+
+									</div>
+								</td>
+								<td>房源编号：</td>
+								<td><input type="text" class="house_id" id="house_id" name="house_id"/><span></span></td>								
+							</tr>
+							
+						</table>
+					
+						<table id="rentorder">
+							<tr>
+								<td>租客姓名：</td>
+								<td><input type="text" class="renter_name" id="renter_name" name="renter_name" /><span></span></td>
+								<td>租客手机号：</td>
+								<td><input type="text" class="renter_telephone" id="renter_telephone" name="renter_telephone" /><span></span></td>							
+							</tr>
+							<tr>
+								<td>合同生效日期：</td>
+								<td><input type="text" class="contract_startdate" name="contract_startdate" id="J-x2" /><span></span></td>
+								<td>合同结束日期：</td>
+								<td><input type="text" class="contract_enddate" name="contract_enddate" id="J-x3" /><span></span></td>
+								<td><i style="color:#f00">*</i>合同期限：</td>
+								<td><input type="number" class="contract_month" id="contract_month" name="contract_month" /><span></span></td>	
+							</tr>
+							<tr>														
+								<td><i style="color:#f00">*</i>首年月租金：</td>
+								<td><input type="number" class="firstyear_monthrent" id="firstyear_monthrent" name="firstyear_monthrent" value="0" /></td>
+								<td>次年月租金：</td>
+								<td><input type="number" class="secondyear_monthrent" id="secondyear_monthrent" name="secondyear_monthrent" value="0" /></td>								
+							</tr>
+							<tr>								
+								<td>第三年月租金：</td>
+								<td><input type="number" class="thirdyear_monthrent" id="thirdyear_monthrent" name="thirdyear_monthrent" value="0" /></td>
+								<td>第四年月租金：</td>
+								<td><input type="number" class="fourthyear_monthrent" id="fourthyear_monthrent" name="fourthyear_monthrent" value="0" /></td>
+								<td>第五年月租金：</td>
+								<td><input type="number" class="fifthyear_monthrent" id="fifthyear_monthrent" name="fifthyear_monthrent" value="0" /></td>
+							</tr>
+							<tr>								
+								<td><i style="color:#f00">*</i>宽带保洁费：</td>
+								<td><input type="number" class="firststage_rent" id="firststage_rent" name="firststage_rent" value="0" /></td>			
+								<td><i style="color:#f00">*</i>押金总额：</td>
+								<td><input type="text" class="deposit" id="deposit" name="deposit" /><span></span></td>		
+								<td>备注：</td>
+								<td><input type="text" class="remark" id="remark" name="remark" value="无"/><span></span></td>			
+							</tr>
+
+							<tr>
+								<td><i style="color:#f00">*</i>支付方式：</td>
+								<td><select name="paymethod" class="paymethod">
+					                    <option value="30">30天</option>
+					                    <option value="60">60天</option>
+					                    <option value="90">90天</option>
+					                    <option value="180">180天</option>
+					                    <option value="365">365天</option>
+					                    <option value="盈家">盈家</option>
+					                    <option value="巴乐兔">巴乐兔</option>
+					                    <option value="租了么">租了么</option>
+					                    <option value="平安">平安</option>
+									</select>
+									<span></span>
+									</td>
+								
+							</tr>
+						</table>
+						
+						<table id="houseorder" style="display:none;">							
+							<tr>
+								<td>收款人姓名：</td>
+								<td><input type="text" class="shoukuanren_name"  name="shoukuanren_name" /><span></span></td>
+								<td>收款人手机号：</td>
+								<td><input type="number" class="shoukuanren_telephone"  name="shoukuanren_telephone" /><span></span></td>	
+								<td>开户行：</td>
+								<td><input type="text" class="shoukuanren_kaihuhang" name="shoukuanren_kaihuhang" /><span></span></td>						
+							</tr>
+							<tr>
+								<td>开户账号：</td>
+								<td><input type="number" class="shoukuanren_account" name="shoukuanren_account" /><span></span></td>	
+								<td>合同生效日期：</td>
+								<td><input type="text" class="contract_startdate" name="contract_startdate" id="J-x4" /><span></span></td>
+								<td>免租期结束日期：</td>
+								<td><input type="text" class="pay_date" name="pay_date" id="J-x5" /><span></span></td>
+								
+								
+							</tr>
+							<tr>		
+								<td>合同结束日期：</td>
+								<td><input type="text" class="contract_enddate" name="contract_enddate" id="J-x6" /><span></span></td>
+								<td><i style="color:#f00">*</i>合同期限：</td>
+								<td><input type="number" class="contract_month" name="contract_month" /><span></span></td>													
+								<td><i style="color:#f00">*</i>首年月租金：</td>
+								<td><input type="number" class="firstyear_monthrent" name="firstyear_monthrent" value="0" /></td>
+														
+							</tr>
+							<tr>		
+								<td>次年月租金：</td>
+								<td><input type="number" class="secondyear_monthrent" name="secondyear_monthrent" value="0" /></td>								
+								<td>第三年月租金：</td>
+								<td><input type="number" class="thirdyear_monthrent"  name="thirdyear_monthrent" value="0" /></td>
+								<td>第四年月租金：</td>
+								<td><input type="number" class="fourthyear_monthrent"  name="fourthyear_monthrent" value="0" /></td>
+								
+							</tr>
+							<tr>	
+								<td>第五年月租金：</td>
+								<td><input type="number" class="fifthyear_monthrent"  name="fifthyear_monthrent" value="0" /></td>							
+								<td>第六年月租金：</td>
+								<td><input type="number" class="sixthyear_monthrent"  name="sixthyear_monthrent" value="0" /></td>	
+								<td><i style="color:#f00">*</i>押金总额：</td>
+								<td><input type="text" class="deposit"  name="deposit" /><span></span></td>		
+								
+							</tr>
+
+							<tr>
+								<td>备注：</td>
+								<td><input type="text" class="remark" name="remark" value="无"/><span></span></td>		
+								<td><i style="color:#f00">*</i>支付方式：</td>
+								<td><select name="paymethod" class="paymethod">
+					                    <option value="30">30天</option>
+					                    <option value="60">60天</option>
+					                    <option value="90">90天</option>
+					                    <option value="180">180天</option>
+					                    <option value="365">365天</option>
+									</select>
+									<span></span>
+									</td>
+								
+							</tr>
+						</table>
+					</div><!--房源信息-->				
+					<div>		
+						<button class="btn btn-primary next rentinfo">提交</button>
+					</div>
+				</div>			
+			</div>
+<script src="../Js/jquery-1.7.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="../igjia/js/laydate.dev.js"></script>
+<script type="text/javascript" src="Js/createOrder.js"></script>
+    <script type="text/javascript">
+    
+         laydate({
+
+            elem: '#J-x2'
+
+        });
+         laydate({
+
+            elem: '#J-x3'
+
+        });
+         laydate({
+
+            elem: '#J-x4'
+
+        });
+         laydate({
+
+            elem: '#J-x5'
+
+        });
+         laydate({
+
+            elem: '#J-x6'
+
+        });
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("html").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("html").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    
+    <div class="loading" style="height:100%; width:100%; z-index:99999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>	
+</body>
+</html>

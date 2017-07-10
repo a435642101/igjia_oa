@@ -1,0 +1,163 @@
+/* CSS Document */
+.main{height:799px; width:100%; overflow:hidden;}
+.main > div{position:relative; height:100%; width:100%;}
+.main .yy{background-color:#FFF; opacity:0.7; border-radius:10px; margin-top:-800px; z-index:9;}
+.main .part{height:100%; width:100%; padding-top:1px; z-index:99;}
+.part .mnav{height:50px; background-color:#FFFFFF; margin:10px 0.7%; border-radius:5px;}
+.part .mnav ul li{float:left; text-align:center; padding:6px 15px; border-radius:10px; font-size:14px; color:#222; margin:8px 11px 8px 18px; cursor:pointer;}
+.part .mnav ul li.act{ background-color:#ee6b41; color:#FFF;}
+
+.mpart{min-width:1000px; height:700px; margin:0px 0.7% 10px 0.7%; border-radius:3px;}
+.panhouse{display:block; background-color:#FFFFFF; width:100%; height:100%;}
+.panrent{display:block; background-color:#FFFFFF; width:100%; height:100%;}
+.addhouse{display:block;}
+.addrent{display:block;}
+.panhouse > .find{margin:20px 0; margin-left:1%;height:140px;}
+.panhouse > .find > input.address{border:1px #aaa solid; height:26px; width:180px; border-radius:5px; padding-left:10px; font-size:14px; line-height:26px; margin-left:10px;}
+.panhouse > .find > span{font-size:16px;}
+.panhouse > .find > button{border-radius:8px; border:none; height:30px; width:80px; background-color:#ee6b41; color:#FFF; font-size:16px; margin-left:20px;}
+.panhouse .table{margin-left:1%; width:98%; border-radius:5px; font-size:12px; border-collapse:collapse; border-spacing:2;}
+.panhouse tbody tr{cursor:pointer;}
+.panhouse tbody tr:nth-child(odd){background-color:#fffdfe;}
+.panhouse tbody tr:nth-child(even){background-color:#f7f7f7;}
+
+.panrent > .find{margin:10px 0; margin-left:1%;height:180px;}
+.panrent > .find > input{border:1px #aaa solid; height:26px; width:180px; border-radius:5px; padding-left:10px; font-size:14px; line-height:26px; margin-left:10px;}
+.panrent > .find > span{font-size:16px;}
+.panrent > .find  button{border-radius:5px; border:none; height:28px; width:65px; background-color:#ee6b41; color:#FFF; font-size:16px; margin-left:20px;}
+.panrent .table{margin-left:1%; width:98%; border-radius:5px; font-size:12px; border-collapse:collapse; border-spacing:2;}
+.panrent tbody tr{cursor:pointer;}
+.panrent tbody tr:nth-child(odd){background-color:#fffdfe;}
+.panrent tbody tr:nth-child(even){background-color:#f7f7f7;}
+
+
+
+.panrent table,.panhouse table{table-layout: fixed;}
+.panrent .table tr th{text-align: center;}
+.panhouse .table tr th{text-align: center;}
+
+.remark div{width:400px; position:absolute; margin-top:10px; background-color:#FFFFFF; border:#FF0000 1px solid; display:none;}
+.remark:hover div{display:block;}
+
+select{width:100px; height:24px;}
+table.table tr td{text-align: center;}
+dl{height: 30px; line-height: 30px;}
+dl dt{float:left;}
+dl{display:block;}
+dl a{margin-right: 12px;}
+dl a span{display:inline-block; cursor: pointer; background-image: url(../images/untitled/kuangx.png); width: 15px; height:15px; background-size: cover; position: relative; top:3px; margin-right: 2px;}
+dl a input{display: none;}
+dl a:hover span{ background: url(../images/untitled/kuangg.png); background-size: cover;}
+dl a span.act{background: url(../images/untitled/kuang.png); background-size: cover;}
+
+
+.addhouse .addbasic table{width:1000px;}
+.addhouse .addbasic table tr td:nth-child(odd){background-color:#efefef; border-radius:5px; text-align:right; width:110px;}
+.addhouse .addbasic table tr td:nth-child(even){width:120px;}
+.addhouse .addbasic > div{margin-bottom:10px; background-color:#FFFFFF; padding-bottom:10px;}
+.addhouse .addbasic > div > table{margin-left:20px;}
+.addhouse .addbasic table tr td{height:30px;}
+.addhouse .addbasic table tr td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:150px; border-radius:3px; padding-left:10px;}
+.addhouse .addbasic table tr td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:150px; border-radius:3px; padding-left:10px;}
+
+.addhouse .addbasic table tr td{border:3px solid #FFF;}
+.addhouse  .addbasic > div > div{width:99%; height:40px; border-bottom:1px #CCCCCC solid; line-height:40px; font-size:16px; padding-left:1%;}
+.addhouse .addbasic table tr td.notbac{background-color:#FFFFFF;}
+.addhouse .addbasic table tr:hover td{background-color:#efefef;}
+.addhouse .addbasic table tr:hover td.notbac{background-color:#efefef;}
+.addhouse .addbasic{}/*overflow*/
+.addhouse > div{height:auto;}
+.addhouse .addbasic table tr td.housetypec select{height: 22px;width: 40px;border-radius: 3px;}
+.state{height: 25px;width: 80px;border-radius: 3px; margin-left:10px;}
+
+.addhouse .addgoodes table{width:1000px;}
+.addhouse .addgoodes .sharebills table tr td:nth-child(odd){background-color:#efefef; border-radius:5px; text-align:right; width:110px;}
+.addhouse .addgoodes .sharebills table tr td:nth-child(even){width:120px;}
+.addhouse .addgoodes > div{margin-bottom:10px; background-color:#FFFFFF; padding-bottom:10px;}
+.addhouse .addgoodes > div > table{margin-left:20px;}
+.addhouse .addgoodes .sharebills table tr td{height:30px;}
+.addhouse .addgoodes .sharebills table tr td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:100px; border-radius:3px; padding-left:5px;}
+.addhouse .addgoodes .sharebills table tr td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:100px; border-radius:3px; padding-left:5px;}
+
+.addhouse .addgoodes table tr td{border:3px solid #FFF;}
+.addhouse .addgoodes > div > div{width:99%; height:40px; border-bottom:1px #CCCCCC solid; line-height:40px; font-size:16px; padding-left:1%;}
+.addhouse .addgoodes table tr td.notbac{background-color:#FFFFFF;}
+.addhouse .addgoodes table tr:hover td{background-color:#efefef;}
+.addhouse .addgoodes table tr:hover td.notbac{background-color:#efefef;}
+
+
+.addhouse .addgoodes .goods table{width:1080px;}
+.addhouse .addgoodes .goods table tr td{width:120px; padding-left:5px; padding-right:10px; height:30px;}
+.addhouse .addgoodes .goods table tr td:nth-child(1),.goods table tr td:nth-child(5){background-color:#efefef; border-radius:5px; width:78px; padding-right:5px; text-align:left;}
+.addhouse .addgoodes .goods table tr td:nth-child(even){}
+.addhouse .addgoodes .goods td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addhouse .addgoodes .goods td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addhouse .addgoodes .goods td input[type='checkbox'],.addrent .addgoodes .goods td input[type='radio']{width:15px; height:15px; padding:0; margin:0;}
+
+/*123*/
+.addrent .addbasic table{width:1000px;}
+.addrent .addbasic table tr td:nth-child(odd){background-color:#efefef; border-radius:5px; text-align:right; width:110px;}
+.addrent .addbasic table tr td:nth-child(even){width:120px;}
+.addrent .addbasic > div{margin-bottom:10px; background-color:#FFFFFF; padding-bottom:10px;}
+.addrent .addbasic > div > table{margin-left:20px;}
+.addrent .addbasic table tr td{height:30px;}
+.addrent .addbasic table tr td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:150px; border-radius:3px; padding-left:10px;}
+.addrent .addbasic table tr td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:150px; border-radius:3px; padding-left:10px;}
+
+.addrent .addbasic table tr td{border:3px solid #FFF;}
+.addrent .addbasic > div > div{width:99%; height:40px; border-bottom:1px #CCCCCC solid; line-height:40px; font-size:16px; padding-left:1%;}
+.addrent .addbasic table tr td.notbac{background-color:#FFFFFF;}
+.addrent .addbasic table tr:hover td{background-color:#efefef;}
+.addrent .addbasic table tr:hover td.notbac{background-color:#efefef;}
+.addrent .addbasic{}/*overflow*/
+.addrent > div{height:800px;}
+.addrent .addbasic table tr td.housetypec input[type='text']:first-child{margin-left:10px;}
+.addrent .addbasic table tr td.housetypec input[type='text']{width:40px; margin:0; padding-left:5px;}
+
+.addrent .addgoodes table{width:1000px;}
+.addrent .addgoodes .sharebills table tr td:nth-child(odd){background-color:#efefef; border-radius:5px; text-align:left; width:100px; padding-left:10px;}
+.addrent .addgoodes .sharebills table tr td:nth-child(even){width:120px;}
+.addrent .addgoodes > div{margin-bottom:10px; background-color:#FFFFFF; padding-bottom:10px;}
+.addrent .addgoodes > div > table{margin-left:20px;}
+.addrent .addgoodes .sharebills table tr td{height:30px;}
+.addrent .addgoodes .sharebills table tr td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:100px; border-radius:3px; padding-left:5px;}
+.addrent .addgoodes .sharebills table tr td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:100px; border-radius:3px; padding-left:5px;}
+
+
+.addrent .addgoodes table tr td{border:3px solid #FFF;}
+.addrent .addgoodes > div > div{width:99%; height:40px; border-bottom:1px #CCCCCC solid; line-height:40px; font-size:16px; padding-left:1%;}
+.addrent .addgoodes table tr td.notbac{background-color:#FFFFFF;}
+.addrent .addgoodes table tr:hover td{background-color:#efefef;}
+.addrent .addgoodes table tr:hover td.notbac{background-color:#efefef;}
+.addrent .addgoodes{height:720px; overflow-x:hidden;}
+
+
+.addrent .addgoodes .goods table{width:1080px;}
+.addrent .addgoodes .goods table tr td{width:120px; padding-left:5px; padding-right:10px; height:30px;}
+.addrent .addgoodes .goods table tr td:nth-child(1),.goods table tr td:nth-child(5){background-color:#efefef; border-radius:5px; width:78px; padding-right:5px; text-align:left;}
+.addrent .addgoodes .goods table tr td:nth-child(even){}
+.addrent .addgoodes .goods td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addrent .addgoodes .goods td input[type='checkbox'],.addrent .addgoodes .goods td input[type='radio']{width:15px; height:15px; padding:0; margin:0;}
+.addrent .addgoodes .goods  td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+
+.addrent .addgoodes .unlocking table{width:1080px;}
+.addrent .addgoodes .unlocking table tr td{width:120px; padding-left:5px; padding-right:10px; height:30px;}
+.addrent .addgoodes .unlocking table tr td:nth-child(1),.unlocking table tr td:nth-child(5){background-color:#efefef; border-radius:5px; width:78px; padding-right:5px; text-align:left;}
+.addrent .addgoodes .unlocking table tr td:nth-child(even){}
+.addrent .addgoodes .unlocking td input[type='text']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addrent .addgoodes .unlocking td select{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addrent .addgoodes .unlocking td input[type='number']{margin-left:10px; border:1px solid #aaa; height:25px; width:65px; border-radius:3px; padding-left:5px;}
+.addrent .addgoodes .unlocking td input[type='checkbox'],.addrent .addgoodes .goods td input[type='radio']{width:15px; height:15px; padding:0; margin:0;}
+
+.addrent .addgoodes .goods > img{margin-left:24px; margin-top:10px; margin-bottom:10px;}
+.addrent .addgoodes .goods > span{color:#efefef; margin-left:10px;}
+
+.addrent button,.addhouse button{width:100px; height:30px; text-align:center; cursor:pointer; font-size:14px; background-color:#ee6b41; color:#FFF; border-radius:5px; border:none; margin:20px auto; margin-left:40%;}
+.addrent .submit,.addhouse .submit{margin-left:10px;}
+
+#DataTables_Table_0_length{display: none;}
+#DataTables_Table_0_filter{display: none;}
+#DataTables_Table_0_info{display: none;}
+#DataTables_Table_0_paginate{display: none;}
+
+

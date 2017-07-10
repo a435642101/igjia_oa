@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——添加出房</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- 表单验证 -->
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/queryNumber.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+    
+    <!-- 表单验证 -->
+
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <section id="addZkxx" class="queryNumberBox addZkxxBox BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">租客信息</span>
+        </header>
+        <form action="" method="" id="formAddZkxx">
+        <ul class="addFyList fs28">
+            <li class="clearfix">
+                <label for="zkName">租客姓名：</label>
+                <input type="text" value="" name="zkName" id="zkName" placeholder="请输入租客姓名">
+            </li>
+            <!-- <li class="Validform_checktip"></li> -->
+            <li class="clearfix">
+                <label for="zkPhone">租客手机号：</label>
+                <input type="text" value="" name="zkPhone" id="zkPhone" placeholder="请输入手机号">
+            </li>
+            <!-- <li class="Validform_checktip"></li> -->
+            <li class="clearfix">
+                <label for="zkIDCard">租客身份证：</label>
+                <input type="text" value="" name="zkIDCard" id="zkIDCard" placeholder="请输入身份证号码">
+            </li>
+            <!-- <li class="Validform_checktip"></li> -->
+        </ul>
+        
+        <div class="queryBtn">
+            <input type="submit" value="提交" name="" id="">
+        </div>
+        </form>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            // 确认提交
+            confirm();
+            $("#alertBox .btnBox #btnYes").click(function(){
+                // alert(0000);
+            });
+            $("#alertBox .btnBox #btnNo").click(function(){
+                $("#alertBox").fadeOut(500);
+                // alert(0000);
+            });
+    
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(2).find('a').css({color: '#ee6b41'});
+                }
+            });
+        });
+    </script>
+	
+</body>
+
+</html>

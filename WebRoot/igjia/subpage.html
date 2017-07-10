@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../Css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../Css/subpage.css" type="text/css" rel="stylesheet"/>
+
+</head>
+
+
+
+
+<body style="min-width:1000px; background: none;">
+<div class="main" id="main">
+	<div class="part">
+		<div class="mnav">
+			<ul>
+				<li _href="house.html?district=&state=&address=&contract_start1=&contract_start2=&contract_end1=&contract_end2="  lang="houseiframe" class="act">房源总览</li>
+				<li _href="rent.html?keyword=&district=&state=&paymethod=&contract_start1=&contract_start2=&contract_end1=&contract_end2=&sis=0&dis=0" lang="rentiframe">出房总览</li>
+				<li _href="addhouse.html" lang="addhouseiframe">添加房源</li>
+				<li _href="addrent.html" lang="addrentiframe">添加出房</li>
+			</ul>
+			
+		</div>
+		<div class="nav_top" id="nav_top">
+			<div class="houseiframe">
+			</div>
+			<div class="rentiframe">
+			</div>
+			<div class="addhouseiframe">
+			</div>
+			<div class="addrentiframe">
+			</div>
+		</div>
+		<div class="mpart" id="mpart">
+			<div class="houseiframe">
+				<iframe src='house.html?district=&state=&address=&contract_start1=&contract_start2=&contract_end1=&contract_end2=' frameborder='0' height='100%' width='100%' scrolling='no'></iframe>
+			</div>
+			<div class="rentiframe">
+				<iframe src='rent.html?keyword=&district=&state=&paymethod=&contract_start1=&contract_start2=&contract_end1=&contract_end2=&sis=0&dis=0' frameborder='0' height='100%' width='100%' scrolling='no'></iframe>
+			</div>
+			<div class="addhouseiframe" style="display: none;">
+				<iframe src='addhouse.html' frameborder='0' height='100%' width='100%' scrolling='no'></iframe>
+			</div>
+			<div class="addrentiframe" style="display: none;">
+				<iframe src='addrent.html' frameborder='0' height='100%' width='100%' scrolling='no'></iframe>
+			</div>
+			
+		</div>
+	</div>
+	<div class="yy"></div>
+</div>
+
+
+<script type="text/javascript" src="../Js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="../Js/nav.js"></script>
+<script type="text/javascript">
+
+
+</script>
+<!-- <script type="text/javascript">
+$(function(){
+	$(".mnav ul li").click(function(){
+		$(this).addClass("act").siblings("li").removeClass("act");
+		var url = $(this).attr("lang");
+		$("iframe").attr("src",url);
+	});
+});
+</script> -->
+</body>
+</html>

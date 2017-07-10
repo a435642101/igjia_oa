@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/rear.css" rel="stylesheet" />
+<style type="text/css">
+
+</style>
+
+
+</head>
+
+<body>
+<div class="untit">
+	<div class="houseinfo">
+		<div class="tit"><span>房源信息</span></div>
+		<div class="a">
+			
+			<div>
+				<span>所属区域:</span>
+				<select  name="district" class="district" id="district"></select>
+			</div>
+			<div>
+				<span>房源地址:</span>
+				<div class="col-sm-9 colj31" style="position: relative;width: 120px; height:24px; font-size:14px; margin-right: 4px;">
+					<div id="djxz" class="xzyx" style="height: 24px;width:117px; border: 1px solid #ccc;cursor: pointer; line-height: 24px;padding-left:5px;text-overflow:ellipsis;overflow: hidden;">加载中...</div>
+					<div class="sswk" style="margin-top:24px; max-height: 230px;width:300px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+					<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+					<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+						<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+						</ul>
+					</div>
+					<input type="text" class="address" style="width:300px;display:none;" name="address"  />
+				</div>
+			</div>
+			<div>
+				<span>合同编号:</span>
+				<input type="text" name="contract_no" class="contract_no" id="contract_no" />
+			</div>
+			
+		</div>
+		<div class="a">
+			<div>
+				<span>小区:</span>
+				<input type="text" name="estate" class="estate" id="estate" />
+			</div>
+			<div>
+				<span>商圈:</span>
+				<input type="text" name="business_area" class="business_area" id="business_area" />
+			</div>
+			<div>
+				<span>户型:</span>
+				<input type="text" name="type" class="type" id="type" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>房源ID:</span>
+				<label>
+				</label>
+			</div>
+		</div>
+	</div><!--houseinfo-->
+	<div class="fitmentinfo">
+		<div class="tit"><span>装修信息</span></div>
+		<div class="a">
+			<div>
+				<span>管家:</span>
+				<select name="job_no" class="job_no" id="job_no">
+				
+				</select>
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>测量时间:</span>
+				<input type="text" name="measure_date" class="measure_date" id="J-x1" />
+			</div>
+			<div>
+				<span>开工时间:</span>
+				<input type="text" name="begin_date" class="begin_date" id="J-x2" />
+			</div>
+		</div>
+	</div><!--fitmentinfo-->
+	<button >提交</button>
+</div>
+<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="js/addrear1.js"></script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+<script type="text/javascript">
+        laydate({
+            elem: '#J-x1'
+        });
+         laydate({
+            elem: '#J-x2'
+        });
+        $("#J-x3").click(function(){
+        	var begin_date = $("#J-x2").val();
+        	if(begin_date!="" && begin_date!=null){
+        		laydate({
+	           	    elem: '#J-x3',
+	           	    min: begin_date
+	       		});
+        	}else{
+        		alert("请选择开工时间");
+        	}
+        	
+        });
+        laydate({
+            elem: '#J-x4'
+        });
+        laydate({
+            elem: '#J-x5'
+        });
+        laydate({
+            elem: '#J-x6'
+        });
+        laydate({
+            elem: '#J-x7'
+        });
+</script>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</html>

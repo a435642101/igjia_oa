@@ -1,0 +1,83 @@
+
+<div id="headBox" class="BCee6b41 fs32 clearfix">
+    <a href="userIndex.html" class="grzx fl">
+        <img src="images/geren.png" alt="">
+    </a>
+    <a href="userIndex.html" class="fl">
+        <div class="name TCfff">
+            你好，
+        </div>
+    </a>
+    <a href="#" class="signOut fr TCffbfaa" id="tuiChu">
+        [退出系统]
+    </a>
+</div>
+
+<ul id="tabBox" class="fs32 clearfix">
+    <li>
+        <a href="index.html">
+            <img src="images/iconSY.png" alt="主页">
+            <span class="TCaaa">主页</span>
+        </a>
+    </li>
+    <li>
+        <a href="cxfyIndex.html">
+            <img src="images/iconFY.png" alt="房源">
+            <span class="TCaaa">房源</span>
+        </a>
+    </li>
+    <li>
+        <a href="hqQueryIndex.html">
+            <img src="images/iconHQ.png" alt="后勤">
+            <span class="TCaaa">后勤</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <img src="images/iconGJ.png" alt="工具">
+            <span class="TCaaa">工具</span>
+        </a>
+    </li>
+</ul>
+
+
+<script>
+$(window).ready(function(){
+
+    //var destroy = 'http://192.168.1.109:8080/yhTech/destroy.do';
+    //var admin = 'http://192.168.1.109:8080/yhTech/admin.do';
+
+    $("#tuiChu").on('click',function(){
+        $.ajax({
+            type:'GET',
+            url : CONFIG['url']+"destroy.do",
+            success:function(data){
+                if(data=="success"){
+                    window.location.href="signIn.html";
+                }
+            },
+            error:function(jqXHR){
+
+            }
+        });
+    });
+
+    $.ajax({
+        type: 'GET',
+        url : CONFIG['url']+"admin.do",
+        async: true,
+        success:function(data){
+            if(data=="fail"){
+                // window.location.href="signIn.html";
+            }else{
+                var headUserObj=JSON.parse(data);
+                $("#headBox .name").html("你好，" + headUserObj.name);
+            }
+        },
+        error:function(jqXHR){
+            
+        }
+    });
+
+});
+</script>

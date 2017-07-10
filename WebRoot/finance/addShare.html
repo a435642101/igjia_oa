@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../igjia/css/base.css" type="text/css" rel="stylesheet"/>
+<link href="../igjia/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../igjia/css/house.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+table td span{position: absolute;background:url(../images/house/tanchu.png);width:75px; height:46px;  margin-top: -60px;margin-left: 150px; display: none; line-height: 32px; text-align: center;}
+table i{margin-right: 2px;font-style: inherit;}
+select{
+margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius: 3px;padding-left: 10px;}
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="addrent">
+				<div class="addbasic rentinfo">
+					<div>
+					<div>水电煤生成</div>
+						<table id="rentorder">
+							<tr>
+								<td>区域：</td>
+								<td><select class="district" name="district"></select><span></span></td>
+								<td>房源地址：</td>
+								<td colSpan='3'>
+									<div class="col-sm-9 colj31" style="position: relative;width: 95%;font-size:14px;">
+										<input  class="xzyx address" id="djxz" style="height: 27px;width:97%; border: 1px solid #ccc;cursor: pointer; line-height: 28px;margin-left:10px;padding-left:5px;" value="加载中..."></input>
+										<div class="sswk" style="margin-left:-6px;max-height: 230px;width:93%; margin-left:10px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+											<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+											<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+											<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+											</ul>
+										</div>
+									</div>
+								</td>				
+							</tr>
+							<tr>
+								<td>租客姓名：</td>
+								<td><input type="text" class="renter_name" id="renter_name" name="renter_name" /><span></span></td>
+								<td>租客手机号：</td>
+								<td><input type="text" class="renter_telephone" id="renter_telephone" name="renter_telephone" /><span></span></td>	
+							</tr>
+							<tr>
+								<td>水价：</td>
+								<td><input type="number" class="water_money" name="water_money" value="0" /><span></span></td>
+								<td>煤价：</td>
+								<td><input type="number" class="gas_money" name="gas_money" value="0" /><span></span></td>
+								<td>电价：</td>
+								<td><input type="number" class="elec_money" name="elec_money" value="0" /><span></span></td>	
+							</tr>
+							<tr>														
+								<td>总价格：</td>
+								<td><input type="number" class="total_money" name="total_money" value="0" /></td>
+								<td>账单日期：</td>
+								<td><input type="text" class="period" name="period" id="J-x1" /></td>				
+								<td>备注：</td>
+								<td><input type="text" class="remark" name="remark" /></td>				
+							</tr>
+						</table>
+					</div><!--房源信息-->				
+					<div>		
+						<button class="btn btn-primary next addShare">提交</button>
+					</div>
+				</div>			
+			</div>
+<script src="../Js/jquery-1.7.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="../igjia/js/laydate.dev.js"></script>
+<script type="text/javascript" src="Js/addShare.js"></script>
+    <script type="text/javascript">
+         laydate({
+            elem: '#J-x1',
+            format:'YYYY-MM-DD'
+        });
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("html").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("html").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    
+    <div class="loading" style="height:100%; display:none; width:100%; z-index:99999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>	
+</body>
+</html>

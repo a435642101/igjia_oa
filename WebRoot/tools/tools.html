@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  	<select name="district" class="district"></select>
+    <select name="name" class="name"></select>
+    <input type="text" class="date" id="J-x1" style="width:70px" />
+    <button class="house">入房下载</button>
+    <button class="rent">出房下载</button>   
+<script type="text/javascript" src="../Js/jquery.js"></script>
+<script type="text/javascript" src="Js/utils/xlsx.full.min.js"></script>
+<script type="text/javascript" src="Js/utils/jsonToExcel.js"></script>
+<script type="text/javascript" src="Js/laydate.dev.js"></script>
+<script type="text/javascript">
+	  laydate({
+	        elem: '#J-x1',
+	        format: 'YYYY/MM'
+	  });
+</script>
+
+<script type="text/javascript">
+$(function(){
+	getDistrict();
+	getStaffByDD("壹管家老房源");
+	$(".district").change(function(){
+		var district = encodeURI(encodeURI( $(this).val()));
+		getStaffByDD(district);
+	});
+	$(".house").click(function(){
+		var name  = encodeURI(encodeURI($(".name").val()));
+		var district  = encodeURI(encodeURI($(".district").val()));		
+		var date = $(".date").val();
+		exportExcel1(district,name,date);
+	});
+	$(".rent").click(function(){
+		var name  = encodeURI(encodeURI($(".name").val()));
+		var district  = encodeURI(encodeURI($(".district").val()));
+		var date = $(".date").val();
+		exportExcel2(district,name,date);
+	});
+});
+
+function getStaffByDD(district){
+	  $.ajax({
+	       type: "GET",
+	       url: "/getStaffByDD.do",
+	       async:false,
+	       data: "department=YGJZL&district_id="+district,
+	       success: function(result){
+	    	   var arr=JSON.parse(result);       
+	    	   var obj;
+	    	   var html="<option value='全部'>全部</option>";
+	    	   for(var i=0;i<arr.msg.length;i++){
+	    		   obj=arr.msg[i];
+	    		   html += "<option value='"+obj.name+"'>"+obj.name+"</option>";
+	    	   }  
+	    	   $(".name").html(html);
+	       }
+	  });
+} 
+
+function getDistrict(){
+	$.ajax({
+	       type: "GET",
+	       url: "/getAllDistrict.do",
+	       data: "",
+	       async:false,
+	       success: function(result){
+	    	    var arr=JSON.parse(result);          
+		        var obj;
+		        var html="";
+		        for(var i=0;i<arr.length;i++){
+		          obj=arr[i];
+		         html += "<option value='"+obj.district+"'>"+obj.district+"</option>";
+		        }  
+		        $(".district").append(html);
+	       }
+	  });
+}
+
+function  exportExcel1(district,name,date){
+$('.loading').show();
+    $.ajax({  
+        type : "get",    
+        url : '/searchHouseData.do',
+        data : "district="+district+"&name="+name+"&date="+date,
+        success :function(result) {
+        $('.loading').hide();
+        	if(result=='fail'){
+        		window.top.document.location.href='../login.html';
+        	}else if(result=='[]'){
+        		alert('没有数据');
+        	}else{
+        		var result=JSON.parse(result);             
+                var option={}; 
+                var title={"job_no":"房源管家","name":"入房管家","region_manager":"区域经理","district":"区域","business_area":"商圈","address":"地址","state":"状态","firstyear_monthrent":"第一年租金","contract_startdate":"合同开始日期","contract_enddate":"合同结束日期","contract_month":"合同月份","room_num":"房间数"};
+                result.unshift(title);
+                option.data=result;
+                option.fileName=decodeURI(decodeURI(district))+"-"+decodeURI(decodeURI(name))+"-"+"本月收房";
+                option.filter=['job_no','name','region_manager','district','business_area','address','state','firstyear_monthrent','contract_startdate','contract_enddate','contract_month','room_num'];
+                var toExcel=new ExportJsonExcel(option);
+                toExcel.saveExcel();
+        	}
+            
+        },
+        error: function(error){
+             alert(error);
+        }
+    });  
+}
+function  exportExcel2(district,name,date){
+$('.loading').show();
+    $.ajax({  
+        type : "get",    
+        url : '/searchRentData.do',
+         data : "district="+district+"&name="+name+"&date="+date,
+        success :function(result) { 
+        $('.loading').hide();
+        	if(result=='fail'){
+        		window.top.document.location.href='../login.html';
+        	}else if(result=='[]'){
+        		alert('没有数据');
+        	}else{
+            	var result=JSON.parse(result);
+                var option={}; 
+                var title={"job_no":"房源管家","name":"出房管家","region_manager":"区域经理","district":"区域","business_area":"商圈","address":"地址","state":"状态","firstyear_monthrent":"第一年","contract_startdate":"合同开始日期","contract_enddate":"合同结束日期","contract_month":"合同月份","room_num":"房间数"};
+                result.unshift(title);
+                option.data=result;
+                option.fileName=decodeURI(decodeURI(district))+"-"+decodeURI(decodeURI(name))+"-"+"本月出房";
+                option.filter=['job_no','name','region_manager','district','business_area','address','state','firstyear_monthrent','contract_startdate','contract_enddate','contract_month','room_num'];
+                var toExcel=new ExportJsonExcel(option);
+                toExcel.saveExcel();
+            }
+        },
+        error: function(error){
+             alert(error);
+        }
+    });  
+}
+		
+</script>
+<div class="loading" style="display:none;height:100%; width:100%; z-index:9999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+	<img src="../images/loading_072.gif" style="position:fixed;left:48%;top:48%;"/>
+</div>
+  </body>
+</html>

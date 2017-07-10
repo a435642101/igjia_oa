@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——首页</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 当前页面交互请求 -->
+    <script type="text/javascript" src="js/index.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <section id="statistics" class="BCfff">
+        <header class="TC000 fs32">房源统计</header>
+        <div class="contentBox clearfix">
+            <div class="contL fl fs28">
+                <span class="chufang">出房总计</span>
+                <span class="rufang">入房总计</span>
+                <span class="kongzhi">空置间数</span>
+            </div>
+
+            <div class="contR fr fs24 relative">
+                <!-- 出房统计 开始 -->
+                <ul id="CFInfor" class="totalCF totalCF1 clearfix textCe">
+                    <!-- <li class="BCfa735c"></li>
+                    <li class="BC717bc8"></li>
+                    <li class="BC56cefc"></li>
+                    <li class="BC8ece70"></li>
+                    <li class="BCfdb667"></li>
+                    <li class="BCf35960"></li> -->
+                </ul>
+                <!-- 出房统计 结束 -->
+                <ul class="total total1 clearfix">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <!-- 入房统计 开始 -->
+                <ul id="RFInfor" class="totalCF totalCF2 clearfix textCe">
+                    <!-- <li class="BCfa735c"></li>
+                    <li class="BC717bc8"></li>
+                    <li class="BC56cefc"></li>
+                    <li class="BC8ece70"></li>
+                    <li class="BCfdb667"></li>
+                    <li class="BCf35960"></li> -->
+                </ul>
+                <!-- 入房统计 结束 -->
+                <ul class="total total2 clearfix">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <!-- 空置间数 开始 -->
+                <ul id="KZInfor" class="totalCF totalCF3 clearfix textCe">
+                    <!-- <li class="BCfa735c"></li>
+                    <li class="BC717bc8"></li>
+                    <li class="BC56cefc"></li>
+                    <li class="BC8ece70"></li>
+                    <li class="BCfdb667"></li>
+                    <li class="BCf35960"></li> -->
+                </ul>
+                <!-- 空置间数 结束 -->
+            </div>
+        </div>
+        <div class="percentage fs24 TC999 relative">
+            <span>0%</span>
+            <span>20%</span>
+            <span>40%</span>
+            <span>60%</span>
+            <span>80%</span>
+            <span>100%</span>
+        </div>
+        <div id="explainBox" class="explainBox fs24 textCe clearfix TC999"></div>
+    </section>
+
+    <section class="newCF newCF1 BCfff">
+        <header class="TC000 fs32">最新出房</header>
+        <div class="CFView">
+            <ul id="newChuFang" class="CFList fs28"></ul>
+        </div>
+    </section>
+
+    <section class="newCF newRF1 BCfff">
+        <header class="TC000 fs32">最新入房</header>
+        <div class="CFView">
+            <ul id="newRuFang" class="CFList fs28">
+                <!-- <li>
+                    <a href="#">韩硕新入了一套编号为1488813663的房源</a>
+                </li>
+                <li>
+                    <a href="#">白亚辉新入了一套编号为1488811481的房源</a>
+                </li>
+                <li>
+                    <a href="#">许菲菲新入了一套编号为1488857074的房源</a>
+                </li>
+                <li>
+                    <a href="#">某某新入了一套编号为1488813663的房源</a>
+                </li>
+                <li>
+                    <a href="#">某某新入了一套编号为1488813663的房源</a>
+                </li> -->
+            </ul>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(0).addClass('selected');
+                    $("#tabBox li").eq(0).find('img').attr('src','images/iconSY1.png');
+                    $("#tabBox li").eq(0).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(0).find('span').addClass('TCee6b41');
+                }
+            });
+
+            // console.log($(window).width());
+            // console.log($(window).height());
+            // alert($(window).width());
+            // alert($(window).height());
+        });
+    </script>
+	
+</body>
+
+</html>

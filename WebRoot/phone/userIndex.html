@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——用户中心</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/userIndex.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/userIndex.js"></script>
+
+</head>
+
+<body>
+    
+    <div id="headBox" class="BCee6b41 fs32 clearfix">
+        <i class="iconfont fl back TCfff" onclick="history.go(-1);">&#xe681;</i>
+        <a href="#" class="signOut fr" id="tuiChu">
+            [退出系统]
+        </a>
+    </div>
+
+    <header id="portraitBox" class="textCe">
+        <div class="name TCfff">你好，</div>
+        <div class="portrait"><img src="images/touxiang.png" alt=""></div>
+    </header>
+
+    <div id="userInfor" class="clearfix fs28 TC000">
+        <span id="buMen" class="fl">部门：<i></i></span>
+        <span id="zhiWei" class="fl">职位：<i></i></span>
+        <span id="zuBie" class="fr">组别：<i></i></span>
+    </div>
+
+    <div class="fenGe BCf2f2f2"></div>
+
+    <section id="contBox">
+        <div id="userHead1" class="fs30 clearfix"><span class="selectColor" data="true">配置房源</span><span data="false">名下房源</span></div>
+        <div id="userHead2" class="fs30">配置房源</div>
+        <!-- 如果没有信息 开始 -->
+        <!-- <div class="noInfor fs28 textCe">
+            <img src="images/zanwu.png" alt="">
+            <span>暂无</span>
+        </div> -->
+        <!-- 如果没有信息 结束 -->
+
+        <!-- 配置房源 开始 -->
+        <div id="userPZFYBox"  class="userStyleBox">
+            <div id="userPZFY" class="userStyle">
+                <div class="loadBox"><img src="images/loading.gif" alt="" /></div>
+            </div>
+            <!-- 向上滑动加载更多 开始 -->
+            <div id="svrollJiaZai" class="more box_sizing" style="width: 100%;font-size: 0.28rem;color: #666;text-align:center;">
+                <a href="javascript:void();" class="b_radius_l fs28 textCe"><img src="images/preloader-white.gif" alt="" style="margin:6px auto 9px;width: 15px;height: 15px;display: none;"></a>
+            </div>
+            <!-- 向上滑动加载更多 结束 -->
+        </div>
+        <!-- 配置房源 结束 -->
+        
+        <!-- 名下房源 开始 -->
+        <div id="userMXFYBox" class="userStyleBox">
+            <div id="userMXFY" class="userStyle">
+                <div class="loadBox"><img src="images/loading.gif" alt="" /></div>
+            </div>
+            <!-- 向上滑动加载更多 开始 -->
+            <div id="svrollJiaZai2" class="more box_sizing" style="width: 100%;font-size: 0.28rem;color: #666;text-align:center;">
+                <a href="javascript:void();" class="b_radius_l fs28 textCe"><img src="images/preloader-white.gif" alt="" style="margin:6px auto 9px;width: 15px;height: 15px;display: none;"></a>
+            </div>
+            <!-- 向上滑动加载更多 结束 -->
+        </div>
+        <!-- 名下房源 结束 -->
+    </section>
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+
+    <script>
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-100);
+            scrolldelay = setTimeout('pageScroll()',6);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+        });
+    </script>
+	
+</body>
+
+</html>

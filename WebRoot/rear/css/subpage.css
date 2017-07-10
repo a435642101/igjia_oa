@@ -1,0 +1,18 @@
+/* CSS Document */
+@charset "utf-8";
+.main{height:799px; width:100%; overflow:hidden;}
+.main > div{position:relative; height:100%; width:100%;}
+.main .yy{background-color:#FFF; opacity:0.7; border-radius:10px; margin-top:-800px; z-index:9;}
+.main .part{height:100%; width:100%; padding-top:1px; z-index:99;}/* 
+.part .mnav{height:50px; background-color:#FFFFFF; margin:10px 0.7%; border-radius:5px;}
+.part .mnav ul li{float:left; text-align:center; padding:6px 15px; border-radius:10px; font-size:14px; color:#222; margin:8px 11px 8px 18px; cursor:pointer;}
+.part .mnav ul li.act{ background-color:#ee6b41; color:#FFF;}*/
+
+.mpart{min-width:1000px; height:745px; margin:0px 0.7% 10px 0.7%; border-radius:3px;position:relative;z-index:5; background-color:#FFFFFF;}
+.mpart div{min-width:1000px; height:700px;}
+.nav_top{ margin-left: 12px;position:relative;}
+.nav_top span{width:200px; height:35px; line-height:35px; border-radius:5px 5px 1px 1px; display:inline-block; text-align: right; position: relative; margin-left:10px; background-color:#FFFFFF; text-align:center;}
+.nav_top span .close{background:url(../../images/house/t-close.png); display: inline-block; height: 13px;width: 13px; float: right; margin-right: 10px; margin-top: 10px;}
+.nav_top span .close:hover{background:url(../../images/house/t-close.png) 0px 13px;}
+
+��table{margin-left: 1%; width: 98%;}

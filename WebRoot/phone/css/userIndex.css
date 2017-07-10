@@ -1,0 +1,172 @@
+
+#headBox i{
+	font-size: 0.34rem;
+	padding-right: 0.3rem;
+}
+
+#headBox .signOut {
+    color: #fff;
+}
+
+#portraitBox{
+	width: 7.5rem;
+	height: 3.8rem;
+	background-image: url(../images/userCenterBg.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	padding-top: 1.4rem;
+}
+
+#portraitBox .name{
+	width: 100%;
+	font-size: 0.32rem;
+	margin-bottom: 0.3rem;
+}
+
+#portraitBox .portrait{
+	width: 100%; 
+}
+
+#portraitBox .portrait img{
+	margin: 0 auto;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+#userInfor{
+	width: 7.5rem;
+	margin: 0.2rem 0 0.4rem;
+	padding: 0 0.2rem; 
+}
+
+#userInfor span{
+	width: 33%;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#userInfor #zhiWei{
+	margin-left: 0.5%;
+}
+
+#contBox{
+	width: 7.5rem;
+	height: auto; 
+	margin-top: 0.25rem;
+	padding: 0 0.2rem;
+}
+
+#contBox .noInfor{
+	width: 100%;
+	color: #aaa;
+	padding: 1.6rem 0 2rem;
+	/*border-top:1px solid #d2d2d2;*/
+	/*border-bottom:1px solid #d2d2d2;*/
+	/*display: none;*/
+}
+
+#contBox .noInfor img{
+	width: auto;
+	height: 0.6rem;
+	margin: 0 auto 0.1rem;
+}
+
+
+#userHead1{
+	width: 100%;
+	text-align: center;
+	display: none;
+}
+
+#userHead1 span{
+	width: 26%;
+	float: left;
+	padding-top: 0.15rem;
+	padding-bottom: 0.2rem; 
+}
+
+#userHead1 span:first-child{
+	margin-left: 24%;
+}
+
+/*选中状态*/
+#userHead1 span.selectColor{
+	color: #ee6b41;
+}
+
+#userHead2{
+	width: 100%;
+	padding: 0.15rem 0.15rem 0.2rem;
+	display: none;
+}
+
+#contBox .userStyle:last-child{
+	display: none;
+}
+
+.userStyle{
+	width: 100%;
+	border: 1px solid #d2d2d2;
+	border-top: none;
+	border-bottom: none;
+	margin-bottom: 0.1rem;
+}
+
+.userStyle ul{
+	border-top: 1px solid #d2d2d2;
+	border-bottom: 1px solid #d2d2d2;
+	margin-top: 0.15rem;
+	padding: 0.08rem 0.15rem;
+}
+
+/*.userStyle ul:first-child{
+	margin-top: 0;
+}*/
+
+.userStyle ul li{
+	padding: 0.02rem 0;
+	line-height: 0.35rem;
+}
+
+.userStyle ul li span{
+	float: left;
+}
+
+.userStyle ul li span.wid{
+	width: 5.3rem;
+}
+
+/*初始化名下房源隐藏*/
+#userMXFYBox{
+	display: none;
+}
+
+#userMXFY{
+	border: 1px solid #d2d2d2;
+	border-top: none;
+	border-bottom: none;
+}
+
+#userMXFY a:first-child>ul.inforItem{
+	border-top: 1px solid #d2d2d2;
+}
+
+#userMXFY ul.inforItem{
+	border-top: none;
+	border-bottom: 1px solid #d2d2d2;
+	margin-top: 0;
+}
+
+#detailsBox header{
+	padding: 0 0.15rem;
+}
+
+
+.fenGe{
+	width: 7.5rem;
+	height: 0.2rem;
+}
+
+

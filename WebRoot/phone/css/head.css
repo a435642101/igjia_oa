@@ -1,0 +1,85 @@
+
+#headBox{
+	width:7.5rem;
+	padding:0 0.15rem;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	overflow: hidden;
+}
+
+#headBox .grzx{
+	width: 0.45rem;
+	height: 100%;
+	margin-right: 0.1rem;
+	padding:0.15rem 0;
+}
+
+#headBox .grzx img{
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+#headBox .signOut{
+	color:#ffbfaa;
+}
+
+#tabBox{
+	width:7.5rem;
+}
+
+#tabBox li{
+	float: left;
+	width: 25%;
+	height: 1.2rem;
+	padding-top: 0.1rem;
+}
+
+#tabBox li.selected{
+	border-bottom: 0.06rem solid #ee6b41;
+	background-color: #ffffff;
+}
+
+#tabBox li a{
+	width: 100%;
+	height: 100%;
+}
+
+#tabBox li a img{
+	width: 0.5rem;
+	height: 0.5rem;
+	margin: 0 auto;
+}
+
+#tabBox li a span{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin-top: 0.05rem;
+}
+
+
+
+
+#fyTab{
+	width: 7.5rem;
+	margin-bottom: 0.2rem;
+}
+
+#fyTab ul{
+	width: 5.5rem;
+	margin: 0 auto;
+	padding: 0.2rem 0 0.2rem;
+}
+
+#fyTab ul.hqHead{
+	width: 4rem;
+}
+
+#fyTab ul li{
+	float: left;
+	width: 33.33%;
+}
+
+#fyTab ul li a{
+	color: #aaa;
+}

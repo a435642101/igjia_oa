@@ -1,0 +1,51 @@
+.pagingUl{
+  float:right;
+  padding:0;
+  margin:0;
+  list-style: none;
+}
+.pagingUl li{
+  float: left;
+  width: 30px;
+  height: 30px;
+  list-style: 30px;
+  text-align: center;
+}
+.pagingUl li a{
+  text-decoration: none;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 28px;
+  padding: 0;
+  background: #fafafa;
+  color: #666;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  margin-top:4px;
+}
+
+.prv, .next {
+  width: 30px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  margin:4px 0;
+}
+.first, .last {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+    margin:4px 0;
+}
+.center_right_detail_list_page{
+	height:40px;
+}

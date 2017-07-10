@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——房源查询结果</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyResultDetails.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="hqHead"></header>
+
+    <!-- <section id="fyTab" class="fs32 BCfff">
+        <ul class="clearfix textCe">
+            <li><a href="#">查询房源</a></li>
+            <li><a href="#">添加房源</a></li>
+            <li><a href="#">添加出房</a></li>
+        </ul>
+    </section> -->
+
+    <!-- 房源详情 开始 -->
+    <section id="detailsBox" class="BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">查询结果</span>
+        </header>
+        
+        <div class="showBox hqQueryResultDetails">
+            <!-- 房源信息 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">房源信息</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>所属区域：</span>
+                        <span>浦东西区</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同编号：</span>
+                        <span>130152250</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>商圈：</span>
+                        <span>周浦</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源地址：</span>
+                        <span>上海市浦东新区周浦镇100号1号楼3楼301室A01</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>小区：</span>
+                        <span>周浦小区</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>户型：</span>
+                        <span>3室1厅1室1卫1阳台</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房间ID：</span>
+                        <span>A01</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>所属商圈：</span>
+                        <span>周浦</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 房源信息 结束 -->
+            <!-- 装修信息 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">装修信息</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>管家：</span>
+                        <span>某某某</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>装修团队：</span>
+                        <span>某某某</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>测试时间：</span>
+                        <span>2017.03.28</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>后勤：</span>
+                        <span>某某某</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>装修团队电话：</span>
+                        <span>15915921692</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>开工时间：</span>
+                        <span>2017.01.20</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>完工时间：</span>
+                        <span>2017.03.20</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 装修信息 结束 -->
+            <!-- 供应商信息 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">供应商信息</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>家具供应商：</span>
+                        <span>某某某</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>家电供应商：</span>
+                        <span>某某某</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>家具通知时间：</span>
+                        <span>2017.03.28</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>家电通知时间：</span>
+                        <span>2017.03.28</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>电话：</span>
+                        <span>15915921692</span>
+                    </li>
+                    <li class="clearfix">
+                        <span>家具送达时间：</span>
+                        <span>2017.03.20</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 供应商信息 结束 -->
+        </div>
+    </section>
+    <!-- 房源详情 结束 -->
+
+
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+
+    <script type="text/javascript">
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-60);
+            scrolldelay = setTimeout('pageScroll()',10);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+            // head页面加载
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(2).addClass('selected');
+                    $("#tabBox li").eq(2).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(2).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(2).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/hqHead.html",
+                success: function(x) {
+                    $("#hqHead").html(x);
+                    $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+        });
+    </script>
+	
+</body>
+
+</html>

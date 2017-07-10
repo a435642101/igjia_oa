@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+	<title>壹公寓——房源查询结果</title>
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <!-- css样式重置文件 -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" type="text/css" href="iconFont/iconfont.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/cxfyResultDetails.css">
+
+    
+    <!-- 调用jquery库 -->
+	<script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <!-- 配置路径js代码 -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- 当前页面,数据交互 -->
+    <script type="text/javascript" src="js/cxfyResultDetails.js"></script>
+    
+    <!-- 当前页面js代码 -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+
+<body class="BCf2f2f2">
+    
+    <header id="head"></header>
+
+    <header id="head2"></header>
+
+    <!-- 房源详情 开始 -->
+    <section id="detailsBox" class="BCfff">
+        <header class="clearfix fs32">
+            <i class="iconfont fl back" onclick="history.go(-1);">&#xe681;</i>
+            <span class="fl">查询结果</span>
+        </header>
+        <div class="head clearfix fs32 textCe">
+            <span class="fl">收房信息</span>
+            <span class="fl BCf2f2f2">出房信息</span>
+        </div>
+        
+        <div class="showBox shoufang">
+            <!-- 收房房源信息 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">房源信息</h2>
+                <ul id="sffyInfor" class="fyInforList">
+                    <li class="clearfix">
+                        <span>房源ID：</span>
+                        <span id="SFhouse_id"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源所在地：</span>
+                        <span id="SFcity"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源所属区域：</span>
+                        <span id="SFregion"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源所属小区：</span>
+                        <span id="SFestate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>商圈：</span>
+                        <span id="SFbusiness_area"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>具体地址：</span>
+                        <span id="SFaddress"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房东姓名：</span>
+                        <span id="SFfangdong_name"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房东电话：</span>
+                        <span id="SFfangdong_telephone"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房东身份证：</span>
+                        <span id="SFfangdong_idcard"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>收款人姓名：</span>
+                        <span id="SFshoukuanren_name"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>收款人电话：</span>
+                        <span id="SFshoukuanren_telephone"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>收款人开户行：</span>
+                        <span id="SFshoukuanren_kaihuhang"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>收款人银行账户：</span>
+                        <span id="SFshoukuanren_account"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>户型：</span>
+                        <span id="SFhouse_type"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>面积：</span>
+                        <span id="SFarea"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房间面积：</span>
+                        <span id="SFroom_area"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房间朝向：</span>
+                        <span id="SFroom_chaoxiang"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房间特色：</span>
+                        <span id="SFroom_tese"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房间预期出房价格：</span>
+                        <span id="SFroom_yuqichufangjia"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 收房房源信息 结束 -->
+            <!-- 收房合同信息 开始 -->
+            <div class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">合同信息</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>合同编号：</span>
+                        <span id="SFcontract_no"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>签约日期：</span>
+                        <span id="SFcontract_date"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同生效起始日期：</span>
+                        <span id="SFcontract_startdate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同结束日期：</span>
+                        <span id="SFcontract_enddate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同期限(月份)：</span>
+                        <span id="SFcontract_month"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>空置天数：</span>
+                        <span id="SFvacancy_date"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>首年月租金：</span>
+                        <span id="SFfirstyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>次年月租金：</span>
+                        <span id="SFsecondyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第三年月租金：</span>
+                        <span id="SFthirdyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第四年月租金：</span>
+                        <span id="SFfourthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第五年月租金：</span>
+                        <span id="SFfifthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第六年月租金：</span>
+                        <span id="SFsixthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>次年是否支付13个月：</span>
+                        <span id="SFpay_nextyear"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>打款日期：</span>
+                        <span id="SFpay_date"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>业务员：</span>
+                        <span id="SFname"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>区域经理：</span>
+                        <span id="SFregion_manager"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>该房子总共花费的成本：</span>
+                        <span id="SFtotalcost"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>支付方式(30日or60日...)：</span>
+                        <span id="SFpaymethod"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>押金：</span>
+                        <span id="SFdeposit"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>逾期赔付金额：</span>
+                        <span id="SFoverdue_payment"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>备注：</span>
+                        <span id="SFremark"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>进房服务商：</span>
+                        <span id="SFhouse_provider"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>入房中介费：</span>
+                        <span id="SFprovider_money"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>管家：</span>
+                        <span id="SFjob_no"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>该房源房间数：</span>
+                        <span id="SFroom_num"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源状态：</span>
+                        <span id="SFstate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房子区域：</span>
+                        <span id="SFdistrict"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>录入日期：</span>
+                        <span id="SFdate"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 收房合同信息 结束 -->
+            <!-- 水电煤 开始 -->
+            <div id="shuiDianMei" class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">水电煤信息</h2>
+                <ul class="fyInforList">
+                    <li class="clearfix">
+                        <span>水表账号：</span>
+                        <span id="SDMwater_account"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>上次水表度数：</span>
+                        <span id="SDMlast_water_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>当前水表度数：</span>
+                        <span id="SDMnow_water_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>水费单价：</span>
+                        <span id="SDMwater_unitprice"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>电表账号：</span>
+                        <span id="SDMelec_account"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>上次电表度数(白天)：</span>
+                        <span id="SDMlast_elec_degree_day"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>上次电表度数(黑夜)：</span>
+                        <span id="SDMlast_elec_degree_night"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>本次电表度数(白天)：</span>
+                        <span id="SDMnow_elec_degree_day"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>本次电表度数(黑夜)：</span>
+                        <span id="SDMnow_elec_degree_night"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>电费单价(白天)：</span>
+                        <span id="SDMelec_unitprice_day"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>电费单价黑夜：</span>
+                        <span id="SDMelec_unitprice_night"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>煤气账号：</span>
+                        <span id="SDMgas_account"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>上次煤气表度数：</span>
+                        <span id="SDMlast_gas_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>现在煤气表度数：</span>
+                        <span id="SDMnow_gas_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>煤气单价：</span>
+                        <span id="SDMgas_unitprice"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>是否有有线电视机：</span>
+                        <span id="SDMcableTV"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>有线电视账号：</span>
+                        <span id="SDMcableTV_account"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>有线电视付款日：</span>
+                        <span id="SDMcableTV_date"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>有线电视价钱：</span>
+                        <span id="SDMcableTV_money"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>保洁费：</span>
+                        <span id="SDMcleaning_price"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>总价：</span>
+                        <span id="SDMtotal_money"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>是否有电话机：</span>
+                        <span id="SDMphone"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>装修情况：</span>
+                        <span id="SDMdecoration"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>备注：</span>
+                        <span id="SDMremark"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 水电煤 结束 -->
+            <!-- 家具 开始 -->
+            <div id="jiaju" class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">家具信息</h2>
+            </div>
+            <!-- 家具 结束 -->
+        </div>
+
+        <div class="showBox chufang">
+            <!-- 出房房源信息 开始 -->
+            <div class="fs28 fyInforBox">
+                <h2 class="fs32">房源信息</h2>
+                <div id="htInforNone" style="display: none;text-align: center;color: #666;padding: 1rem 0 1.4rem;">暂无信息！</div>
+                <ul id="cffyInfor" class="fyInforList">
+                    <li class="clearfix">
+                        <span>出房合同编号：</span>
+                        <span id="CFcontract_no"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>租客姓名：</span>
+                        <span id="CFrenter_name"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>租客手机号：</span>
+                        <span id="CFrenter_telephone"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>租客身份证号：</span>
+                        <span id="CFrenter_idcard"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源ID：</span>
+                        <span id="CFhouse_id"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源地址：</span>
+                        <span id="CFaddress"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>业务员姓名：</span>
+                        <span id="CFname"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>区域经理：</span>
+                        <span id="CFregion_manager"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>出房服务商：</span>
+                        <span id="CFservice_provider"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>出房费：</span>
+                        <span id="CFprovider_money"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同签约日期：</span>
+                        <span id="CFcontract_date"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同生效起始日期：</span>
+                        <span id="CFcontract_startdate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同结束日期：</span>
+                        <span id="CFcontract_enddate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>合同期限(月份)：</span>
+                        <span id="CFcontract_month"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>首年月租金：</span>
+                        <span id="CFfirstyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>次年月租金：</span>
+                        <span id="CFsecondyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第三年月租金：</span>
+                        <span id="CFthirdyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第四年月租金：</span>
+                        <span id="CFfourthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第五年月租金：</span>
+                        <span id="CFfifthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第六年月租金：</span>
+                        <span id="CFsixthyear_monthrent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>第一期放租金：</span>
+                        <span id="CFfirststage_rent"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>付房租日期：</span>
+                        <span id="CFpayrent_time"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>支付方式：</span>
+                        <span id="CFpaymethod"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>押金金额：</span>
+                        <span id="CFdeposit"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>月付申请服务商：</span>
+                        <span id="CFmonthpay_provider"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>月付申请状态：</span>
+                        <span id="CFmonthpay_state"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>管家：</span>
+                        <span id="CFjob_no"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>该房源房间数：</span>
+                        <span id="CFroom_num"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源状态：</span>
+                        <span id="CFstate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>房源区域：</span>
+                        <span id="CFdistrict"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>录入日期：</span>
+                        <span id="CFdate"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>备注：</span>
+                        <span id="CFremark"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 出房房源信息 结束 -->
+
+            <!-- 水电煤信息 开始 -->
+            <div id="CFZKrentBox" class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">水电煤信息</h2>
+                <ul id="CFZKrent" class="fyInforList">
+                    <!-- <li class="clearfix">
+                        <span>合同编号：</span>
+                        <span id="CFZKcontract_no"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>租客姓名：</span>
+                        <span id="CFZKrentname"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>租客手机号：</span>
+                        <span id="CFZKrent_telephone"></span>
+                    </li> -->
+                    <li class="clearfix">
+                        <span>本次电表度数(白天)：</span>
+                        <span id="CFZKnow_elec_degree_day"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>本次电表度数(黑夜)：</span>
+                        <span id="CFZKnow_elec_degree_night"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>当前煤气表度数：</span>
+                        <span id="CFZKnow_gas_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>当前水表度数：</span>
+                        <span id="CFZKnow_water_degree"></span>
+                    </li>
+                    <li class="clearfix">
+                        <span>状态：</span>
+                        <span id="CFZKstate"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 水电煤信息 结束 -->
+
+            <!-- 出房家具信息 开始 -->
+            <div id="CFFWinfor" class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">家具信息</h2>
+            </div>
+            <!-- 出房家具信息 结束 -->
+
+            <!-- 出房钥匙信息 开始 -->
+            <div id="CFyspz" class="fs28 fyInforBox htInforBox">
+                <h2 class="fs32">钥匙凭证信息</h2>
+            </div>
+            <!-- 出房钥匙信息 结束 -->
+        </div>
+    </section>
+    <!-- 房源详情 结束 -->
+
+
+
+    <!-- 返回顶部 开始 -->
+    <div id="returnTop" onclick="pageScroll()">
+        <i class="iconfont">&#xe60a;</i>
+    </div>
+    <!-- 返回顶部 结束 -->
+
+    <script type="text/javascript">
+        // 返回顶部
+        function pageScroll(){
+            window.scrollBy(0,-60);
+            scrolldelay = setTimeout('pageScroll()',10);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        };
+
+        $(document).ready(function() {
+
+            $(window).scroll(function(){
+                if($(window).scrollTop() > 300){
+                    $("#returnTop").fadeIn(700);
+                }else{
+                    $("#returnTop").fadeOut(700);
+                }
+            });
+
+            // head页面加载
+            $.ajax({
+                url: "include/head.html",
+                success: function(x) {
+                    $("#head").html(x);
+                    $("#tabBox li").eq(1).addClass('selected');
+                    $("#tabBox li").eq(1).find('img').attr('src','images/iconFY1.png');
+                    $("#tabBox li").eq(1).find('span').removeClass('TCaaa');
+                    $("#tabBox li").eq(1).find('span').addClass('TCee6b41');
+                }
+            });
+
+            $.ajax({
+                url: "include/head2.html",
+                success: function(x) {
+                    $("#head2").html(x);
+                    $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+                }
+            });
+
+            // $("#fyTab li").eq(0).find('a').css({color: '#ee6b41'});
+        });
+    </script>
+	
+</body>
+
+</html>

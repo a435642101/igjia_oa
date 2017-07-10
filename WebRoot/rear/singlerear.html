@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/rear.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+
+
+</script>
+</head>
+
+<body>
+<div class="untit">
+	<div class="houseinfo">
+		<div class="tit"><span>房源信息</span></div>
+		<div class="a">
+			<div>
+				<span>合同编号:</span>
+				<input type="text" name="contract_no" class="contract_no" id="contract_no" />
+			</div>
+			<div>
+				<span>所属区域:</span>
+				<select  name="district" class="district" id="district"></select>
+			</div>
+			<div>
+				<span>商圈:</span>
+				<input type="text" name="business_area" class="business_area" id="business_area" />
+			</div>
+			<div>
+				<span>录入时间:</span>
+				<input type="text" name="date" class="date" id="date" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>小区:</span>
+				<input type="text" name="estate" class="estate" id="estate" />
+			</div>
+			<div>
+				<span>房源地址:</span>
+				<div class="col-sm-9 colj31" style="position: relative;width: 120px; height:24px; font-size:14px; margin-right: 4px;">
+					<div id="djxz" class="xzyx" style="height: 24px;width:117px; border: 1px solid #ccc;cursor: pointer; line-height: 24px;padding-left:5px;text-overflow:ellipsis;overflow: hidden;">加载中...</div>
+					<div class="sswk" style="margin-top:24px; max-height: 230px;width:300px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+					<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+					<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+						<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+						</ul>
+					</div>
+					<input type="text" class="address" style="width:300px;display:none;" name="address"  />
+				</div>
+			</div>
+			<div>
+				<span>户型:</span>
+				<input type="text" name="type" class="type" id="type" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>房间ID:</span>
+				<label>
+				</label>
+			</div>
+		</div>
+	</div><!--houseinfo-->
+	<div class="fitmentinfo">
+		<div class="tit"><span>装修信息</span></div>
+		<div class="a">
+			<div>
+				<span>管家:</span>
+				<select type="text" name="job_no" class="job_no" id="job_no"></select>
+			</div>
+			<div>
+				<span>后勤:</span>
+				<select type="text" name="rear" class="rear" id="rear"></select>
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>装修团队:</span>
+				<input type="text" name="decorate_team" class="decorate_team" id="decorate_team" />
+			</div>
+			<div>
+				<span>装修团队电话:</span>
+				<input type="text" name="decorate_telephone" class="decorate_telephone" id="decorate_telephone"  />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>测量时间:</span>
+				<input type="text" name="measure_date" class="measure_date" id="J-x1" />
+			</div>
+			<div>
+				<span>开工时间:</span>
+				<input type="text" name="begin_date" class="begin_date" id="J-x2" />
+			</div>
+			<div>
+				<span>完工时间:</span>
+				<input type="text" name="finish_date" class="finish_date" id="J-x3" />
+			</div>
+			<div>
+				<span>配置时长:</span>
+				<input type="text" name="duration" class="duration" readonly="readonly" />
+			</div>
+		</div>
+		
+	</div><!--fitmentinfo-->
+	<div class="supplier">
+		<div class="tit"><span>供应商信息</span></div>
+		<div class="a">
+			<div>
+				<span>家具供应商:</span>
+				<input type="text" name="furniture_supplier" class="furniture_supplier" id="furniture_supplier" />
+			</div>
+			<div>
+				<span>电话:</span>
+				<input type="text" name="furniture_telephone" class="furniture_telephone" id="furniture_telephone" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>家电供应商:</span>
+				<input type="text" name="appliance_supplier" class="appliance_supplier" id="appliance_supplier" />
+			</div>
+			<div>
+				<span>电话:</span>
+				<input type="text" name="appliance_telephone" class="appliance_telephone" id="appliance_telephone" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>家具通知时间:</span>
+				<input type="text" name="furniture_startdate" class="furniture_startdate" id="J-x4" />
+			</div>
+			<div>
+				<span>家具送达时间:</span>
+				<input type="text" name="furniture_reachdate" class="furniture_reachdate" id="J-x5" />
+			</div>
+		</div>
+		<div class="a">
+			<div>
+				<span>家电通知时间:</span>
+				<input type="text" name="appliance_startdate" class="appliance_startdate" id="J-x6" />
+			</div>
+			<div>
+				<span>家电送达时间:</span>
+				<input type="text" name="appliance_reachdate" class="appliance_reachdate" id="J-x7" />
+			</div>
+		</div>
+	</div><!--supplier-->
+	<div class="fitment">
+		<div class="a">装修</div>
+		<div class="fitmm zhuangxiu houtit houtit1" lang="zhuangxiu">
+			<div class="roomimg"><img src="images/keting.png" /><span>装修</span></div>
+			<div class="renovation zhuangxiumingxi tableleft">
+				<div>装修明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+		</div>
+		<div class="a">配置</div>
+		<div class="hall keting houtit houtit2" lang="keting">
+			<div class="roomimg"><img src="images/keting.png" /><span>客厅</span></div>
+			<div class="furniture jiajumingxi tableleft">
+				<div>家具明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+			<div class="appliance jiadianmingxi tableleft">
+				<div>家电明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+		</div>
+		
+		<div class="kitchen chufang houtit houtit2" lang="chufang">
+			<div class="roomimg"><img src="images/chufang.png" /><span>厨房</span></div>
+			<div class="furniture jiajumingxi tableleft">
+				<div>家具明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+			<div class="appliance jiadianmingxi tableleft">
+				<div>家电明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+		</div>
+		
+		<div class="shower gonggongyushi houtit houtit2" lang="gonggongyushi">
+			<div class="roomimg"><img src="images/wsj.png" /><span>公共浴室</span></div>
+			<div class="furniture jiajumingxi tableleft">
+				<div>家具明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+			<div class="appliance jiadianmingxi tableleft">
+				<div>家电明细</div>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>
+				</table>
+				<table class="table" width="600" border="0">
+						<tr>
+							<th></th>
+							<th>项目</th>
+							<th>型号\规格</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>应付</th>
+							<th>备注</th>
+						</tr>	
+				</table>
+				<div class="fitotal">共计：<span>0</span>元</div>
+			</div>
+		</div>
+		
+		<!--<div class="bedroom houtit">
+			
+		</div>fall-->
+	</div><!--配置-->
+	<div>
+		<div>账单</div>
+		<div class="total">
+			<table>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>应付</th>
+					<th>实付</th>
+					<th>备注</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td bgcolor="#efefef" align="center">装修</td>
+					<td><input type="text" name="decorate_handle" class="decorate_handle" id="decorate_handle" value="0" readonly="readonly" /></td>
+					<td><input type="text" name="decorate_outofpocket" class="decorate_outofpocket" id="decorate_outofpocket" /></td>
+					<td><input type="text" name="decorate_remark" class="decorate_remark" id="decorate_remark" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td bgcolor="#efefef" align="center">家具</td>
+					<td><input type="text" name="furniture_handle" class="furniture_handle" id="furniture_handle" value="0" readonly="readonly" /></td>
+					<td><input type="text" name="furniture_outofpocket" class="furniture_outofpocket" id="furniture_outofpocket" /></td>
+					<td><input type="text" name="furniture_remark" class="furniture_remark" id="furniture_remark" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td bgcolor="#efefef" align="center">家电</td>
+					<td><input type="text" name="appliance_handle" class="appliance_handle" id="appliance_handle" value="0" readonly="readonly" /></td>
+					<td><input type="text" name="appliance_outofpocket" class="appliance_outofpocket" id="appliance_outofpocket" /></td>
+					<td><input type="text" name="appliance_remark" class="appliance_remark" id="appliance_remark" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td bgcolor="#efefef" align="center">总计</td>
+					<td><input type="text" name="handle" class="handle" id="handle" value="0" readonly="readonly" /></td>
+					<td><input type="text" name="out_of_pocket" class="out_of_pocket" id="out_of_pocket" value="0" readonly="readonly" /></td>
+					<td align="center" class="zongji"></td>
+				</tr>
+			</table>
+		</div>
+	</div><!--账单-->
+</div>
+<script type="text/javascript" src="js/enc.js"></script>
+<script type="text/javascript" src="js/singlerear.js"></script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+<script type="text/javascript">
+        laydate({
+            elem: '#J-x1'
+        });
+         laydate({
+            elem: '#J-x2'
+        });
+         laydate({
+            elem: '#J-x3'
+        });
+        laydate({
+            elem: '#J-x4'
+        });
+        laydate({
+            elem: '#J-x5'
+        });
+        laydate({
+            elem: '#J-x6'
+        });
+        laydate({
+            elem: '#J-x7'
+        });
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $("body").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $("body").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+</body>
+</html>

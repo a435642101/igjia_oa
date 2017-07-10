@@ -1,0 +1,251 @@
+
+
+/*查询结果*/
+#resultBox{
+	width: 7.5rem;
+	padding: 0.4rem 0;
+}
+
+#resultBox header{
+	width: 7.1rem;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	margin: 0 auto;
+}
+
+#resultBox header i{
+	color: #ee6b41;
+	height: 100%; 
+}
+
+#resultBox header span{
+	height: 100%; 
+}
+
+#resultBox header .back{
+	font-size: 0.35rem;
+	width: 0.5rem;
+	margin-left: -0.07rem;
+}
+
+#resultBox header .menu{
+	text-align: right;
+	width: 0.6rem;
+	line-height: 0.68rem;
+	font-size: 0.45rem;
+}
+
+#resultBox .resultList{
+	width: 7.1rem;
+	margin: 0.1rem auto 0;
+	border-top: 1px solid #d2d2d2;
+	border-left: 1px solid #d2d2d2;
+	border-right: 1px solid #d2d2d2;
+}
+
+#resultBox .resultList li{
+	width: 100%;
+	border-bottom: 1px solid #d2d2d2;
+}
+
+#resultBox .resultList li a{
+	width: 100%;
+	padding: 0.25rem 0.15rem;
+}
+
+#resultBox .topBox{
+	width: 100%; 
+	margin-bottom: 0.1rem;
+}
+
+#resultBox .topBox span{
+	float: left;
+}
+
+#resultBox .topBox span:nth-child(1),
+#resultBox .topBox span:nth-child(2){
+	width: 30%; 
+}
+
+#resultBox .topBox span:nth-child(2){
+	text-align: right; 
+}
+
+#resultBox .topBox span:nth-child(3){
+	width: 40%; 
+}
+
+#resultBox .weiXiuList .topBox span:nth-child(1){
+	width: 31%;
+}
+
+#resultBox .weiXiuList .topBox span:nth-child(2){
+	width: 40%;
+	text-align: left;
+}
+
+#resultBox .weiXiuList li a p{
+	margin-bottom: 0.05rem;line-height: 0.4rem;
+}
+
+#resultBox .weiXiuList li a p:last-child{
+	margin-bottom: 0;
+}
+
+
+
+
+
+/*查询条件 开始*/
+#queryLeftBox{
+	position: fixed;
+	top: 0;
+	right: -7.6rem;
+	z-index: 6;
+	width: 7.5rem;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
+
+#queryLe{
+	width: 5.4rem;
+	height: 100%;
+	padding: 0.8rem 0.2rem 1.2rem;
+	margin-left: 2.1rem;
+	position: relative;
+}
+
+#queryLe .condition{
+	width: 100%;
+	height: 100%;
+	overflow-y:scroll; 
+}
+
+#queryLe .condition>div{
+	width: 100%;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin-bottom: 0.2rem;
+}
+
+#queryLe .condition>div label{
+	float: left;
+	width: 1.5rem;
+	height: 100%;
+	color: #666;
+	text-align: right;
+}
+
+#queryLe .condition>div>div{
+	float: right;
+	width: 3.46rem;
+	height: 100%;
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+}
+
+#queryLe .condition div.crux>div input,
+#queryLe .condition div.guanJia>div select{
+	width: 100%;
+	height: 100%;
+	padding: 0 0.15rem;
+	font-size: 0.28rem;
+}
+
+#queryLe .condition .quYuBox{
+	height: auto;
+	margin-top: 0.3rem;
+	margin-bottom: 0.1rem;
+}
+
+#queryLe .condition .zhuangTai{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#queryLe .quYuBox .quyu{
+	width: 3.46rem;
+}
+
+#queryLe .quYuBox .quyu1{
+	height: 3rem; 
+}
+
+#queryLe .condition>div.quYuBox>div.quyu {
+    border: none;
+}
+
+#queryLe .quYuBox .quyu>div{
+	float: left;
+	width: 1.63rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	margin-bottom: 0.2rem;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#queryLe .quYuBox .quyu>div:nth-child(2n){
+	float: right;
+}
+
+/*选中状态*/
+.selectedQuery{
+	background-color: #ffe9de;
+	color: #ee6b41;
+}
+
+#queryLe .btn{
+	width: 5.4rem;
+	height: 0.9rem;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#queryLe .btn div{
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+#queryLe .btn div:first-child{
+	background-color: #e7673f;
+}
+
+#queryLe .btn div:last-child{
+	background-color: #ee6b41;
+}
+
+#queryLe .btn div input{
+	width: 100%;
+	height: 100%;
+	font-size: 0.32rem;
+	color: #fff;
+}
+/*查询条件 结束*/
+
+
+
+
+/*返回顶部*/
+#returnTop{
+	display: none;
+	width: 0.7rem;
+	height: 0.7rem;
+	line-height: 0.75rem;
+	text-align: center;
+	border-radius: 100%;
+	color: #fff;
+	background-color: #ee6b41;
+	position: fixed;
+	bottom: 15%;
+	right: 3%;
+}
+#returnTop i{
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 0.35rem;
+}
+

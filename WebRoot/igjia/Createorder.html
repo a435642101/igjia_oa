@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/house.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+table td span{position: absolute;background:url(../images/house/tanchu.png);width:75px; height:46px;  margin-top: -60px;margin-left: 150px; display: none; line-height: 32px; text-align: center;}
+table i{margin-right: 2px;font-style: inherit;}
+select{
+margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius: 3px;padding-left: 10px;}
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="addrent">
+				<div class="addbasic rentinfo">
+					<div>
+					<div>出房订单录入</div>
+						<table>
+							<tr>
+								<td>房源地址：</td>
+								<td colSpan='3'>
+									<div class="col-sm-9 colj31" style="position: relative;width: 95%;font-size:14px;">
+										<input id="djxz" class="xzyx address" style="height: 27px;width:97%; border: 1px solid #ccc;cursor: pointer; line-height: 28px;margin-left:10px;padding-left:5px;" value="加载中..."></input>
+										<div class="sswk" style="margin-left:-6px;max-height: 230px;width:93%; margin-left:10px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+											<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+											<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+											<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+											</ul>
+										</div>
+
+									</div>
+								</td>
+								<td>房源编号：</td>
+								<td><input type="text" class="house_id" id="house_id" name="house_id"/><span></span></td>								
+							</tr>
+							<tr>
+								<td>租客姓名：</td>
+								<td><input type="text" class="renter_name" id="renter_name" name="renter_name" /><span></span></td>
+								<td>租客手机号：</td>
+								<td><input type="text" class="renter_telephone" id="renter_telephone" name="renter_telephone" /><span></span></td>							
+							</tr>
+							<tr>
+								<td>合同生效日期：</td>
+								<td><input type="text" class="contract_startdate" name="contract_startdate" id="J-x2" /><span></span></td>
+								<td>合同结束日期：</td>
+								<td><input type="text" class="contract_enddate" name="contract_enddate" id="J-x3" /><span></span></td>
+								<td><i style="color:#f00">*</i>合同期限：</td>
+								<td><input type="number" class="contract_month" id="contract_month" name="contract_month" /><span></span></td>	
+							</tr>
+							<tr>
+															
+								<td><i style="color:#f00">*</i>首年月租金：</td>
+								<td><input type="number" class="firstyear_monthrent" id="firstyear_monthrent" name="firstyear_monthrent" value="0" /></td>
+								<td>次年月租金：</td>
+								<td><input type="number" class="secondyear_monthrent" id="secondyear_monthrent" name="secondyear_monthrent" value="0" /></td>								
+							</tr>
+							<tr>								
+								<td>第三年月租金：</td>
+								<td><input type="number" class="thirdyear_monthrent" id="thirdyear_monthrent" name="thirdyear_monthrent" value="0" /></td>
+								<td>第四年月租金：</td>
+								<td><input type="number" class="fourthyear_monthrent" id="fourthyear_monthrent" name="fourthyear_monthrent" value="0" /></td>
+								<td>第五年月租金：</td>
+								<td><input type="number" class="fifthyear_monthrent" id="fifthyear_monthrent" name="fifthyear_monthrent" value="0" /></td>
+							</tr>
+							<tr>								
+								<td><i style="color:#f00">*</i>宽带保洁费：</td>
+								<td><input type="number" class="firststage_rent" id="firststage_rent" name="firststage_rent" value="0" /></td>								
+							</tr>
+
+							<tr>
+								<td><i style="color:#f00">*</i>支付方式：</td>
+								<td><select name="paymethod" class="paymethod">
+					                    <option value="30">30天</option>
+					                    <option value="60">60天</option>
+					                    <option value="90">90天</option>
+					                    <option value="180">180天</option>
+					                    <option value="365">365天</option>
+					                    <option value="盈家">盈家</option>
+					                    <option value="巴乐兔">巴乐兔</option>
+					                    <option value="租了么">租了么</option>
+									</select>
+									<span></span>
+									</td>
+								<td><i style="color:#f00">*</i>押金总额：</td>
+								<td><input type="text" class="deposit" id="deposit" name="deposit" /><span></span></td>
+							</tr>
+							<tr>							
+								<td>备注：</td>
+								<td><input type="text" class="remark" id="remark" name="remark" value="无"/><span></span></td>
+							</tr>
+						</table>
+					</div><!--房源信息-->				
+					<div>
+		
+						<button class="btn btn-primary next rentinfo">提交</button>
+					</div>
+				</div>			
+			</div>
+<script src="../Js/jquery-1.7.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+    <script type="text/javascript">
+    $(function(){  	
+	request();
+	
+	$(".btn").click(function(){
+		var house_id = $(".house_id").val();
+		var contract_startdate = $(".contract_startdate").val();
+		var contract_month = $(".contract_month").val();
+		var firstyear_monthrent = $(".firstyear_monthrent").val();
+		var secondyear_monthrent = $(".secondyear_monthrent").val()
+		var thirdyear_monthrent = $(".thirdyear_monthrent").val()
+		var fourthyear_monthrent = $(".fourthyear_monthrent").val()		
+		var fifthyear_monthrent = $(".fifthyear_monthrent").val();
+		var firststage_rent = $(".firststage_rent").val();
+		var deposit = $(".deposit").val();
+		var paymethod = encodeURI(encodeURI($(".paymethod").val()));
+		var address = encodeURI(encodeURI($(".address").val()));
+		var renter_name = encodeURI(encodeURI($(".renter_name").val()));
+		var remark = encodeURI(encodeURI($(".remark").val()));
+		var renter_telephone = $(".renter_telephone").val()
+		if(house_id==""){
+			alert("房源ID为空");
+			return;
+		}
+	$.ajax({
+		type: "GET",
+		url: "/createRentOrder.do",
+		data: "houseId="+house_id+"&contract_startdate="+contract_startdate
+				+"&contractMonth="+contract_month
+				+"&firstyear_monthrent="+firstyear_monthrent
+				+"&secondyear_monthrent="+secondyear_monthrent
+				+"&thirdyear_monthrent="+thirdyear_monthrent
+				+"&fourthyear_monthrent="+fourthyear_monthrent
+				+"&fifthyear_monthrent="+fifthyear_monthrent
+				+"&firststage_rent="+firststage_rent
+				+"&deposit="+deposit
+				+"&paymethod="+paymethod
+				+"&address="+address
+				+"&renter_name="+renter_name
+				+"&remark="+remark
+				+"&renterTelephone="+renter_telephone,
+		success: function(result){
+			alert(result)
+		}
+	});
+	})
+	
+		
+	$(".xzyx").click(function(){		
+		$(".sswk").css("display","block");
+	});
+	$(".sscx").bind('input propertychange', function() {
+		var sscx = $(this).val();
+		var ssul = $(".ssul li").length;
+		$(".ssul li").css("display","none");
+		$(".muy").css("display","none");
+		$(".ssul").css("display","block");
+		$(".ssul li").each(function(){
+			var sss = $(this).text();
+			if(sss.indexOf(sscx)>=0){
+				$(this).css("display","block");
+			}
+		});
+	}); 
+	
+	$(document).bind("click",function(e){ 
+		var target = $(e.target); 	
+		if(target.closest(".colj31").length == 0){ 
+			$(".sswk").hide(); 
+		}
+	});
+});
+
+function request(){
+	$('#djxz').val('加载中...');
+	var state = new Array;
+    	state.push("出租中");
+    	state.push("审核中");
+		var district =  new Array;
+		district.push("浦东东区");
+		district.push("浦东南区");
+		district.push("浦东西区");
+		district.push("松江北区");
+		district.push("宝山中区");
+		district.push("宝山西区");
+		district.push("宝山东区");
+		state = encodeURI(encodeURI(state));
+		district = encodeURI(encodeURI(district));
+		var paymethod = encodeURI(encodeURI("全部"));
+	$.ajax({
+		type: "GET",
+		url: "rent.do",
+		data: "district="+district+"&state="+state+"&paymethod="+paymethod+"&contract_start1=&contract_start2=&contract_end1=&contract_end2=",
+		success: function(result){
+			$('.loading').hide();
+			if(result=='fail'){
+				$('#djxz').val('未登录');
+			}else{
+				$('#djxz').val('点击选择');
+				var arr=JSON.parse(result);
+				$(".ssul").html("");
+				for(var i=0;i<arr.length;i++){
+			    	obj=arr[i];
+			    	var arr11=JSON.stringify(obj);
+			    	$(".ssul").append("<li lang='"+arr11+"'>"+obj.address+"</li>");
+				} 
+				
+				$(".ssul li").click(function(){
+					var obj = JSON.parse($(this).attr("lang"));
+					$(".house_id").val(obj.house_id);
+					$(".renter_name").val(obj.renter_name);
+					$(".renter_telephone").val(obj.renter_telephone);
+					$(".contract_startdate").val(obj.contract_startdate);
+					$(".contract_enddate").val(obj.contract_enddate);
+					$(".contract_month").val(obj.contract_month);
+					$(".firstyear_monthrent").val(obj.firstyear_monthrent);
+					$(".secondyear_monthrent").val(obj.secondyear_monthrent);
+					$(".thirdyear_monthrent").val(obj.thirdyear_monthrent);
+					$(".fourthyear_monthrent").val(obj.fourthyear_monthrent);
+					$(".fifthyear_monthrent").val(obj.fifthyear_monthrent);
+					$(".firststage_rent").val(obj.firststage_rent);
+					$(".paymethod")[0].value=obj.paymethod;
+					$(".deposit").val(obj.deposit);
+					$("#djxz").val($(this).text());
+					$(".sswk").css("display","none");
+				});
+			}	
+			
+		}
+	});
+}
+         laydate({
+
+            elem: '#J-x2'
+
+        });
+         laydate({
+
+            elem: '#J-x3'
+
+        });
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $(".addbasic,.addgoodes").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $(".addbasic,.addgoodes").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    
+    <div class="loading" style="height:100%; width:100%; z-index:99999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>	
+</body>
+</html>

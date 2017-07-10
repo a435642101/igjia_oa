@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/base.css" type="text/css" rel="stylesheet"/>
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/house.css" type="text/css" rel="stylesheet"/>
+<style type="text/css">
+table td span{position: absolute;background:url(../images/house/tanchu.png);width:75px; height:46px;  margin-top: -60px;margin-left: 150px; display: none; line-height: 32px; text-align: center;}
+table i{margin-right: 2px;font-style: inherit;}
+select{
+margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius: 3px;padding-left: 10px;}
+</style>
+
+</head>
+
+<body style="min-width:1000px;">
+
+	<div class="addrent">
+				<div class="addbasic rentinfo">
+					<div>
+						<div>房源信息</div>
+						<table>
+							<tr>
+								<td>出房合同编号：</td>
+								<td><input type="text" class="contract_no" id="contract_no" name="contract_no" value="YGJZL" /><span></span></td>
+								<td>房源片区：</td>
+								<td>
+									<select name="district" class="district" >
+					              		
+					              	</select>
+					            </td>								
+							</tr>
+							<tr>
+								<td>房源地址：</td>
+								<td colSpan='3'>
+									<div class="col-sm-9 colj31" style="position: relative;width: 95%;font-size:14px;">
+										<div id="djxz" class="xzyx" style="height: 27px;width:97%; border: 1px solid #ccc;cursor: pointer; line-height: 28px;margin-left:10px;padding-left:5px;">加载中...</div>
+										<div class="sswk" style="margin-left:-6px;max-height: 230px;width:93%; margin-left:10px; border: 1px solid #ccc;  background-color: #FFF;position: absolute;display: none;">
+											<input type="text" class="sscx" style="border: 1px solid #aaa; margin-left:0px;height: 27px;width:98%;" placeholder="输入查询地址" />
+											<div class="muy" style="height: 28px; width: 150px; cursor: pointer;display: none;">找不到关键词</div>
+											<ul class="ssul" style="list-style: none;font-size:14px; overflow-y: scroll; height: 200px; margin:0; cursor:pointer;">
+											</ul>
+										</div>
+										<input type="text" class="address" style="width:300px;display:none;" name="address"  />
+									</div>
+								</td>
+								<td>房源编号：</td>
+								<td><input type="text" class="house_id" id="house_id" name="house_id" readonly="readonly"/><span></span></td>
+								
+							</tr>
+							<tr>
+								<td>出房管家：</td>
+								<td><select name="salesman" class="salesman"></select></td>							
+								<td>房源管家：</td>
+								<td><select disabled="disabled" name="job_no" class="job_no"></select></td>
+								<td>区域经理：</td>
+								<td><input type="text" class="region_manager" id="region_manager" name="region_manager" readonly="readonly"/></td>
+							</tr>
+						</table>
+					</div><!--房源信息-->
+					<div>
+						<div>租客信息</div>
+						<table>
+							<tr>
+								<td>租客姓名：</td>
+								<td><input type="text" class="renter_name" id="renter_name" name="renter_name" /><span></span></td>
+								<td>租客手机号：</td>
+								<td><input type="text" class="renter_telephone" id="renter_telephone" name="renter_telephone" /><span></span></td>
+								<td>租客身份证：</td>
+								<td><input type="text" class="renter_idcard" id="renter_idcard" name="renter_idcard" /><span></span></td>
+							</tr>
+							
+						</table>
+					</div><!--合同信息-->
+					<div>
+						<div>合同信息</div>
+						<table>
+						<tr>
+								<td>合约签约日期：</td>
+								<td><input type="text" class="contract_date" name="contract_date" id="J-x1" /><span></span></td>
+								<td>合同生效日期：</td>
+								<td><input type="text" class="contract_startdate" name="contract_startdate" id="J-x2" /><span></span></td>
+								<td>合同结束日期：</td>
+								<td><input type="text" class="contract_enddate" name="contract_enddate" id="J-x3" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>合同期限(月)：</td>
+								<td><input type="number" class="contract_month" id="contract_month" name="contract_month" /><span></span></td>								
+								<td><i style="color:#f00">*</i>首年月租金：</td>
+								<td><input type="number" class="firstyear_monthrent" id="firstyear_monthrent" name="firstyear_monthrent" value="0" /></td>
+								<td>次年月租金：</td>
+								<td><input type="number" class="secondyear_monthrent" id="secondyear_monthrent" name="secondyear_monthrent" value="0" /></td>								
+							</tr>
+							<tr>								
+								<td>第三年月租金：</td>
+								<td><input type="number" class="thirdyear_monthrent" id="thirdyear_monthrent" name="thirdyear_monthrent" value="0" /></td>
+								<td>第四年月租金：</td>
+								<td><input type="number" class="fourthyear_monthrent" id="fourthyear_monthrent" name="fourthyear_monthrent" value="0" /></td>
+								<td>第五年月租金：</td>
+								<td><input type="number" class="fifthyear_monthrent" id="fifthyear_monthrent" name="fifthyear_monthrent" value="0" /></td>
+							</tr>
+							<tr>								
+								<td><i style="color:#f00">*</i>宽带保洁费：</td>
+								<td><input type="number" class="firststage_rent" id="firststage_rent" name="firststage_rent" value="0" /></td>
+								<td><i style="color:#f00">*</i>月合计费用：</td>
+								<td><input type="number" class="monthpay_provider" id="monthpay_provider" name="monthpay_provider" value="0" /></td>
+								<td><i style="color:#f00">*</i>合同期总费用：</td>
+								<td><input type="number" class="payrent_time" id="payrent_time" name="payrent_time" value="0" /></td>
+							</tr>
+							<tr>
+								<td>出房服务商：</td>
+								<td><input type="text" class="service_provider" id="service_provider" name="service_provider" /><span></span></td>
+								<td><i style="color:#f00">*</i>提供商中介费：</td>
+								<td><input type="number" class="provider_money" id="provider_money" name="provider_money" value="0" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>支付方式：</td>
+								<td><select name="paymethod" class="paymethod">
+					                    <option value="30">30天</option>
+					                    <option value="60">60天</option>
+					                    <option value="90">90天</option>
+					                    <option value="180">180天</option>
+					                    <option value="365">365天</option>
+					                    <option value="盈家">盈家</option>
+					                    <option value="巴乐兔">巴乐兔</option>
+					                    <option value="租了么">租了么</option>
+										<option value="平安">平安</option>										                   
+						<!-- 	 <option value="other" id="other">其他</option> -->
+									</select>
+									<span></span>
+									</td>
+								<td><i style="color:#f00">*</i>押金总额：</td>
+								<td><input type="text" class="deposit" id="deposit" name="deposit" /><span></span></td>
+							</tr>
+							<tr>
+								<td><i style="color:#f00">*</i>该房屋房间数：</td>
+								<td><input type="number" class="room_num" id="room_num" name="room_num" value='1'/></td>
+								<td>房屋状态：</td>
+								<td>
+									<select name="state" class="state">
+										<option value="审核中">审核中</option>
+								  	</select>
+								</td>
+								<td>备注：</td>
+								<td><input type="text" class="remark" id="remark" name="remark" value="无"/><span></span></td>
+							</tr>
+						</table>
+						<button class="btn btn-primary next rentinfo">下一步</button>
+					</div><!--业主信息-->
+				</div>
+				<div class="addgoodes property" style="display:none;">
+					<div class="sharebills" style="height:80px;">
+						<div>水电煤交割</div>
+						<table align="left">
+							<tr>
+								<td>现水表底数:</td>
+								<td><input type="number" id="now_water_degree" class="now_water_degree" name="now_water_degree" value="0"/><span></span></td>
+								<td>现煤气底数:</td>
+								<td><input type="number" id="now_gas_degree" class="now_gas_degree" name="now_gas_degree" /><span></span></td>
+								<td>现电表底数(平):</td>
+								<td><input type="number" id="now_elec_degree_day" class="now_elec_degree_day" name="now_elec_degree_day" /><span></span></td>
+								<td>现电表底数(谷):</td>
+								<td><input type="number" id="now_elec_degree_night" class="now_elec_degree_night" name="now_elec_degree_night" /><span></span></td>
+							</tr>
+						</table>
+					</div><!--水电煤交割-->
+					<div class="unlocking">
+						<div>钥匙凭证信息</div>
+						<table class="goods3">
+							<tr>
+								<td><input type="checkbox" name="yaoshixinxi" value="房门钥匙"/>房门钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="yaoshixinxi" value="单元门钥匙"/>单元门钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="yaoshixinxi" value="门禁卡"/>门禁卡</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="yaoshixinxi" value="信箱钥匙"/>信箱钥匙</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="yaoshixinxi" value="电卡"/>电卡</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="yaoshixinxi" value="水卡"/>水卡</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="yaoshixinxi" value="煤气卡"/>煤气卡</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="yaoshixinxi" value="热水器"/>热水器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div><!---->
+					<div class="goods">
+						<div>家电设施</div>
+						<img src="../images/house/woshi.png" /><span>卧室</span>
+						<table class="woshi">
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-床"/>床</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-床垫"/>床垫</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-衣橱"/>衣橱</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-书桌"/>书桌</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-座椅"/>座椅</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-窗帘"/>窗帘</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-电视"/>电视</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-电视遥控器"/>电视遥控器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-机顶盒"/>机顶盒</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-机顶盒遥控器"/>机顶盒遥控器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卧室-空调"/>空调</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卧室-空调遥控器"/>空调遥控器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<img src="../images/house/keting.png" /><span>客厅</span>
+						<table class="keting">
+							<tr>
+								<td><input type="checkbox" name="application" value="客厅-无线路由器"/>无线路由器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="客厅-餐桌"/>餐桌</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="客厅-椅子"/>椅子</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="客厅-冰箱"/>冰箱</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="客厅-微波炉"/>微波炉</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<img src="../images/house/chufang.png" /><span>厨房</span>
+						<table class="chufang">
+							<tr>
+								<td><input type="checkbox" name="application" value="厨房-橱柜"/>橱柜</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="厨房-油烟机"/>油烟机</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="厨房-燃气灶"/>燃气灶</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="厨房-微波炉"/>微波炉</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="厨房-热水器"/>热水器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<img src="../images/house/wsj.png" /><span>卫生间</span>
+						<table class="wsj">
+							<tr>
+								<td><input type="checkbox" name="application" value="卫生间-热水器"/>热水器</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" name="application" value="卫生间-浴霸"/>浴霸</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="application" value="卫生间-洗衣机"/>洗衣机</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						<button class="prev btn btn-primary property">上一步</button>
+						<button class="insert btn btn-primary property" style="margin-left:50px;">提交</button>
+					</div>
+				</div>
+			</div><!--添加出房-->
+
+
+
+<script src="../Js/jquery-1.7.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/addRent.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".addrent button.nextstep").click(function(){
+		$(".addrent .addbasic").hide();
+		$(".addrent .addgoodes").show();
+	});
+	$(".addrent button.backstep").click(function(){
+		$(".addrent .addgoodes").hide();
+		$(".addrent .addbasic").show();
+	});
+	$(".addrent input[type='checkbox']").click(function(){
+	
+		var table = "."+$(this).parents("td").parents("tr").parents("table").attr("class");
+		var tr = $(this).parents("td").parents("tr").index();
+		var td = $(this).parents("td").index();
+		if($(this).attr("checked")){
+			$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+1)+")").append("数量：<input type='number' width='100px' class='thisnumber' id='thisnumber' value='1'/>");
+			if(table==".goods3"){
+				$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+2)+")").append("状态：<select class='thismodel' id='thismodel' name='thismodel' ><option value='正常'>正常</option><option value='破损'>破损</option><option value='丢失'>丢失</option></select>");
+			}else{
+				$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+2)+")").append("型号：<input type='text' class='thismodel' id='thismodel' value='无'/>");
+			}
+			$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+3)+")").append("备注：<input type='text' class='thisremark' id='thisremark' value='无'/>");
+		}else{
+			$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+1)+")").html("");
+			$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+2)+")").html("");
+			$(".addrent "+table+" tr:eq("+tr+") td:eq("+(td+3)+")").html("");
+		}
+	});
+	$(".addrent table tr td input").click(function(){
+		$(".addrent table tr td input").css("border","1px solid #aaa");
+		$(this).css("border","1px solid #ee6b41");
+		
+	});
+});
+</script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+    <script type="text/javascript">
+
+        laydate({
+
+            elem: '#J-x1'
+
+        });
+         laydate({
+
+            elem: '#J-x2'
+
+        });
+         laydate({
+
+            elem: '#J-x3'
+
+        });
+</script>
+<script src="https://cdn.bootcss.com/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+      $(".addbasic,.addgoodes").niceScroll({scrollspeed:"80",zIndex:"9999",cursorcolor:"#ccc"});
+      $(".addbasic,.addgoodes").niceScroll("#wrapperdiv",{cursorcolor:"#00F"});
+    </script>
+    
+    <div class="loading" style="height:100%; width:100%; z-index:99999; position:fixed; top:0; left:0; background-color:#fff; filter:alpha(opacity=50);  -moz-opacity:0.5;  -khtml-opacity: 0.5;  opacity: 0.5;">
+</div>	
+</body>
+</html>
