@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.yhtech.igjia.dao.IRentDao">
+	<!--首页查询-->
+	<select id="findByJob15" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Rent">
+		select count(*) job_no,name from rentlist where DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(now(),'%Y-%m') GROUP BY name ORDER BY count(*) DESC LIMIT 0,15;
+	</select>
+
 	<!-- 出租中合同编号查询 -->
 	<select id="findByContractNo" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
          select * from rentlist where contract_no = #{contract_no}
@@ -20,10 +25,10 @@
          <where>
          	1=1 
         	<if test="address!=null and address!=''">
-        		and district = #{address}
+        		and ${address}
         	</if>
         	<if test="state!=null and state!=''">
-        		 and state = #{state} 
+        		 and ${state}
         	</if>
         	<if test="paymethod!=null and paymethod!=''">
         		and paymethod = #{paymethod} 
@@ -54,10 +59,10 @@
          <where>
          	1=1 
         	<if test="address!=null and address!=''">
-        		and district = #{address}
+				and ${address}
         	</if>
         	<if test="state!=null and state!=''">
-        		 and state = #{state} 
+				and ${state}
         	</if>
         	<if test="paymethod!=null and paymethod!=''">
         		and paymethod = #{paymethod} 

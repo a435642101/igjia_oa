@@ -229,7 +229,7 @@ public class IgjiaRentController {
 			state = URLDecoder.decode(request.getParameter("state"),"UTF-8");			
 		} catch (Exception e) {
 		}
-		
+
 		//获取收款方式	
 		String pay_method=null;
 		try {
@@ -244,17 +244,44 @@ public class IgjiaRentController {
 		if(contract_end1.isEmpty()) contract_end1="1999/1/1";		//结束日期为空默认最早
 		if(contract_start2.isEmpty()) contract_start2="2099/12/31";		//结束日期为空默认最晚
 		if(contract_end2.isEmpty()) contract_end2="2099/12/31";		//结束日期为空默认最晚
-		
+
+		String stat[] = state.split(",");
+		String distric[] = district.split(",");
+		String sta = "";
+		String distri = "";
+		for (int i = 0;i<stat.length;i++){
+			if(i == 0){
+				sta += "state='"+stat[i]+"'";
+			}else{
+				sta +=" or state='"+stat[i]+"'";
+			}
+		}
+		for (int i = 0;i<distric.length;i++){
+			if(i == 0){
+				distri +="district='"+distric[i]+"'";
+			}else{
+				distri += " or district='"+distric[i]+"'";
+			}
+		}
+
+		if(stat.length>0){
+			sta = "("+sta+")";
+		}
+		if(distric.length>0){
+			distri = "("+distri+")";
+		}
+
 		if(state.equals("出租中,审核中,已失效,已到期")){
-			state="";
+			sta="";
 		}
 		if(district.equals("嘉定大区,壹管家老房源,宝山大区,松江北区,浦东东区,浦东南区,浦东西区,闵行大区")){
-			district="";
+			distri="";
 		}
-		if(pay_method.equals("")){
+		if(pay_method.equals("全部")){
 			pay_method="";
 		}
-		
+		System.out.println(distri+"===================================================="+sta);
+		System.out.println(pay_method+"===================================================="+state);
 		String page = request.getParameter("page");
 		String num = request.getParameter("num");  
 		List<Rent> list = new ArrayList<Rent>();
@@ -262,11 +289,11 @@ public class IgjiaRentController {
 		if(page!=null && num!=null){
 			int page1 = Integer.parseInt(page);
 			int num1 = Integer.parseInt(num);
-			Page pa = new Page(district, state, contract_start1, contract_start2, contract_end1, contract_end2, keyword, (page1*num1)-num1, num1, "");
+			Page pa = new Page(distri, sta, contract_start1, contract_start2, contract_end1, contract_end2, keyword, (page1*num1)-num1, num1, pay_method);
 			list = irentdao.listPage(pa);
 			count = irentdao.count(pa);
 		}else{
-			Page pa = new Page(district, state, contract_start1, contract_start2, contract_end1, contract_end2, keyword, 0, 15, "");
+			Page pa = new Page(distri, sta, contract_start1, contract_start2, contract_end1, contract_end2, keyword, 0, 15, pay_method);
 			list = irentdao.listPage(pa);
 			count = irentdao.count(pa);
 		}

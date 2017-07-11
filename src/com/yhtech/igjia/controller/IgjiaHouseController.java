@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +41,7 @@ import com.yhtech.yhtech.dao.ILogDao;
 
 @Controller("IgjiaHouseController")
 public class IgjiaHouseController {
-	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Resource
 	private IStaffDao admindao;
 	@Resource
@@ -198,12 +200,14 @@ public class IgjiaHouseController {
 		String address=request.getParameter("address");
 		String district=request.getParameter("district");
 		String state=request.getParameter("state");
+
+
 		try {
 			state = URLDecoder.decode(state,"UTF-8");
 			district = URLDecoder.decode(district,"UTF-8");
 			address = URLDecoder.decode(address,"UTF-8");
 		}catch(Exception e){
-			// TODO Auto-generated catch block		
+            logger.error("decode occured Exception",e);
 		}
 		String contract_start1=request.getParameter("contract_start1");
 		String contract_start2=request.getParameter("contract_start2");
