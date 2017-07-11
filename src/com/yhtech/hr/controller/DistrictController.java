@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.service.RedisService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -35,7 +36,9 @@ public class DistrictController {
 	private IDistrictDao districtdao;
 	@Resource
 	private IStaffDao staffdao;
-	
+	@Resource
+	private RedisService redisService;
+
 	
 	/**
 	 * 删除部门
@@ -188,8 +191,6 @@ public class DistrictController {
 	public void getDistrict(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
-		JSONArray adja = JSONArray.fromObject(alldistrict);
-		out.print(adja.toString());		
+		out.print(redisService.getAllDistrict());
 	}
 }

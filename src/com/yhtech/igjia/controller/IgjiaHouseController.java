@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,9 +204,9 @@ public class IgjiaHouseController {
 
 
 		try {
-			state = URLDecoder.decode(state,"UTF-8");
-			district = URLDecoder.decode(district,"UTF-8");
-			address = URLDecoder.decode(address,"UTF-8");
+			state = StringUtils.isBlank(state)?"":URLDecoder.decode(state,"UTF-8");
+			district = StringUtils.isBlank(district)?"":URLDecoder.decode(district,"UTF-8");
+			address = StringUtils.isBlank(address)?"":URLDecoder.decode(address,"UTF-8");
 		}catch(Exception e){
             logger.error("decode occured Exception",e);
 		}
