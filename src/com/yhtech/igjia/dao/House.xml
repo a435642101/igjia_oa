@@ -107,7 +107,6 @@
 	<select id="listSearch" resultType="com.yhtech.igjia.domain.House" parameterType="com.yhtech.igjia.domain.House">
          select * from houselist 
          <where>
-         	1=1
         	<if test="house_id!=null and house_id!=''">
             	house_id = #{house_id} and
           	</if>
@@ -246,9 +245,10 @@
           	<if test="district!=null and district!=''">
             	district like CONCAT('%',#{district},'%') and
           	</if>
-          	
+          	1=1
          </where>
          order by IF(vacancy_date is NULL or vacancy_date="",contract_startdate,vacancy_date)
+-- 		order by IF(vacancy_date is NULL or vacancy_date="",finish_date,vacancy_date)
     </select>
     
     <!-- 修改 -->

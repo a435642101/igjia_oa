@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IHouseDao;
+import com.yhtech.igjia.domain.House;
+import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +27,32 @@ import com.yhtech.finance.domain.Houseorder;
 public class CreateHouseOrder {
 	@Resource
 	private IHouseorderDao houseorderdao;
-	
+	@Resource
+	private IHouseDao ihousedao;
+
+	/**
+	 * 订单获取房源信息
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("igjia/selecthouseorder.do")
+	@Authority(AuthorityType.LoginAuthority)
+	public void igjiaSelecthouseorder(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String district=request.getParameter("district");
+		if(district != null && district != ""){
+			district = URLDecoder.decode(district,"UTF-8");
+		}
+		House house = new House();
+		house.setDistrict(district);
+		List<House> list = ihousedao.listSearch(house);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
+
+	}
+
 	@RequestMapping("/createhouseorder.do")
 	@Authority(AuthorityType.FinanceAuthority)
 	public void createHouseOrder(HttpServletRequest request,HttpServletResponse response) throws IOException{

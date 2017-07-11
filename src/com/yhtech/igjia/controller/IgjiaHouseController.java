@@ -254,7 +254,7 @@ public class IgjiaHouseController {
 	}
 	
 	/**
-	 * 条件查询(查缓存，缓存按区域分)
+	 * 出房获取入房房源信息
 	 * @param request
 	 * @param response
 	 * @throws Exception

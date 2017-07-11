@@ -37,7 +37,7 @@ $.ajax({
 				    	"job_no" :job_no,  
 				    	"type" : "staff"
 				    } ; 
-					initWebSocket(JSON.stringify(arr));
+					// initWebSocket(JSON.stringify(arr));
 			}			
 		}
 	})
@@ -83,39 +83,39 @@ $.ajax({
 		})
 	}
 	
-	function initWebSocket(userid) {  
-        if (window.WebSocket) {  
-            websocket = new WebSocket(encodeURI("ws://websocket.igjia.com/message?userid="+encodeURI(userid)));  
-            websocket.onopen = function() {  
-                //连接成功  win.setTitle(title + '  (已连接)');  
-            }  
-            websocket.onerror = function() {  
-                //连接失败   win.setTitle(title + '  (连接发生错误)');  
-            }  
-            websocket.onclose = function() {  
-                //连接断开  win.setTitle(title + '  (已经断开连接)');  
-            }  
-            //消息接收  
-            websocket.onmessage = function(message) {  
-                var message = JSON.parse(message.data);  
-                //接收用户发送的消息
-                if (message.type == 'message') {
-                	if(message.content=='ArepairOrder'){
-                		if(confirm("一条新的维修订单,是否查看")){
-                			$("#rightiframe").attr("src","rear/nav.html");
-                  		  setTimeout(function () { 
-                  		  	$("#rightiframe").contents().find("iframe").attr("src","repairList.html");
-                  		  }, 100);
-                		}              		  
-                	} 
-                } else if (message.type == 'get_online_user') {                 	
-                    //获取在线用户列表                   
-                } else if (message.type == 'user_join') {  
-            //    window.location.reload();
-                    //用户上线                       
-                } else if (message.type == 'user_leave') {  
-                        //用户下线                  	                       
-                }  
-            }  
-        }  
-    }; 
+    // function initWebSocket(userid) {
+    //     if (window.WebSocket) {
+    //         websocket = new WebSocket(encodeURI("ws://websocket.igjia.com/message?userid="+encodeURI(userid)));
+    //         websocket.onopen = function() {
+    //             //连接成功  win.setTitle(title + '  (已连接)');
+    //         }
+    //         websocket.onerror = function() {
+    //             //连接失败   win.setTitle(title + '  (连接发生错误)');
+    //         }
+    //         websocket.onclose = function() {
+    //             //连接断开  win.setTitle(title + '  (已经断开连接)');
+    //         }
+    //         //消息接收
+    //         websocket.onmessage = function(message) {
+    //             var message = JSON.parse(message.data);
+    //             //接收用户发送的消息
+    //             if (message.type == 'message') {
+    //             	if(message.content=='ArepairOrder'){
+    //             		if(confirm("一条新的维修订单,是否查看")){
+    //             			$("#rightiframe").attr("src","rear/nav.html");
+    //               		  setTimeout(function () {
+    //               		  	$("#rightiframe").contents().find("iframe").attr("src","repairList.html");
+    //               		  }, 100);
+    //             		}
+    //             	}
+    //             } else if (message.type == 'get_online_user') {
+    //                 //获取在线用户列表
+    //             } else if (message.type == 'user_join') {
+    //         //    window.location.reload();
+    //                 //用户上线
+    //             } else if (message.type == 'user_leave') {
+    //                     //用户下线
+    //             }
+    //         }
+    //     }
+    // };

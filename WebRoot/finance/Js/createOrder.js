@@ -186,8 +186,8 @@ function request(district1){
 		var paymethod = encodeURI(encodeURI("全部"));
 		$.ajax({
 			type: "GET",
-			url: "../igjia/rent.do",
-			data: "district="+district+"&state="+state+"&paymethod="+paymethod+"&contract_start1=&contract_start2=&contract_end1=&contract_end2=",
+			url: "../igjia/selectrentorder.do",
+			data: "district="+district,
 			async:true,
 			success: function(result){
 				$('.loading').hide();
@@ -230,8 +230,8 @@ function request(district1){
 	}else if($('.type').val()=="收房"){
 		$.ajax({
 			type: "GET",
-			url: "../igjia/house.do",
-			data: "district="+encodeURI(encodeURI(district1))+"&state="+encodeURI(encodeURI("全部"))+"&contract_start1=&contract_start2=&contract_end1=&contract_end2=",
+			url: "../igjia/selecthouseorder.do",
+			data: "district="+encodeURI(encodeURI(district1)),
 			success: function(result){
 				$('.loading').hide();
 				if(result=='fail'){

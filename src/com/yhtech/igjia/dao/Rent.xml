@@ -6,6 +6,10 @@
 	<select id="findByJob15" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Rent">
 		select count(*) job_no,name from rentlist where DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(now(),'%Y-%m') GROUP BY name ORDER BY count(*) DESC LIMIT 0,15;
 	</select>
+    <!--根据月份区域员工查询出房-->
+    <select id="findByExcel" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Statistics">
+
+    </select>
 
 	<!-- 出租中合同编号查询 -->
 	<select id="findByContractNo" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">

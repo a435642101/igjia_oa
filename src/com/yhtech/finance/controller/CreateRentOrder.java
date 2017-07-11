@@ -12,6 +12,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IRentDao;
+import com.yhtech.igjia.domain.Rent;
+import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +29,31 @@ import com.yhtech.finance.domain.Rentorder;
 public class CreateRentOrder {
 	@Resource
 	private IRentorderDao rentorderdao;
-	
+	@Resource
+	private IRentDao rentdao;
+	/**
+	 * 订单获取出房信息
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("igjia/selectrentorder.do")
+	@Authority(AuthorityType.LoginAuthority)
+	public void igjiaSelectrentorder(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String district=request.getParameter("district");
+		if(district != null && district != ""){
+			district = URLDecoder.decode(district,"UTF-8");
+		}
+		Rent rent = new Rent();
+		rent.setDistrict(district);
+		List<Rent> list = rentdao.listSearch(rent);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
+
+	}
+
 	@RequestMapping("/createRentOrder.do")
 	@Authority(AuthorityType.FinanceAuthority)
 	public void COrder(HttpServletRequest request,HttpServletResponse response) throws IOException{

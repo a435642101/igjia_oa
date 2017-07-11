@@ -399,7 +399,7 @@ function request(district){
 	$('#djxz').html('加载中...');
 	$.ajax({
 		type: "GET",
-		url: "house.do",
+		url: "house1.do",
 		data: "district="+encodeURI(encodeURI(district))+"&state="+encodeURI(encodeURI("空置中"))+"&contract_start1=&contract_start2=&contract_end1=&contract_end2=",
 		success: function(result){
 			if(result=='fail'){
@@ -421,7 +421,7 @@ function request(district){
 					$(".address").val(sscx);
 					var a = $(this).attr("lang1");
 					$('.job_no>option').each(function(){
-					    if($(this).html()==a){
+					    if($(this).val()==a){
 					    	$(".job_no")[0].value=$(this).val();
 					    }
 					})
