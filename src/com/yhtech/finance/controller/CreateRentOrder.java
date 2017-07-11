@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.domain.Rent;
+import com.yhtech.service.RedisService;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,8 @@ public class CreateRentOrder {
 	private IRentorderDao rentorderdao;
 	@Resource
 	private IRentDao rentdao;
+	@Resource
+	private RedisService redisService;
 	/**
 	 * 订单获取出房信息
 	 * @param request
@@ -46,11 +49,7 @@ public class CreateRentOrder {
 		if(district != null && district != ""){
 			district = URLDecoder.decode(district,"UTF-8");
 		}
-		Rent rent = new Rent();
-		rent.setDistrict(district);
-		List<Rent> list = rentdao.listSearch(rent);
-		JSONArray jo = JSONArray.fromObject(list);
-		out.print(jo.toString());
+		out.print(redisService.getDistrictRent(district));
 
 	}
 

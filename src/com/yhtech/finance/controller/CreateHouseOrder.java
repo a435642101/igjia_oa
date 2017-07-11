@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.domain.House;
+import com.yhtech.service.RedisService;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ public class CreateHouseOrder {
 	private IHouseorderDao houseorderdao;
 	@Resource
 	private IHouseDao ihousedao;
+	@Resource
+	private RedisService redisService;
 
 	/**
 	 * 订单获取房源信息
@@ -45,11 +48,7 @@ public class CreateHouseOrder {
 		if(district != null && district != ""){
 			district = URLDecoder.decode(district,"UTF-8");
 		}
-		House house = new House();
-		house.setDistrict(district);
-		List<House> list = ihousedao.listSearch(house);
-		JSONArray jo = JSONArray.fromObject(list);
-		out.print(jo.toString());
+		out.print(redisService.getDistrictHouse(district));
 
 	}
 

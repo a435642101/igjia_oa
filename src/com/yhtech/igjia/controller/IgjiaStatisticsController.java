@@ -16,6 +16,8 @@ import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.dao.IRentDao;
 import com.yhtech.igjia.domain.House;
 import com.yhtech.igjia.domain.Rent;
+import com.yhtech.service.RedisService;
+import com.yhtech.service.RedisUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -45,7 +47,11 @@ public class IgjiaStatisticsController {
 	private IHouseDao housedao;
 	@Resource
 	private IRentDao rentdao;
-	
+	@Resource
+	private RedisService redisService;
+	@Autowired
+	private RedisUtils redisUtils;
+
 	/**
 	 * 各区域管家的统计数据
 	 * @param request
@@ -119,18 +125,13 @@ public class IgjiaStatisticsController {
 	public void gettotalstatistics(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-//		ValueOperations<String,String> operation = redisTemplate.opsForValue();
 		String result = null;
-//		if(operation.get("totalstatistics")==null){
-//			String houselist;
-//			String rentlist;
-		List<House> houselist = new ArrayList<House>();
-		List<Rent> rentlist = new ArrayList<Rent>();
+		if(redisUtils.get("totalstatistics")==null){
+			String houselist;
+			String rentlist;
 		try {
-//				houselist = data.getHouse(redisTemplate);
-//				rentlist = data.getRentHouse(redisTemplate);
-			houselist = housedao.listAll();
-			rentlist = rentdao.listAll();
+			houselist = redisService.getHouse();
+			rentlist = redisService.getRentHouse();
 			List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
 			JSONArray adja = JSONArray.fromObject(alldistrict);
 			JSONArray ahja = JSONArray.fromObject(houselist);
@@ -143,15 +144,15 @@ public class IgjiaStatisticsController {
 			JSONObject finaljo = new JSONObject();		//最终统计结果
 			patternJson(totaljo, finaljo);				//调整格式
 
-//			operation.set("totalstatistics",finaljo.toString(),2,TimeUnit.HOURS);
+			redisUtils.set("totalstatistics",finaljo.toString(),1800);
 			result = finaljo.toString();
 		} catch (Exception e) {
 			out.print("error");
 			e.printStackTrace();
 		}
-//	}else{
-//		result = operation.get("totalstatistics");
-//	}
+	}else{
+		result = redisUtils.get("totalstatistics");
+	}
 		out.print(result);
 	}
 
