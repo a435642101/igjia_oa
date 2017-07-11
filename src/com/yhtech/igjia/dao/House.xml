@@ -17,6 +17,10 @@
 	<select id="findByDistrict" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select job_no,house_id,address,contract_no,region_manager,district,state from houselist where district = #{district} and state = '空置中'
 	</select>
+	<!-- 查询根据区域 -->
+	<select id="findByDistrict1" parameterType="String" resultType="com.yhtech.igjia.domain.House">
+		select job_no,house_id,address,contract_no,region_manager,district,state,estate,business_area,house_type from houselist where district = #{district} and state = '配置中'
+	</select>
 	<!-- id查询 -->
 	<select id="findById" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select * from houselist where house_id = #{house_id}

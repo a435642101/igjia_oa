@@ -273,6 +273,25 @@ public class IgjiaHouseController {
 		out.print(jo.toString());
 
 	}
+	/**
+	 * 出房获取入房房源信息
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("igjia/house2.do")
+	@Authority(AuthorityType.LoginAuthority)
+	public void igjiaHouse2(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String district=request.getParameter("district");
+		if(district != null && district != ""){
+			district = URLDecoder.decode(district,"UTF-8");
+		}
+		List<House> list = ihousedao.findByDistrict1(district);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
+	}
 
 	
 
@@ -449,7 +468,7 @@ public class IgjiaHouseController {
 				int res = 0;
 				String result = "error";
 				try {
-					ihousedao.add(h);
+					res = ihousedao.add(h);
 				} catch (Exception e) {
 					e.printStackTrace();
 					out.print("error");
@@ -648,7 +667,7 @@ public class IgjiaHouseController {
 		int res = 0;
 		String result = "error";
 		try {
-			ihousedao.update(h);
+			res = ihousedao.update(h);
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.print("error");

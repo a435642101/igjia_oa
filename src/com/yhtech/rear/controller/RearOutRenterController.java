@@ -53,8 +53,9 @@ public class RearOutRenterController {
 	public void pagerent(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
-		List<Rent> list = irentdao.listAll();
+		House h1 = new House();
+		h1.setState("配置中");
+		List<House> list = housedao.listSearch(h1);
 		JSONArray arr = JSONArray.fromObject(list);
 		JSONArray ja = new JSONArray();
 		JSONObject jo = new JSONObject();
@@ -63,10 +64,10 @@ public class RearOutRenterController {
 	    JsonArray Jarray = parser.parse(arr.toString()).getAsJsonArray();
 	    for(JsonElement obj : Jarray ){
 	        House house = gson.fromJson( obj , House.class);
-	        
-	        if(house.getState().equals("配置中") && house.getVacancy_date()!=null && !house.getVacancy_date().isEmpty()){
-	        	ja.add(JSONObject.fromObject(house));  
-	        }	        
+
+	        if(house.getVacancy_date()!=null && !house.getVacancy_date().isEmpty()){
+	        	ja.add(JSONObject.fromObject(house));
+	        }
 	    }
 	    ja = nameReplaceJobno(ja,staffdao);
 	   jo.put("code", "1");
@@ -140,7 +141,8 @@ public class RearOutRenterController {
 			   jo.put("code", "2");
 			   jo.put("msg","该房源不在配置中");  
 		    }
-		}	  
+		}
+
 	   out.print(jo.toString());
 	}
 	

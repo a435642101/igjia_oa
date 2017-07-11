@@ -725,7 +725,7 @@ function request(district) {
 	$('#djxz').html('加载中...');
 	$.ajax({
 				type : "GET",
-				url : "../igjia/house1.do",
+				url : "../igjia/house2.do",
 				data : "district="
 						+ encodeURI(encodeURI(district))
 						+ "&state="

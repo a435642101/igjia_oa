@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -166,10 +167,12 @@ public class IgjiaRentController {
 			rent = irentdao.findByContractNo(contract_no);
 		}
 		jo = JSONObject.fromObject(rent);
-		//System.out.println(jo.toString());
-		if(jo.size()==0){
+
+		if(rent == null){
+			System.out.print("1111111111111111111111111111111111111"+rent+"================================"+jo.toString());
 			out.print("zero");
 		}else{
+			System.out.print("2222222222222222222222222222222222222222"+rent+"================================"+jo.toString());
 			out.print(jo.toString());
 		}
 		

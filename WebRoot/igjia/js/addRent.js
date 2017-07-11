@@ -308,6 +308,7 @@ function getrentcontract(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,
 	       data: "contract_no="+b,
 	       success: function(result){
 				$('.loading').hide();
+
 				if(result=='fail'){
 					alert('请先去登录');
 				}else if(result=='zero'){

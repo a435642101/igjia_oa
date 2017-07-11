@@ -442,7 +442,7 @@ function request(district) {
 	$
 			.ajax({
 				type : "GET",
-				url : "../igjia/house.do",
+				url : "../igjia/house2.do",
 				data : "district="
 						+ encodeURI(encodeURI(district))
 						+ "&state="
