@@ -21,7 +21,7 @@ public interface ILogDao {
 	 * @param date2
 	 * @return
 	 */
-	public List<Log> listBydate(String date1,String date2);
+	public List<Log> listBydate(String date1, String date2);
 	
 	/**
 	 * 查询日志
@@ -35,5 +35,5 @@ public interface ILogDao {
 	 * @param num
 	 * @return
 	 */
-	public List<Log> listPage(int num1,int num2);
+	public List<Log> listPage(int num1, int num2);
 }

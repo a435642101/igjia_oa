@@ -33,9 +33,9 @@ public interface IStaffDao {
 	   */
 	  public List<Staff> listAll();
 	  
-	  public List<Staff> findByDeptDist(String department,String district);
+	  public List<Staff> findByDeptDist(String department, String district);
 	  
-	  public List<Staff> findByDD(String department,String district);
+	  public List<Staff> findByDD(String department, String district);
 	  
 	  public int add(Staff staff);//新增员工
 	  

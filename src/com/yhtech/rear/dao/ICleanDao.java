@@ -16,5 +16,5 @@ public interface ICleanDao {
 	public int add(Rent rent);
 	public int update(Rent rent);
 	public Rent list(String address);
-	public List<Rent> dayclean(String date,String period);
+	public List<Rent> dayclean(String date, String period);
 }

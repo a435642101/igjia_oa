@@ -103,10 +103,9 @@ public class IgjiaStatisticsController {
 		getdata(adminja, arja, "rent","name", totaljo);		//获得管家的出房统计数据
 		JSONObject finaljo = new JSONObject();		//最终统计结果
 		patternJson(totaljo, finaljo);				//调整格式
-
+		
 		//operation.set("regionstatistics_"+district,finaljo.toString(),2,TimeUnit.HOURS);
 		result = finaljo.toString();
-
 		out.print(result);
 	}
 
@@ -130,6 +129,8 @@ public class IgjiaStatisticsController {
 		try {
 //				houselist = data.getHouse(redisTemplate);
 //				rentlist = data.getRentHouse(redisTemplate);
+			houselist = housedao.listAll();
+			rentlist = rentdao.listAll();
 			List<District> alldistrict = districtdao.listByDept("YGJZL");	//获得所有分区
 			JSONArray adja = JSONArray.fromObject(alldistrict);
 			JSONArray ahja = JSONArray.fromObject(houselist);

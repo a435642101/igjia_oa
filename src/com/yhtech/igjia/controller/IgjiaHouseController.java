@@ -247,6 +247,27 @@ public class IgjiaHouseController {
 			out.print(jo.toString());
 
 	}
+	
+	/**
+	 * 条件查询(查缓存，缓存按区域分)
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("igjia/house1.do")
+	@Authority(AuthorityType.LoginAuthority)
+	public void igjiaHouse1(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String district=request.getParameter("district");
+		if(district != null && district != ""){
+			district = URLDecoder.decode(district,"UTF-8");
+		}
+		List<House> list = ihousedao.findByDistrict(district);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
+
+	}
 
 	
 

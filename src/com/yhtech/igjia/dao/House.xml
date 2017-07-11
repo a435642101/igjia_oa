@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.yhtech.igjia.dao.IHouseDao">
+	<sql id="Base_Column_List" >
+	id, house_id, city, region, business_area, estate, address, fangdong_name, 
+	fangdong_telephone, fangdong_idcard, shoukuanren_name, shoukuanren_telephone, 
+	shoukuanren_kaihuhang, shoukuanren_account, house_type, area, room_area, 
+	room_chaoxiang, room_tese, room_yuqichufangjia, contract_no, contract_date, 
+	contract_startdate, contract_enddate, contract_month, finish_date, firstyear_monthrent, 
+	secondyear_monthrent, thirdyear_monthrent, fourthyear_monthrent, fifthyear_monthrent, 
+	sixthyear_monthrent, pay_nextyear, pay_date, name, region_manager, totalcost, 
+	paymethod, deposit, overdue_payment, remark, house_provider, provider_money, 
+	job_no, room_num, state, district, date
+	</sql>
+	<!-- 查询根据区域 -->
+	<select id="findByDistrict" parameterType="String" resultType="com.yhtech.igjia.domain.House">
+		select job_no,house_id,address,contract_no,region_manager,district,state from houselist where district = #{district} and state = '空置中'
+	</select>
 	<!-- id查询 -->
 	<select id="findById" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select * from houselist where house_id = #{house_id}
@@ -50,7 +65,6 @@
         	</if>
          </where>
          order by IF(vacancy_date is NULL or vacancy_date="",finish_date,vacancy_date) limit #{page},#{pagesize}
-         
     </select>
     <!-- 查询总条数 -->
     <select id="count" resultType="java.lang.Integer"  parameterType="com.yhtech.igjia.domain.Page">
