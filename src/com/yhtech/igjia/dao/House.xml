@@ -13,6 +13,14 @@
 	paymethod, deposit, overdue_payment, remark, house_provider, provider_money, 
 	job_no, room_num, state, district, date
 	</sql>
+	<!--订单列表查询-->
+	<select id="selectOrderHouse" parameterType="String" resultType="com.yhtech.igjia.domain.House">
+		select
+			contract_no,house_id,district,address,shoukuanren_name,shoukuanren_telephone,shoukuanren_kaihuhang,shoukuanren_account,contract_startdate,pay_date,
+		 	contract_enddate,contract_month,firstyear_monthrent,secondyear_monthrent,thirdyear_monthrent,fourthyear_monthrent,fifthyear_monthrent,sixthyear_monthrent,
+		 	deposit,remark,paymethod
+		from houselist where district = #{district}
+	</select>
 	<!-- 查询根据区域 -->
 	<select id="findByDistrict" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select job_no,house_id,address,contract_no,region_manager,district,state from houselist where district = #{district} and state = '空置中'

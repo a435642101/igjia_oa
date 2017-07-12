@@ -22,4 +22,5 @@ public interface IHouseDao {
 	public int count(Page page);
 	public List<House> findByDistrict(String district);
 	public List<House> findByDistrict1(String district);
+	public List<House> selectOrderHouse(String district);
 }

@@ -49,7 +49,11 @@ public class CreateRentOrder {
 		if(district != null && district != ""){
 			district = URLDecoder.decode(district,"UTF-8");
 		}
-		out.print(redisService.getDistrictRent(district));
+		Rent rent = new Rent();
+		rent.setDistrict(district);
+		List<Rent> list = rentdao.selectOrderRent(district);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
 
 	}
 
@@ -145,7 +149,7 @@ public class CreateRentOrder {
 	 * @param date		生成日期
 	 * @param sixthyearMonthrent	第六年每期租金
 	 * @param idWorker		订单编号
-	 * @param datelist	每期付房租的日期列表
+//	 * @param datelist	每期付房租的日期列表
 	 * @param yearperiod	一年分几期
 	 */
 	private void buildOrder(String contractStartdate,String houseId,String contract_no, String address, String renterName,

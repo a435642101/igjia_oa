@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.yhtech.igjia.dao.IRentDao">
+	<!--订单列表查询-->
+	<select id="selectOrderRent" parameterType="String" resultType="com.yhtech.igjia.domain.Rent">
+		select
+		contract_no,house_id,district,address,renter_name,renter_telephone,contract_startdate,contract_enddate,contract_month,firstyear_monthrent,secondyear_monthrent,thirdyear_monthrent,
+		fourthyear_monthrent,fifthyear_monthrent,firststage_rent,deposit,remark,paymethod
+		from rentlist where district = #{district}
+	</select>
 	<!--首页查询-->
 	<select id="findByJob15" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Rent">
 		select count(*) job_no,name from rentlist where DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(now(),'%Y-%m') GROUP BY name ORDER BY count(*) DESC LIMIT 0,15;

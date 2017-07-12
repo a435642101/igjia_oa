@@ -72,25 +72,25 @@ public class RedisService {
     }
 
 
-    public String getDistrictHouse(String district) {
-        if (redisUtils.get("ihousedaolistSearch"+district) == null) {
-            House house = new House();
-            house.setDistrict(district);
-            List<House> list = ihousedao.listSearch(house);
-            JSONArray jo = JSONArray.fromObject(list);
-            redisUtils.set("ihousedaolistSearch"+district, jo.toString(), 1800);
-        }
-        return redisUtils.get("ihousedaolistSearch"+district);
-    }
-
-    public String getDistrictRent(String district) {
-        if (redisUtils.get("irentdaolistSearch"+district) == null) {
-            Rent rent = new Rent();
-            rent.setDistrict(district);
-            List<Rent> list = rentdao.listSearch(rent);
-            JSONArray jo = JSONArray.fromObject(list);
-            redisUtils.set("irentdaolistSearch"+district, jo.toString(), 1800);
-        }
-        return redisUtils.get("irentdaolistSearch"+district);
-    }
+//    public String getDistrictHouse(String district) {
+//        if (redisUtils.get("ihousedaolistSearch"+district) == null) {
+//            House house = new House();
+//            house.setDistrict(district);
+//            List<House> list = ihousedao.listSearch(house);
+//            JSONArray jo = JSONArray.fromObject(list);
+//            redisUtils.set("ihousedaolistSearch"+district, jo.toString(), 1800);
+//        }
+//        return redisUtils.get("ihousedaolistSearch"+district);
+//    }
+//
+//    public String getDistrictRent(String district) {
+//        if (redisUtils.get("irentdaolistSearch"+district) == null) {
+//            Rent rent = new Rent();
+//            rent.setDistrict(district);
+//            List<Rent> list = rentdao.listSearch(rent);
+//            JSONArray jo = JSONArray.fromObject(list);
+//            redisUtils.set("irentdaolistSearch"+district, jo.toString(), 1800);
+//        }
+//        return redisUtils.get("irentdaolistSearch"+district);
+//    }
 }

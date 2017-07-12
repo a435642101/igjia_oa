@@ -48,7 +48,11 @@ public class CreateHouseOrder {
 		if(district != null && district != ""){
 			district = URLDecoder.decode(district,"UTF-8");
 		}
-		out.print(redisService.getDistrictHouse(district));
+		House house = new House();
+		house.setDistrict(district);
+		List<House> list = ihousedao.selectOrderHouse(district);
+		JSONArray jo = JSONArray.fromObject(list);
+		out.print(jo.toString());
 
 	}
 
