@@ -7,7 +7,7 @@
 		select
 		contract_no,house_id,district,address,renter_name,renter_telephone,contract_startdate,contract_enddate,contract_month,firstyear_monthrent,secondyear_monthrent,thirdyear_monthrent,
 		fourthyear_monthrent,fifthyear_monthrent,firststage_rent,deposit,remark,paymethod
-		from rentlist where district = #{district} and state != '已到期' and state != '已失效'
+		from rentlist where district = #{district} and state='出租中'
 	</select>
 	<!--首页查询-->
 	<select id="findByJob15" resultType="com.yhtech.igjia.domain.Rent" parameterType="com.yhtech.igjia.domain.Rent">
