@@ -64,7 +64,7 @@ public class IPhoneRentController {
 					rent = irentdao.findByContractNo(contract_no);
 				}
 				jo = JSONObject.fromObject(rent);
-				if(jo.size()==0){
+				if(rent==null){
 					out.print("zero");
 				}else{
 					out.print(jo.toString());
