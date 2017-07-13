@@ -19,7 +19,7 @@
 			contract_no,house_id,district,address,shoukuanren_name,shoukuanren_telephone,shoukuanren_kaihuhang,shoukuanren_account,contract_startdate,pay_date,
 		 	contract_enddate,contract_month,firstyear_monthrent,secondyear_monthrent,thirdyear_monthrent,fourthyear_monthrent,fifthyear_monthrent,sixthyear_monthrent,
 		 	deposit,remark,paymethod
-		from houselist where district = #{district} and （state = '配置中' or state = '空置中' or state = '已出租'）
+		from houselist where district = #{district} and (state = '配置中' or state = '空置中' or state = '已出租')
 	</select>
 	<!-- 查询根据区域 -->
 	<select id="findByDistrict" parameterType="String" resultType="com.yhtech.igjia.domain.House">
