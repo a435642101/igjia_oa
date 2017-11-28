@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.domain.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -32,10 +33,6 @@ import com.yhtech.hr.domain.Staff;
 import com.yhtech.igjia.dao.IApplicationDao;
 import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.dao.IPropertyDao;
-import com.yhtech.igjia.domain.Application;
-import com.yhtech.igjia.domain.House;
-import com.yhtech.igjia.domain.Page;
-import com.yhtech.igjia.domain.Property;
 import com.yhtech.service.OperateDataService;
 import com.yhtech.service.YGJdataService;
 import com.yhtech.yhtech.dao.ILogDao;
@@ -57,13 +54,32 @@ public class IgjiaHouseController {
 	
 	@Resource
 	private IHouseDao ihousedao;
-	
+	@Resource
+	private IHouseDao irentdao;
 	
 	@Resource
 	private OperateDataService ods;
 	@Autowired
 	private YGJdataService data;
-	
+	@RequestMapping("igjia/kz.do")
+	@Authority(AuthorityType.LoginAuthority)
+	public void kz(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		List<House> houselist = new ArrayList<House>();
+		List<Rent> rentlist = new ArrayList<Rent>();
+		for (int i= 0; i<houselist.size();i++){
+			for (int j= 0; i<rentlist.size();j++){
+				if(houselist.get(i).getHouse_id() == rentlist.get(i).getHouse_id()){
+					
+				}
+			}
+		}
+
+
+	}
+
+
 //	@RequestMapping("igjia/getproperty1.do")
 //	@Authority(AuthorityType.LoginAuthority)
 //	public void getproperty1(HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -74,7 +90,10 @@ public class IgjiaHouseController {
 //	
 //		out.print(arr.toString());
 //	}
-	
+
+
+
+
 	@RequestMapping("igjia/getproperty.do")
 	@Authority(AuthorityType.LoginAuthority)
 	public void getproperty(HttpServletRequest request,HttpServletResponse response) throws IOException{

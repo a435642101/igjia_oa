@@ -23,4 +23,5 @@ public interface IRentDao {
 	public Rent findById(String house_id);
 	public List<Statistics> findByJob15(Statistics statistics);
 	public List<Rent> selectOrderRent(String district);
-}
+	public List<Rent> listWeek();
+ }

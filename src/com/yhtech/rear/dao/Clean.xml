@@ -3,14 +3,22 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.yhtech.rear.dao.ICleanDao">
 	<select id="list" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
-         select * from clean where address =#{address}
+         select * from clean where address like CONCAT('%',#{total},'%')
     </select>
-    
+
     <insert id="add" parameterType="com.yhtech.igjia.domain.Rent">
     	insert into clean (house_id,district,address,job_no,renter_name,renter_telephone,contract_startdate,state) values 
     	(#{house_id},#{district},#{address},#{job_no},#{renter_name},#{renter_telephone},#{contract_startdate},#{state})
     </insert>
-    
+
+	<insert id="addCleanDate" parameterType="java.util.Map">
+		insert into cleandate(clean_id,clean_date,create_name)
+		VALUES
+		<foreach collection="ids" item="id" index="index" separator=",">
+			(#{id},#{clean_date},#{create_name})
+		</foreach>
+	</insert>
+
     <update id="update" parameterType="com.yhtech.igjia.domain.Rent">
     	update clean
     	 <set>
@@ -20,9 +28,25 @@
    		 </set>
    		 where address=#{address}
     </update>
-    
-    <select id="dayclean" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
-         select * from clean where #{param1} &gt;= contract_startdate and datediff(#{param1},contract_startdate) mod #{param2}=0 
+
+	<update id="updateRemark" parameterType="com.yhtech.rear.domain.Clean">
+		update cleandate
+		<set>
+		   remark=#{remark}
+		</set>
+		where id=#{cleandate_id}
+	</update>
+
+    <select id="findCleanDate" resultType="com.yhtech.rear.domain.Clean" parameterType="String">
+		select * from cleandate where clean_id = #{clean_id}
+	</select>
+    <select id="dayclean" resultType="com.yhtech.rear.domain.Clean" parameterType="String">
+         select c.*,d.id as cleandate_id,d.clean_date,d.status,d.create_name,remark from clean c
+         LEFT JOIN (
+		 select * from cleandate where id IN (select max(id) from cleandate GROUP BY clean_id)) d
+		 on c.id = d.clean_id
+         where #{param1} &gt;= c.contract_startdate and datediff(#{param1},c.contract_startdate) mod #{param2}=0
+         GROUP BY c.id
+         ORDER BY c.id
     </select>
-    
 </mapper>

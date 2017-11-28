@@ -323,6 +323,7 @@ function updatehouserent(a){
 
 function update(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,bb,cc,dd,ee,ff,now_water_degree,now_elec_degree_day,now_elec_degree_night,now_gas_degree,application,keyinfo){
 	$('.loading').show();
+	var vacancy_date = $(".vacancy_date").val();
 	$.ajax({
 		   type: "post",
 		   url: "putRent.do",
@@ -363,7 +364,8 @@ function update(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,bb,cc,dd,
 		   	+"&now_elec_degree_night="+now_elec_degree_night
 		   	+"&now_gas_degree="+now_gas_degree
 		   	+"&application="+application
-		   	+"&keyinfo="+keyinfo,
+		   	+"&keyinfo="+keyinfo
+			+"&vacancy_date="+vacancy_date,
 		   success: function(result){
 				$('.loading').hide();
 				if(result=="error"){
@@ -382,9 +384,9 @@ function update(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,bb,cc,dd,
 					}else{
 						alert("修改成功");
 					}
-					if("已失效"==$(".state").val()){
-						updatehouserent(a,b);
-					}								
+					// if("已失效"==$(".state").val()){
+					// 	updatehouserent(a,b);
+					// }
 //					window.location.href="rent.html";
 				}
 		   }

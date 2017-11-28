@@ -15,8 +15,62 @@ $(function(){
 	$('.daochu').click(function(){
 		var date = $('#J-x1').val();
 		exportExcel(date);
-	})	
+	});
+	$("input[name=all]").click(function(){
+		var a = true;
+		if($(this).prop("checked")==true){
+			$("input[name=a]").attr("checked",true);
+		}else{
+			$("input[name=a]").attr("checked",false);
+		}
+
+	});
+
+	$("button.allFinishClean").click(function(){
+		if(confirm("短期内")){
+			var ids = new Array();
+			$("input[name=a]").each(function(){
+				if($(this).prop("checked") == true){
+					ids.push($(this).attr("lang"));
+				}
+			});
+			$.ajax({
+				type:"POST",
+				url: "/addCleanDate.do",
+				data:JSON.stringify({"ids":ids}),
+				contentType: "application/json;charset=utf-8",
+				success:function(result){
+					if(result=="fail"){
+						window.top.document.location.href='../login.html';
+					}else if(result=="refused"){
+						alert("权限不足");
+					}else{
+						var obj=JSON.parse(result);
+						if(obj.msg == "success"){
+							for(var i = 0;i<obj.ids.length;i++){
+								$(".checked"+obj.ids[i]).html("<input type='checkbox' name = 'b' lang='"+obj.id+"' disabled='disabled' />");
+								$(".finishdate"+obj.ids[i]).html("<button onclick='finishClean("+obj.id+")' disabled='disabled' style='background-color:#aaa;'>保洁完成</button>");
+								$(".cleandate"+obj.ids[i]).html(obj.clean_date);
+							}
+							alert("修改成功");
+						}else{
+							alert('修改失败');
+						}
+					}
+				}
+			})
+		}
+	})
+	//隐藏div
+	$('body').click(function(e) {
+		var target = $(e.target);
+		if(!target.is('.getCDTK') && !target.is('.record')) {
+			$(".getCDTK").hide();
+		}
+	});
 });
+
+
 
 
 function  exportExcel(date1){
@@ -68,24 +122,112 @@ function getcleanlist(date){
 					var html;
 					for(var i=0;i<arr.length;i++){
 						obj=arr[i];
-						html = "<tr><td>"+obj.district+"</td>" +
+						var now = new Date();
+						var now1 = new Date(obj.clean_date);
+						var clean_date = "<button onclick='finishClean("+obj.id+")'>保洁完成</button>";
+						var checked = "<input type='checkbox' name = 'a' lang='"+obj.id+"' />";
+						if(parseInt(now-now1)/(60*60*1000*24)<=1){
+							clean_date = "<button onclick='finishClean("+obj.id+")' disabled='disabled' style='background-color:#aaa;'>保洁完成</button>";
+							checked = "<input type='checkbox' name = 'b' lang='"+obj.id+"' disabled='disabled' />";
+						}
+						var remark1 = "<input style='width:80px;display: none;' onblur='updateRemark(this)' value='"+obj.remark+"' lang='"+obj.cleandate_id+"'/>";
+						if(obj.cleandate_id!=0){
+							remark1 = "<input style='width:80px;display: block;' onblur='updateRemark(this)' value='"+obj.remark+"' lang='"+obj.cleandate_id+"'/>";
+						}
+						html = "<tr>" +
+								"<td class='checked"+obj.id+"'>"+checked+"</td>" +
+								"<td>"+obj.district+"</td>" +
 								"<td class='address'>"+obj.address+"</td>" +
 								"<td>"+obj.job_no+"</td>" +
 								"<td>"+obj.renter_name+"</td>" +
 								"<td>"+obj.renter_telephone+"</td>" +	
 								"<td class='startdate'><input style='width:80px;' value='"+obj.contract_startdate+"' id='"+obj.house_id+"'/></td>" +
 								"<td>"+date+"</td>" +
-								"<td width=\"50\"><button onclick='updatedate(this)' style='cursor:pointer;'>保存</button></td>"+
+								"<td class='finishdate"+obj.id+"'>"+clean_date+"</td>" +
+								"<td class='cleandate"+obj.id+"'>"+obj.clean_date+"</td>" +
+								"<td class='remark remark"+obj.id+"'>"+remark1+"</td>" +
+								"<td width=\"50\"><button onclick='updatedate(this)' style='cursor:pointer;'>保存</button><br/><a class='record' onclick='getCleanDate("+obj.id+")'>保洁记录</a></td>"+
 								"</tr>";
 						$(".table_detail tbody").append(html);
 						laydate({
 							elem: '#'+obj.house_id,							
 						});
-					}		
+					}
+					$("input[name=a]").click(function(){
+						var a = true;
+						$("input[name=a]").each(function(){
+							if($(this).prop("checked") == false){
+								a = false;
+							}
+						});
+						if(a == false){
+							$("input[name=all]").attr("checked",false);
+						}else{
+							$("input[name=all]").attr("checked",true);
+						}
+
+					});
 					$("#total").text(arr.length);
 				}
 		   }
 	});
+}
+
+function getCleanDate(id){
+	$(".getCDTK").show();
+	$.ajax({
+		type: "GET",
+		url: "/getCleanDate.do?clean_id="+id,
+		data: "",
+		success: function(result){
+			if(result=="fail"){
+				window.top.document.location.href='../login.html';
+			}else{
+				$(".table_detail1 tbody").html("");
+				var arr=JSON.parse(result);
+				var obj;
+				var html;
+				for(var i=0;i<arr.length;i++){
+					obj=arr[i];
+					html = "<tr>" +
+						"<td>"+obj.clean_date+"</td>" +
+						"<td>"+obj.status+"</td>" +
+						"<td>"+obj.create_name+"</td>" +
+						"<td>"+obj.remark+"</td>" +
+						"</tr>";
+					$(".table_detail1 tbody").append(html);
+				}
+			}
+		}
+	});
+}
+
+function finishClean(id){
+	$.ajax({
+		type:"POST",
+		url: "/addCleanDate.do",
+		data:JSON.stringify({"ids":[id]}),
+		contentType: "application/json;charset=utf-8",
+		success:function(result){
+			if(result=="fail"){
+				window.top.document.location.href='../login.html';
+			}else if(result=="refused"){
+				alert("权限不足");
+			}else{
+				var obj=JSON.parse(result);
+				if(obj.msg == "success"){
+					for(var i = 0;i<obj.ids.length;i++){
+						$(".checked"+obj.ids[i]).html("<input type='checkbox' name = 'b' lang='"+obj.id+"' disabled='disabled' />");
+						$(".finishdate"+obj.ids[i]).html("<button onclick='finishClean("+obj.id+")' disabled='disabled' style='background-color:#aaa;'>保洁完成</button>");
+						$(".cleandate"+obj.ids[i]).html(obj.clean_date);
+					}
+					alert("修改成功");
+				}else{
+					alert('修改失败');
+				}
+			}
+		}
+	})
 }
 
 function updatedate(param){
@@ -98,7 +240,7 @@ function updatedate(param){
 			if(result=="fail"){
 				window.top.document.location.href='../login.html';
 			}else{
-				var obj=JSON.parse(result); 
+				var obj=JSON.parse(result);
 				if(obj.code){
 					alert('修改成功');
 				}else{
@@ -107,6 +249,32 @@ function updatedate(param){
 			}
 		 }
 	})
+}
+
+function updateRemark(param){
+	var remark = $(param).val();
+	var cleandate_id = $(param).attr("lang");
+	$(param).attr("disabled","disabled");
+	$.ajax({
+		type:"get",
+		url: "/updateRemark.do?cleandate_id="+cleandate_id+"&remark="+encodeURI(encodeURI(remark)),
+		success: function(result){
+			if(result=="fail"){
+				window.top.document.location.href='../login.html';
+			}else if(result=="refused"){
+				alert("权限不足");
+			}else{
+				if(result=="success"){
+					alert("修改成功");
+					$(param).removeAttr("disabled");
+				}else{
+					alert("修改失败");
+					$(param).removeAttr("disabled");
+				}
+			}
+		}
+	})
+	return false;
 }
 
 //格式化日期,

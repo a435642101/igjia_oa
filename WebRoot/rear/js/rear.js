@@ -245,4 +245,4 @@ function getStaffByDD(){
 	    	   $("#rear").append(html);
 	       }
 	  });
-} 
+}

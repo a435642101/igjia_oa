@@ -30,6 +30,10 @@
 	<select id="listAll" resultType="com.yhtech.igjia.domain.Rent">
          select * from rentlist order by id desc
     </select>
+	<!-- 查询最近一周数据 -->
+	<select id="listWeek" resultType="com.yhtech.igjia.domain.Rent">
+		SELECT * FROM rentlist where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(date)
+	</select>
     <!-- 分页查询 -->
 	<select id="listPage" resultType="com.yhtech.igjia.domain.Rent"  parameterType="com.yhtech.igjia.domain.Page">
          select * from rentlist 

@@ -6,11 +6,8 @@ import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 import javax.annotation.Resource;
@@ -499,6 +496,7 @@ public class IgjiaRentController {
 		String state=null;
 		String district=null;
 		String date=null;
+		String vacancy_date=null;
 		
 		String firstyearMonthrent=request.getParameter("firstyear_monthrent");
 		String secondyearMonthrent=request.getParameter("secondyear_monthrent");
@@ -525,7 +523,7 @@ public class IgjiaRentController {
 			try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
 			try {	payrentTime = URLDecoder.decode(request.getParameter("payrent_time"),"UTF-8");} catch (Exception e) {}
 			try {	paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
-			
+			try {vacancy_date = URLDecoder.decode(request.getParameter("vacancy_date"),"UTF-8");} catch (Exception e) {}
 		
 			try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
 			try {monthpayProvider = URLDecoder.decode(request.getParameter("monthpay_provider"),"UTF-8");} catch (Exception e) {}
@@ -551,6 +549,17 @@ public class IgjiaRentController {
 			try {keyinfo = URLDecoder.decode(request.getParameter("keyinfo"),"UTF-8");} catch (Exception e) {}			
 			if("已失效".equals(state)){		//改为已失效做日志，租客订单改已失效				
 				rentorderdao.updatestate("已失效", houseId,UtilDate.getDate1());		//修改出租订单失效
+				House house = new House();
+				if(vacancy_date==null){
+					Date now = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					house.setVacancy_date(sdf.format(now));
+				}else{
+					house.setVacancy_date(vacancy_date);
+				}
+				house.setHouse_id(houseId);
+				house.setState("配置中");
+				housedao.update(house);
 			}
 			
 		Rent r = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);

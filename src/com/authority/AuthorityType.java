@@ -16,7 +16,8 @@ public enum AuthorityType {
 	    //业务部分权限
 	    BusinessAuthority,
 	    //人事权限
-	    HRAuthority;
-	    
+	    HRAuthority,
+		//客户服务
+	    KHFWZXAuthority;
 	    
 }

@@ -110,7 +110,19 @@ public class AuthorityAnnotationInterceptor extends HandlerInterceptorAdapter{
 	                    		out.print("fail");
 	                    		return false;
 	                    	}                    	
-	                    }
+	                    }else if(AuthorityType.KHFWZXAuthority == authority.value()){
+							if(admin!=null){
+								if("KHFWZX".equals(admin.getDepartment()) || "2".equals(admin.getPermission())){
+									return true;
+								}else{
+									out.print("refused");
+									return false;
+								}
+							}else{
+								out.print("fail");
+								return false;
+							}
+						}
 	                }else{
 	                	String log =UtilDate.getDateFormatter()+";未验证权限地址访问"+request.getRequestURL()+"?"+request.getQueryString()+";来源IP:"+ip;
                 		Log.logResult(log+"\r\n", "d:\\igjiaLogs\\yhTech\\Logs");
