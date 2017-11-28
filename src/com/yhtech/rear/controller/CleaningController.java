@@ -101,7 +101,7 @@ public class CleaningController {
 //			updateCleanHouse();
 //			operation.set("updatecleantoday","yes",12,TimeUnit.HOURS);
 //		}
-		updateCleanHouse();
+//		updateCleanHouse();
 		List<Clean> cleanlist = cleandao.dayclean(date, period+"");
 		JSONArray ja = JSONArray.fromObject(cleanlist);
 		ja = nameReplaceJobno(ja,admindao);
@@ -188,8 +188,8 @@ public class CleaningController {
 		for (Rent rent : list) {
 			if(rent.getState().equals("出租中")){
 				String[] address = rent.getAddress().split("-");
-				Rent clean = cleandao.list(address[0]);
-				if(clean==null){
+				List<Rent> clean = cleandao.list(address[0]);
+				if(clean==null || clean.size()==0){
 					cleandao.add(rent);
 				}
 			}
