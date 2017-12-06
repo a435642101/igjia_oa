@@ -13,7 +13,7 @@ public class Clean {
     private String renter_telephone;
     private String contract_startdate;
     private String state;
-
+    private String business_area;
 
     private int cleandate_id;
     private String clean_date;
@@ -22,6 +22,13 @@ public class Clean {
     private String crate_date;
     private String remark;
 
+    public String getBusiness_area() {
+        return business_area;
+    }
+
+    public void setBusiness_area(String business_area) {
+        this.business_area = business_area;
+    }
 
     public int getId() {
         return id;

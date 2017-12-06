@@ -88,11 +88,11 @@ function  exportExcel(date1){
 	        	}else{
 	        		var result=JSON.parse(result);             
 	                var option={}; 
-	                var title={"district":"所属区域","address":"地址","job_no":"管家","renter_name":"租客","renter_telephone":"租客电话","contract_startdate":"首次保洁日期"};
+	                var title={"district":"所属区域","business_area":"商圈","address":"地址","job_no":"管家","renter_name":"租客","renter_telephone":"租客电话","contract_startdate":"首次保洁日期"};
 	                result.unshift(title);
 	                option.data=result;
 	                option.fileName=date1+"保洁列表";
-	                option.filter=['district','address','job_no','renter_name','renter_telephone','contract_startdate'];
+	                option.filter=['district','business_area','address','job_no','renter_name','renter_telephone','contract_startdate'];
 	                var toExcel=new ExportJsonExcel(option);
 	                toExcel.saveExcel();
 	        	}
@@ -137,6 +137,7 @@ function getcleanlist(date){
 						html = "<tr>" +
 								"<td class='checked"+obj.id+"'>"+checked+"</td>" +
 								"<td>"+obj.district+"</td>" +
+								"<td>"+obj.business_area+"</td>" +
 								"<td class='address'>"+obj.address+"</td>" +
 								"<td>"+obj.job_no+"</td>" +
 								"<td>"+obj.renter_name+"</td>" +

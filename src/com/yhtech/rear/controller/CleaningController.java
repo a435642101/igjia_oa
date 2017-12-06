@@ -105,7 +105,6 @@ public class CleaningController {
 		List<Clean> cleanlist = cleandao.dayclean(date, period+"");
 		JSONArray ja = JSONArray.fromObject(cleanlist);
 		ja = nameReplaceJobno(ja,admindao);
-		System.out.print(ja.toString());
 		out.print(ja.toString());
 	}
 
@@ -195,7 +194,13 @@ public class CleaningController {
 			}
 		}
 	}
-	
+
+	/**
+	 * test
+	 * updateCleanHouse();
+	 */
+
+
 	/**
 	 * 管家名字替换管家工号
 	 * @param ja 房源集合

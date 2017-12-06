@@ -33,6 +33,7 @@ public class Rent {
 	private String state;				//房源状态
 	private String district;			//房子区域
 	private String date;				//录入日期
+	private String business_area;
 	
 	public Rent(){}
 	
@@ -82,6 +83,15 @@ public class Rent {
 		this.state = state;
 		this.district = district;
 		this.date = date;
+	}
+
+
+	public String getBusiness_area() {
+		return business_area;
+	}
+
+	public void setBusiness_area(String business_area) {
+		this.business_area = business_area;
 	}
 
 	public String getHouse_id() {
