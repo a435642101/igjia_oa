@@ -50,29 +50,33 @@ public class House {
 	private String state;				//房源状态
 	private String district;			//房子区域
 	private String date;				//录入日期
+
+	private Integer ls_id;
+
+
 	
 	
 	public House(){}
-	
+
 	public House(String house_id, String city, String region, String estate,
-			String business_area, String address, String fangdong_name,
-			String fangdong_telephone, String fangdong_idcard,
-			String shoukuanren_name, String shoukuanren_telephone,
-			String shoukuanren_kaihuhang, String shoukuanren_account,
-			String house_type, String area, String room_area,
-			String room_chaoxiang, String room_tese,
-			String room_yuqichufangjia, String contract_no,
-			String contract_date, String contract_startdate,
-			String contract_enddate, String contract_month,
-			String vacancy_date, String firstyear_monthrent,
-			String secondyear_monthrent, String thirdyear_monthrent,
-			String fourthyear_monthrent, String fifthyear_monthrent,
-			String sixthyear_monthrent, String pay_nextyear, String pay_date,
-			String name, String region_manager, String totalcost,
-			String paymethod, String deposit, String overdue_payment,
-			String remark, String house_provider, String provider_money,
-			String job_no, String room_num, String state, String district,
-			String date) {
+				 String business_area, String address, String fangdong_name,
+				 String fangdong_telephone, String fangdong_idcard,
+				 String shoukuanren_name, String shoukuanren_telephone,
+				 String shoukuanren_kaihuhang, String shoukuanren_account,
+				 String house_type, String area, String room_area,
+				 String room_chaoxiang, String room_tese,
+				 String room_yuqichufangjia, String contract_no,
+				 String contract_date, String contract_startdate,
+				 String contract_enddate, String contract_month,
+				 String vacancy_date, String firstyear_monthrent,
+				 String secondyear_monthrent, String thirdyear_monthrent,
+				 String fourthyear_monthrent, String fifthyear_monthrent,
+				 String sixthyear_monthrent, String pay_nextyear, String pay_date,
+				 String name, String region_manager, String totalcost,
+				 String paymethod, String deposit, String overdue_payment,
+				 String remark, String house_provider, String provider_money,
+				 String job_no, String room_num, String state, String district,
+				 String date,Integer ls_id) {
 		super();
 		this.house_id = house_id;
 		this.city = city;
@@ -121,6 +125,84 @@ public class House {
 		this.state = state;
 		this.district = district;
 		this.date = date;
+		this.ls_id = ls_id;
+	}
+
+	public House(String house_id, String city, String region, String estate,
+				 String business_area, String address, String fangdong_name,
+				 String fangdong_telephone, String fangdong_idcard,
+				 String shoukuanren_name, String shoukuanren_telephone,
+				 String shoukuanren_kaihuhang, String shoukuanren_account,
+				 String house_type, String area, String room_area,
+				 String room_chaoxiang, String room_tese,
+				 String room_yuqichufangjia, String contract_no,
+				 String contract_date, String contract_startdate,
+				 String contract_enddate, String contract_month,
+				 String vacancy_date, String firstyear_monthrent,
+				 String secondyear_monthrent, String thirdyear_monthrent,
+				 String fourthyear_monthrent, String fifthyear_monthrent,
+				 String sixthyear_monthrent, String pay_nextyear, String pay_date,
+				 String name, String region_manager, String totalcost,
+				 String paymethod, String deposit, String overdue_payment,
+				 String remark, String house_provider, String provider_money,
+				 String job_no, String room_num, String state, String district,
+				 String date) {
+		super();
+		this.house_id = house_id;
+		this.city = city;
+		this.region = region;
+		this.estate = estate;
+		this.business_area = business_area;
+		this.address = address;
+		this.fangdong_name = fangdong_name;
+		this.fangdong_telephone = fangdong_telephone;
+		this.fangdong_idcard = fangdong_idcard;
+		this.shoukuanren_name = shoukuanren_name;
+		this.shoukuanren_telephone = shoukuanren_telephone;
+		this.shoukuanren_kaihuhang = shoukuanren_kaihuhang;
+		this.shoukuanren_account = shoukuanren_account;
+		this.house_type = house_type;
+		this.area = area;
+		this.room_area = room_area;
+		this.room_chaoxiang = room_chaoxiang;
+		this.room_tese = room_tese;
+		this.room_yuqichufangjia = room_yuqichufangjia;
+		this.contract_no = contract_no;
+		this.contract_date = contract_date;
+		this.contract_startdate = contract_startdate;
+		this.contract_enddate = contract_enddate;
+		this.contract_month = contract_month;
+		this.vacancy_date = vacancy_date;
+		this.firstyear_monthrent = firstyear_monthrent;
+		this.secondyear_monthrent = secondyear_monthrent;
+		this.thirdyear_monthrent = thirdyear_monthrent;
+		this.fourthyear_monthrent = fourthyear_monthrent;
+		this.fifthyear_monthrent = fifthyear_monthrent;
+		this.sixthyear_monthrent = sixthyear_monthrent;
+		this.pay_nextyear = pay_nextyear;
+		this.pay_date = pay_date;
+		this.name = name;
+		this.region_manager = region_manager;
+		this.totalcost = totalcost;
+		this.paymethod = paymethod;
+		this.deposit = deposit;
+		this.overdue_payment = overdue_payment;
+		this.remark = remark;
+		this.house_provider = house_provider;
+		this.provider_money = provider_money;
+		this.job_no = job_no;
+		this.room_num = room_num;
+		this.state = state;
+		this.district = district;
+		this.date = date;
+	}
+
+	public Integer getLs_id() {
+		return ls_id;
+	}
+
+	public void setLs_id(Integer ls_id) {
+		this.ls_id = ls_id;
 	}
 
 	public String getFinish_date() {

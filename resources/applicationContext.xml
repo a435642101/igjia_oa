@@ -46,6 +46,7 @@
      com.yhtech.hr.dao
      com.yhtech.igjia.dao
      com.yhtech.rear.dao
+     com.yhtech.wms.dao
      com.yhtech.yhtech.dao"/>
     </bean>
 

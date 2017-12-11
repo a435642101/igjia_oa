@@ -23,4 +23,6 @@ public interface IHouseDao {
 	public List<House> findByDistrict(String district);
 	public List<House> findByDistrict1(String district);
 	public List<House> selectOrderHouse(String district);
+	int getContractNum(String contract_no);
+	int getContractMax();
 }

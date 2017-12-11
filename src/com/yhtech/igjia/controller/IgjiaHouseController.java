@@ -480,10 +480,13 @@ public class IgjiaHouseController {
 					try {roomArea = URLDecoder.decode(request.getParameter("room_area"),"UTF-8");} catch (Exception e) {}
 					try {roomChaoxiang = URLDecoder.decode(request.getParameter("room_chaoxiang"),"UTF-8");} catch (Exception e) {}
 					try {roomTese = URLDecoder.decode(request.getParameter("room_tese"),"UTF-8");} catch (Exception e) {}
-					
 					try {providerMoney = URLDecoder.decode(request.getParameter("provider_money"),"UTF-8");} catch (Exception e) {}		
-				 
-				House h = new House(houseId, city, region, estate, businessArea, address, fangdongName, fangdongTelephone, fangdongIdcard, shoukuanrenName, shoukuanrenTelephone, shoukuanrenKaihuhang, shoukuanrenAccount, houseType, area, roomArea, roomChaoxiang, roomTese, roomYuqichufangjia, contractNo, contractDate, contractStartdate, contractEnddate, contractMonth, vacancyDate, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, payNextyear, payDate, salesman, regionManager, totalcost, paymethod, deposit, overduePayment, remark, houseProvider, providerMoney, jobNo, roomNum, state, district, date);
+				Integer ls_id = ihousedao.getContractMax();
+				int ContractNum= ihousedao.getContractNum(contractNo);
+				if(ContractNum==0){
+					ls_id++;
+				}
+				House h = new House(houseId, city, region, estate, businessArea, address, fangdongName, fangdongTelephone, fangdongIdcard, shoukuanrenName, shoukuanrenTelephone, shoukuanrenKaihuhang, shoukuanrenAccount, houseType, area, roomArea, roomChaoxiang, roomTese, roomYuqichufangjia, contractNo, contractDate, contractStartdate, contractEnddate, contractMonth, vacancyDate, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, payNextyear, payDate, salesman, regionManager, totalcost, paymethod, deposit, overduePayment, remark, houseProvider, providerMoney, jobNo, roomNum, state, district, date, ls_id);
 				int res = 0;
 				String result = "error";
 				try {
@@ -595,16 +598,16 @@ public class IgjiaHouseController {
 		try {contractDate = URLDecoder.decode(request.getParameter("contract_date"),"UTF-8");} catch (Exception e) {}
 		try {contractStartdate = URLDecoder.decode(request.getParameter("contract_startdate"),"UTF-8");} catch (Exception e) {}
 		try {contractEnddate = URLDecoder.decode(request.getParameter("contract_enddate"),"UTF-8");} catch (Exception e) {}
-		try {	contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
+		try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
 
-		try {	paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
+		try {paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
 			
 		try {payNextyear = URLDecoder.decode(request.getParameter("pay_nextyear"),"UTF-8");} catch (Exception e) {}
 		try {payDate = URLDecoder.decode(request.getParameter("pay_date"),"UTF-8");} catch (Exception e) {}
 		try {salesman = URLDecoder.decode(request.getParameter("salesman"),"UTF-8");} catch (Exception e) {}
 		try {regionManager = URLDecoder.decode(request.getParameter("region_manager"),"UTF-8");} catch (Exception e) {}
 		try {remark = URLDecoder.decode(request.getParameter("remark"),"UTF-8");} catch (Exception e) {}
-		try {	houseProvider = URLDecoder.decode(request.getParameter("house_provider"),"UTF-8");} catch (Exception e) {}
+		try {houseProvider = URLDecoder.decode(request.getParameter("house_provider"),"UTF-8");} catch (Exception e) {}
 		try {jobNo = URLDecoder.decode(request.getParameter("job_no"),"UTF-8");} catch (Exception e) {}
 		try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
 		try {state = URLDecoder.decode(request.getParameter("state"),"UTF-8");} catch (Exception e) {}

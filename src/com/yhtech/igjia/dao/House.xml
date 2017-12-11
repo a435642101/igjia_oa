@@ -37,7 +37,13 @@
 	<select id="findByContractNo" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select * from houselist where house_id = #{contract_no}
 	</select>
-	<!-- 合同号查询 -->
+	<!-- ls_id判断 -->
+	<select id="getContractNum" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select COUNT(*) FROM houselist where contract_no = #{contract_no}
+	</select>
+	<select id="getContractMax" resultType="java.lang.Integer">
+		select MAX(ls_id) FROM houselist WHERE ls_id &lt; 10000
+	</select>
     <!-- 查询全部 -->
 	<select id="listAll" resultType="com.yhtech.igjia.domain.House">
          select * from houselist order by IF(vacancy_date is NULL or vacancy_date="",finish_date,vacancy_date)
@@ -412,7 +418,8 @@
      
       <!-- 新增 -->
       <insert id="add" parameterType="com.yhtech.igjia.domain.House">
-         insert into houselist(house_id,
+         insert into houselist(
+         house_id,
          city,
          region,
          estate,
@@ -457,8 +464,10 @@
          room_num,
          state,
          district,
-         date) 
-         values(
+         date,
+         ls_id,
+         room_id)
+         SELECT
          #{house_id},
          #{city},
          #{region},
@@ -504,10 +513,13 @@
          #{room_num},
          #{state},
          #{district},
-         #{date})
-     </insert>
-     
-     <!-- 删除 -->
+         #{date},
+         #{ls_id},
+         MAX(houselist.room_id)+1
+         FROM houselist
+  </insert>
+
+  <!-- 删除 -->
      <delete id="delete" parameterType="String">
          delete from houselist where house_id=#{house_id}
      </delete>
