@@ -13,6 +13,41 @@
 	paymethod, deposit, overdue_payment, remark, house_provider, provider_money, 
 	job_no, room_num, state, district, date
 	</sql>
+	<select id="newoaHouse" resultType="java.util.Map">
+		select
+		substring_index(h.address,'-',1) as address,
+		h.ls_id as id,
+		h.district as belongArea,
+		h.business_area as belongTrade,
+		h.estate as estate,
+		h.contract_month as contractDuration,
+		SUM(h.room_yuqichufangjia) as rentTotalPriceEstimate,
+		(select ID from orup_user o where o.loginName=a.telephone) as createNo,
+		a.telephone as phone,
+		h.contract_no as contractNo,
+		'AUDIT_PASS' as state
+		from houselist h
+		left JOIN admin a on h.job_no = a.job_no
+		WHERE h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)
+		GROUP BY h.contract_no
+	</select>
+	<select id="newoaRoom" resultType="java.util.Map">
+		select
+		h.house_id as roomId,
+		h.ls_id as houseId,
+		h.room_id as id,
+		CONCAT('房间',REPLACE(right(h.address,2),'卧','')) as name,
+		h.room_area as area,
+		h.room_yuqichufangjia as price,
+		h.state as status,
+		'true' as isRent,
+		'ACTUAL' as type,
+		(select ID from orup_user o where o.loginName=a.telephone) as createNo,
+		a.telephone as phone
+		from houselist h
+		left JOIN admin a on h.job_no = a.job_no
+		WHERE h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)
+	</select>
 	<!--订单列表查询-->
 	<select id="selectOrderHouse" parameterType="String" resultType="com.yhtech.igjia.domain.House">
 		select

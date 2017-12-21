@@ -189,6 +189,7 @@ public class CleaningController {
 				String[] address = rent.getAddress().split("-");
 				List<Rent> clean = cleandao.list(address[0]);
 				if(clean==null || clean.size()==0){
+					rent.setAddress(address[0]);
 					cleandao.add(rent);
 				}
 			}

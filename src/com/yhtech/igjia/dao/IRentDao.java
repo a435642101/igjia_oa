@@ -1,6 +1,7 @@
 package com.yhtech.igjia.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yhtech.igjia.domain.Statistics;
 import org.springframework.stereotype.Repository;
@@ -24,4 +25,5 @@ public interface IRentDao {
 	public List<Statistics> findByJob15(Statistics statistics);
 	public List<Rent> selectOrderRent(String district);
 	public List<Rent> listWeek();
+	List<Map<String, Object>> newoaRent();
  }

@@ -2,6 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.yhtech.igjia.dao.IRentDao">
+	<!--同步数据-->
+	<select id="newoaRent" resultType="java.util.Map">
+		select
+		r.contract_no as contractNo,
+		h.ls_id as houseId,
+		h.room_id as roomId,
+		r.contract_date as confirmDate,
+		r.contract_startdate as startDate,
+		r.contract_month as life,
+		r.contract_enddate as endDate,
+		r.state as status,
+		r.paymethod as payChannel,
+		(select ID from orup_user o where o.loginName=a.telephone) as createNo,
+		r.date,
+		'RENT' as type,
+		'ZJLX_SFZ' as cardType,
+		r.renter_telephone as phone,
+		r.renter_name as name,
+		r.renter_idcard as idCardNo
+		from rentlist r
+		left join houselist h on r.house_id = h.house_id
+		left join admin a on r.job_no = a.job_no
+		WHERE r.date >= (now() - interval 4 hour) OR  r.update_date >= (now() - interval 4 hour)
+		limit 0,10
+	</select>
+
 	<!--订单列表查询-->
 	<select id="selectOrderRent" parameterType="String" resultType="com.yhtech.igjia.domain.Rent">
 		select

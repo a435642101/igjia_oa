@@ -1,6 +1,7 @@
 package com.yhtech.igjia.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +26,6 @@ public interface IHouseDao {
 	public List<House> selectOrderHouse(String district);
 	int getContractNum(String contract_no);
 	int getContractMax();
+	List<Map<String, Object>> newoaHouse();
+	List<Map<String, Object>> newoaRoom();
 }

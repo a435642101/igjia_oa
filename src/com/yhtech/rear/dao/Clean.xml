@@ -7,8 +7,8 @@
     </select>
 
     <insert id="add" parameterType="com.yhtech.igjia.domain.Rent">
-    	insert into clean (house_id,district,address,job_no,renter_name,renter_telephone,contract_startdate,state) values 
-    	(#{house_id},#{district},#{address},#{job_no},#{renter_name},#{renter_telephone},#{contract_startdate},#{state})
+    	insert into clean (house_id,district,address,job_no,renter_name,renter_telephone,contract_startdate,state,business_area) values
+    	(#{house_id},#{district},#{address},#{job_no},#{renter_name},#{renter_telephone},#{contract_startdate},#{state},#{business_area})
     </insert>
 
 	<insert id="addCleanDate" parameterType="java.util.Map">
