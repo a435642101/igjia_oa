@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.List;
@@ -26,31 +27,79 @@ public class NewoaController {
     private IRentDao rentDao;
 
     @RequestMapping(value = "/newoa/newoahouse", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    private void NewoaHouse(HttpServletResponse response) throws Exception{
+    private void NewoaHouse(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        List<Map<String, Object>> newoaHouse = houseDao.newoaHouse();
-        JSONArray array = JSONArray.fromObject(newoaHouse);
-        out.print(array);
+        String ipAddress = null;
+        ipAddress = request.getHeader("x-forwarded-for");
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getRemoteAddr();
+        }
+        if(ipAddress.equals("127.0.0.1")){
+            List<Map<String, Object>> newoaHouse = houseDao.newoaHouse();
+            JSONArray array = JSONArray.fromObject(newoaHouse);
+            out.print(array);
+        }else{
+            out.print(666);
+        }
+
     }
 
     @ResponseBody
     @RequestMapping(value = "/newoa/newoaroom", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    private void  NewoaRoom(HttpServletResponse response) throws Exception{
+    private void  NewoaRoom(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        List<Map<String, Object>> newoaHouse = houseDao.newoaRoom();
-        JSONArray array = JSONArray.fromObject(newoaHouse);
-        out.print(array);
+        String ipAddress = null;
+        ipAddress = request.getHeader("x-forwarded-for");
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getRemoteAddr();
+        }
+        if(ipAddress.equals("127.0.0.1")){
+            List<Map<String, Object>> newoaRoom = houseDao.newoaRoom();
+            JSONArray array = JSONArray.fromObject(newoaRoom);
+            out.print(array);
+        }else{
+            out.print(666);
+        }
+
     }
 
     @ResponseBody
     @RequestMapping(value = "/newoa/newoarent", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    private void NewoaRent(HttpServletResponse response) throws Exception{
+    private void NewoaRent(HttpServletRequest request, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
-        List<Map<String, Object>> newoaHouse = rentDao.newoaRent();
-        JSONArray array = JSONArray.fromObject(newoaHouse);
-        out.print(array);
+        String ipAddress = null;
+        ipAddress = request.getHeader("x-forwarded-for");
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getRemoteAddr();
+        }
+        if(ipAddress.equals("127.0.0.1")){
+            List<Map<String, Object>> newoaRent = rentDao.newoaRent();
+            JSONArray array = JSONArray.fromObject(newoaRent);
+            out.print(array);
+        }else{
+            out.print(666);
+        }
+
     }
 }
