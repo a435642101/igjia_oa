@@ -34,6 +34,7 @@ public class Rent {
 	private String district;			//房子区域
 	private String date;				//录入日期
 	private String business_area;
+	private String vacancy_time;
 	
 	public Rent(){}
 	
@@ -350,7 +351,11 @@ public class Rent {
 		this.date = date;
 	}
 
-	
-	
-	
+	public String getVacancy_time() {
+		return vacancy_time;
+	}
+
+	public void setVacancy_time(String vacancy_time) {
+		this.vacancy_time = vacancy_time;
+	}
 }

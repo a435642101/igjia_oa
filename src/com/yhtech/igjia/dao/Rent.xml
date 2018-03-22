@@ -25,7 +25,6 @@
 		left join houselist h on r.house_id = h.house_id
 		left join admin a on r.job_no = a.job_no
 		WHERE r.date >= (now() - interval 4 hour) OR  r.update_date >= (now() - interval 4 hour)
-		limit 0,10
 	</select>
 
 	<!--订单列表查询-->
@@ -319,6 +318,9 @@
           	<if test="room_num!=null and room_num!=''">
             	room_num =#{room_num},
           	</if>
+			<if test="vacancy_time!=null and vacancy_time!=''">
+				vacancy_time =#{vacancy_time},
+			</if>
           	<if test="state!=null and state!=''">
             	state =#{state},
           	</if>

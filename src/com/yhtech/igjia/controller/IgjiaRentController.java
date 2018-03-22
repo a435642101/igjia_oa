@@ -358,52 +358,52 @@ public class IgjiaRentController {
 				String state=null;
 				String district=null;
 				String date= UtilDate.getDateFormatter();
-					try {houseId = URLDecoder.decode(request.getParameter("house_id"),"UTF-8");} catch (Exception e) {}
-					try {address = URLDecoder.decode(request.getParameter("address"),"UTF-8");} catch (Exception e) {}
-					try {contractNo = URLDecoder.decode(request.getParameter("contract_no"),"UTF-8");} catch (Exception e) {}
-					try {salesman = URLDecoder.decode(request.getParameter("salesman"),"UTF-8");} catch (Exception e) {}
-					try {regionManager = URLDecoder.decode(request.getParameter("region_manager"),"UTF-8");} catch (Exception e) {}
-					try {serviceProvider = URLDecoder.decode(request.getParameter("service_provider"),"UTF-8");} catch (Exception e) {}
-					try {renterName = URLDecoder.decode(request.getParameter("renter_name"),"UTF-8");} catch (Exception e) {}
-					try {renterTelephone = URLDecoder.decode(request.getParameter("renter_telephone"),"UTF-8");} catch (Exception e) {}
-					try {renterIdcard = URLDecoder.decode(request.getParameter("renter_idcard"),"UTF-8");} catch (Exception e) {}
-					try {contractDate = URLDecoder.decode(request.getParameter("contract_date"),"UTF-8");} catch (Exception e) {}
-					try {contractStartdate = URLDecoder.decode(request.getParameter("contract_startdate"),"UTF-8");} catch (Exception e) {}
-					try {contractEnddate = URLDecoder.decode(request.getParameter("contract_enddate"),"UTF-8");} catch (Exception e) {}
-					try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
-					try {payrentTime = URLDecoder.decode(request.getParameter("payrent_time"),"UTF-8");} catch (Exception e) {}
-					try {jobNo = URLDecoder.decode(request.getParameter("job_no"),"UTF-8");} catch (Exception e) {}
-					try {paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
+				try {houseId = URLDecoder.decode(request.getParameter("house_id"),"UTF-8");} catch (Exception e) {}
+				try {address = URLDecoder.decode(request.getParameter("address"),"UTF-8");} catch (Exception e) {}
+				try {contractNo = URLDecoder.decode(request.getParameter("contract_no"),"UTF-8");} catch (Exception e) {}
+				try {salesman = URLDecoder.decode(request.getParameter("salesman"),"UTF-8");} catch (Exception e) {}
+				try {regionManager = URLDecoder.decode(request.getParameter("region_manager"),"UTF-8");} catch (Exception e) {}
+				try {serviceProvider = URLDecoder.decode(request.getParameter("service_provider"),"UTF-8");} catch (Exception e) {}
+				try {renterName = URLDecoder.decode(request.getParameter("renter_name"),"UTF-8");} catch (Exception e) {}
+				try {renterTelephone = URLDecoder.decode(request.getParameter("renter_telephone"),"UTF-8");} catch (Exception e) {}
+				try {renterIdcard = URLDecoder.decode(request.getParameter("renter_idcard"),"UTF-8");} catch (Exception e) {}
+				try {contractDate = URLDecoder.decode(request.getParameter("contract_date"),"UTF-8");} catch (Exception e) {}
+				try {contractStartdate = URLDecoder.decode(request.getParameter("contract_startdate"),"UTF-8");} catch (Exception e) {}
+				try {contractEnddate = URLDecoder.decode(request.getParameter("contract_enddate"),"UTF-8");} catch (Exception e) {}
+				try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
+				try {payrentTime = URLDecoder.decode(request.getParameter("payrent_time"),"UTF-8");} catch (Exception e) {}
+				try {jobNo = URLDecoder.decode(request.getParameter("job_no"),"UTF-8");} catch (Exception e) {}
+				try {paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
 					
 				
-					try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
-					try {monthpayProvider = URLDecoder.decode(request.getParameter("monthpay_provider"),"UTF-8");} catch (Exception e) {}
-					try {monthpayState = URLDecoder.decode(request.getParameter("monthpay_state"),"UTF-8");} catch (Exception e) {}
-					try {remark = URLDecoder.decode(request.getParameter("remark"),"UTF-8");} catch (Exception e) {}
-					try {state = URLDecoder.decode(request.getParameter("state"),"UTF-8");} catch (Exception e) {}
-					try {	district = URLDecoder.decode(request.getParameter("district"),"UTF-8");} catch (Exception e) {}
+				try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
+				try {monthpayProvider = URLDecoder.decode(request.getParameter("monthpay_provider"),"UTF-8");} catch (Exception e) {}
+				try {monthpayState = URLDecoder.decode(request.getParameter("monthpay_state"),"UTF-8");} catch (Exception e) {}
+				try {remark = URLDecoder.decode(request.getParameter("remark"),"UTF-8");} catch (Exception e) {}
+				try {state = URLDecoder.decode(request.getParameter("state"),"UTF-8");} catch (Exception e) {}
+				try {	district = URLDecoder.decode(request.getParameter("district"),"UTF-8");} catch (Exception e) {}
 
 					
-					if(houseId.isEmpty() || houseId==null){		//房源ID不能为空
-						out.print("houseId_fail");
-						return;
-					}
+				if(houseId.isEmpty() || houseId==null){		//房源ID不能为空
+					out.print("houseId_fail");
+					return;
+				}
 					
-					//物业配置
-					String now_water_degree=request.getParameter("now_water_degree");
-					String now_elec_degree_day=request.getParameter("now_elec_degree_day");
-					String now_elec_degree_night=request.getParameter("now_elec_degree_night");
-					String now_gas_degree=request.getParameter("now_gas_degree");
+				//物业配置
+				String now_water_degree=request.getParameter("now_water_degree");
+				String now_elec_degree_day=request.getParameter("now_elec_degree_day");
+				String now_elec_degree_night=request.getParameter("now_elec_degree_night");
+				String now_gas_degree=request.getParameter("now_gas_degree");
 					
-					String keyinfo = null;
-					try {keyinfo = URLDecoder.decode(request.getParameter("keyinfo"),"UTF-8");} catch (Exception e) {}
+				String keyinfo = null;
+				try {keyinfo = URLDecoder.decode(request.getParameter("keyinfo"),"UTF-8");} catch (Exception e) {}
 					
-					Map<String,String> m1 = new LinkedHashMap<String, String>();
-				    Http hp1 = Http.getInstance();
+				Map<String,String> m1 = new LinkedHashMap<String, String>();
+				Http hp1 = Http.getInstance();
 				    
 					
-					//新增出房
-					Rent rent = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);	
+				//新增出房
+				Rent rent = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);
 
 				    
 				String result1 = "error";
@@ -518,20 +518,20 @@ public class IgjiaRentController {
 		try {renterTelephone = URLDecoder.decode(request.getParameter("renter_telephone"),"UTF-8");} catch (Exception e) {}
 		try {renterIdcard = URLDecoder.decode(request.getParameter("renter_idcard"),"UTF-8");} catch (Exception e) {}
 		try {contractDate = URLDecoder.decode(request.getParameter("contract_date"),"UTF-8");} catch (Exception e) {}
-			try {contractStartdate = URLDecoder.decode(request.getParameter("contract_startdate"),"UTF-8");} catch (Exception e) {}
-			try {	contractEnddate = URLDecoder.decode(request.getParameter("contract_enddate"),"UTF-8");} catch (Exception e) {}
-			try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
-			try {	payrentTime = URLDecoder.decode(request.getParameter("payrent_time"),"UTF-8");} catch (Exception e) {}
-			try {	paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
-			try {vacancy_date = URLDecoder.decode(request.getParameter("vacancy_date"),"UTF-8");} catch (Exception e) {}
+		try {contractStartdate = URLDecoder.decode(request.getParameter("contract_startdate"),"UTF-8");} catch (Exception e) {}
+		try {	contractEnddate = URLDecoder.decode(request.getParameter("contract_enddate"),"UTF-8");} catch (Exception e) {}
+		try {contractMonth = URLDecoder.decode(request.getParameter("contract_month"),"UTF-8");} catch (Exception e) {}
+		try {	payrentTime = URLDecoder.decode(request.getParameter("payrent_time"),"UTF-8");} catch (Exception e) {}
+		try {	paymethod = URLDecoder.decode(request.getParameter("paymethod"),"UTF-8");} catch (Exception e) {}
+		try {vacancy_date = URLDecoder.decode(request.getParameter("vacancy_date"),"UTF-8");} catch (Exception e) {}
 		
-			try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
-			try {monthpayProvider = URLDecoder.decode(request.getParameter("monthpay_provider"),"UTF-8");} catch (Exception e) {}
-			try {monthpayState = URLDecoder.decode(request.getParameter("monthpay_state"),"UTF-8");} catch (Exception e) {}
-			try {remark = URLDecoder.decode(request.getParameter("remark"),"UTF-8");} catch (Exception e) {}
-			try {jobNo = URLDecoder.decode(request.getParameter("job_no"),"UTF-8");} catch (Exception e) {}
-			try {state = URLDecoder.decode(request.getParameter("state"),"UTF-8");} catch (Exception e) {}
-			try {district = URLDecoder.decode(request.getParameter("district"),"UTF-8");} catch (Exception e) {}
+		try {roomNum = URLDecoder.decode(request.getParameter("room_num"),"UTF-8");} catch (Exception e) {}
+		try {monthpayProvider = URLDecoder.decode(request.getParameter("monthpay_provider"),"UTF-8");} catch (Exception e) {}
+		try {monthpayState = URLDecoder.decode(request.getParameter("monthpay_state"),"UTF-8");} catch (Exception e) {}
+		try {remark = URLDecoder.decode(request.getParameter("remark"),"UTF-8");} catch (Exception e) {}
+		try {jobNo = URLDecoder.decode(request.getParameter("job_no"),"UTF-8");} catch (Exception e) {}
+		try {state = URLDecoder.decode(request.getParameter("state"),"UTF-8");} catch (Exception e) {}
+		try {district = URLDecoder.decode(request.getParameter("district"),"UTF-8");} catch (Exception e) {}
 
 
 			
@@ -563,7 +563,7 @@ public class IgjiaRentController {
 			}
 			
 		Rent r = new Rent(houseId, address, contractNo, salesman, regionManager, serviceProvider, providerMoney, renterName, renterTelephone, renterIdcard, contractDate, contractStartdate, contractEnddate, contractMonth, firstyearMonthrent, secondyearMonthrent, thirdyearMonthrent, fourthyearMonthrent, fifthyearMonthrent, sixthyearMonthrent, firststageRent, payrentTime, paymethod, deposit, monthpayProvider, monthpayState, remark, jobNo, roomNum, state, district, date);
-		
+		r.setVacancy_time(vacancy_date);
 	    String result1 = "error";
 	    int res = irentdao.update(r);
 	    if(res == 1){
