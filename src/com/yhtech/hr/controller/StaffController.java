@@ -134,14 +134,10 @@ public class StaffController {
 		try {
 			String job_no = request.getParameter("job_no");
 			Staff staff = staffdao.findByjobno(job_no);
-			if(staff.getDistrict().equals(admin.getDistrict()) ||"admin".equals(admin.getJob_no())){
-				JSONObject staffjo = JSONObject.fromObject(staff);
-				jo.put("code", "1");
-				jo.put("msg", staffjo.toString());
-				out.print(jo.toString());
-			}else{
-				out.print("refused");
-			}
+			JSONObject staffjo = JSONObject.fromObject(staff);
+			jo.put("code", "1");
+			jo.put("msg", staffjo.toString());
+			out.print(jo.toString());
 		} catch (Exception e) {
 			jo.put("code", "2");
 			jo.put("msg", "参数错误");
