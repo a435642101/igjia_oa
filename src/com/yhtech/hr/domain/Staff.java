@@ -8,6 +8,7 @@ public class Staff {
 	private String position; //职位
 	private String permission; //权限等级
 	private String district; //组别
+	private String business_area;
 	private String origo;	//户籍所在地
 	private String address;	//现居住地址
 	private String idcard;	//身份证号
@@ -24,12 +25,39 @@ public class Staff {
 	
 	
 	public Staff(){}
-	public Staff(String job_no, String pwd, String department, String name,
-			String position, String permission, String district, String origo,
-			String address, String idcard, String prfunds, String telephone,
-			String social_security, String emergency_contactname,
-			String emergency_contacttelephone, String regist_date,
-			String login_date, String state, String email, String vxin) {
+//	public Staff(String job_no, String pwd, String department, String name,
+//			String position, String permission, String district, String origo,
+//			String address, String idcard, String prfunds, String telephone,
+//			String social_security, String emergency_contactname,
+//			String emergency_contacttelephone, String regist_date,
+//			String login_date, String state, String email, String vxin) {
+//		super();
+//		this.job_no = job_no;
+//		this.pwd = pwd;
+//		this.department = department;
+//		this.name = name;
+//		this.position = position;
+//		this.permission = permission;
+//		this.district = district;
+//		this.origo = origo;
+//		this.address = address;
+//		this.idcard = idcard;
+//		this.prfunds = prfunds;
+//		this.telephone = telephone;
+//		this.social_security = social_security;
+//		this.emergency_contactname = emergency_contactname;
+//		this.emergency_contacttelephone = emergency_contacttelephone;
+//		this.regist_date = regist_date;
+//		this.login_date = login_date;
+//		this.state = state;
+//		this.email = email;
+//		this.vxin = vxin;
+//	}
+
+	public Staff(String job_no, String pwd, String department, String name, String position, String permission,
+				 String district, String business_area, String origo, String address, String idcard, String prfunds,
+				 String telephone, String social_security, String emergency_contactname, String emergency_contacttelephone,
+				 String regist_date, String login_date, String state, String email, String vxin) {
 		super();
 		this.job_no = job_no;
 		this.pwd = pwd;
@@ -38,6 +66,7 @@ public class Staff {
 		this.position = position;
 		this.permission = permission;
 		this.district = district;
+		this.business_area = business_area;
 		this.origo = origo;
 		this.address = address;
 		this.idcard = idcard;
@@ -52,6 +81,15 @@ public class Staff {
 		this.email = email;
 		this.vxin = vxin;
 	}
+
+	public String getBusiness_area() {
+		return business_area;
+	}
+
+	public void setBusiness_area(String business_area) {
+		this.business_area = business_area;
+	}
+
 	public String getPrfunds() {
 		return prfunds;
 	}

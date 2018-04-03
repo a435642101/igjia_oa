@@ -166,10 +166,10 @@ public class IgjiaRentController {
 		jo = JSONObject.fromObject(rent);
 
 		if(rent == null){
-			System.out.print("1111111111111111111111111111111111111"+rent+"================================"+jo.toString());
+			//System.out.print("1111111111111111111111111111111111111"+rent+"================================"+jo.toString());
 			out.print("zero");
 		}else{
-			System.out.print("2222222222222222222222222222222222222222"+rent+"================================"+jo.toString());
+			//System.out.print("2222222222222222222222222222222222222222"+rent+"================================"+jo.toString());
 			out.print(jo.toString());
 		}
 		
@@ -322,7 +322,8 @@ public class IgjiaRentController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		Staff admin = (Staff) request.getSession().getAttribute("admin");
-		if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
+		//if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
+		if(admin.getDepartment().equals("YGJZL")){
 			synchronized(this){
 				String houseId=null;
 				String address=null;

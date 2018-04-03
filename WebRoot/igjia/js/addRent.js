@@ -6,6 +6,7 @@ $(function(){
 	$('.property').hide();
 	
 	adminContact();
+	getAdmin();
 	$('.loading').hide();
 	
 	$('.next').click(function(){
@@ -671,4 +672,20 @@ function getDistrict(){
 	       }
 			
 	  });
+}
+
+function getAdmin(){
+	$.ajax({
+		type:"get",
+		url:"/admin.do",
+		async:false,
+		success:function(result){
+			if(result=='fail'){
+			}else{
+				var json = eval('(' + result + ')');
+				$(".job_no").val(json.job_no);
+				$(".salesman").val(json.name);
+			}
+		}
+	})
 }

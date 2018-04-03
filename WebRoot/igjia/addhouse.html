@@ -318,7 +318,7 @@ table i{margin-right: 2px;font-style: inherit;}
 						<table>
 							<tr>
 								<td>合同编号：</td>
-								<td><input type="text" class="contract_no" name="contract_no" value="YGJWT" /><span></span></td>
+								<td><input type="text" class="contract_no" name="contract_no" value="" /><span></span></td>
 								<td>合约签约日期：</td>
 								<td><input type="text" class="contract_date" name="contract_date" id="J-x1" /><span></span></td>
 								<td>合同生效日期：</td>
@@ -385,9 +385,15 @@ table i{margin-right: 2px;font-style: inherit;}
 						<table>	
 							<tr>
 								<td>入房管家：</td>
-								<td><select class="salesman" id="salesman" name="salesman"></select></td>
+								<td>
+									<!--<select class="salesman" id="salesman" name="salesman"></select>-->
+									<input readonly="readonly" type="text" class="salesman" id="salesman" name="salesman" />
+								</td>
 								<td>房源管家：</td>
-								<td><select class="job_no" id="job_no" name="job_no"></select></td>
+								<td>
+									<!--<select class="job_no" id="job_no" name="job_no"></select>-->
+									<input readonly="readonly" type="text" class="job_no" id="job_no" name="job_no" />
+								</td>
 								<td>区域经理：</td>
 								<td><input readonly="readonly" type="text" class="region_manager" id="region_manager" name="region_manager" /><span></span></td>
 							</tr>

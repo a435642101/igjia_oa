@@ -1185,12 +1185,12 @@ function getAdmin(){
 				var jobno1 = $('.salesman').val();
 				var jobno2 = $('.job_no').val();
 				var name1 = $('.region_manager').val();
-				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007'){
-					
+				var business_area = json.business_area;
+				var business_area1 = $('.business_area').val();
+				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007' && business_area!=business_area1){
 					var telephone = $('.shoukuanren_telephone').val();
 					var newt = telephone.substring(0,3)+"****"+telephone.substring(7,telephone.length)
 					$('.shoukuanren_telephone').val(newt)
-					
 					var fangdong_telephone = $('.fangdong_telephone').val();
 					var newt1 = fangdong_telephone.substring(0,3)+"****"+fangdong_telephone.substring(7,telephone.length)
 					$('.fangdong_telephone').val(newt1)

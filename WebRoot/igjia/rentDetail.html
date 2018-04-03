@@ -43,6 +43,7 @@ margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius:
 									<select name="district" class="district" >
 					              		
 					              	</select>
+									<input type="text" class="business_area" id="business_area" name="business_area" style="display: none" />
 					            </td>	
 					            <td>录入时间：</td>
 								<td><input type="text" class="date readonly" id="date" name="date" readonly="readonly"/><span></span></td>							
@@ -57,9 +58,15 @@ margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius:
 							</tr>
 							<tr>
 								<td>出房管家：</td>
-								<td><select name="salesman" class="salesman"><option value="other">其他</option></select><input id="othersalesman" class="readonly" readonly="readonly" style="width:50px;display:none;border:1px solid #ccc;" /></td>							
+								<td>
+									<input readonly="readonly" type="text" class="salesman" id="salesman" name="salesman" />
+									<!--<select name="salesman" class="salesman"><option value="other">其他</option></select><input id="othersalesman" class="readonly" readonly="readonly" style="width:50px;display:none;border:1px solid #ccc;" />-->
+								</td>
 								<td>房源管家：</td>
-								<td><select name="job_no" class="job_no"></select></td>
+								<td>
+									<input readonly="readonly" type="text" class="job_no" id="job_no" name="job_no" />
+									<!--<select class="job_no" id="job_no" name="job_no"></select>-->
+								</td>
 								<td>区域经理：</td>
 								<td><input type="text" class="region_manager" id="region_manager" name="region_manager" readonly="readonly"/></td>
 							</tr>

@@ -13,6 +13,32 @@
 	paymethod, deposit, overdue_payment, remark, house_provider, provider_money, 
 	job_no, room_num, state, district, date
 	</sql>
+	<!--导出相关-->
+	<!--<select id="stateHR" resultType="java.util.Map">-->
+		<!--SELECT-->
+		<!--h.house_id as house_id,-->
+		<!--h.district as distract,-->
+		<!--h.business_area as business_area,-->
+		<!--h.estate as estate,-->
+		<!--h.fangdong_name as fdname,-->
+		<!--h.fangdong_telephone as fdphone,-->
+		<!--SUBSTRING_INDEX(h.address,"-",1) as address,-->
+		<!--SUBSTRING_INDEX(h.address,"-",-1) as name,-->
+		<!--h.contract_no as h_contract_no,-->
+		<!--h.contract_startdate as h_contract_startdate,-->
+		<!--h.contract_enddate as h_contract_enddate,-->
+		<!--h.paymethod as hpaymethod,-->
+		<!--h.state as h_state,-->
+		<!--r.contract_no as r_contract_no,-->
+		<!--r.renter_name as rtname,-->
+		<!--r.renter_telephone as rtphone,-->
+		<!--r.paymethod as rpaymethod,-->
+		<!--r.state as r_state-->
+		<!--FROM houselist h-->
+		<!--LEFT JOIN (select house_id,contract_no,renter_name,renter_telephone,paymethod,state from rentlist where state != '已失效' and state !='已到期') r on h.house_id = r.house_id-->
+		<!--where h.state !='已解约' and h.state !='已到期'-->
+	<!--</select>-->
+	<!--导出相关-->
 	<select id="newoaHouse" resultType="java.util.Map">
 		select
 		substring_index(h.address,'-',1) as address,

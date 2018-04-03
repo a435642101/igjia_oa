@@ -45,11 +45,15 @@
 
 	<!-- 出租中合同编号查询 -->
 	<select id="findByContractNo" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
-         select * from rentlist where contract_no = #{contract_no}
+         select r.*,h.business_area from rentlist r
+         inner join houselist h on h.house_id = r.house_id
+         where r.contract_no = #{contract_no}
     </select>
     <!-- 合同id查询 -->
     <select id="findById" resultType="com.yhtech.igjia.domain.Rent" parameterType="String">
-         select * from rentlist where house_id = #{house_id} and state = '出租中'
+         select r.*,h.business_area from rentlist r
+         inner join houselist h on h.house_id = r.house_id
+         where r.house_id = #{house_id} and r.state = '出租中'
     </select>
     <!-- 查询全部 -->
 	<select id="listAll" resultType="com.yhtech.igjia.domain.Rent">

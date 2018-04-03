@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -171,6 +172,8 @@ public class StaffController {
 		try {position = URLDecoder.decode(request.getParameter("position"),"utf-8");} catch (Exception e) {}
 		String district =null;
 		try {district = URLDecoder.decode(request.getParameter("district"),"utf-8");} catch (Exception e) {}
+		String business_area = null;
+		try {business_area = URLDecoder.decode(request.getParameter("business_area"),"utf-8");} catch (Exception e) {}
 		String origo = null;
 		try {origo = URLDecoder.decode(request.getParameter("origo"),"utf-8");} catch (Exception e) {}
 		String address=null;
@@ -186,7 +189,7 @@ public class StaffController {
 			String password = Math.random()*900000+100000+"";
 			password = password.substring(0, password.indexOf("."));
 			String pwd = MD5.sign(password+"", "utf-8");
-			Staff staff = new Staff(job_no, pwd, department, name, position,"3", district, origo, address, idcard, prfunds, telephone, social_security, emergency_contactname, emergency_contacttelephone, date, date, "正常", email, vxin);
+			Staff staff = new Staff(job_no, pwd, department, name, position,"3", district, business_area, origo, address, idcard, prfunds, telephone, social_security, emergency_contactname, emergency_contacttelephone, date, date, "正常", email, vxin);
 			int num = staffdao.add(staff);
 			if(num>0){
 				jo.put("code", "1");
@@ -230,6 +233,8 @@ public class StaffController {
 		try {position = URLDecoder.decode(request.getParameter("position"),"utf-8");} catch (Exception e) {}
 		String district =null;
 		try {district = URLDecoder.decode(request.getParameter("district"),"utf-8");} catch (Exception e) {}
+		String business_area = null;
+		try {business_area = URLDecoder.decode(request.getParameter("business_area"),"utf-8");} catch (Exception e) {}
 		String origo = null;
 		try {origo = URLDecoder.decode(request.getParameter("origo"),"utf-8");} catch (Exception e) {}
 		String address=null;
@@ -242,7 +247,10 @@ public class StaffController {
 		if(pwd!=null && !pwd.isEmpty()){
 			pwd=MD5.sign(pwd, "utf-8");
 		}
-		
+
+
+
+
 		if("YGJZL".equals(department)){		//判断是不是业务部门的员工
 			Staff staff = staffdao.findByjobno(job_no);
 			if(!department.equals(staff.getDepartment()) || !district.equals(staff.getDistrict()) || !state.equals(staff.getState())){	//判断这三个条件是否改变,如果改变需要验证该员工名下是否有房源
@@ -267,11 +275,18 @@ public class StaffController {
 //				}
 			}	
 		}
-		Staff staff = new Staff(job_no, pwd, department, name, position,"3", district, origo, address, idcard, prfunds, telephone, social_security, emergency_contactname, emergency_contacttelephone, "", "",state, email, vxin);
+		Staff admin = (Staff) request.getSession().getAttribute("admin");
+		if(!admin.getDepartment().equals("YGJHR") && !admin.getJob_no().equals("admin")){
+			jo.put("code", "4");
+			jo.put("msg","无权限修改");
+			out.print(jo.toString());
+			return;
+		}
+		Staff staff = new Staff(job_no, pwd, department, name, position,"3", district, business_area, origo, address, idcard, prfunds, telephone, social_security, emergency_contactname, emergency_contacttelephone, "", "",state, email, vxin);
 		int num = staffdao.update(staff);
 		if(num>0){
 			jo.put("code", "1");
-			jo.put("msg","success");
+			jo.put("msg","修改成功");
 		}else{
 			jo.put("code", "2");
 			jo.put("msg","修改失败");
@@ -314,6 +329,7 @@ public class StaffController {
 				House house = new House();
 				house.setJob_no(job_no);
 				List<House> list = housedao.listSearch(house);
+				housearray = JSONArray.fromObject(list);
 				if(list.size() == 0){
 					jo.put("code", "2");
 					jo.put("msg","没有房源");
@@ -345,7 +361,7 @@ public class StaffController {
 	}
 
 	/**
-	 * 批量转译房源
+	 * 批量转移房源
 	 */
 	@RequestMapping("/transferHouse.do")
 	@Authority(AuthorityType.HRAuthority)

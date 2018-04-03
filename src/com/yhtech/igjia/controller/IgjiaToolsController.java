@@ -13,13 +13,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yhtech.igjia.dao.IApplicationDao;
 import com.yhtech.igjia.dao.IHouseDao;
 import com.yhtech.igjia.dao.IRentDao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,7 +32,6 @@ import com.yhtech.hr.dao.IStaffDao;
 import com.yhtech.hr.domain.Staff;
 import com.yhtech.igjia.domain.House;
 import com.yhtech.igjia.domain.Rent;
-import com.yhtech.service.YGJdataService;
 
 @Controller("igjiatoolscontroller")
 public class IgjiaToolsController {
@@ -44,6 +42,10 @@ public class IgjiaToolsController {
 	private IHouseDao housedao;
 	@Resource
 	private IRentDao rentdao;
+
+
+
+
 	/**
 	 * 查询本月收房数据
 	 * @param request

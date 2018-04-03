@@ -24,7 +24,7 @@ margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius:
 						<table>
 							<tr>
 								<td>出房合同编号：</td>
-								<td><input type="text" class="contract_no" id="contract_no" name="contract_no" value="YGJZL" /><span></span></td>
+								<td><input type="text" class="contract_no" id="contract_no" name="contract_no" value="" /><span></span></td>
 								<td>房源片区：</td>
 								<td>
 									<select name="district" class="district" >
@@ -52,9 +52,15 @@ margin-left:10px;border: 1px solid #aaa;height: 25px;width: 150px;border-radius:
 							</tr>
 							<tr>
 								<td>出房管家：</td>
-								<td><select name="salesman" class="salesman"></select></td>							
+								<td>
+									<!--<select name="salesman" class="salesman"></select>-->
+									<input readonly="readonly" type="text" class="salesman" id="salesman" name="salesman" />
+								</td>
 								<td>房源管家：</td>
-								<td><select disabled="disabled" name="job_no" class="job_no"></select></td>
+								<td>
+									<!--<select disabled="disabled" name="job_no" class="job_no"></select>-->
+									<input readonly="readonly" type="text" class="job_no" id="job_no" name="job_no" />
+								</td>
 								<td>区域经理：</td>
 								<td><input type="text" class="region_manager" id="region_manager" name="region_manager" readonly="readonly"/></td>
 							</tr>

@@ -348,7 +348,8 @@ public class IgjiaHouseController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();	
 		Staff admin = (Staff) request.getSession().getAttribute("admin");
-		if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
+		//if("商圈经理".equals(admin.getPosition()) || "2".equals(admin.getPermission())){
+		if(admin.getDepartment().equals("YGJZL")){
 			synchronized(this){			
 				Thread.sleep(1000);
 				String houseId = System.currentTimeMillis()/1000+"";
@@ -366,8 +367,8 @@ public class IgjiaHouseController {
 				String contractMonth=null;
 				
 				String paymethod=null;
-				
-				
+
+
 				String payNextyear=null;
 				String payDate=null;
 				String salesman=null;

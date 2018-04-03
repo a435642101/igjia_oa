@@ -439,6 +439,7 @@ function seachrent(){
 						$(".room_num").val(obj.room_num);
 						$(".state")[0].value=obj.state;
 						$(".district")[0].value=obj.district;
+						$('.business_area').val(obj.business_area);
 						$(".date").val(obj.date);	
 						$(".address").val(obj.address);
 						$(".provider_money").val(obj.provider_money);
@@ -668,7 +669,9 @@ function getAdmin(){
 				var jobno1 = $('.salesman').val();
 				var jobno2 = $('.job_no').val();
 				var name1 = $('.region_manager').val();
-				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007'){				
+				var business_area = json.business_area;
+				var business_area1 = $('.business_area').val();
+				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007' && business_area!=business_area1){
 					var telephone = $('.renter_telephone').val();
 					var newt = telephone.substring(0,3)+"****"+telephone.substring(7,telephone.length)
 					$('.renter_telephone').val(newt);

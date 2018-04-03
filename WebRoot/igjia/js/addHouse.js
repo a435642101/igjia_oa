@@ -5,12 +5,14 @@ var flag=true;
 
 //获取租客信息
 $(function(){
+    getAdmin();
 	getDistrict();
 	$(".lang").hide();
 	$(".lang1").show();
 	$('.loading').hide();
 	$('.property').hide();
 	adminContact();
+
 	$(".next").click(function(){
 		var c =encodeURI(encodeURI($('.district').val()));	//大区域 东南西北
 		var d =encodeURI(encodeURI($('.estate').val()));
@@ -876,8 +878,27 @@ function getDistrict(){
 		        for(var i=0;i<arr.length;i++){
 		          obj=arr[i];
 		          html += "<option value='"+obj.district+"'>"+obj.district+"</option>";
-		        }  
+		        }
 		        $('.district').append(html);
+               getAdmin()
 	       }
 	  });
+}
+
+function getAdmin(){
+	$.ajax({
+		type:"get",
+		url:"/admin.do",
+		async:false,
+		success:function(result){
+			if(result=='fail'){
+			}else{
+				var json = eval('(' + result + ')');
+				$(".job_no").val(json.job_no);
+				$(".salesman").val(json.name);
+				$(".district")[0].value = json.district;
+				$(".business_area").val(json.business_area);
+			}
+		}
+	})
 }

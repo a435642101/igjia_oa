@@ -311,6 +311,7 @@ function getStaffinfo(job_no){
 						$(".lfpart3 input[name=emergency_contactname]").val(obj.emergency_contactname);
 						$(".lfpart3 input[name=job_no]").val(obj.job_no);
 						$(".lfpart3 select[name=district]")[0].value=obj.district;
+						$(".lfpart3 input[name=business_area]").val(obj.business_area);
 						$(".lfpart3 select[name=state]")[0].value=obj.state;
 						$(".lfpart3 input[name=telephone]").val(obj.telephone);
 						$(".lfpart3 input[name=address]").val(obj.address);
@@ -763,7 +764,7 @@ $(function(){
 		$(this).siblings("li").removeClass("act");
 	});
 });
-function add(name,department,position,idcard,origo,social_security,email,emergency_contactname,district,telephone,address,prfunds,vxin,emergency_contacttelephone){
+function add(name,department,position,idcard,origo,social_security,email,emergency_contactname,district,business_area,telephone,address,prfunds,vxin,emergency_contacttelephone){
 	$('.loading').show();
 	$.ajax({
 	       type: "GET",
@@ -777,6 +778,7 @@ function add(name,department,position,idcard,origo,social_security,email,emergen
 	       		 "&email="+email+
 	       		 "&emergency_contactname="+encodeURI(encodeURI(emergency_contactname))+
 	       		 "&district="+encodeURI(encodeURI(district))+
+		   		 "&business_area="+encodeURI(encodeURI(business_area))+
 	       		 "&telephone="+telephone+
 	       		 "&address="+encodeURI(encodeURI(address))+
 	       		 "&prfunds="+prfunds+
@@ -802,7 +804,7 @@ function add(name,department,position,idcard,origo,social_security,email,emergen
 	       }
 	});
 }
-function update(name,department,position,idcard,origo,social_security,email,emergency_contactname,job_no,district,state,telephone,address,prfunds,vxin,emergency_contacttelephone,password){
+function update(name,department,position,idcard,origo,social_security,email,emergency_contactname,job_no,district,business_area,state,telephone,address,prfunds,vxin,emergency_contacttelephone,password){
 	$('.loading').show();
 	$.ajax({
 	       type: "GET",
@@ -817,6 +819,7 @@ function update(name,department,position,idcard,origo,social_security,email,emer
 	       		 "&emergency_contactname="+encodeURI(encodeURI(emergency_contactname))+
 	       		 "&job_no="+job_no+
 	       		 "&district="+encodeURI(encodeURI(district))+
+		   		 "&business_area="+encodeURI(encodeURI(business_area))+
 	       		 "&state="+encodeURI(encodeURI(state))+
 	       		 "&telephone="+telephone+
 	       		 "&address="+encodeURI(encodeURI(address))+
@@ -826,13 +829,7 @@ function update(name,department,position,idcard,origo,social_security,email,emer
 				 "&pwd="+password,
 	       success: function(result){
 	    	   var obj=JSON.parse(result);
-	    	   if(obj.code=="2"){
-	    		    alert("修改失败");
-				}else if(obj.code=="3"){
-					alert("修改失败，管家名下有房源");
-				}else{
-					alert("修改成功");
-				}
+	    	   alert(obj.msg);
 	    	   $('.loading').hide();
 	       }
 	});
@@ -1037,6 +1034,7 @@ $(function(){
 		
 		var job_no = $(".lfpart3 input[name=job_no]").val();
 		var district = $(".lfpart3 select[name=district]").val();
+		var business_area = $(".lfpart3 input[name=business_area]").val();
 		var state = $(".lfpart3 select[name=state]").val();
 		var telephone = $(".lfpart3 input[name=telephone]").val();
 		var address = $(".lfpart3 input[name=address]").val();
@@ -1061,7 +1059,7 @@ $(function(){
 			}
 		})
 		if(is==true){
-			update(name,department,position,idcard,origo,social_security,email,emergency_contactname,job_no,district,state,telephone,address,prfunds,vxin,emergency_contacttelephone,password);
+			update(name,department,position,idcard,origo,social_security,email,emergency_contactname,job_no,district,business_area,state,telephone,address,prfunds,vxin,emergency_contacttelephone,password);
 		}else{
 			alert("所有数据长度最高20位,地址最高50位");
 		}
@@ -1079,6 +1077,7 @@ $(function(){
 		var emergency_contactname = $(".lfpart5 input[name=emergency_contactname]").val();
 		
 		var district = $(".lfpart5 select[name=district]").val();
+		var business_area = $(".lfpart5 input[name=business_area]").val();
 		var telephone = $(".lfpart5 input[name=telephone]").val();
 		var address = $(".lfpart5 input[name=address]").val();
 		var prfunds = $(".lfpart5 input[name=prfunds]").val();
@@ -1102,7 +1101,7 @@ $(function(){
 			
 		})
 		if(is==true){
-			add(name,department,position,idcard,origo,social_security,email,emergency_contactname,district,telephone,address,prfunds,vxin,emergency_contacttelephone);
+			add(name,department,position,idcard,origo,social_security,email,emergency_contactname,district,business_area,telephone,address,prfunds,vxin,emergency_contacttelephone);
 		}else{
 			alert("所有数据长度最高20位,地址最高50位");
 		}
