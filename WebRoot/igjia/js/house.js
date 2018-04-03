@@ -1,4 +1,4 @@
-var page = 1;
+﻿var page = 1;
 
 //分页获取租客信息
 $(function(){
@@ -532,27 +532,26 @@ function getseachhouse(address1,district,state,contract_start1,contract_start2,c
 							finishdate="无";
 						}
 						
-						html += "<tr lang=\"houseiframe\"  _href='houseDetail.html?house_id="+obj.house_id+"'><td>"+house_id+"</td>"+
-									"<td>"+district+"</td>" +
-									"<td>"+business_area+"</td>" +
-									"<td>"+estate+"</td>" +
-									"<td>"+address+"</td>" +
-									"<td>"+house_type+"</td>" +
-									"<td>"+room_area+"</td>" +
-									"<td>"+room_tese+"</td>" +
-									"<td>"+obj.room_yuqichufangjia+"</td>" +
-									"<td>"+vacancydate+"</td>"+
-									"<td>"+finishdate+"</td>"+
-									"<td>"+firstornot+"</td>"+
-									"<td>"+job_no+"</td>"+																
-									"<td>"+state+"</td>" +								
-									"<td>"+contract_startdate+"</td>"+		
+						html += "<tr lang=\"houseiframe\"  _href='houseDetail.html?house_id="+obj.house_id+"'><td width='6%'>"+house_id+"</td>"+
+									"<td width='7%'>"+district+"</td>" +
+									"<td width='4%'>"+business_area+"</td>" +
+									"<td width='6%'>"+estate+"</td>" +
+									"<td width='10%'>"+address+"</td>" +
+									"<td width='6%'>"+house_type+"</td>" +
+									"<td width='5%'>"+room_area+"</td>" +
+									"<td width='6%'>"+room_tese+"</td>" +
+									"<td width='5%'>"+obj.room_yuqichufangjia+"</td>" +
+									"<td width='5%'>"+vacancydate+"</td>"+
+									"<td width='10%'>"+finishdate+"</td>"+
+									"<td width='8%'>"+firstornot+"</td>"+
+									"<td width='6%'>"+job_no+"</td>"+																
+									"<td width='5%'>"+state+"</td>" +								
+									"<td width='6%'>"+contract_startdate+"</td>"+		
 						//			"<td>"+obj.remark+"</td>" +
-									"<td><a lang=\"houseiframe\"  class='find' _href='houseDetail.html?house_id="+obj.house_id+"'>查看详情</a></td>"+
+									"<td width='4%'><a lang=\"houseiframe\"  class='find' _href='houseDetail.html?house_id="+obj.house_id+"'>查看详情</a></td>"+
 								"</tr>"				
 					}					
-					
-					
+
 					
 					$('#maxnum').val(arr.total);
 					var maxnum = $('#maxnum').val();				

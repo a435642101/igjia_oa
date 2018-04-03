@@ -685,7 +685,28 @@ function getAdmin(){
 				var json = eval('(' + result + ')');
 				$(".job_no").val(json.job_no);
 				$(".salesman").val(json.name);
+                adminContact1(json.district);
 			}
 		}
 	})
+}
+
+function adminContact1(district){
+    $.ajax({
+        type: "GET",
+        url: "adminContact.do",
+        data: "",
+        success: function(result){
+            var arr=JSON.parse(result);
+            var obj;
+            for(var i=0;i<arr.length;i++){
+                obj=arr[i];
+                if(district == obj.district && obj.position =="区域经理"){
+                    $(".region_manager").val(obj.name);
+                    break;
+                }
+            }
+
+        }
+    });
 }

@@ -1,4 +1,4 @@
-$(function(){
+﻿$(function(){
 	$(".center aside ul li").click(function(){
 		var a = $(this).attr("lang");
 		$("#rightiframe").attr("src",a);
@@ -32,6 +32,10 @@ $.ajax({
 				
 				$('.right>span').attr('title',"工号"+job_no)
 				$('#name').html(name);
+				if(job_no == '30079'){
+				$("li[lang='rear/nav.html']").hide();
+			
+}
 				var arr={
 				    	"dept" : json.department,  
 				    	"job_no" :job_no,  

@@ -760,7 +760,9 @@ function adminContact(){
 	        });
 	       }
 	  });
-	} 
+	}
+
+
 
 $(function(){
 	//监听几室输入框变化
@@ -898,7 +900,29 @@ function getAdmin(){
 				$(".salesman").val(json.name);
 				$(".district")[0].value = json.district;
 				$(".business_area").val(json.business_area);
+				adminContact1();
 			}
 		}
 	})
+}
+
+function adminContact1(){
+	$.ajax({
+		type: "GET",
+		url: "adminContact.do",
+		data: "",
+		success: function(result){
+			var arr=JSON.parse(result);
+			var obj;
+			var district = $(".district").val();
+			for(var i=0;i<arr.length;i++){
+				obj=arr[i];
+				if(district == obj.district && obj.position =="区域经理"){
+					$(".region_manager").val(obj.name);
+					break;
+				}
+			}
+
+		}
+	});
 }
