@@ -28,4 +28,6 @@ public interface IHouseDao {
 	int getContractMax();
 	List<Map<String, Object>> newoaHouse();
 	List<Map<String, Object>> newoaRoom();
+	List<Map<String, Object>> idcardHouse(String idcard);
+	List<Map<String, Object>> idcardrent(String idcard);
 }

@@ -38,6 +38,19 @@
 		<!--LEFT JOIN (select house_id,contract_no,renter_name,renter_telephone,paymethod,state from rentlist where state != '已失效' and state !='已到期') r on h.house_id = r.house_id-->
 		<!--where h.state !='已解约' and h.state !='已到期'-->
 	<!--</select>-->
+	<select id="idcardHouse" resultType="java.util.Map" parameterType="String">
+		select h.contract_no as contract_no,SUBSTRING_INDEX(h.address,"-",1) as address,a.name as aname,a.telephone as aphone,b.name as bname,b.telephone as bphone from houselist h
+		inner join admin a on a.job_no = h.job_no
+		inner join admin b on b.position = '区域经理' and b.district = h.district
+		where h.fangdong_idcard = #{idcard}
+		group by contract_no;
+	</select>
+	<select id="idcardrent" resultType="java.util.Map" parameterType="String">
+		select h.contract_no as contract_no,h.address as address,a.name as aname,a.telephone as aphone,b.name as bname,b.telephone as bphone from rentlist h
+		inner join admin a on a.job_no = h.job_no
+		inner join admin b on b.position = '区域经理' and b.district = h.district
+		where h.renter_idcard = #{idcard}
+	</select>
 	<!--导出相关-->
 	<select id="newoaHouse" resultType="java.util.Map">
 		select

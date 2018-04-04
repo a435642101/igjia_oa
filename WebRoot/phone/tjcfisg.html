@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+
+    <!-- 手机端 禁止缩放 -->
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width">
+
+    <title>爱生活-爱公寓</title>
+
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!-- css样式重置文件 -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+
+    <!-- head页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+
+    <!-- 当前页面样式 -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- 调用jquery库 -->
+    <script type="text/javascript" src="js/jquery-v1.11.3.min.js"></script>
+
+    <style type="text/css">
+        body{font-family:"宋体";}
+        .p p{}
+    </style>
+</head>
+
+<body class="BCf2f2f2">
+<div class = "single" style="width:100%; height:200px; background-color:rgb(4,235,244);">
+    <div style="width:100%; height:140px;">
+        <div style="height:30px;"></div>
+        <input type="text" class="idcard" placeholder="请输入身份证号" style="background-color:#FFF; width:180px; height:30px; display:block; margin:10px auto;" />
+        <button style="height:50px; width:50px; border-radius:25px; background-color:#000; display:block; margin:20px auto 0px auto; color:#FFF; font-size:20px;">搜索</button>
+    </div>
+    <div style="width:100%; border-top:#000 3px solid; margin-top:10px; font-size:24px; font-weight:bolder; text-align:center; line-height:40px;">
+        爱生活&nbsp;&nbsp;爱公寓
+    </div>
+</div>
+<div class="append"></div>
+<script type="text/javascript">
+        $("button").click(function(){
+            var idcard = $(".idcard").val();
+            var isIDCard=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+            if(!isIDCard.test(idcard)){
+                return false;
+            }
+            $.ajax({
+                type: "GET",
+                url : '../igjia/Onehouse1.do?idcard='+idcard,
+                data: "",
+                success: function(result){
+                    var arr=JSON.parse(result);
+                    var html = "";
+                    if(arr.length!=0){
+                        $(".single").hide();
+                    }else{
+                        alert("该身份证下面无房源信息");
+                        return false;
+                    }
+                    for(var i = 0; i<arr.length; i++){
+                        var obj = arr[i];
+                        html +="<div style='width:100%; height:200px; background-color:rgb(4,235,244); margin-top:1px; font-size:16px;'>"+
+                                "<div style='width:100%; height:140px;'>"+
+                                "<div class='p' style='height:20px;'></div>"+
+                                "<p>&nbsp;合同编号：<span class='contract'>"+obj.contract_no+"</span></p>"+
+                                "<p style='margin-top:5px;'>&nbsp;房源地址：<span class='address'>"+obj.address+"</span></p>"+
+                                "<p style='margin-top:5px;'>&nbsp;服务管家：<span class='name'>"+obj.aname+" "+obj.aphone+"</span></p>"+
+                                "<p style='margin-top:5px;'>&nbsp;投诉电话（区域经理）：<span class='region_name'>"+obj.bname+" "+obj.bphone+"</span></p>"+
+                                "</div>"+
+                                "<div style='width:100%; border-top:#000 3px solid; margin-top:10px; font-size:24px; font-weight:bolder; text-align:center; line-height:40px;'>"+
+                                "爱生活&nbsp;&nbsp;爱公寓"+
+                                "</div>"+
+                                "</div>";
+                    }
+                    $(".append").html(html);
+                }
+            });
+        })
+</script>
+</body>
+</html>

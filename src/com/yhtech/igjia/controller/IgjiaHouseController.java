@@ -180,6 +180,23 @@ public class IgjiaHouseController {
 		jo = JSONObject.fromObject(house);
 		out.print(jo.toString());
 	}
+
+	/**
+	 * 获取单个房源记录
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping("igjia/Onehouse1.do")
+	public void aaaaaaa(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		//获取数据
+		String idcard=request.getParameter("idcard");
+		JSONArray array = JSONArray.fromObject(ihousedao.idcardHouse(idcard));
+		array.addAll(ihousedao.idcardrent(idcard));
+		out.print(array.toString());
+	}
 	
 	/**
 	 * 获取前15条房源

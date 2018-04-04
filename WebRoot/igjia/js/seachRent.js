@@ -671,11 +671,12 @@ function getAdmin(){
 				var name1 = $('.region_manager').val();
 				var business_area = json.business_area;
 				var business_area1 = $('.business_area').val();
-				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007' && business_area!=business_area1){
+				var district = $('.district').val();
+				var district1 = json.district;
+				if(department=="YGJZL" && jobno1!=job_no && jobno2!=job_no && name!=name1 && job_no!='10007' && !(business_area==business_area1 && json.position =='商圈经理') && !(district == district1 && json.position =='区域经理')){
 					var telephone = $('.renter_telephone').val();
 					var newt = telephone.substring(0,3)+"****"+telephone.substring(7,telephone.length)
 					$('.renter_telephone').val(newt);
-				
 				}
 			}			
 		}
