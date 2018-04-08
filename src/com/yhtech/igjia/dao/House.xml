@@ -67,7 +67,7 @@
 		'AUDIT_PASS' as state
 		from houselist h
 		left JOIN admin a on h.job_no = a.job_no
-		WHERE h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)
+		WHERE (h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)) and h.ls_id is NOT NULL
 		GROUP BY h.contract_no
 	</select>
 	<select id="newoaRoom" resultType="java.util.Map">
@@ -85,7 +85,7 @@
 		a.telephone as phone
 		from houselist h
 		left JOIN admin a on h.job_no = a.job_no
-		WHERE h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)
+		WHERE (h.date >= (now() - interval 4 hour) OR  h.update_date >= (now() - interval 2 hour)) and h.ls_id is NOT NULL
 	</select>
 	<!--订单列表查询-->
 	<select id="selectOrderHouse" parameterType="String" resultType="com.yhtech.igjia.domain.House">
