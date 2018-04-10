@@ -193,7 +193,7 @@ public class IgjiaHouseController {
 		PrintWriter out = response.getWriter();
 		//获取数据
 		String idcard=request.getParameter("idcard");
-		JSONArray array = JSONArray.fromObject(ihousedao.idcardHouse(idcard));
+ 		JSONArray array = JSONArray.fromObject(ihousedao.idcardHouse(idcard));
 		array.addAll(ihousedao.idcardrent(idcard));
 		out.print(array.toString());
 	}
